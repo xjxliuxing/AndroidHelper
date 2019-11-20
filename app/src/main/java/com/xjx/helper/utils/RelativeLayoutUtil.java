@@ -6,6 +6,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import com.xjx.helper.R;
+
+/**
+ * @作者 徐吉星
+ * @创建时间 2019/11/21  2:01
+ * @更新者 XJX
+ * @描述 1：这个是为了适配相对布局创造出来的工具类，使用该布局，可以适配任意的屏幕
+ * 2：需要注意是：使用该布局的时候，布局的单位需要改为px，不然就会出现问题
+ */
 public class RelativeLayoutUtil extends RelativeLayout {
 
     private boolean isMeasure = true;
@@ -38,6 +47,10 @@ public class RelativeLayoutUtil extends RelativeLayout {
                 View child = getChildAt(i);
                 LayoutParams layoutParams = (LayoutParams) child.getLayoutParams();
                 // 重新设置宽高的比值
+
+                int width = layoutParams.width;
+                LogUtil.e("View的宽度为：" + width);
+
                 layoutParams.width = (int) (layoutParams.width * horizontalScaleValue);
                 layoutParams.height = (int) (layoutParams.height * verticalScaleValue);
 
@@ -54,10 +67,19 @@ public class RelativeLayoutUtil extends RelativeLayout {
             // 设置布局的padding值
             setPadding((int) (getPaddingLeft() * horizontalScaleValue), (int) (getPaddingTop() * verticalScaleValue), (int) (getPaddingRight() * horizontalScaleValue), (int) (getPaddingBottom() * verticalScaleValue));
 
+
             isMeasure = false;
         }
 
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
 
+    @Override
+    public LayoutParams generateLayoutParams(AttributeSet attrs) {
+
+//        float titleSize = attrs.getInteger(R.styleable.BaseTitle_title_size, 0);
+        int x_width = attrs.getAttributeIntValue(R.styleable.RelativeLayoutUtil_x_width, 0);
+
+        return super.generateLayoutParams(attrs);
     }
 }

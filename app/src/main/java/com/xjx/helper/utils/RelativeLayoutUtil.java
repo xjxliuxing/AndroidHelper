@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.xjx.helper.R;
+import com.xjx.helper.global.App;
 
 /**
  * @作者 徐吉星
@@ -18,6 +19,8 @@ import com.xjx.helper.R;
 public class RelativeLayoutUtil extends RelativeLayout {
 
     private boolean isMeasure = true;
+    private float horizontalScaleValue = App.getInstance().horizontalScaleValue;
+    private float verticalScaleValue = App.getInstance().verticalScaleValue;
 
     public RelativeLayoutUtil(Context context) {
         super(context);
@@ -36,9 +39,7 @@ public class RelativeLayoutUtil extends RelativeLayout {
 
         if (isMeasure) {
             // 获取宽高的比值
-            float horizontalScaleValue = LayoutUtil.getInstance(getContext()).getHorizontalScaleValue();
             Log.e("xjx", "horizontalScaleValue:" + horizontalScaleValue);
-            float verticalScaleValue = LayoutUtil.getInstance(getContext()).getVerticalScaleValue();
             Log.e("xjx", "verticalScaleValue:" + verticalScaleValue);
 
             // 获取子控件的数量
@@ -66,7 +67,6 @@ public class RelativeLayoutUtil extends RelativeLayout {
 
             // 设置布局的padding值
             setPadding((int) (getPaddingLeft() * horizontalScaleValue), (int) (getPaddingTop() * verticalScaleValue), (int) (getPaddingRight() * horizontalScaleValue), (int) (getPaddingBottom() * verticalScaleValue));
-
 
             isMeasure = false;
         }

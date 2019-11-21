@@ -162,12 +162,47 @@ public class SpUtil {
      * @return 获取long类型的数据, 如果获取不到, 则返回-999
      */
     public static long getLong(String key) {
-        long value = -999;
+        long value = -1;
         if (!TextUtils.isEmpty(key)) {
             getSp();
-            value = sp.getLong(key, -999);
+            value = sp.getLong(key, -1);
         } else {
             LogUtil.e("取出getInt类型的值为空!");
+        }
+        return value;
+    }
+
+    /**
+     * 放入float类型的数据
+     *
+     * @param key   存入的key
+     * @param value 存入的value
+     */
+    public static void putFloat(String key, float value) {
+        if (key != null) {
+            getSp();
+            // 开启编辑器
+            SharedPreferences.Editor edit = sp.edit();
+            // 存入数据
+            edit.putFloat(key, value);
+            // 提交
+            edit.commit();
+        } else {
+            LogUtil.e("存入PutFloat类型的值为空!");
+        }
+    }
+
+    /**
+     * @param key 获取数据的key
+     * @return 获取float类型的数据, 如果获取不到, 则返回0.0f
+     */
+    public static float getFloat(String key) {
+        float value = 0.0f;
+        if (!TextUtils.isEmpty(key)) {
+            getSp();
+            value = sp.getFloat(key, 0.0f);
+        } else {
+            LogUtil.e("取出getFloat类型的值为空!");
         }
         return value;
     }

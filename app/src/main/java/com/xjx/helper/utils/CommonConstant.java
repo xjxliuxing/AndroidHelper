@@ -46,6 +46,16 @@ public class CommonConstant {
     public static final String STATUS_HEIGHT = "status_height";
 
     /**
+     * 布局缩放宽的比例
+     */
+    public static final String LAYOUT_WIDTH_SCALE = "layout_width_scale";
+
+    /**
+     * 布局缩放高的比例
+     */
+    public static final String LAYOUT_HEIGHT_SCALE = "layout_height_scale";
+
+    /**
      * 手机号码号码的正则表达式
      */
     public static final String REGEX_PHONE_NUMBER = "^0?(13|14|15|16|17|18|19)[0-9]{9}$";

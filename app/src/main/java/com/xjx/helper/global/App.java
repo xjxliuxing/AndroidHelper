@@ -10,12 +10,15 @@ import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
 import com.xjx.helper.BuildConfig;
 import com.xjx.helper.utils.CommonConstant;
+import com.xjx.helper.utils.LayoutUtil;
 import com.xjx.helper.utils.SpUtil;
 
 public class App extends Application {
 
     private static App mApp;
     public boolean isDebug;
+    public float horizontalScaleValue; // 布局宽的缩放比例
+    public float verticalScaleValue;   // 布局高的缩放比例
 
     @Override
     public void onCreate() {
@@ -32,6 +35,7 @@ public class App extends Application {
     private void initApp() {
         initLogger();
         getStatusBarHeight();
+        initLayout();
     }
 
     private void initLogger() {
@@ -49,6 +53,14 @@ public class App extends Application {
                 return BuildConfig.DEBUG; // 只有在 Debug模式下才会打印
             }
         });
+    }
+
+    /**
+     * 初始化布局
+     */
+    private void initLayout() {
+        horizontalScaleValue = LayoutUtil.getInstance(this).getHorizontalScaleValue();
+        verticalScaleValue = LayoutUtil.getInstance(this).getVerticalScaleValue();
     }
 
     /**

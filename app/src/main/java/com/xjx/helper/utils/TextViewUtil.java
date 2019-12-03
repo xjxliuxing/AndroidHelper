@@ -1,9 +1,9 @@
 package com.xjx.helper.utils;
 
 import android.content.Context;
+import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 
-import androidx.appcompat.widget.AppCompatTextView;
 
 public class TextViewUtil extends AppCompatTextView {
 

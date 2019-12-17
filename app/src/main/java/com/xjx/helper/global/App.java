@@ -10,7 +10,7 @@ import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
 import com.xjx.helper.BuildConfig;
 import com.xjx.helper.utils.CommonConstant;
-import com.xjx.helper.utils.LayoutUtil;
+import com.xjx.helper.utils.layout.LayoutUtil;
 import com.xjx.helper.utils.SpUtil;
 
 public class App extends Application {

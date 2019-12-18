@@ -1,11 +1,11 @@
 package com.xjx.helper;
 
-import com.xjx.helper.base.BaseTitleActivity;
+import com.xjx.helper.base.BaseRefreshActivity;
 
-public class MainActivity extends BaseTitleActivity {
+public class MainActivity extends BaseRefreshActivity {
 
     @Override
-    protected int getTitleLayout() {
+    protected int getRefreshLayout() {
         return R.layout.activity_main;
     }
 

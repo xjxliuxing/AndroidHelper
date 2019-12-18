@@ -1,40 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fl_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.xjx.helper.utils.refresh.MySmartRefreshLayout
-        android:id="@+id/refresh"
-        app:srlEnablePreviewInEditMode="true"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.xjx.helper.utils.refresh.MyRrfreshHeader
-            android:id="@+id/refresh_header"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tv1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="测试" />
-
-        </RelativeLayout>
-
-        <com.xjx.helper.utils.refresh.MyRefreshFooter
-            android:id="@+id/refresh_footer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.xjx.helper.utils.refresh.MySmartRefreshLayout>
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="测试"
+        android:textColor="@color/yellow1"
+        android:textSize="40sp" />
 
 </RelativeLayout>

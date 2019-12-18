@@ -18,7 +18,7 @@ public abstract class BaseTitleActivity extends BaseActivity {
     private TextView mTvLeft; // 返回文字
     private TextView mTvTitle; // 标题头
     private TextView mTvRight; // 右侧标题
-    private FrameLayout mFlContent; // 主布局
+    private FrameLayout mTitleFlContent; // 主布局
     private FrameLayout mFlRightContainer; // 右侧的标题头
 
     protected boolean mIsFinishActivity = true;// 是否关闭Activity页面,默认直接关闭
@@ -36,13 +36,13 @@ public abstract class BaseTitleActivity extends BaseActivity {
         mTvTitle = findViewById(R.id.tv_title);
         mTvRight = findViewById(R.id.tv_title_right);
         mFlRightContainer = findViewById(R.id.fl_right_container);
-        mFlContent = findViewById(R.id.fl_content);
+        mTitleFlContent = findViewById(R.id.fl_content);
     }
 
     @Override
     protected void initViewAfter() {
         super.initViewAfter();
-        getLayoutInflater().inflate(getTitleLayout(), mFlContent, true);
+        getLayoutInflater().inflate(getTitleLayout(), mTitleFlContent, true);
     }
 
     /**
@@ -103,6 +103,8 @@ public abstract class BaseTitleActivity extends BaseActivity {
     protected void onRightTitleClick() {
 
     }
+
+
 
     @Override
     public void onClick(View v) {

@@ -11,8 +11,7 @@
     <FrameLayout
         android:id="@+id/fl_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="visible" />
+        android:layout_height="match_parent" />
 
     <!-- loading部分 -->
     <com.xjx.helper.widget.PlaceHolderView

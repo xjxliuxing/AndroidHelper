@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
-import com.xjx.helper.utils.CommonConstant;
+import com.xjx.helper.global.CommonConstant;
 import com.xjx.helper.utils.SpUtil;
 
 /**

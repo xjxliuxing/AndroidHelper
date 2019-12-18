@@ -1,4 +1,4 @@
-package com.xjx.helper.utils;
+package com.xjx.helper.global;
 
 /**
  * <p>项目中公共的常量类<p>
@@ -26,34 +26,9 @@ public class CommonConstant {
     public static final String USER_BIND_PHONE_NUMBER = "user_bind_phone_number";
 
     /**
-     * Bugly平台的id
-     */
-    public static final String BUGLY_ID = "0a5d0f170a";
-
-    /* ---------------------------- EventBus ----------------------------------------------*/
-
-    /**
-     * 友盟统计
-     */
-    public static final String Umeng_App_key = "5d2982030cafb2659d000328";
-    public static final String UMENG_CHANNEL = "BuddyEnglish";
-    public static final String wx_openid = "wx_openid";
-    public static final String wx_nickname = "wx_nickname";
-
-    /**
      * 状态栏高度
      */
     public static final String STATUS_HEIGHT = "status_height";
-
-    /**
-     * 布局缩放宽的比例
-     */
-    public static final String LAYOUT_WIDTH_SCALE = "layout_width_scale";
-
-    /**
-     * 布局缩放高的比例
-     */
-    public static final String LAYOUT_HEIGHT_SCALE = "layout_height_scale";
 
     /**
      * 手机号码号码的正则表达式
@@ -67,5 +42,9 @@ public class CommonConstant {
      * ---------------------------- CODE ----------------------------------------------
      */
 
+    // dialog的show方法监听
+    public static final int CODE_DIALOG_UTIL_SHOW = 1000;
+    // dialog的dimiss方法监听
+    public static final int CODE_DIALOG_UTIL_CLOSE = CODE_DIALOG_UTIL_SHOW + 1;
 }
 

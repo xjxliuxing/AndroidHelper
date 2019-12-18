@@ -74,4 +74,6 @@ dependencies {
     api 'com.google.code.gson:gson:2.8.2'
     // 6.0动态权限
     api 'com.github.tbruyelle:rxpermissions:0.10.2'
+    // 刷新框架
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
 }

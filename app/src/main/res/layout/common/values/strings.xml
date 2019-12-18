@@ -1,0 +1,39 @@
+<resources>
+    <string name="image_description">Image</string>
+
+    <!-- 通用 -->
+    <string name="back">返回</string>
+    <string name="setting">设置</string>
+    <string name="exit">退出</string>
+    <string name="cancel">取消</string>
+    <string name="confirm">确定</string>
+    <string name="data_unusual">数据异常</string>
+
+    <!-- 权限申请描述 -->
+    <string name="notifyTitle">当前应用缺少必要权限</string>
+    <string name="promptTitle">缺少权限</string>
+    <string name="notifyMsg">\n请点击\"设置\"-\"权限\"-打开所需权限。</string>
+    <string name="permit">授权</string>
+
+    <!-- 首页获取权限提示：如果一个页面需要多个权限，并且必须授权，则名称按照页面名称来写，如果需要单个权限，则名称按照权限名称来写 -->
+    <string name="welcomePermission">丰享汇需要您的如下权限：\n读写权限：缓存数据使用\n手机设备信息：校验IMEI<![CDATA[&]]>IMSI码，防止账号被盗</string>
+    <!-- 定位权限提示 -->
+    <string name="locationPermission">丰享汇需要您的如下权限：\n定位：为您提供天气、周边查询、导航等服务</string>
+    <!-- 读写权限 -->
+    <string name="writePermission">丰享汇需要您的如下权限：\n读写权限：缓存数据使用</string>
+    <!-- 手机设备信息权限 -->
+    <string name="phoneStatePermission">丰享汇需要您的如下权限：\n手机设备信息：校验IMEI<![CDATA[&]]>IMSI码，防止账号被盗</string>
+    <!-- 相机权限 -->
+    <string name="cameraPermission">丰享汇需要您的如下权限：\n相机：拍摄图片</string>
+
+    <!-- 权限申请描述 -->
+
+    <!-- PlaceHolderView -->
+    <string name="placeholder_loading">加载中</string>
+    <string name="placeholder_empty">暂无数据~</string>
+    <string name="placeholder_error">错误了~</string>
+    <string name="placeholder_reload">重试</string>
+    <string name="placeholder_refresh">刷新</string>
+    <!-- PlaceHolderView -->
+
+</resources>

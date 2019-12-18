@@ -3,7 +3,7 @@
     package="com.xjx.helper">
 
     <application
-        android:name=".global.App"
+        android:name=".global.BaseApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

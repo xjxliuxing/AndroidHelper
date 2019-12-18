@@ -1,7 +1,7 @@
 package com.xjx.helper.utils;
 
 import com.orhanobut.logger.Logger;
-import com.xjx.helper.global.App;
+import com.xjx.helper.BuildConfig;
 
 import java.lang.reflect.Array;
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.Set;
  */
 public class LogUtil {
 
-    private static boolean isDebug = App.getInstance().isDebug;
+    private static boolean isDebug = BuildConfig.DEBUG;
 
     /**
      * Created by XTF on 2017/5/5.

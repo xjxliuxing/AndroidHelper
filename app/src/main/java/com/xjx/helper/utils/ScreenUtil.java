@@ -2,8 +2,6 @@ package com.xjx.helper.utils;
 
 import android.content.Context;
 
-import com.xjx.helper.global.App;
-
 /**
  * @作者 徐吉星
  * @创建时间 2019/11/20  23:59

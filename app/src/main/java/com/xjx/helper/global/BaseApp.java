@@ -1,22 +1,24 @@
 package com.xjx.helper.global;
 
 import android.app.Application;
-import android.support.annotation.Nullable;
 
+import androidx.annotation.Nullable;
 
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
 import com.xjx.helper.BuildConfig;
-import com.xjx.helper.utils.CommonConstant;
 import com.xjx.helper.utils.layout.LayoutUtil;
-import com.xjx.helper.utils.SpUtil;
 
-public class App extends Application {
+/**
+ * 基类的Application，使用的时候，需要注意以下事项：
+ * 1：必须设置debug模式
+ */
+public class BaseApp extends Application {
 
-    private static App mApp;
-    public boolean isDebug;
+    private static BaseApp mApp;
+    public boolean isDebug; // debug类型，默认是false类型
     public float horizontalScaleValue; // 布局宽的缩放比例
     public float verticalScaleValue;   // 布局高的缩放比例
 
@@ -28,13 +30,12 @@ public class App extends Application {
         initApp();
     }
 
-    public static App getInstance() {
+    public static BaseApp getInstance() {
         return mApp;
     }
 
     private void initApp() {
         initLogger();
-        getStatusBarHeight();
         initLayout();
     }
 
@@ -56,29 +57,20 @@ public class App extends Application {
     }
 
     /**
+     * 设置debug模式
+     *
+     * @param debug
+     */
+    public void setDebug(boolean debug) {
+        isDebug = debug;
+    }
+
+    /**
      * 初始化布局
      */
     private void initLayout() {
         horizontalScaleValue = LayoutUtil.getInstance(this).getHorizontalScaleValue();
         verticalScaleValue = LayoutUtil.getInstance(this).getVerticalScaleValue();
-    }
-
-    /**
-     * 获取状态栏的高度
-     */
-    private int getStatusBarHeight() {
-        //获取status_bar_height资源的ID
-        int statusBarHeight = 48;
-        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
-        if (resourceId > 0) {
-            //根据资源ID获取响应的尺寸值
-            statusBarHeight = getResources().getDimensionPixelSize(resourceId);
-        }
-        if (statusBarHeight > 0) {
-            // 把状态栏的高度存入到sp中
-            SpUtil.putInt(CommonConstant.STATUS_HEIGHT, statusBarHeight);
-        }
-        return statusBarHeight;
     }
 
 }

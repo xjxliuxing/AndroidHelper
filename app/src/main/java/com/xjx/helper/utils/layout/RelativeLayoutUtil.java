@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.xjx.helper.R;
-import com.xjx.helper.global.App;
+import com.xjx.helper.global.BaseApp;
 import com.xjx.helper.utils.LogUtil;
 
 /**
@@ -20,8 +20,8 @@ import com.xjx.helper.utils.LogUtil;
 public class RelativeLayoutUtil extends RelativeLayout {
 
     private boolean isMeasure = true;
-    private float horizontalScaleValue = App.getInstance().horizontalScaleValue;
-    private float verticalScaleValue = App.getInstance().verticalScaleValue;
+    private float horizontalScaleValue = BaseApp.getInstance().horizontalScaleValue;
+    private float verticalScaleValue = BaseApp.getInstance().verticalScaleValue;
 
     public RelativeLayoutUtil(Context context) {
         super(context);

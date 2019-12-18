@@ -6,14 +6,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.xjx.helper.global.App;
+import com.xjx.helper.global.BaseApp;
 import com.xjx.helper.utils.LogUtil;
 
 public class FrameLayoutUtil extends FrameLayout {
 
     private boolean isMeasure = true;
-    private float horizontalScaleValue = App.getInstance().horizontalScaleValue;
-    private float verticalScaleValue = App.getInstance().verticalScaleValue;
+    private float horizontalScaleValue = BaseApp.getInstance().horizontalScaleValue;
+    private float verticalScaleValue = BaseApp.getInstance().verticalScaleValue;
 
     public FrameLayoutUtil(Context context) {
         super(context);

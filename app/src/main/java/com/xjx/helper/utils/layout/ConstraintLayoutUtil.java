@@ -1,19 +1,20 @@
 package com.xjx.helper.utils.layout;
 
 import android.content.Context;
-import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
-import com.xjx.helper.global.App;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
+import com.xjx.helper.global.BaseApp;
 import com.xjx.helper.utils.LogUtil;
 
 public class ConstraintLayoutUtil extends ConstraintLayout {
 
     private boolean isMeasure = true;
-    private float horizontalScaleValue = App.getInstance().horizontalScaleValue;
-    private float verticalScaleValue = App.getInstance().verticalScaleValue;
+    private float horizontalScaleValue = BaseApp.getInstance().horizontalScaleValue;
+    private float verticalScaleValue = BaseApp.getInstance().verticalScaleValue;
 
     public ConstraintLayoutUtil(Context context) {
         super(context);

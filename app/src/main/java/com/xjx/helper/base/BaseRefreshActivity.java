@@ -26,18 +26,20 @@ public abstract class BaseRefreshActivity extends BaseTitleActivity {
     private MyRrfreshHeader mBaseRefreshHeader;
     private MyRefreshFooter mBaseRefreshFooter;
     private FrameLayout mRefreshFlContent;
-    private View mBaseTitle;
 
     @Override
     protected int getTitleLayout() {
         return R.layout.base_refresh_activity;
     }
 
+    /**
+     * @return 获取刷新界面的布局
+     */
+    protected abstract int getRefreshLayout();
+
     @Override
     protected void initView() {
         super.initView();
-        mBaseTitle = findViewById(R.id.rl_title_root);
-
         mBaseRefresh = findViewById(R.id.base_refresh);
         mBaseRefreshHeader = findViewById(R.id.base_refresh_header);
         mBaseRefreshFooter = findViewById(R.id.base_refresh_footer);
@@ -45,9 +47,9 @@ public abstract class BaseRefreshActivity extends BaseTitleActivity {
     }
 
     @Override
-    protected void initData() {
-        super.initData();
-
+    protected void initViewAfter() {
+        super.initViewAfter();
+        getLayoutInflater().inflate(getRefreshLayout(), mRefreshFlContent, true);
     }
 
     @Override
@@ -63,25 +65,15 @@ public abstract class BaseRefreshActivity extends BaseTitleActivity {
         }
     }
 
-    @Override
-    protected void initViewAfter() {
-        super.initViewAfter();
-        getLayoutInflater().inflate(getRefreshLayout(), mRefreshFlContent, true);
-    }
-
     /**
      * 是否显示标题头
      *
      * @param visibility
      */
     protected void setTitleLayout(int visibility) {
-        if (mBaseTitle != null) {
-            mBaseTitle.setVisibility(visibility);
+        if (mRlTitleRoot != null) {
+            mRlTitleRoot.setVisibility(visibility);
         }
     }
 
-    /**
-     * @return 获取刷新界面的布局
-     */
-    protected abstract int getRefreshLayout();
 }

@@ -4,6 +4,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.xjx.helper.R;
@@ -14,12 +15,13 @@ import com.xjx.helper.utils.views.TextViewUtils;
  */
 public abstract class BaseTitleActivity extends BaseActivity {
 
-    private ImageView mIvBack; // 返回箭头
-    private TextView mTvLeft; // 返回文字
-    private TextView mTvTitle; // 标题头
-    private TextView mTvRight; // 右侧标题
-    private FrameLayout mTitleFlContent; // 主布局
-    private FrameLayout mFlRightContainer; // 右侧的标题头
+    protected ImageView mIvBack; // 返回箭头
+    protected TextView mTvLeft; // 返回文字
+    protected TextView mTvTitle; // 标题头
+    protected TextView mTvRight; // 右侧标题
+    protected FrameLayout mTitleFlContent; // 主布局
+    protected FrameLayout mFlRightContainer; // 右侧的标题头
+    protected RelativeLayout mRlTitleRoot;// title的根布局
 
     protected boolean mIsFinishActivity = true;// 是否关闭Activity页面,默认直接关闭
 
@@ -36,6 +38,9 @@ public abstract class BaseTitleActivity extends BaseActivity {
         mTvTitle = findViewById(R.id.tv_title);
         mTvRight = findViewById(R.id.tv_title_right);
         mFlRightContainer = findViewById(R.id.fl_right_container);
+
+        mRlTitleRoot = findViewById(R.id.rl_title_root);
+
         mTitleFlContent = findViewById(R.id.fl_content);
     }
 
@@ -103,8 +108,6 @@ public abstract class BaseTitleActivity extends BaseActivity {
     protected void onRightTitleClick() {
 
     }
-
-
 
     @Override
     public void onClick(View v) {

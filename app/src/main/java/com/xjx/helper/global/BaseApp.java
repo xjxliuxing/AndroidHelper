@@ -17,13 +17,13 @@ import com.scwang.smartrefresh.layout.api.DefaultRefreshInitializer;
 import com.scwang.smartrefresh.layout.api.RefreshFooter;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
-import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.xjx.helper.R;
 import com.xjx.helper.ScreenUtil;
 import com.xjx.helper.utils.LogUtil;
 import com.xjx.helper.utils.VersionUtil;
 import com.xjx.helper.utils.layout.LayoutUtil;
+import com.xjx.helper.utils.refresh.MyRefreshFooter;
+import com.xjx.helper.utils.refresh.MyRrfreshHeader;
 
 import java.util.Locale;
 
@@ -35,7 +35,7 @@ public class BaseApp extends Application {
 
     private static BaseApp mApp;
     private boolean isDebug = true; // debug类型，默认是false类型
-    private String mLogTag = "XJX";// 默认log的tag标记
+    private static String mLogTag = "XJX";// 默认log的tag标记
     public float horizontalScaleValue; // 布局宽的缩放比例
     public float verticalScaleValue;   // 布局高的缩放比例
 
@@ -58,41 +58,6 @@ public class BaseApp extends Application {
         initLogger();
         initLayout();
         initPhone();
-    }
-
-    //static 代码段可以防止内存泄露
-    static {
-        //设置全局默认配置（优先级最低，会被其他设置覆盖）
-        SmartRefreshLayout.setDefaultRefreshInitializer(new DefaultRefreshInitializer() {
-            @Override
-            public void initialize(@NonNull Context context, @NonNull RefreshLayout layout) {
-                //开始设置全局的基本参数（可以被下面的DefaultRefreshHeaderCreator覆盖）
-                layout.setReboundDuration(1000);
-//                layout.setReboundInterpolator(new DropBounceInterpolator());
-                layout.setFooterHeight(100);
-                layout.setDisableContentWhenLoading(false);
-                layout.setPrimaryColorsId(R.color.colorPrimary, android.R.color.white);
-
-//                srlEnablePreviewInEditMode
-            }
-        });
-
-        //设置全局的Header构建器
-        SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
-            @Override
-            public RefreshHeader createRefreshHeader(Context context, RefreshLayout layout) {
-                layout.setPrimaryColorsId(R.color.colorPrimary, android.R.color.white);//全局设置主题颜色
-                return new ClassicsHeader(context);//.setTimeFormat(new DynamicTimeFormat("更新于 %s"));//指定为经典Header，默认是 贝塞尔雷达Header
-            }
-        });
-        //设置全局的Footer构建器
-        SmartRefreshLayout.setDefaultRefreshFooterCreator(new DefaultRefreshFooterCreator() {
-            @Override
-            public RefreshFooter createRefreshFooter(Context context, RefreshLayout layout) {
-                //指定为经典Footer，默认是 BallPulseFooter
-                return new ClassicsFooter(context).setDrawableSize(20);
-            }
-        });
     }
 
     /**
@@ -136,7 +101,7 @@ public class BaseApp extends Application {
                 .methodCount(0)               // （可选）要显示的方法行数。 默认2
                 .methodOffset(0)               // （可选）设置调用堆栈的函数偏移值，0的话则从打印该Log的函数开始输出堆栈信息，默认是0
                 // .logStrategy(customLog)  //（可选）更改要打印的日志策略。 默认LogCat
-                .tag(getLogTag())                  //（可选）每个日志的全局标记。 默认PRETTY_LOGGER（如上图）
+                .tag(mLogTag)                  //（可选）每个日志的全局标记。 默认PRETTY_LOGGER（如上图）
                 .build();
         Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy) {
             @Override
@@ -163,13 +128,6 @@ public class BaseApp extends Application {
     }
 
     /**
-     * @return 获取全局log的tag
-     */
-    public String getLogTag() {
-        return mLogTag;
-    }
-
-    /**
      * 设置全局log的tag
      *
      * @param logTag
@@ -184,6 +142,41 @@ public class BaseApp extends Application {
     private void initLayout() {
         horizontalScaleValue = LayoutUtil.getInstance(this).getHorizontalScaleValue();
         verticalScaleValue = LayoutUtil.getInstance(this).getVerticalScaleValue();
+    }
+
+    //SamtreRefreshLayout的初始化，static 代码段可以防止内存泄露
+    static {
+        //设置全局默认配置（优先级最低，会被其他设置覆盖）
+        SmartRefreshLayout.setDefaultRefreshInitializer(new DefaultRefreshInitializer() {
+            @Override
+            public void initialize(@NonNull Context context, @NonNull RefreshLayout refreshLayout) {
+                //开始设置全局的基本参数（可以被下面的DefaultRefreshHeaderCreator覆盖）
+                refreshLayout.setReboundDuration(300);//回弹动画时长（毫秒）
+                refreshLayout.setHeaderHeight(100);//Header标准高度（显示下拉高度>=标准高度 触发刷新）
+                refreshLayout.setFooterHeight(100);//Footer标准高度（显示上拉高度>=标准高度 触发加载）
+
+                refreshLayout.setDisableContentWhenRefresh(false);//是否在刷新的时候禁止列表的操作
+                refreshLayout.setDisableContentWhenLoading(false);//是否在加载的时候禁止列表的操作
+                // 设置刷新的背景颜色和字体的颜色
+                refreshLayout.setPrimaryColorsId(R.color.colorPrimary, android.R.color.white);
+            }
+        });
+
+        //设置全局的Header构建器
+        SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
+            @Override
+            public RefreshHeader createRefreshHeader(Context context, RefreshLayout layout) {
+                return new MyRrfreshHeader(context);//.setTimeFormat(new DynamicTimeFormat("更新于 %s"));//指定为经典Header，默认是 贝塞尔雷达Header
+            }
+        });
+        //设置全局的Footer构建器
+        SmartRefreshLayout.setDefaultRefreshFooterCreator(new DefaultRefreshFooterCreator() {
+            @Override
+            public RefreshFooter createRefreshFooter(Context context, RefreshLayout layout) {
+                //指定为经典Footer，默认是 BallPulseFooter
+                return new MyRefreshFooter(context).setDrawableSize(20);
+            }
+        });
     }
 
 }

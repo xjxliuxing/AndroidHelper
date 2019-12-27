@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!--Appbar背景色-->
     <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <!--状态栏颜色-->
+    <!--    <color name="colorPrimaryDark">#00574B</color>-->
+    <color name="colorPrimaryDark">@color/base_title_background_color</color>
+    <!--控制各个控件被选中时的颜色-->
     <color name="colorAccent">#D81B60</color>
+
+    <!--半透明-&#45;&#45;50%-->
+    <color name="transparent_30">#4d000000</color>
+    <color name="transparent_50">#80000000</color>
+    <color name="transparent_70">#b3000000</color>
+
 </resources>

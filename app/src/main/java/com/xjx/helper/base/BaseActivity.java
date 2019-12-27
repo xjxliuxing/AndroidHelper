@@ -29,16 +29,19 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         mContext = this;
 
-        initLayoutBefore();
+        this.mCanonicalName = getClass().getCanonicalName();
+        LogUtil.e("当前的页面：Activvity -> 为: " + "\r\n" + mCanonicalName);
 
+        // 设置布局之前的操作
+        initLayoutBefore();
+        // 设置布局
         setContentView(getLayout());
 
-        this.mCanonicalName = getClass().getCanonicalName();
-        LogUtil.e("当前的Activvity为: " + "\r\n" + mCanonicalName);
-
+        // 初始化View
         initView();
-        initViewAfter();
+        // 初始化事件
         initListener();
+        // 初始化数据
         initData();
     }
 
@@ -64,12 +67,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     }
 
     /**
-     * 初始化view后的操作
-     */
-    protected void initViewAfter() {
-    }
-
-    /**
      * 初始化事件
      */
     protected void initListener() {
@@ -85,6 +82,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
      * 请求网络数据
      */
     protected void RequestData() {
+
     }
 
     @Override

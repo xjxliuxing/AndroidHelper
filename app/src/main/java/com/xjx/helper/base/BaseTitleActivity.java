@@ -20,8 +20,8 @@ public abstract class BaseTitleActivity extends BaseActivity {
     protected TextView mTvTitle; // 标题头
     protected TextView mTvRight; // 右侧标题
     protected FrameLayout mTitleFlContent; // 主布局
-    protected FrameLayout mFlRightContainer; // 右侧的标题头
     protected RelativeLayout mRlTitleRoot;// title的根布局
+    private FrameLayout mFlTitleRightContent;
 
     protected boolean mIsFinishActivity = true;// 是否关闭Activity页面,默认直接关闭
 
@@ -33,20 +33,24 @@ public abstract class BaseTitleActivity extends BaseActivity {
     @Override
     protected void initView() {
         super.initView();
-        mIvBack = findViewById(R.id.iv_title_back);
-        mTvLeft = findViewById(R.id.tv_title_left);
-        mTvTitle = findViewById(R.id.tv_title);
-        mTvRight = findViewById(R.id.tv_title_right);
-        mFlRightContainer = findViewById(R.id.fl_right_container);
 
+        // title的跟布局
         mRlTitleRoot = findViewById(R.id.rl_title_root);
+        // 返回箭头
+        mIvBack = findViewById(R.id.iv_title_back);
+        // 返回文字
+        mTvLeft = findViewById(R.id.tv_title_left);
+        // 标题头
+        mTvTitle = findViewById(R.id.tv_title);
+        // 右侧标题的父布局
+        mFlTitleRightContent = findViewById(R.id.fl_title_right_content);
+        // 右侧标题
+        mTvRight = findViewById(R.id.tv_title_right);
 
+        // 展示内容布局
         mTitleFlContent = findViewById(R.id.fl_content);
-    }
 
-    @Override
-    protected void initViewAfter() {
-        super.initViewAfter();
+        // 添加布局
         getLayoutInflater().inflate(getTitleLayout(), mTitleFlContent, true);
     }
 
@@ -59,7 +63,7 @@ public abstract class BaseTitleActivity extends BaseActivity {
     protected void initListener() {
         super.initListener();
         mIvBack.setOnClickListener(this);
-        mFlRightContainer.setOnClickListener(this);
+        mFlTitleRightContent.setOnClickListener(this);
     }
 
     /**
@@ -80,8 +84,8 @@ public abstract class BaseTitleActivity extends BaseActivity {
         TextViewUtils.setText(mTvRight, rightTitle);
 
         if (!TextUtils.isEmpty(rightTitle)) {
-            if (mFlRightContainer != null) {
-                mFlRightContainer.setVisibility(View.VISIBLE);
+            if (mFlTitleRightContent != null) {
+                mFlTitleRightContent.setVisibility(View.VISIBLE);
             }
         }
     }
@@ -120,7 +124,7 @@ public abstract class BaseTitleActivity extends BaseActivity {
                 }
                 break;
 
-            case R.id.fl_right_container:
+            case R.id.fl_title_right_content:
                 // 右侧标题
                 onRightTitleClick();
                 break;

@@ -21,11 +21,6 @@ public class MySmartRefreshLayout extends SmartRefreshLayout {
     }
 
     private void initView() {
-        setEnableRefresh(true);// 是否开启下拉刷新功能（默认true）
-//        setEnableLoadMore(true);// 是否开启加上拉加载功能（默认false-智能开启）
-        setEnableLoadMoreWhenContentNotFull(false);// 在内容不满一页的时候，是否可以上拉加载更多（默认-false）
-        setEnableFooterFollowWhenNoMoreData(true); // 是否在全部加载结束之后Footer跟随内容
-        finishLoadMoreWithNoMoreData();
-        finishRefresh(1);
+
     }
 }

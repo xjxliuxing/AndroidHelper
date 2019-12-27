@@ -11,19 +11,6 @@ public class CommonConstant {
      * 应用名字
      */
     public static final String AppName = "BuddyEnglish";
-    /**
-     * Sp 存储的文件名
-     */
-    public static final String SP_FILE_NAME = "userInfo";
-    /**
-     * 微信的appID
-     */
-    public static final String WX_APPID = "wx30616cf0594902b7";
-
-    /**
-     * 绑定的手机号
-     */
-    public static final String USER_BIND_PHONE_NUMBER = "user_bind_phone_number";
 
     /**
      * 状态栏高度
@@ -46,5 +33,13 @@ public class CommonConstant {
     public static final int CODE_DIALOG_UTIL_SHOW = 1000;
     // dialog的dimiss方法监听
     public static final int CODE_DIALOG_UTIL_CLOSE = CODE_DIALOG_UTIL_SHOW + 1;
+
+    /**
+     * ------------------------------------ 网络相关-------------------
+     */
+    // 分页加载
+    public static final int DEFAULT_PAGE_SIZE = 1;
+
+    public static final String TOKEN = "";
 }
 

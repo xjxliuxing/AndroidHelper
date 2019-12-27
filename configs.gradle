@@ -1,0 +1,14 @@
+ext {
+    //编译版本和工具
+    androidBuildToolsVersion = "29.0.2"
+    androidCompileSdkVersion = 29
+    // 目标版本和最低版本
+    androidMinSdkVersion = 21
+    androidTargetSdkVersion = 29
+
+    supportLibraryVersion = '28.+'
+
+    okhttpUtil = '2.6.2'
+    // 使用  api "com.shuyu:GSYVideoPlayer-exo2:$gsyVideoVersion"
+}
+

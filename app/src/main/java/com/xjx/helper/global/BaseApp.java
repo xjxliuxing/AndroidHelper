@@ -50,8 +50,8 @@ public class BaseApp extends Application {
         return mApp;
     }
 
-    public Context getContext() {
-        return getApplicationContext();
+    public static Context getContext() {
+        return mApp.getApplicationContext();
     }
 
     private void initApp() {

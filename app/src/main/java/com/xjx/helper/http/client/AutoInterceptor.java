@@ -1,14 +1,14 @@
-package com.xjx.helper.http.retrofit;
+package com.xjx.helper.http.client;
 
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.xjx.helper.global.BaseApp;
 import com.xjx.helper.global.CommonConstant;
+import com.xjx.helper.http.client.BaseResponse;
+import com.xjx.helper.http.client.HttpClient;
 import com.xjx.helper.utils.LogUtil;
 import com.xjx.helper.utils.SpUtil;
-import com.xjx.helper.http.BaseResponse;
-import com.xjx.helper.http.HttpClient;
 
 import java.io.EOFException;
 import java.io.IOException;
@@ -49,6 +49,7 @@ public class AutoInterceptor implements Interceptor {
     private static final String TYPE_GET = "GET";
     private Charset charset;
     private RequestBody requestBody;
+    private Response response;
 
     @Override
     public Response intercept(Chain chain) throws IOException {
@@ -61,6 +62,7 @@ public class AutoInterceptor implements Interceptor {
 
         // 添加请求头
         String token = SpUtil.getString(CommonConstant.TOKEN);
+        token = "471931e407b255c0cee8d876a7be67cf";
         if (!TextUtils.isEmpty(token)) {
             request = request.newBuilder()
                     .addHeader("Authorization", token)
@@ -81,7 +83,14 @@ public class AutoInterceptor implements Interceptor {
         }
 
         long t1 = System.nanoTime();//请求发起的时间
-        Response response = chain.proceed(request);
+
+        try {
+            response = chain.proceed(request);
+        } catch (Exception e) {
+            LogUtil.e("拦截器报错：" + e.getMessage());
+            throw e;
+        }
+
         // 获取请求网络的时间
         long tookMs = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - t1);
 
@@ -92,45 +101,48 @@ public class AutoInterceptor implements Interceptor {
              */
             //不能直接使用response.body（）.string()的方式输出日志,因为response.body().string()之后，response中的流会被关闭，程序会报错，我们需要创建出一个新的response给应用层处理
 //            ResponseBody responseBody = response.peekBody(1024 * 1024);
-            ResponseBody responseBody = response.body();
-            // 响应体类型
-            MediaType contentType = responseBody.contentType();
-            // 设置响应体
-            if (contentType != null) {
-                try {
-                    charset = contentType.charset(UTF8);
-                } catch (UnsupportedCharsetException e) {
-                    LogUtil.e(TAG, "拦截器设置字符类型错误：" + e.getMessage());
-                    return response;
-                }
-            }
 
-            // 拦截token
-            Gson gson = HttpClient.gson;
-            BaseResponse baseResponse = gson.fromJson(string, BaseResponse.class);
-            if (baseResponse != null) {
-                if (baseResponse.getReturnCode() != BaseResponse.REQUEST_SUCCESS) {
-                    if ((!TextUtils.isEmpty(baseResponse.getReturnMsg()))) {
-                        // 如果返回的msg == token错误或失效 ,就直接跳转到登录页
-                        if (baseResponse.getReturnMsg().equals(BaseResponse.TOKEN_INVALIDATE)) {
+            if (response != null) {
+                ResponseBody responseBody = response.body();
+                // 响应体类型
+                MediaType contentType = responseBody.contentType();
+                // 设置响应体
+                if (contentType != null) {
+                    try {
+                        charset = contentType.charset(UTF8);
+                    } catch (UnsupportedCharsetException e) {
+                        LogUtil.e(TAG, "拦截器设置字符类型错误：" + e.getMessage());
+                        return response;
+                    }
+                }
+
+                // 拦截token
+                Gson gson = HttpClient.gson;
+                BaseResponse baseResponse = gson.fromJson(string, BaseResponse.class);
+                if (baseResponse != null) {
+                    if (baseResponse.getReturnCode() != BaseResponse.REQUEST_SUCCESS) {
+                        if ((!TextUtils.isEmpty(baseResponse.getReturnMsg()))) {
+                            // 如果返回的msg == token错误或失效 ,就直接跳转到登录页
+                            if (baseResponse.getReturnMsg().equals(BaseResponse.TOKEN_INVALIDATE)) {
 //                            if (HttpClient.mAuthorization != null) {
 //                                HttpClient.mAuthorization.reLogin();
 //                            }
+                            }
                         }
                     }
                 }
-            }
 
-            // 获取返回的数据
-            if ((HttpHeaders.hasBody(response)) && (responseBody != null)) {
-                BufferedSource source = responseBody.source();
-                source.request(Long.MAX_VALUE); // Buffer the entire body.
-                Buffer buffer = source.buffer();
+                // 获取返回的数据
+                if ((HttpHeaders.hasBody(response)) && (responseBody != null)) {
+                    BufferedSource source = responseBody.source();
+                    source.request(Long.MAX_VALUE); // Buffer the entire body.
+                    Buffer buffer = source.buffer();
 
-                if (isPlaintext(buffer)) {
-                    string = buffer.clone().readString(charset);
-                } else {
-                    return response;
+                    if (isPlaintext(buffer)) {
+                        string = buffer.clone().readString(charset);
+                    } else {
+                        return response;
+                    }
                 }
             }
         } catch (Exception e) {

@@ -1,8 +1,8 @@
 package com.xjx.helper.http.rxjava;
 
 import com.google.gson.Gson;
-import com.xjx.helper.http.ApiException;
-import com.xjx.helper.http.BaseResponse;
+import com.xjx.helper.http.client.ApiException;
+import com.xjx.helper.http.client.BaseResponse;
 
 import java.io.IOException;
 
@@ -35,7 +35,6 @@ public class RxUtil {
                                 if (tHttpRespons != null) {
                                     boolean successful = tHttpRespons.isSuccessful();
                                     if (successful) {
-
                                         // 请求成功的操作
                                         T data = tHttpRespons.body();
                                         // String类型的值
@@ -59,7 +58,7 @@ public class RxUtil {
                                                     // 检测token是否合法
 //                                                    if (!CommonApp.getInstance().isDebug) {
 //                                                        // 如果返回的msg == token错误或失效 ,就直接跳转到登录页
-//                                                        if (baseResponse.getReturnMsg().equals(BaseResponse.TOKEN_INVALIDATE)) {
+//                                                        if (baseResponse.getReturnMsg().equals(BaseResponseCallBack.TOKEN_INVALIDATE)) {
 //                                                            if (HttpClient.mAuthorization != null) {
 //                                                                HttpClient.mAuthorization.reLogin();
 //                                                            }
@@ -73,7 +72,7 @@ public class RxUtil {
                                                     } else {
                                                         // 失败发送失败的Msg
                                                         String returnMsg = baseResponse.getReturnMsg();
-                                                        return Observable.error(new ApiException(returnMsg, "" + returnCode));
+                                                        return Observable.error(new ApiException(returnMsg, returnCode));
                                                     }
                                                 } else {
                                                     return Observable.error(new ApiException("数据解析失败！"));
@@ -91,7 +90,7 @@ public class RxUtil {
                                             e.printStackTrace();
                                         }
                                         int code = tHttpRespons.code();
-                                        return Observable.error(new ApiException(errorMessage, "" + code));
+                                        return Observable.error(new ApiException(errorMessage, code));
                                     }
                                 } else {
                                     return Observable.error(new ApiException("HttpRequest对象为空！"));

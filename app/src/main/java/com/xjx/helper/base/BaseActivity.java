@@ -30,7 +30,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         mContext = this;
 
         this.mCanonicalName = getClass().getCanonicalName();
-        LogUtil.e("当前的页面：Activvity -> 为: " + "\r\n" + mCanonicalName);
+        LogUtil.e("当前的页面：Activvity -> 为: " + mCanonicalName);
 
         // 设置布局之前的操作
         initLayoutBefore();

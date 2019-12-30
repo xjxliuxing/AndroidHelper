@@ -1,4 +1,4 @@
-package com.xjx.helper.http.retrofit;
+package com.xjx.helper.http;
 
 import java.util.HashMap;
 import java.util.Iterator;

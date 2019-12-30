@@ -1,4 +1,4 @@
-package com.xjx.helper.entity;
+package com.xjx.helper.base;
 
 import android.os.Bundle;
 
@@ -6,26 +6,26 @@ import android.os.Bundle;
  * Created by Administrator on 2019/5/31.
  */
 
-public class EventMessage {
+public class BaseEventMessage {
     private int code;
     private String msg;
     private Bundle mBundle;
 
-    public EventMessage(int code) {
+    public BaseEventMessage(int code) {
         this.code = code;
     }
 
-    public EventMessage(int code, String msg) {
+    public BaseEventMessage(int code, String msg) {
         this.code = code;
         this.msg = msg;
     }
 
-    public EventMessage(int code, Bundle mBundle) {
+    public BaseEventMessage(int code, Bundle mBundle) {
         this.code = code;
         this.mBundle = mBundle;
     }
 
-    public EventMessage(int code, String msg, Bundle mBundle) {
+    public BaseEventMessage(int code, String msg, Bundle mBundle) {
         this.code = code;
         this.msg = msg;
         this.mBundle = mBundle;
@@ -57,7 +57,7 @@ public class EventMessage {
 
     @Override
     public String toString() {
-        return "EventMessage{" +
+        return "BaseEventMessage{" +
                 "code=" + code +
                 ", msg='" + msg + '\'' +
                 ", mBundle=" + mBundle +

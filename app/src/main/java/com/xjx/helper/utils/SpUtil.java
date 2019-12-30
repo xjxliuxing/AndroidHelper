@@ -61,8 +61,6 @@ public class SpUtil {
         if (!TextUtils.isEmpty(key)) {
             getSp();
             value = sp.getString(key, null);
-        } else {
-            LogUtil.e("取出getString类型的值为空!");
         }
         return value;
     }

@@ -1,9 +1,8 @@
-package com.xjx.helper.http;
+package com.xjx.helper.http.client;
 
 import com.google.gson.Gson;
 import com.xjx.helper.BuildConfig;
 import com.xjx.helper.http.convert.GsonConvert;
-import com.xjx.helper.http.retrofit.AutoInterceptor;
 
 import java.util.concurrent.TimeUnit;
 
@@ -20,9 +19,6 @@ public class HttpClient {
     private final static int CONNECT_TIMEOUT = 30;
     private final static int READ_TIMEOUT = 30;
     private final static int WRITE_TIMEOUT = 30;
-
-    public static RefreshControllerInterface mRefreshControllerInterface;
-
     public static Gson gson = new Gson();
 
     public static Retrofit createAPIRetrofit() {
@@ -35,14 +31,14 @@ public class HttpClient {
                 .retryOnConnectionFailure(true)
                 .build();
 
-
-        Retrofit build = new Retrofit.Builder()
+        Retrofit retrofit = new Retrofit.Builder()
                 .client(httpclint)
                 .baseUrl(BuildConfig.SERVER_URL)
                 .addConverterFactory(GsonConvert.create()) // 自定义，重写转换
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
-        return build;
+
+        return retrofit;
     }
 }
 

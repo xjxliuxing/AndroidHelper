@@ -16,7 +16,7 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.StyleRes;
 
 import com.xjx.helper.R;
-import com.xjx.helper.entity.EventMessage;
+import com.xjx.helper.base.BaseEventMessage;
 import com.xjx.helper.global.CommonConstant;
 
 import org.greenrobot.eventbus.EventBus;
@@ -56,7 +56,7 @@ public class DialogUtil {
         dialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialog) {
-                EventBus.getDefault().post(new EventMessage(CommonConstant.CODE_DIALOG_UTIL_SHOW));
+                EventBus.getDefault().post(new BaseEventMessage(CommonConstant.CODE_DIALOG_UTIL_SHOW));
             }
         });
 
@@ -64,7 +64,7 @@ public class DialogUtil {
         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
-                EventBus.getDefault().post(new EventMessage(CommonConstant.CODE_DIALOG_UTIL_CLOSE));
+                EventBus.getDefault().post(new BaseEventMessage(CommonConstant.CODE_DIALOG_UTIL_CLOSE));
             }
         });
     }
@@ -84,7 +84,7 @@ public class DialogUtil {
         dialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialog) {
-                EventBus.getDefault().post(new EventMessage(CommonConstant.CODE_DIALOG_UTIL_SHOW));
+                EventBus.getDefault().post(new BaseEventMessage(CommonConstant.CODE_DIALOG_UTIL_SHOW));
             }
         });
 
@@ -92,7 +92,7 @@ public class DialogUtil {
         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
-                EventBus.getDefault().post(new EventMessage(CommonConstant.CODE_DIALOG_UTIL_CLOSE));
+                EventBus.getDefault().post(new BaseEventMessage(CommonConstant.CODE_DIALOG_UTIL_CLOSE));
             }
         });
     }

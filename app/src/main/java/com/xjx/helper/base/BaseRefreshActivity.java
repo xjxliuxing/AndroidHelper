@@ -7,6 +7,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.xjx.helper.R;
 import com.xjx.helper.utils.refresh.MyRefreshFooter;
@@ -20,7 +22,7 @@ import com.xjx.helper.utils.refresh.MySmartRefreshLayout;
  * @更新时间 2019/12/18  20:18
  * @描述 带刷新的基类Activity
  */
-public abstract class BaseRefreshActivity extends BaseTitleActivity implements OnRefreshLoadMoreListener {
+public abstract class BaseRefreshActivity extends BaseTitleActivity implements OnRefreshListener, OnLoadMoreListener {
 
     protected MySmartRefreshLayout mBaseRefresh;
     private MyRrfreshHeader mBaseRefreshHeader;

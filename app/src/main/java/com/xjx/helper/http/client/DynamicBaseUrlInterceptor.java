@@ -1,4 +1,4 @@
-package com.xjx.helper.http.retrofit;
+package com.xjx.helper.http.client;
 
 import java.io.IOException;
 

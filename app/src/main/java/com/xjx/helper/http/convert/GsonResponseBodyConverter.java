@@ -1,9 +1,9 @@
 package com.xjx.helper.http.convert;
 
-import com.cy.common.http.BaseResponse;
-import com.cy.common.utils.LogUtil;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
+import com.xjx.helper.http.client.BaseResponse;
+import com.xjx.helper.utils.LogUtil;
 
 import org.json.JSONObject;
 
@@ -24,7 +24,8 @@ public class GsonResponseBodyConverter<T> implements Converter<ResponseBody, T> 
         this.adapter = adapter;
     }
 
-    @Override public T convert(ResponseBody value) throws IOException {
+    @Override
+    public T convert(ResponseBody value) throws IOException {
         try {
             String json = value.string();
             LogUtil.d("result = " + json);

@@ -1,14 +1,6 @@
-package com.xjx.helper.http;
+package com.xjx.helper.http.client;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
-/**
- * 对接口返回结果做统一接收
- * <p>
- * Created by erge 2019/9/18 4:24 PM
- */
-public class BaseResponse<T> implements Parcelable {
+public class BaseResponse<T> {
 
     // code值--成功
     public static final int REQUEST_SUCCESS = 1;
@@ -37,27 +29,13 @@ public class BaseResponse<T> implements Parcelable {
      */
     private T returnDataList;
 
-    public BaseResponse() {
-
+    public int getReturnCode() {
+        return returnCode;
     }
 
-    protected BaseResponse(Parcel in) {
-        returnCode = in.readInt();
-        returnStatus = in.readInt();
-        returnMsg = in.readString();
+    public void setReturnCode(int returnCode) {
+        this.returnCode = returnCode;
     }
-
-    public static final Creator<BaseResponse> CREATOR = new Creator<BaseResponse>() {
-        @Override
-        public BaseResponse createFromParcel(Parcel in) {
-            return new BaseResponse(in);
-        }
-
-        @Override
-        public BaseResponse[] newArray(int size) {
-            return new BaseResponse[size];
-        }
-    };
 
     public int getReturnStatus() {
         return returnStatus;
@@ -83,33 +61,13 @@ public class BaseResponse<T> implements Parcelable {
         this.returnDataList = returnDataList;
     }
 
-    public int getReturnCode() {
-        return returnCode;
-    }
-
-    public void setReturnCode(int returnCode) {
-        this.returnCode = returnCode;
-    }
-
     @Override
     public String toString() {
         return "BaseResponse{" +
-                "returnStatus=" + returnStatus +
+                "returnCode=" + returnCode +
+                ", returnStatus=" + returnStatus +
                 ", returnMsg='" + returnMsg + '\'' +
                 ", returnDataList=" + returnDataList +
-                ", returnCode=" + returnCode +
                 '}';
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(returnCode);
-        dest.writeInt(returnStatus);
-        dest.writeString(returnMsg);
     }
 }

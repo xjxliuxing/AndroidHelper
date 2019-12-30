@@ -1,4 +1,4 @@
-package com.xjx.helper.http;
+package com.xjx.helper.http.client;
 
 import java.io.Serializable;
 import java.util.List;

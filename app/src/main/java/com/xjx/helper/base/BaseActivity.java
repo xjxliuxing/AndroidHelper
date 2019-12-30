@@ -41,6 +41,8 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         initView();
         // 初始化事件
         initListener();
+        // 请求数据,首次进入页面，自动刷新一次
+        onRequestData();
         // 初始化数据
         initData();
     }
@@ -81,8 +83,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     /**
      * 请求网络数据
      */
-    protected void RequestData() {
-
+    protected void onRequestData() {
     }
 
     @Override

@@ -27,8 +27,7 @@ public class MainActivity extends BaseRefreshActivity {
     }
 
     @Override
-    protected void RequestData() {
-        super.RequestData();
+    protected void onRequestData() {
 
         Map<String, String> mParameters = new HashMap<>();
         mParameters.put("angent_id", "ff808081647099c101648d5526980084");
@@ -47,4 +46,5 @@ public class MainActivity extends BaseRefreshActivity {
             }
         });
     }
+
 }

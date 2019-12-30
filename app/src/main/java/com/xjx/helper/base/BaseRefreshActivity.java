@@ -2,13 +2,10 @@ package com.xjx.helper.base;
 
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
-import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.xjx.helper.R;
 import com.xjx.helper.utils.refresh.MyRefreshFooter;
@@ -22,7 +19,7 @@ import com.xjx.helper.utils.refresh.MySmartRefreshLayout;
  * @更新时间 2019/12/18  20:18
  * @描述 带刷新的基类Activity
  */
-public abstract class BaseRefreshActivity extends BaseTitleActivity implements OnRefreshListener, OnLoadMoreListener {
+public abstract class BaseRefreshActivity extends BaseTitleActivity implements OnRefreshLoadMoreListener {
 
     protected MySmartRefreshLayout mBaseRefresh;
     private MyRrfreshHeader mBaseRefreshHeader;
@@ -61,6 +58,9 @@ public abstract class BaseRefreshActivity extends BaseTitleActivity implements O
 
         // 刷新布局
         if (mBaseRefresh != null) {
+            // 刷新的事件
+            mBaseRefresh.setOnRefreshLoadMoreListener(this);
+            // 刷新完成的停留
             mBaseRefreshHeader.setFinishDuration(0);
             mBaseRefreshFooter.setFinishDuration(0);
         }
@@ -73,9 +73,8 @@ public abstract class BaseRefreshActivity extends BaseTitleActivity implements O
      */
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-        Toast.makeText(mContext, "触发刷新事件", Toast.LENGTH_SHORT).show();
         refreshLayout.finishRefresh(2000);
-        RequestData();
+        onRequestData();
     }
 
     /**
@@ -86,6 +85,14 @@ public abstract class BaseRefreshActivity extends BaseTitleActivity implements O
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
         refreshLayout.finishLoadMore(2000);
+        onLoadMoreData();
+    }
+
+    /**
+     * 加载更多数据的操作
+     */
+    protected void onLoadMoreData() {
+
     }
 
     /**

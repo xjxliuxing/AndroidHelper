@@ -2,6 +2,7 @@ package com.xjx.helper.http.client;
 
 import com.xjx.helper.global.BaseApp;
 import com.xjx.helper.http.NetUtils;
+import com.xjx.helper.interfaces.OnRefreshCompletedListener;
 
 import java.io.IOException;
 import java.net.SocketException;
@@ -17,10 +18,17 @@ import retrofit2.Response;
  *
  * @param <T>
  */
-public abstract class BaseResponseCallBack<T> implements Callback<T>, HttpResponseCallBackListener<T> {
+public abstract class BaseResponseCallBack<T> implements Callback<T>, HttpResponseCallBackListener<T>, OnRefreshCompletedListener {
+
+    private OnRefreshCompletedListener mRefreshCompletedListener;
 
     @Override
     public void onResponse(Call<T> call, Response<T> response) {
+        // 完成刷新的操作，不管是成功还是失败，都要走入到这个方法中
+        if (mRefreshCompletedListener != null) {
+
+        }
+
         if (response != null) {
             // 是否网络请求成功
             boolean successful = response.isSuccessful();
@@ -61,6 +69,8 @@ public abstract class BaseResponseCallBack<T> implements Callback<T>, HttpRespon
 
     @Override
     public void onFailure(Call<T> call, Throwable t) {
+        // 完成刷新的操作，不管是成功还是失败，都要走入到这个方法中
+        onRefreshCompleted();
 
         if (!NetUtils.checkNetwork(BaseApp.getContext())) {
             onFailured(new ApiException(ApiException.NET_UNAVAILABLE));
@@ -77,4 +87,17 @@ public abstract class BaseResponseCallBack<T> implements Callback<T>, HttpRespon
         }
     }
 
+    @Override
+    public void onRefreshCompleted() {
+
+    }
+
+    @Override
+    public void onRefreshNoMoreDate() {
+
+    }
+
+    public void setRefreshCompletedListener(OnRefreshCompletedListener refreshCompletedListener) {
+        this.mRefreshCompletedListener = refreshCompletedListener;
+    }
 }

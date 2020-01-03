@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.gson.JsonObject;
 import com.xjx.helper.utils.LogUtil;
 
 /**
@@ -23,6 +24,11 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
      * 当前Activvity类的全路径类名
      */
     private String mCanonicalName;
+    /**
+     * 请求网络的参数，用于统一的封装请求
+     */
+    protected JsonObject mParameters;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

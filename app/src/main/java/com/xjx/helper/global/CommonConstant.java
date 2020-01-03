@@ -7,10 +7,6 @@ package com.xjx.helper.global;
  * <p>更改时间：2019/1/14<p>
  */
 public class CommonConstant {
-    /**
-     * 应用名字
-     */
-    public static final String AppName = "BuddyEnglish";
 
     /**
      * 状态栏高度
@@ -38,7 +34,15 @@ public class CommonConstant {
      * ------------------------------------ 网络相关-------------------
      */
     // 分页加载
-    public static final int DEFAULT_PAGE_SIZE = 1;
+
+    /**
+     * 网络请求默认的分页
+     */
+    public static int DEFAULT_PAGE = 1;
+    /**
+     * 网络请求每页请求的数量
+     */
+    public static int DEFAULT_LIMIT = 10;
 
     public static final String TOKEN = "";
 }

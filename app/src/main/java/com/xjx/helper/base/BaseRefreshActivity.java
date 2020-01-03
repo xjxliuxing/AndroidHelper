@@ -5,14 +5,18 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 
+import com.google.gson.JsonObject;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.xjx.helper.R;
+import com.xjx.helper.global.CommonConstant;
 import com.xjx.helper.interfaces.OnRefreshCompletedListener;
 import com.xjx.helper.utils.LogUtil;
 import com.xjx.helper.utils.refresh.MyRefreshFooter;
 import com.xjx.helper.utils.refresh.MyRrfreshHeader;
 import com.xjx.helper.utils.refresh.MySmartRefreshLayout;
+
+import java.util.Map;
 
 /**
  * @作者 徐腾飞
@@ -75,24 +79,39 @@ public abstract class BaseRefreshActivity extends BaseTitleActivity implements O
      */
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+        CommonConstant.DEFAULT_PAGE = 1;
         onRequestData();
     }
 
     /**
-     * 加载更多的布局
+     * 加载更多数据
      *
      * @param refreshLayout
      */
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-        onLoadMoreData();
+        // 每次网络递增加1
+        CommonConstant.DEFAULT_PAGE++;
+
+        onRequestData();
     }
 
     /**
-     * 加载更多数据的操作
+     * 如果页面需要分页，则需要使用这个方法，去动态的控制数据，如果不需要分页则不需使用该方法
+     *
+     * @param jsonObject
+     * @return 返回一个经过加工过的JsonObject对象
      */
-    protected void onLoadMoreData() {
+    public Map<String, Object> setPageBody(Map<String, Object> jsonObject) {
+        if (jsonObject != null) {
+            jsonObject.put("page", CommonConstant.DEFAULT_PAGE);
+            jsonObject.put("limit", CommonConstant.DEFAULT_LIMIT);
 
+            LogUtil.e("jsonObject:" + jsonObject);
+            return jsonObject;
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -113,6 +132,7 @@ public abstract class BaseRefreshActivity extends BaseTitleActivity implements O
         if (mBaseRefresh != null) {
             LogUtil.e("使用了刷新完成的操作！");
             mBaseRefresh.finishRefresh();
+            mBaseRefresh.finishLoadMore();
         }
     }
 

@@ -18,16 +18,12 @@ import retrofit2.Response;
  *
  * @param <T>
  */
-public abstract class BaseResponseCallBack<T> implements Callback<T>, HttpResponseCallBackListener<T>, OnRefreshCompletedListener {
-
-    private OnRefreshCompletedListener mRefreshCompletedListener;
+public abstract class BaseResponseCallBack<T> implements Callback<T>, HttpResponseCallBackListener<T> {
 
     @Override
     public void onResponse(Call<T> call, Response<T> response) {
         // 完成刷新的操作，不管是成功还是失败，都要走入到这个方法中
-        if (mRefreshCompletedListener != null) {
-
-        }
+        HttpClient.completeListener.onRefreshCompleted();
 
         if (response != null) {
             // 是否网络请求成功
@@ -70,7 +66,7 @@ public abstract class BaseResponseCallBack<T> implements Callback<T>, HttpRespon
     @Override
     public void onFailure(Call<T> call, Throwable t) {
         // 完成刷新的操作，不管是成功还是失败，都要走入到这个方法中
-        onRefreshCompleted();
+        HttpClient.completeListener.onRefreshCompleted();
 
         if (!NetUtils.checkNetwork(BaseApp.getContext())) {
             onFailured(new ApiException(ApiException.NET_UNAVAILABLE));
@@ -87,17 +83,4 @@ public abstract class BaseResponseCallBack<T> implements Callback<T>, HttpRespon
         }
     }
 
-    @Override
-    public void onRefreshCompleted() {
-
-    }
-
-    @Override
-    public void onRefreshNoMoreDate() {
-
-    }
-
-    public void setRefreshCompletedListener(OnRefreshCompletedListener refreshCompletedListener) {
-        this.mRefreshCompletedListener = refreshCompletedListener;
-    }
 }

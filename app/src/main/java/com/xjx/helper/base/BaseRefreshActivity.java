@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.xjx.helper.R;
+import com.xjx.helper.interfaces.OnRefreshCompletedListener;
+import com.xjx.helper.utils.LogUtil;
 import com.xjx.helper.utils.refresh.MyRefreshFooter;
 import com.xjx.helper.utils.refresh.MyRrfreshHeader;
 import com.xjx.helper.utils.refresh.MySmartRefreshLayout;
@@ -21,7 +23,7 @@ import com.xjx.helper.utils.refresh.MySmartRefreshLayout;
  */
 public abstract class BaseRefreshActivity extends BaseTitleActivity implements OnRefreshLoadMoreListener {
 
-    protected MySmartRefreshLayout mBaseRefresh;
+    protected static MySmartRefreshLayout mBaseRefresh;
     private MyRrfreshHeader mBaseRefreshHeader;
     private MyRefreshFooter mBaseRefreshFooter;
     private FrameLayout mRefreshFlContent;
@@ -73,7 +75,6 @@ public abstract class BaseRefreshActivity extends BaseTitleActivity implements O
      */
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-        refreshLayout.finishRefresh(2000);
         onRequestData();
     }
 
@@ -84,7 +85,6 @@ public abstract class BaseRefreshActivity extends BaseTitleActivity implements O
      */
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-        refreshLayout.finishLoadMore(2000);
         onLoadMoreData();
     }
 
@@ -103,6 +103,16 @@ public abstract class BaseRefreshActivity extends BaseTitleActivity implements O
     protected void setTitleLayout(int visibility) {
         if (mRlTitleRoot != null) {
             mRlTitleRoot.setVisibility(visibility);
+        }
+    }
+
+    /**
+     * 刷新完成的操作
+     */
+    public static void RefreshComplete() {
+        if (mBaseRefresh != null) {
+            LogUtil.e("使用了刷新完成的操作！");
+            mBaseRefresh.finishRefresh();
         }
     }
 

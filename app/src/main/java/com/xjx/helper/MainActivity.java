@@ -23,7 +23,6 @@ public class MainActivity extends BaseRefreshActivity {
     protected void initView() {
         super.initView();
         setTitle("Main主界面");
-
     }
 
     @Override

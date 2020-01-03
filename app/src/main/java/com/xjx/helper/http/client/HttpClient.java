@@ -3,6 +3,7 @@ package com.xjx.helper.http.client;
 import com.google.gson.Gson;
 import com.xjx.helper.BuildConfig;
 import com.xjx.helper.http.convert.GsonConvert;
+import com.xjx.helper.implement.RefreshCompleteListener;
 
 import java.util.concurrent.TimeUnit;
 
@@ -20,6 +21,9 @@ public class HttpClient {
     private final static int READ_TIMEOUT = 30;
     private final static int WRITE_TIMEOUT = 30;
     public static Gson gson = new Gson();
+
+    // 刷新的实现类，因为每次网路请求都会用到，所以就放到之类，保证每次都会被初始化
+    public static RefreshCompleteListener completeListener = new RefreshCompleteListener();
 
     public static Retrofit createAPIRetrofit() {
 

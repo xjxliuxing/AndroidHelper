@@ -81,7 +81,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     }
 
     /**
-     * 请求网络数据
+     * 请求和刷新网络数据
      */
     protected void onRequestData() {
     }

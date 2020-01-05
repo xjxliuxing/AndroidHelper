@@ -43,19 +43,21 @@ public class HttpLogInterceptor2 implements Interceptor {
         RequestBody requestBody = request.body();
         boolean hasRequestBody = requestBody != null;
 
+        // 添加请求头
+        request = request.newBuilder()
+                .addHeader("Authorization", "5470316f424e065cf6aa93b47c0d9a14")
+                .addHeader("plat_number", "1")
+                .build();
+
         mMethod = request.method();
         HttpUrl url = request.url();
-        String path = url.encodedPath();
-        if (!TextUtils.isEmpty(path)) {
-            if (path.contains("/gateway-api/")) {
-                mPath = path.replace("/gateway-api/", "");
-            }
-        }
+        mPath = url.encodedPath();
 
         String host = url.host();
 
         // 请求参数
         String parameters = url.encodedQuery();
+
         if (!TextUtils.isEmpty(parameters)) {
             mParameter = "{ " + parameters.replace("&", " , ") + " }";
         }

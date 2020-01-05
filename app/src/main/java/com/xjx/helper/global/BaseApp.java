@@ -160,7 +160,7 @@ public class BaseApp extends Application {
                 // refreshLayout.setHeaderHeight(100);//Header标准高度（显示下拉高度>=标准高度 触发刷新）
                 // refreshLayout.setFooterHeight(100);//Footer标准高度（显示上拉高度>=标准高度 触发加载）
                 refreshLayout.setEnableRefresh(true);//是否启用下拉刷新功能
-                refreshLayout.setEnableLoadMore(true);//是否启用上拉加载功能
+                //refreshLayout.setEnableLoadMore(true);//是否启用上拉加载功能
 
                 refreshLayout.setEnableScrollContentWhenLoaded(true);//是否在加载完成时滚动列表显示新的内容
                 refreshLayout.setEnableHeaderTranslationContent(true);//是否下拉Header的时候向下平移列表或者内容

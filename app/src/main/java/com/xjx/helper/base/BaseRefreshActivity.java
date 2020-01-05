@@ -5,12 +5,11 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 
-import com.google.gson.JsonObject;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.xjx.helper.R;
 import com.xjx.helper.global.CommonConstant;
-import com.xjx.helper.interfaces.OnRefreshCompletedListener;
 import com.xjx.helper.utils.LogUtil;
 import com.xjx.helper.utils.refresh.MyRefreshFooter;
 import com.xjx.helper.utils.refresh.MyRrfreshHeader;
@@ -25,11 +24,11 @@ import java.util.Map;
  * @更新时间 2019/12/18  20:18
  * @描述 带刷新的基类Activity
  */
-public abstract class BaseRefreshActivity extends BaseTitleActivity implements OnRefreshLoadMoreListener {
+public abstract class BaseRefreshActivity extends BaseTitleActivity implements OnRefreshListener {
 
     protected static MySmartRefreshLayout mBaseRefresh;
     private MyRrfreshHeader mBaseRefreshHeader;
-    private MyRefreshFooter mBaseRefreshFooter;
+    protected MyRefreshFooter mBaseRefreshFooter;
     private FrameLayout mRefreshFlContent;
 
     @Override
@@ -65,7 +64,7 @@ public abstract class BaseRefreshActivity extends BaseTitleActivity implements O
         // 刷新布局
         if (mBaseRefresh != null) {
             // 刷新的事件
-            mBaseRefresh.setOnRefreshLoadMoreListener(this);
+            mBaseRefresh.setOnRefreshListener(this);
             // 刷新完成的停留
             mBaseRefreshHeader.setFinishDuration(0);
             mBaseRefreshFooter.setFinishDuration(0);
@@ -79,39 +78,7 @@ public abstract class BaseRefreshActivity extends BaseTitleActivity implements O
      */
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-        CommonConstant.DEFAULT_PAGE = 1;
         onRequestData();
-    }
-
-    /**
-     * 加载更多数据
-     *
-     * @param refreshLayout
-     */
-    @Override
-    public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-        // 每次网络递增加1
-        CommonConstant.DEFAULT_PAGE++;
-
-        onRequestData();
-    }
-
-    /**
-     * 如果页面需要分页，则需要使用这个方法，去动态的控制数据，如果不需要分页则不需使用该方法
-     *
-     * @param jsonObject
-     * @return 返回一个经过加工过的JsonObject对象
-     */
-    public Map<String, Object> setPageBody(Map<String, Object> jsonObject) {
-        if (jsonObject != null) {
-            jsonObject.put("page", CommonConstant.DEFAULT_PAGE);
-            jsonObject.put("limit", CommonConstant.DEFAULT_LIMIT);
-
-            LogUtil.e("jsonObject:" + jsonObject);
-            return jsonObject;
-        } else {
-            return null;
-        }
     }
 
     /**

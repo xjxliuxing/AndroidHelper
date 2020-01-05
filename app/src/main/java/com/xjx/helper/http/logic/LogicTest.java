@@ -1,6 +1,5 @@
 package com.xjx.helper.http.logic;
 
-import com.google.gson.JsonObject;
 import com.xjx.helper.entity.StoreActivityBean;
 import com.xjx.helper.http.client.Page;
 import com.xjx.helper.http.client.BaseResponse;
@@ -21,6 +20,6 @@ public interface LogicTest {
     //云店模块---店铺活动
     @Headers("module_type:1")
     @GET("yd/lotteryActivity/getLotteryActivityList")
-    Call<BaseResponse<Page<StoreActivityBean>>> getStoreActivity(@QueryName Map<String,Object> map);
+    Call<BaseResponse<Page<StoreActivityBean>>> getStoreActivity(@QueryMap Map<String, Object> map);
 
 }

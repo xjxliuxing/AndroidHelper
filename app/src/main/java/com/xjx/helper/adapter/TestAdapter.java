@@ -13,8 +13,6 @@ import com.xjx.helper.entity.StoreActivityBean;
 import com.xjx.helper.utils.GlideUtil;
 import com.xjx.helper.utils.ToastUtil;
 
-import java.util.List;
-
 public class TestAdapter extends BaseRecycleAdapter<StoreActivityBean> {
 
     public TestAdapter(Activity mContext) {

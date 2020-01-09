@@ -33,6 +33,8 @@ public class MainActivity extends BaseRefreshListActivity<StoreActivityBean> {
         super.initView();
         setTitle("Main主界面");
 
+
+
         rv_list = findViewById(R.id.rv_list);
     }
 

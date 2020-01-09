@@ -64,6 +64,7 @@ public class MainActivity extends BaseRefreshListActivity<StoreActivityBean> {
                 testAdapter.setList(getData());
             }
 
+
             @Override
             public void onFailured(Throwable t) {
                 ApiException.onFiled(t);

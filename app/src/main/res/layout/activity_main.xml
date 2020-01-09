@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="测试分支理解" />
+        android:text="测试分支理解2" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_list"

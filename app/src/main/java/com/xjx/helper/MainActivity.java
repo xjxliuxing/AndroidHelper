@@ -27,6 +27,7 @@ public class MainActivity extends BaseRefreshListActivity<StoreActivityBean> {
         return R.layout.activity_main;
     }
 
+
     @Override
     protected void initView() {
         super.initView();

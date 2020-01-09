@@ -27,13 +27,10 @@ public class MainActivity extends BaseRefreshListActivity<StoreActivityBean> {
         return R.layout.activity_main;
     }
 
-
     @Override
     protected void initView() {
         super.initView();
         setTitle("Main主界面");
-
-
 
         rv_list = findViewById(R.id.rv_list);
     }
@@ -66,7 +63,6 @@ public class MainActivity extends BaseRefreshListActivity<StoreActivityBean> {
                 setData(data);
                 testAdapter.setList(getData());
             }
-
 
             @Override
             public void onFailured(Throwable t) {

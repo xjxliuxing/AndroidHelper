@@ -7,7 +7,6 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.gson.JsonObject;
 import com.xjx.helper.utils.LogUtil;
 
 /**
@@ -15,20 +14,15 @@ import com.xjx.helper.utils.LogUtil;
  * @创建时间 2019/12/18  17:47
  * @更新者 HongJing
  * @更新时间 2019/12/18  17:47
- * @描述 Activity的基类
+ * @描述 Activity的最底层的基类，所有的Activity都要集成自这个类，便于控制和管理
  */
-public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
+public abstract class CommonBaseActivity extends AppCompatActivity implements View.OnClickListener {
 
     protected static Activity mContext;
     /**
      * 当前Activvity类的全路径类名
      */
     private String mCanonicalName;
-    /**
-     * 请求网络的参数，用于统一的封装请求
-     */
-    protected JsonObject mParameters;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -94,13 +88,11 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     @Override
     public void onClick(View v) {
-
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
     }
 
 }

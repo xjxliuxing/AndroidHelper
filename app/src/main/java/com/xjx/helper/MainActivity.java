@@ -35,6 +35,8 @@ public class MainActivity extends BaseRefreshListActivity<StoreActivityBean> {
         rv_list = findViewById(R.id.rv_list);
     }
 
+
+
     @Override
     protected void initData() {
         super.initData();

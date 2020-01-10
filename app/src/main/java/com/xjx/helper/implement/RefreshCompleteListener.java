@@ -12,9 +12,4 @@ public class RefreshCompleteListener implements OnRefreshCompletedListener {
     public void onRefreshCompleted() {
         BaseRefreshActivity.RefreshComplete();
     }
-
-    @Override
-    public void onRefreshNoMoreDate() {
-
-    }
 }

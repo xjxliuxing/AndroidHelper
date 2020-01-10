@@ -5,7 +5,6 @@ import androidx.annotation.NonNull;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.xjx.helper.global.CommonConstant;
-import com.xjx.helper.utils.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,8 +35,6 @@ public abstract class BaseRefreshListActivity<T> extends BaseRefreshActivity imp
             mBaseRefresh.setOnLoadMoreListener(this);
             mBaseRefresh.setEnableFooterFollowWhenNoMoreData(true);//是否在全部加载结束之后Footer跟随内容1.0.4
             mBaseRefresh.setEnableLoadMoreWhenContentNotFull(true);
-
-            mBaseRefresh.setEnableOverScrollBounce(true);//是否启用越界回弹
         }
     }
 
@@ -108,23 +105,12 @@ public abstract class BaseRefreshListActivity<T> extends BaseRefreshActivity imp
 
         if (list != null) {
             int size = list.size();
-
-            if (size > 0) {
-                // 数据正常显示
-                mList.addAll(list);
-            }
+            mList.addAll(list);
 
             if (size < CommonConstant.DEFAULT_LIMIT) {
-
-                /**
-                 *  如果请求到的数据的条目数量小于指定的条目数量的话，则表示数据
-                 *  已经请求到头了，这个时候应该提示没有数据
-                 */
-                mBaseRefresh.finishLoadMoreWithNoMoreData();//完成加载并标记没有更多数据 1.0.4
-                LogUtil.e("！！！没有更多数据了！");
+                mBaseRefresh.finishLoadMoreWithNoMoreData();//设置之后，将不会再触发加载事件
             } else {
                 mBaseRefresh.finishLoadMore();
-                LogUtil.e("！！！添加更多数据！");
             }
         }
     }

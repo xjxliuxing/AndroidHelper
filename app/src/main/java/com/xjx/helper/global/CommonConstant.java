@@ -42,7 +42,7 @@ public class CommonConstant {
     /**
      * 网络请求每页请求的数量
      */
-    public static int DEFAULT_LIMIT = 20;
+    public static int DEFAULT_LIMIT = 5;
 
     public static final String TOKEN = "";
 }

@@ -2,7 +2,6 @@ package com.xjx.helper.http.client;
 
 import com.xjx.helper.global.BaseApp;
 import com.xjx.helper.http.NetUtils;
-import com.xjx.helper.interfaces.OnRefreshCompletedListener;
 
 import java.io.IOException;
 import java.net.SocketException;

@@ -7,7 +7,4 @@ public interface OnRefreshCompletedListener {
 
     // 刷新完成的操作
     void onRefreshCompleted();
-
-    // 没有更多数据的操作
-    void onRefreshNoMoreDate();
 }

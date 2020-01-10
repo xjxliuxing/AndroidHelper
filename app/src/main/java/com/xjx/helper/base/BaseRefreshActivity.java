@@ -7,15 +7,11 @@ import androidx.annotation.NonNull;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
-import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.xjx.helper.R;
-import com.xjx.helper.global.CommonConstant;
 import com.xjx.helper.utils.LogUtil;
 import com.xjx.helper.utils.refresh.MyRefreshFooter;
 import com.xjx.helper.utils.refresh.MyRrfreshHeader;
 import com.xjx.helper.utils.refresh.MySmartRefreshLayout;
-
-import java.util.Map;
 
 /**
  * @作者 徐腾飞
@@ -99,7 +95,7 @@ public abstract class BaseRefreshActivity extends BaseTitleActivity implements O
         if (mBaseRefresh != null) {
             LogUtil.e("使用了刷新完成的操作！");
             mBaseRefresh.finishRefresh();
-            mBaseRefresh.finishLoadMore();
+            mBaseRefresh.resetNoMoreData();//setNoMoreData(false);//恢复上拉状态
         }
     }
 

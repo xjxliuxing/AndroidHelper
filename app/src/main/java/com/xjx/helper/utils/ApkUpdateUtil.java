@@ -111,7 +111,7 @@
 //                                    dialogUtil = DialogUtil
 //                                            .getInstance(mContext)
 //                                            .setContentView(R.layout.common_dialog_left_right_title)
-//                                            .setTitle("发现新版本")
+//                                            .seActivitytTitle("发现新版本")
 //                                            .setMsg("为了给您更好的体验，请下载最新版本！")
 //                                            .setLeftClickListener("取消", new DialogUtil.LeftClickListener() {
 //                                                @Override

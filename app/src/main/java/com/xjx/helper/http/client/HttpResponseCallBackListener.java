@@ -10,5 +10,5 @@ public interface HttpResponseCallBackListener<T> {
 
     void onSuccess(T response);
 
-    void onFailured(Throwable t);
+    void onFailured(ApiException t);
 }

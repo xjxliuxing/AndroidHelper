@@ -4,9 +4,9 @@ import com.xjx.helper.base.CommonBaseRefreshActivity;
 import com.xjx.helper.interfaces.OnRefreshCompletedListener;
 
 /**
- * 实现完成刷新的操作
+ * 实现完成刷新的操作实现类
  */
-public class RefreshCompleteListener implements OnRefreshCompletedListener {
+public class ImpRefreshCompleteListener implements OnRefreshCompletedListener {
 
     @Override
     public void onRefreshCompleted() {

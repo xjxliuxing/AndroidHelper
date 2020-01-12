@@ -8,12 +8,24 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.xjx.helper.R;
+import com.xjx.helper.enums.PlaceholderStatus;
+import com.xjx.helper.http.client.ApiException;
+import com.xjx.helper.http.client.BaseResponse;
+import com.xjx.helper.implement.ImpPlaceholderlistener;
+import com.xjx.helper.interfaces.OnClickListeners;
+import com.xjx.helper.interfaces.OnCommonViewClickListener;
 import com.xjx.helper.utils.views.TextViewUtils;
+import com.xjx.helper.widget.PlaceHolderView;
+
+import java.util.List;
 
 /**
  * Activity的扩展了类，自带title布局，也可以使用自定义的title布局
  */
 public abstract class CommonBaseTitleActivity extends CommonBaseActivity {
+
+    // 加载状态的回调对象
+    public static ImpPlaceholderlistener placeholderlistener = new ImpPlaceholderlistener();
 
     protected ImageView mIvBack; // 返回箭头
     protected TextView mTvLeft; // 返回文字
@@ -21,7 +33,9 @@ public abstract class CommonBaseTitleActivity extends CommonBaseActivity {
     protected TextView mTvRight; // 右侧标题
     protected FrameLayout mTitleFlContent; // 主布局
     protected RelativeLayout mRlTitleRoot;// title的根布局
-    private FrameLayout mFlTitleRightContent;
+
+    private FrameLayout mFlTitleRightContent; // title右侧的布局
+    private PlaceHolderView mPlaceHolderView; // 占位图
 
     protected boolean mIsFinishActivity = true;// 是否关闭Activity页面,默认直接关闭
 
@@ -49,7 +63,8 @@ public abstract class CommonBaseTitleActivity extends CommonBaseActivity {
 
         // 展示内容布局
         mTitleFlContent = findViewById(R.id.fl_content);
-
+        // 占位图的布局
+        mPlaceHolderView = findViewById(R.id.placeHolderView);
         // 添加布局
         getLayoutInflater().inflate(getTitleLayout(), mTitleFlContent, true);
     }
@@ -69,16 +84,16 @@ public abstract class CommonBaseTitleActivity extends CommonBaseActivity {
     /**
      * 设置标题
      *
-     * @param title
+     * @param title 标题的内容
      */
-    protected void setTitle(String title) {
+    protected void seActivitytTitle(String title) {
         TextViewUtils.setText(mTvTitle, title);
     }
 
     /**
      * 设置右侧标题
      *
-     * @param rightTitle
+     * @param rightTitle 右侧标题的内容
      */
     protected void setRightTitle(String rightTitle) {
         TextViewUtils.setText(mTvRight, rightTitle);
@@ -93,7 +108,7 @@ public abstract class CommonBaseTitleActivity extends CommonBaseActivity {
     /**
      * 设置是否关闭页面
      *
-     * @param finishActivity
+     * @param finishActivity 是否要关闭当前的页面
      */
     public void setFinishActivity(boolean finishActivity) {
         mIsFinishActivity = finishActivity;
@@ -130,4 +145,81 @@ public abstract class CommonBaseTitleActivity extends CommonBaseActivity {
                 break;
         }
     }
+
+    /**
+     * 占位图加载成功的状态
+     *
+     * @param response 成功的返回对象
+     */
+    public void switchPlaceHolderSuccess(BaseResponse response) {
+        if (response == null) {
+            setPlaceHolderLayout(PlaceholderStatus.EMPTY, "");
+        } else {
+            Object dataList = response.getReturnDataList();
+            if (dataList == null) {
+                setPlaceHolderLayout(PlaceholderStatus.EMPTY, "");
+            } else {
+                if (dataList instanceof List) {
+                    List list = (List) dataList;
+                    int size = list.size();
+                    if (size > 0) {
+                        setPlaceHolderLayout(PlaceholderStatus.SUCCESS, "");
+                    } else {
+                        setPlaceHolderLayout(PlaceholderStatus.EMPTY, "");
+                    }
+                } else {
+                    setPlaceHolderLayout(PlaceholderStatus.SUCCESS, "");
+                }
+            }
+        }
+    }
+
+    /**
+     * 占位图加载失败的状态
+     *
+     * @param t 失败的异常
+     */
+    public void switchPlaceHolderFailure(ApiException t) {
+        if (t != null) {
+            String message = t.getMessage();
+            setPlaceHolderLayout(PlaceholderStatus.ERROR, message);
+        }
+    }
+
+    /**
+     * @param status  占位图的状态
+     * @param message 网络返回的具体消息
+     */
+    private void setPlaceHolderLayout(PlaceholderStatus status, String message) {
+        // 设置布局的状态
+        mPlaceHolderView.setPlaceholderState(status, message);
+        // 点击重新连接的事件
+        mPlaceHolderView.setReloadListener(this::onRequestData);
+
+        switch (status) {
+            case LOADING: // 加载中
+            case EMPTY:   // 空布局
+            case ERROR:   // 错误布局
+                // 内容不可见
+                mTitleFlContent.setVisibility(View.GONE);
+                break;
+
+            case SUCCESS:  // 加载成功
+            case NONE:     // 不使用占位图
+                //  内容可见
+                mTitleFlContent.setVisibility(View.VISIBLE);
+                break;
+        }
+    }
+
+    /**
+     * 占位图的接口回调
+     *
+     * @param status
+     * @param message
+     */
+    public void placeHolderStatus(PlaceholderStatus status, String message) {
+        setPlaceHolderLayout(status, message);
+    }
+
 }

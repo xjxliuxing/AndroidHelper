@@ -44,4 +44,22 @@ public class ApiException extends Throwable {
         LogUtil.e("onFiled:" + t.getMessage());
         t.printStackTrace();
     }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    @Nullable
+    @Override
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }

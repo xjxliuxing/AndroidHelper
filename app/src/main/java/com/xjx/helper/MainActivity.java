@@ -35,8 +35,6 @@ public class MainActivity extends CommonBaseRefreshListActivity<StoreActivityBea
         rv_list = findViewById(R.id.rv_list);
     }
 
-
-
     @Override
     protected void initData() {
         super.initData();
@@ -60,14 +58,15 @@ public class MainActivity extends CommonBaseRefreshListActivity<StoreActivityBea
         ApiServices.test.getStoreActivity(stringObjectMap).enqueue(new BaseResponseCallBack<BaseResponse<Page<StoreActivityBean>>>() {
             @Override
             public void onSuccess(BaseResponse<Page<StoreActivityBean>> response) {
-
+                switchPlaceHolderSuccess(response);
                 List<StoreActivityBean> data = response.getReturnDataList().getData();
                 setData(data);
                 testAdapter.setList(getData());
             }
 
             @Override
-            public void onFailured(Throwable t) {
+            public void onFailured(ApiException t) {
+                switchPlaceHolderFailure(t);
                 ApiException.onFiled(t);
             }
         });

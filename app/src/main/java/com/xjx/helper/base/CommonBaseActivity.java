@@ -1,5 +1,6 @@
 package com.xjx.helper.base;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,18 +19,16 @@ import com.xjx.helper.utils.LogUtil;
  */
 public abstract class CommonBaseActivity extends AppCompatActivity implements View.OnClickListener {
 
+    @SuppressLint("StaticFieldLeak")
     protected static Activity mContext;
-    /**
-     * 当前Activvity类的全路径类名
-     */
-    private String mCanonicalName;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
 
-        this.mCanonicalName = getClass().getCanonicalName();
+        // 当前Activity的全路径名称
+        String mCanonicalName = getClass().getCanonicalName();
         LogUtil.e("当前的页面：Activvity -> 为: " + mCanonicalName);
 
         // 设置布局之前的操作

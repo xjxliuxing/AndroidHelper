@@ -6,7 +6,7 @@ import android.os.Build;
 import android.provider.Settings;
 import android.text.TextUtils;
 
-import com.xjx.helper.global.BaseApp;
+import com.xjx.helper.global.CommonBaseApp;
 
 import java.net.NetworkInterface;
 import java.net.SocketException;
@@ -27,7 +27,7 @@ public class VersionUtil {
     }
 
     private VersionUtil() {
-        context = BaseApp.getInstance().getContext();
+        context = CommonBaseApp.getInstance().getContext();
     }
 
     /**

@@ -20,7 +20,7 @@ import com.xjx.helper.utils.refresh.MySmartRefreshLayout;
  * @更新时间 2019/12/18  20:18
  * @描述 带刷新的基类Activity
  */
-public abstract class BaseRefreshActivity extends BaseTitleActivity implements OnRefreshListener {
+public abstract class CommonBaseRefreshActivity extends CommonBaseTitleActivity implements OnRefreshListener {
 
     protected static MySmartRefreshLayout mBaseRefresh;
     private MyRrfreshHeader mBaseRefreshHeader;

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 
-import com.xjx.helper.global.BaseApp;
+import com.xjx.helper.global.CommonBaseApp;
 
 /**
  * <p>文件描述<p>
@@ -24,7 +24,7 @@ public class SpUtil {
     private static synchronized SharedPreferences getSp() {
 
         if (sp == null) {
-            sp = BaseApp.getInstance().getApplicationContext().getSharedPreferences(SP_FILE_NAME, Context.MODE_PRIVATE);
+            sp = CommonBaseApp.getInstance().getApplicationContext().getSharedPreferences(SP_FILE_NAME, Context.MODE_PRIVATE);
         }
         return sp;
     }

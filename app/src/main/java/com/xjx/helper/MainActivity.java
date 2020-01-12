@@ -3,7 +3,7 @@ package com.xjx.helper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.xjx.helper.adapter.TestAdapter;
-import com.xjx.helper.base.BaseRefreshListActivity;
+import com.xjx.helper.base.CommonBaseRefreshListActivity;
 import com.xjx.helper.entity.StoreActivityBean;
 import com.xjx.helper.http.client.ApiException;
 import com.xjx.helper.http.client.ApiServices;
@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MainActivity extends BaseRefreshListActivity<StoreActivityBean> {
+public class MainActivity extends CommonBaseRefreshListActivity<StoreActivityBean> {
 
     private RecyclerView rv_list;
     private TestAdapter testAdapter;

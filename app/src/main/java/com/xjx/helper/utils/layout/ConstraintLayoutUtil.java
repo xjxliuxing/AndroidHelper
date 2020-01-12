@@ -7,14 +7,14 @@ import android.view.View;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.xjx.helper.global.BaseApp;
+import com.xjx.helper.global.CommonBaseApp;
 import com.xjx.helper.utils.LogUtil;
 
 public class ConstraintLayoutUtil extends ConstraintLayout {
 
     private boolean isMeasure = true;
-    private float horizontalScaleValue = BaseApp.getInstance().horizontalScaleValue;
-    private float verticalScaleValue = BaseApp.getInstance().verticalScaleValue;
+    private float horizontalScaleValue = CommonBaseApp.getInstance().horizontalScaleValue;
+    private float verticalScaleValue = CommonBaseApp.getInstance().verticalScaleValue;
 
     public ConstraintLayoutUtil(Context context) {
         super(context);

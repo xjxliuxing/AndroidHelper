@@ -1,6 +1,6 @@
 package com.xjx.helper.implement;
 
-import com.xjx.helper.base.BaseRefreshActivity;
+import com.xjx.helper.base.CommonBaseRefreshActivity;
 import com.xjx.helper.interfaces.OnRefreshCompletedListener;
 
 /**
@@ -10,6 +10,6 @@ public class RefreshCompleteListener implements OnRefreshCompletedListener {
 
     @Override
     public void onRefreshCompleted() {
-        BaseRefreshActivity.RefreshComplete();
+        CommonBaseRefreshActivity.RefreshComplete();
     }
 }

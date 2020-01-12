@@ -6,7 +6,7 @@ import android.os.Build;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
-import com.xjx.helper.global.BaseApp;
+import com.xjx.helper.global.CommonBaseApp;
 import com.xjx.helper.global.CommonConstant;
 import com.xjx.helper.utils.LogUtil;
 import com.xjx.helper.utils.SpUtil;
@@ -31,7 +31,7 @@ public class ScreenUtil {
 
     public ScreenUtil() {
         //得到屏幕窗口管理器
-        WindowManager windowManager = (WindowManager) BaseApp.getInstance().getContext().getSystemService(Context.WINDOW_SERVICE);
+        WindowManager windowManager = (WindowManager) CommonBaseApp.getInstance().getContext().getSystemService(Context.WINDOW_SERVICE);
         // 屏幕信息（宽度、密度、字体）
         metrics = new DisplayMetrics();
         // 把获取到的信息放入到屏幕信息的类中
@@ -127,7 +127,7 @@ public class ScreenUtil {
      * @return 屏幕高度（px）
      */
     public static int getScreenHeight(Context context) {
-        WindowManager wm = (WindowManager) BaseApp.getInstance().getContext().getSystemService(Context.WINDOW_SERVICE);
+        WindowManager wm = (WindowManager) CommonBaseApp.getInstance().getContext().getSystemService(Context.WINDOW_SERVICE);
         Point point = new Point();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             wm.getDefaultDisplay().getRealSize(point);
@@ -143,10 +143,10 @@ public class ScreenUtil {
     public int getstatusBarHeight() {
         //获取status_bar_height资源的ID
         int statusBarHeight = 0;
-        int resourceId = BaseApp.getInstance().getContext().getResources().getIdentifier("status_bar_height", "dimen", "android");
+        int resourceId = CommonBaseApp.getInstance().getContext().getResources().getIdentifier("status_bar_height", "dimen", "android");
         if (resourceId > 0) {
             //根据资源ID获取响应的尺寸值
-            statusBarHeight = BaseApp.getInstance().getContext().getResources().getDimensionPixelSize(resourceId);
+            statusBarHeight = CommonBaseApp.getInstance().getContext().getResources().getDimensionPixelSize(resourceId);
         }
         if (statusBarHeight > 0) {
             // 把状态栏的高度存入到sp中

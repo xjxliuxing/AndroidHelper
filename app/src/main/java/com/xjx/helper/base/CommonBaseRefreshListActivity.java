@@ -18,7 +18,7 @@ import java.util.Map;
  * @描述 针对列表类型的刷新页面的activity的基类，这种类型的基类只适用于单个列表的刷新，
  * 如果有多个列表刷新的话，建议使用单独的页面去做一些操作
  */
-public abstract class BaseRefreshListActivity<T> extends BaseRefreshActivity implements OnLoadMoreListener {
+public abstract class CommonBaseRefreshListActivity<T> extends CommonBaseRefreshActivity implements OnLoadMoreListener {
     /**
      * 数据列表的对象
      */

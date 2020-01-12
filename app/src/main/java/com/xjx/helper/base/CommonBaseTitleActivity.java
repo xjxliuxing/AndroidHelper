@@ -13,7 +13,7 @@ import com.xjx.helper.utils.views.TextViewUtils;
 /**
  * Activity的扩展了类，自带title布局，也可以使用自定义的title布局
  */
-public abstract class BaseTitleActivity extends CommonBaseActivity {
+public abstract class CommonBaseTitleActivity extends CommonBaseActivity {
 
     protected ImageView mIvBack; // 返回箭头
     protected TextView mTvLeft; // 返回文字

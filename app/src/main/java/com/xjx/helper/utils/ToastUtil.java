@@ -10,7 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.xjx.helper.R;
-import com.xjx.helper.global.BaseApp;
+import com.xjx.helper.global.CommonBaseApp;
 
 /**
  * Created by admin on 2017/1/4.
@@ -33,7 +33,7 @@ public class ToastUtil {
     }
 
     public static void showToast(String text, int duration, int gravity, int xOffset, int yOffset) {
-        Context context = BaseApp.getInstance().getContext();
+        Context context = CommonBaseApp.getInstance().getContext();
 
         if (toast != null) {
             toast.cancel();

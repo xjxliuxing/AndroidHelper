@@ -31,9 +31,9 @@ import java.util.Locale;
  * 基类的Application，使用的时候，需要注意以下事项：
  * 1：必须设置debug模式,否则就会导致很多东西无法使用，例如，log会一直打印
  */
-public class BaseApp extends Application {
+public class CommonBaseApp extends Application {
 
-    private static BaseApp mApp;
+    private static CommonBaseApp mApp;
     private boolean isDebug = true; // debug类型，默认是false类型
     private static String mLogTag = "XJX";// 默认log的tag标记
     public float horizontalScaleValue; // 布局宽的缩放比例
@@ -46,7 +46,7 @@ public class BaseApp extends Application {
         initApp();
     }
 
-    public static BaseApp getInstance() {
+    public static CommonBaseApp getInstance() {
         return mApp;
     }
 

@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.xjx.helper.global.BaseApp;
+import com.xjx.helper.global.CommonBaseApp;
 
 import org.json.JSONObject;
 
@@ -50,7 +50,7 @@ public class ConvertUtil {
     }
 
     public static int dipToPx(float dipValue) {
-        final float scale = BaseApp.getInstance().getContext().getResources().getDisplayMetrics().density;
+        final float scale = CommonBaseApp.getInstance().getContext().getResources().getDisplayMetrics().density;
         return (int) (dipValue * scale + 0.5f);
     }
 
@@ -182,7 +182,7 @@ public class ConvertUtil {
         if (background instanceof GradientDrawable) {
             GradientDrawable gradientDrawable = (GradientDrawable) background;
             if (gradientDrawable != null) {
-                gradientDrawable.setColor(BaseApp.getInstance().getContext().getResources().getColor(color));
+                gradientDrawable.setColor(CommonBaseApp.getInstance().getContext().getResources().getColor(color));
             }
         }
     }
@@ -388,7 +388,7 @@ public class ConvertUtil {
                 String contentValue = stringArray[i];
                 int colorValue = colorArray[i];
 
-                span = new ForegroundColorSpan(BaseApp.getInstance().getContext().getResources().getColor(colorValue));
+                span = new ForegroundColorSpan(CommonBaseApp.getInstance().getContext().getResources().getColor(colorValue));
 //                LogUtil.e("start:" + length + "   end:" + (length + contentValue.length()));
                 spanString.setSpan(span, length, (length + contentValue.length()), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
                 length += contentValue.length();

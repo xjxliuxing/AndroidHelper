@@ -1,6 +1,6 @@
 package com.xjx.helper.http.client;
 
-import com.xjx.helper.global.BaseApp;
+import com.xjx.helper.global.CommonBaseApp;
 import com.xjx.helper.http.NetUtils;
 
 import java.io.IOException;
@@ -67,7 +67,7 @@ public abstract class BaseResponseCallBack<T> implements Callback<T>, HttpRespon
         // 完成刷新的操作，不管是成功还是失败，都要走入到这个方法中
         HttpClient.completeListener.onRefreshCompleted();
 
-        if (!NetUtils.checkNetwork(BaseApp.getContext())) {
+        if (!NetUtils.checkNetwork(CommonBaseApp.getContext())) {
             onFailured(new ApiException(ApiException.NET_UNAVAILABLE));
         } else {
             if (t instanceof SocketException || t instanceof UnknownHostException) {

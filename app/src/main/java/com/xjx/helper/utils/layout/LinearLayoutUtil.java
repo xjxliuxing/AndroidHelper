@@ -6,13 +6,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.xjx.helper.global.BaseApp;
+import com.xjx.helper.global.CommonBaseApp;
 import com.xjx.helper.utils.LogUtil;
 
 public class LinearLayoutUtil extends LinearLayout {
     private boolean isMeasure = true;
-    private float horizontalScaleValue = BaseApp.getInstance().horizontalScaleValue;
-    private float verticalScaleValue = BaseApp.getInstance().verticalScaleValue;
+    private float horizontalScaleValue = CommonBaseApp.getInstance().horizontalScaleValue;
+    private float verticalScaleValue = CommonBaseApp.getInstance().verticalScaleValue;
 
     public LinearLayoutUtil(Context context) {
         super(context);

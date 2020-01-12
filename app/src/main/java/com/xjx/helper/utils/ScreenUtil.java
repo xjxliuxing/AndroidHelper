@@ -7,7 +7,7 @@ import android.os.Build;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
-import com.xjx.helper.global.BaseApp;
+import com.xjx.helper.global.CommonBaseApp;
 
 /**
  * <p>文件描述<p>
@@ -30,7 +30,7 @@ public class ScreenUtil {
 
     public ScreenUtil() {
         //得到屏幕窗口管理器
-        WindowManager windowManager = (WindowManager) BaseApp.getInstance().getContext().getSystemService(Context.WINDOW_SERVICE);
+        WindowManager windowManager = (WindowManager) CommonBaseApp.getInstance().getContext().getSystemService(Context.WINDOW_SERVICE);
         // 屏幕信息（宽度、密度、字体）
         metrics = new DisplayMetrics();
         // 把获取到的信息放入到屏幕信息的类中
@@ -129,7 +129,7 @@ public class ScreenUtil {
      * @return 屏幕高度（px）
      */
     public static int getScreenHeight(Context context) {
-        WindowManager wm = (WindowManager) BaseApp.getInstance().getContext().getSystemService(Context.WINDOW_SERVICE);
+        WindowManager wm = (WindowManager) CommonBaseApp.getInstance().getContext().getSystemService(Context.WINDOW_SERVICE);
         Point point = new Point();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             wm.getDefaultDisplay().getRealSize(point);
@@ -146,7 +146,7 @@ public class ScreenUtil {
      */
     public static int getstatusBarHeight() {
         //获取status_bar_height资源的ID
-        Context context = BaseApp.getInstance().getContext();
+        Context context = CommonBaseApp.getInstance().getContext();
         int statusBarHeight = 0;
         int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
         if (resourceId > 0) {

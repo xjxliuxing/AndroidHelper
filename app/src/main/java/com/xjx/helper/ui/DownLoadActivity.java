@@ -7,6 +7,8 @@ import com.xjx.helper.R;
 import com.xjx.helper.base.CommonBaseTitleActivity;
 import com.xjx.helper.enums.PlaceholderStatus;
 
+import java.io.File;
+
 /**
  * 下载页面
  */
@@ -55,6 +57,19 @@ public class DownLoadActivity extends CommonBaseTitleActivity {
     }
 
     private void downLoad() {
+        String path = "https://www.bluemembers.com.cn/upload/CarCategoryGuide/新一代悦纳车型多媒体信息娱乐系统说明书.pdf";
 
+        File file = getFile();
+        download(mContext, path, file);
     }
+
+    int currentProgress = 0;
+
+    /**
+     * @param context
+     * @param url     下载路径
+     * @param file    存入文件的地址
+     */
+
+
 }

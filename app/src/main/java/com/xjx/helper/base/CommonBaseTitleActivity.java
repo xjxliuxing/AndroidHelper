@@ -12,8 +12,6 @@ import com.xjx.helper.enums.PlaceholderStatus;
 import com.xjx.helper.http.client.ApiException;
 import com.xjx.helper.http.client.BaseResponse;
 import com.xjx.helper.implement.ImpPlaceholderlistener;
-import com.xjx.helper.interfaces.OnClickListeners;
-import com.xjx.helper.interfaces.OnCommonViewClickListener;
 import com.xjx.helper.utils.views.TextViewUtils;
 import com.xjx.helper.widget.PlaceHolderView;
 
@@ -67,12 +65,20 @@ public abstract class CommonBaseTitleActivity extends CommonBaseActivity {
         mPlaceHolderView = findViewById(R.id.placeHolderView);
         // 添加布局
         getLayoutInflater().inflate(getTitleLayout(), mTitleFlContent, true);
+
+        // 设置标题
+        TextViewUtils.setText(mTvTitle, getTitleContent());
     }
 
     /**
      * @return 获取布局
      */
     protected abstract int getTitleLayout();
+
+    /**
+     * @return 设置标题
+     */
+    protected abstract String getTitleContent();
 
     @Override
     protected void initListener() {
@@ -87,7 +93,7 @@ public abstract class CommonBaseTitleActivity extends CommonBaseActivity {
      * @param title 标题的内容
      */
     protected void seActivitytTitle(String title) {
-        TextViewUtils.setText(mTvTitle, title);
+
     }
 
     /**
@@ -153,22 +159,22 @@ public abstract class CommonBaseTitleActivity extends CommonBaseActivity {
      */
     public void switchPlaceHolderSuccess(BaseResponse response) {
         if (response == null) {
-            setPlaceHolderLayout(PlaceholderStatus.EMPTY, "");
+            LoadingStatus(PlaceholderStatus.EMPTY, "");
         } else {
             Object dataList = response.getReturnDataList();
             if (dataList == null) {
-                setPlaceHolderLayout(PlaceholderStatus.EMPTY, "");
+                LoadingStatus(PlaceholderStatus.EMPTY, "");
             } else {
                 if (dataList instanceof List) {
                     List list = (List) dataList;
                     int size = list.size();
                     if (size > 0) {
-                        setPlaceHolderLayout(PlaceholderStatus.SUCCESS, "");
+                        LoadingStatus(PlaceholderStatus.SUCCESS, "");
                     } else {
-                        setPlaceHolderLayout(PlaceholderStatus.EMPTY, "");
+                        LoadingStatus(PlaceholderStatus.EMPTY, "");
                     }
                 } else {
-                    setPlaceHolderLayout(PlaceholderStatus.SUCCESS, "");
+                    LoadingStatus(PlaceholderStatus.SUCCESS, "");
                 }
             }
         }
@@ -182,7 +188,7 @@ public abstract class CommonBaseTitleActivity extends CommonBaseActivity {
     public void switchPlaceHolderFailure(ApiException t) {
         if (t != null) {
             String message = t.getMessage();
-            setPlaceHolderLayout(PlaceholderStatus.ERROR, message);
+            LoadingStatus(PlaceholderStatus.ERROR, message);
         }
     }
 
@@ -190,7 +196,7 @@ public abstract class CommonBaseTitleActivity extends CommonBaseActivity {
      * @param status  占位图的状态
      * @param message 网络返回的具体消息
      */
-    private void setPlaceHolderLayout(PlaceholderStatus status, String message) {
+    protected void LoadingStatus(PlaceholderStatus status, String message) {
         // 设置布局的状态
         mPlaceHolderView.setPlaceholderState(status, message);
         // 点击重新连接的事件
@@ -210,16 +216,6 @@ public abstract class CommonBaseTitleActivity extends CommonBaseActivity {
                 mTitleFlContent.setVisibility(View.VISIBLE);
                 break;
         }
-    }
-
-    /**
-     * 占位图的接口回调
-     *
-     * @param status
-     * @param message
-     */
-    public void placeHolderStatus(PlaceholderStatus status, String message) {
-        setPlaceHolderLayout(status, message);
     }
 
 }

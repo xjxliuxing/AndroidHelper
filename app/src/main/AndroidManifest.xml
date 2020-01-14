@@ -18,6 +18,8 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
+        <activity android:name=".ui.DownLoadActivity" />
+
         <!--主界面-->
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -26,6 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

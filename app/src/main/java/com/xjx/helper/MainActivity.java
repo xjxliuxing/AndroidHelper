@@ -1,5 +1,9 @@
 package com.xjx.helper;
 
+import android.content.Intent;
+import android.view.View;
+import android.widget.TextView;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.xjx.helper.adapter.TestAdapter;
@@ -10,6 +14,7 @@ import com.xjx.helper.http.client.ApiServices;
 import com.xjx.helper.http.client.BaseResponse;
 import com.xjx.helper.http.client.BaseResponseCallBack;
 import com.xjx.helper.http.client.Page;
+import com.xjx.helper.ui.DownLoadActivity;
 import com.xjx.helper.utils.LogUtil;
 import com.xjx.helper.utils.RecycleUtil;
 
@@ -21,6 +26,7 @@ public class MainActivity extends CommonBaseRefreshListActivity<StoreActivityBea
 
     private RecyclerView rv_list;
     private TestAdapter testAdapter;
+    private TextView tv_test;
 
     @Override
     protected int getRefreshLayout() {
@@ -32,7 +38,19 @@ public class MainActivity extends CommonBaseRefreshListActivity<StoreActivityBea
         super.initView();
         setTitle("Main主界面");
 
+        tv_test = findViewById(R.id.tv_test);
         rv_list = findViewById(R.id.rv_list);
+    }
+
+    @Override
+    protected String getTitleContent() {
+        return "首页";
+    }
+
+    @Override
+    protected void initListener() {
+        super.initListener();
+        tv_test.setOnClickListener(this);
     }
 
     @Override
@@ -70,5 +88,18 @@ public class MainActivity extends CommonBaseRefreshListActivity<StoreActivityBea
                 ApiException.onFiled(t);
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        super.onClick(v);
+        Intent intent = new Intent();
+        switch (v.getId()) {
+            case R.id.tv_test:
+                intent.setClass(mContext, DownLoadActivity.class);
+
+                break;
+        }
+        startActivity(intent);
     }
 }

@@ -16,6 +16,7 @@ import com.xjx.helper.http.client.BaseResponse;
 import com.xjx.helper.http.client.BaseResponseCallBack;
 import com.xjx.helper.http.client.Page;
 import com.xjx.helper.ui.DownLoadActivity;
+import com.xjx.helper.ui.DownLoadManagerActivity;
 import com.xjx.helper.utils.LogUtil;
 import com.xjx.helper.utils.RecycleUtil;
 
@@ -47,6 +48,15 @@ public class MainActivity extends CommonBaseRefreshListActivity<StoreActivityBea
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(mContext, DownLoadActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        top.findViewById(R.id.tv_test2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(mContext, DownLoadManagerActivity.class);
                 startActivity(intent);
             }
         });

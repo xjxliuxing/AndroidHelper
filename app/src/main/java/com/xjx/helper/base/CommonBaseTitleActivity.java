@@ -232,4 +232,11 @@ public abstract class CommonBaseTitleActivity extends CommonBaseActivity {
         }
     }
 
+    /**
+     * @param status 占位图的状态
+     */
+    protected void LoadingStatus(PlaceholderStatus status) {
+        LoadingStatus(status, "");
+    }
+
 }

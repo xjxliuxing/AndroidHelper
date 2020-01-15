@@ -40,7 +40,7 @@ public class DownLoadActivity extends CommonBaseTitleActivity {
         super.initView();
         btn_down = findViewById(R.id.btn_down);
 
-        LoadingStatus(PlaceholderStatus.NONE, "");
+        LoadingStatus(PlaceholderStatus.NONE);
     }
 
     @Override
@@ -89,7 +89,7 @@ public class DownLoadActivity extends CommonBaseTitleActivity {
             }
 
             @Override
-            public void onComplete(String path) {
+            public void onComplete() {
                 LogUtil.e("下载结束");
             }
 

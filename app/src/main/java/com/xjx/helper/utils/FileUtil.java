@@ -1,5 +1,7 @@
 package com.xjx.helper.utils;
 
+import android.content.Context;
+import android.os.Build;
 import android.os.Environment;
 
 import java.io.BufferedReader;
@@ -47,6 +49,8 @@ public class FileUtils {
     public void saveToSdContent(String filename, String filecontent) {
         boolean b = checkSdStatus();
         if (b) {
+            File externalStoragePublicDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+            Environment.getExternalStorageDirectory();
             File file = new File(Environment.getExternalStorageDirectory(), filename);
             FileOutputStream outStream = null;
             try {
@@ -100,6 +104,33 @@ public class FileUtils {
             ToastUtil.showToast("Sd卡不可用");
             return null;
         }
+    }
+
+    /**
+     * @return 获取SD卡的路径
+     */
+
+    /**
+     * @param context
+     * @return 获取Sd卡的路径，如果是在7.0之上就获取app中file目录下的文件，否则就获取sd卡中的路径
+     */
+    public String getSdPaht(Context context) {
+        String path = "";
+        int sdkInt = Build.VERSION.SDK_INT;
+
+        if (sdkInt >= Build.VERSION_CODES.Q) {
+            // 7.0之上使用其他方法代替
+            path = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
+        } else {
+            boolean b = checkSdStatus();
+            if (b) {
+                path = Environment.getExternalStorageDirectory().getAbsolutePath();
+            } else {
+                path = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
+            }
+        }
+        LogUtil.e("获取的路径为：" + path);
+        return path;
     }
 
 }

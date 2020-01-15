@@ -9,7 +9,6 @@ import com.xjx.helper.utils.LogUtil;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,13 +33,10 @@ public class DownloadUtil {
     private String TAG = "DownLoad";
     // 监听进度的接口
     private ProgressResponseListener mListener;
-    private static DownloadUtil util;
-    private Context context;
     private OkHttpClient.Builder builder;
     private String mSavePath;// 下载文件里的路径
 
     public DownloadUtil(Context context, ProgressResponseListener listener) {
-        this.context = context;
         this.mListener = listener;
     }
 
@@ -49,6 +45,8 @@ public class DownloadUtil {
             LogUtil.e(TAG, "下载地址或者下载路径为空");
             return;
         }
+
+        setTargetPath(tragetPath);
 
         // 这里使用的逻辑都是一样的，所以不去重复的创建
         if (builder == null) {
@@ -113,13 +111,6 @@ public class DownloadUtil {
                     } finally {
                         inputStream.close();
                         outputStream.close();
-
-                        File file = new File(tragetPath);
-                        boolean canRead = file.canRead();
-                        boolean canWrite = file.canWrite();
-
-                        LogUtil.e("canRead:" + canRead);
-                        LogUtil.e("canWrite:" + canWrite);
                     }
                 }
             }

@@ -74,7 +74,7 @@ public class ProgressResponseBody extends ResponseBody {
                 }
                 if (null != progressListener) {
                     if ((totalBytes > 0) && (totalBytes == total)) {
-                        progressListener.onComplete("");
+                        progressListener.onComplete();
                     }
                 }
                 return bytesRead;

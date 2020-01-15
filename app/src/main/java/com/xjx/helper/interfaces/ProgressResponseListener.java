@@ -21,7 +21,7 @@ public interface ProgressResponseListener {
     /**
      *  下载完成
      */
-    void onComplete(String path);
+    void onComplete();
 
     void onFailure(String message);
 }

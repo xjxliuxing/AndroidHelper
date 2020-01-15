@@ -52,14 +52,20 @@ public class ProgressResponseBody extends ResponseBody {
             long bytesRead = 0;
 
             @Override
-            public long read(Buffer sink, long byteCount) throws IOException {
+            public long read(Buffer sink, long byteCount) {
                 if (bytesRead == 0) {
                     if (null != progressListener) {
                         progressListener.onStart();
                     }
                 }
-
-                bytesRead = super.read(sink, byteCount);
+                try {
+                    bytesRead = super.read(sink, byteCount);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    if (null != progressListener) {
+                        progressListener.onFailure(e.getMessage());
+                    }
+                }
                 if (bytesRead != -1) {
                     totalBytes += bytesRead;
                     if (null != progressListener) {

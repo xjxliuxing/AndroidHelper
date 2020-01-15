@@ -1,11 +1,13 @@
-package com.buddy.organization.utils;
+package com.xjx.helper.utils;
 
 import android.Manifest;
-import android.support.v4.app.FragmentActivity;
+import android.annotation.SuppressLint;
 
-import com.buddy.organization.R;
+import androidx.fragment.app.FragmentActivity;
+
 import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.xjx.helper.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,7 @@ import io.reactivex.functions.Consumer;
 /**
  * Created by Administrator on 2019/3/22.
  */
+@SuppressLint("CheckResult")
 public class PermissionUtil {
 
     private static PermissionUtil permissionUtil;
@@ -30,9 +33,12 @@ public class PermissionUtil {
         return permissionUtil;
     }
 
-    //  1：同时请求多个权限，合并单个详细的结果
+    /**
+     * @param activity
+     * @param permissionGroup
+     * @return 同时请求多个权限，合并单个详细的结果
+     */
     public List<Boolean> RequestActivityPermission(FragmentActivity activity, final String[] permissionGroup) {
-
         if (resultList == null) {
             resultList = new ArrayList<>();
         }
@@ -40,26 +46,20 @@ public class PermissionUtil {
 
         if (activity == null || permissionGroup == null || permissionGroup.length < 0) {
             LogUtil.e("请求权限的对象为空 ！");
-
         } else {
-
             // 1 : 构建请求对象
             RxPermissions rxPermissions = new RxPermissions(activity); // where this is an Activity instance
 
             rxPermissions.requestEach(Manifest.permission.RECORD_AUDIO, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    .subscribe(new Consumer<Permission>() {
-                        @Override
-                        public void accept(Permission permission) throws Exception {
-
-                            if (permission.granted) {
-                                String name = permission.name;
-                                LogUtil.e("naem:OK" + name);
-                                resultList.add(true);
-                            } else {
-                                String name = permission.name;
-                                LogUtil.e("naem:Fauld" + name);
-                                resultList.add(false);
-                            }
+                    .subscribe(permission -> {
+                        if (permission.granted) {
+                            String name = permission.name;
+                            LogUtil.e("naem:OK" + name);
+                            resultList.add(true);
+                        } else {
+                            String name = permission.name;
+                            LogUtil.e("naem:Fauld" + name);
+                            resultList.add(false);
                         }
                     });
         }
@@ -83,10 +83,8 @@ public class PermissionUtil {
             LogUtil.e("请求权限的对象为空 ！");
 
         } else {
-
             // 1 : 构建请求对象
             RxPermissions rxPermissions = new RxPermissions(activity); // where this is an Activity instance
-
             rxPermissions.request(permissionGroup).subscribe(new Consumer<Boolean>() {
                 @Override
                 public void accept(Boolean granted) throws Exception {
@@ -94,7 +92,6 @@ public class PermissionUtil {
 
                         resultList.add(true);
                     } else {
-
                         resultList.add(false);
                     }
                 }
@@ -105,9 +102,11 @@ public class PermissionUtil {
         } else {
             result = true;
         }
-
         return result;
     }
+
+    /***************************************例子***********************************************************/
+
 
     /**
      * 例子---合并请求多个权限，获取详细的单个权限的授权情况
@@ -120,19 +119,15 @@ public class PermissionUtil {
                 .subscribe(new Consumer<Permission>() {
                     @Override
                     public void accept(Permission permission) throws Exception {
-
                         if (permission.granted) {
                             String name = permission.name;
-
                             LogUtil.e("naem:OK" + name);
-
                         } else {
                             String name = permission.name;
                             LogUtil.e("naem:Fauld" + name);
                         }
                     }
                 });
-
     }
 
     /**
@@ -146,17 +141,14 @@ public class PermissionUtil {
             @Override
             public void accept(Permission permission) throws Exception {
                 if (permission.granted) {
-
                     // LogUtil.e("所有的权限都同意了！");
-
                 } else if (permission.shouldShowRequestPermissionRationale) {
 
                     LogUtil.e("有的同意，有的拒绝！");
-                    ToastUtil.showToast(activity, activity.getResources().getString(R.string.permission_failed));
+                    ToastUtil.showToast(activity.getResources().getString(R.string.permission_failed));
                 } else {
-
                     LogUtil.e("设置了不在提示的按钮后再拒绝！");
-                    ToastUtil.showToast(activity, activity.getResources().getString(R.string.permission_again));
+                    ToastUtil.showToast(activity.getResources().getString(R.string.permission_again));
                 }
             }
         });
@@ -166,7 +158,6 @@ public class PermissionUtil {
      * 例子 --- 直接请求多个权限，获取所有的合并结果，只有有个不通过，就直接返回false
      */
     private void getAllPermission(FragmentActivity activity, String[] strings) {
-
         // 1 : 构建请求对象
         RxPermissions rxPermissions = new RxPermissions(activity); // where this is an Activity instance
 
@@ -181,7 +172,6 @@ public class PermissionUtil {
                 }
             }
         });
-
     }
 
 }

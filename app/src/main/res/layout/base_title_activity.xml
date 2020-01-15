@@ -7,12 +7,18 @@
     <!-- title部分 -->
     <include layout="@layout/base_title" />
 
+    <FrameLayout
+        android:id="@+id/fl_top_title_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
     <!-- 数据内容部分 -->
     <FrameLayout
-        android:visibility="gone"
         android:id="@+id/fl_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:visibility="gone" />
 
     <!-- loading部分 -->
     <com.xjx.helper.widget.PlaceHolderView

@@ -49,13 +49,27 @@ public class ProgressResponseBody extends ResponseBody {
     private Source source(Source source) {
         return new ForwardingSource(source) {
             long totalBytes = 0L;
+            long bytesRead = 0;
 
             @Override
             public long read(Buffer sink, long byteCount) throws IOException {
-                long bytesRead = super.read(sink, byteCount);
-                totalBytes += bytesRead != -1 ? bytesRead : 0;
+                if (bytesRead == 0) {
+                    if (null != progressListener) {
+                        progressListener.onStart();
+                    }
+                }
+
+                bytesRead = super.read(sink, byteCount);
+                if (bytesRead != -1) {
+                    totalBytes += bytesRead;
+                    if (null != progressListener) {
+                        progressListener.onLoading(totalBytes, total, totalBytes == total);
+                    }
+                }
                 if (null != progressListener) {
-                    progressListener.onRequestProgress(bytesRead, totalBytes, bytesRead == totalBytes);
+                    if ((totalBytes > 0) && (totalBytes == total)) {
+                        progressListener.onComplete("");
+                    }
                 }
                 return bytesRead;
             }

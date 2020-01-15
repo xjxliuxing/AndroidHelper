@@ -36,6 +36,7 @@ public abstract class CommonBaseTitleActivity extends CommonBaseActivity {
     private PlaceHolderView mPlaceHolderView; // 占位图
 
     protected boolean mIsFinishActivity = true;// 是否关闭Activity页面,默认直接关闭
+    private FrameLayout mFlTopTitleContent;
 
     @Override
     protected int getLayout() {
@@ -58,6 +59,9 @@ public abstract class CommonBaseTitleActivity extends CommonBaseActivity {
         mFlTitleRightContent = findViewById(R.id.fl_title_right_content);
         // 右侧标题
         mTvRight = findViewById(R.id.tv_title_right);
+
+        // 内容之上的布局
+        mFlTopTitleContent = findViewById(R.id.fl_top_title_content);
 
         // 展示内容布局
         mTitleFlContent = findViewById(R.id.fl_content);
@@ -132,6 +136,16 @@ public abstract class CommonBaseTitleActivity extends CommonBaseActivity {
      */
     protected void onRightTitleClick() {
 
+    }
+
+    /**
+     * 设置内容布局上的View
+     *
+     * @param view
+     */
+    protected void setTopView(View view) {
+        mFlTopTitleContent.setVisibility(View.VISIBLE);
+        mFlTopTitleContent.addView(view);
     }
 
     @Override

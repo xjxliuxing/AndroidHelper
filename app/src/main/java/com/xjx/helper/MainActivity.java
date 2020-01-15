@@ -1,6 +1,7 @@
 package com.xjx.helper;
 
 import android.content.Intent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
@@ -38,19 +39,23 @@ public class MainActivity extends CommonBaseRefreshListActivity<StoreActivityBea
         super.initView();
         setTitle("Main主界面");
 
-        tv_test = findViewById(R.id.tv_test);
         rv_list = findViewById(R.id.rv_list);
+
+        View top = LayoutInflater.from(mContext).inflate(R.layout.item_test_1, null, false);
+        top.findViewById(R.id.tv_test).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(mContext, DownLoadActivity.class);
+                startActivity(intent);
+            }
+        });
+        setTopView(top);
     }
 
     @Override
     protected String getTitleContent() {
         return "首页";
-    }
-
-    @Override
-    protected void initListener() {
-        super.initListener();
-        tv_test.setOnClickListener(this);
     }
 
     @Override

@@ -13,16 +13,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * 从原有的一丰项目拿过来的
- * Created by erge 2019-10-25 13:24
+ * 获取文件的路径
  */
-public class FileUtils {
+public class FileUtil {
 
-    private static FileUtils fileUtils;
+    private static FileUtil fileUtils;
 
-    public static FileUtils getInstance() {
+    public static FileUtil getInstance() {
         if (fileUtils == null) {
-            fileUtils = new FileUtils();
+            fileUtils = new FileUtil();
         }
         return fileUtils;
     }
@@ -107,12 +106,12 @@ public class FileUtils {
     }
 
     /**
-     * @return 获取SD卡的路径
-     */
-
-    /**
      * @param context
-     * @return 获取Sd卡的路径，如果是在7.0之上就获取app中file目录下的文件，否则就获取sd卡中的路径
+     * @return 获取Sd卡的路径，因为7.0之后SD卡的路径可能会被拒绝访问，所以分为两种不同的情况去获取
+     * 1:7.0之上的方式：获取的路径为App内部的路径，会随着App的删除而被删除掉，具体路径为：/storage/emulated/0/Android/data/com.xjx.helper.debug/files/Download
+     * 如果需要使用，则在mainfast.xml 中application下面加入：android:requestLegacyExternalStorage="true"
+     * <p>
+     * 2:7.0以下的方式：获取的是SD卡真实的路径，不会随着App的删除而被删除掉，具体路径为：/storage/emulated/0
      */
     public String getSdPaht(Context context) {
         String path = "";
@@ -120,15 +119,24 @@ public class FileUtils {
 
         if (sdkInt >= Build.VERSION_CODES.Q) {
             // 7.0之上使用其他方法代替
-            path = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
+            path = context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath();
         } else {
             boolean b = checkSdStatus();
             if (b) {
                 path = Environment.getExternalStorageDirectory().getAbsolutePath();
             } else {
-                path = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
+                path = context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath();
             }
         }
+
+        //path = Environment.getExternalStorageDirectory().getAbsolutePath();
+
+        // 创建父类文件目录
+        File file = new File(path);
+        if (!file.exists()) {
+            file.mkdir();
+        }
+
         LogUtil.e("获取的路径为：" + path);
         return path;
     }

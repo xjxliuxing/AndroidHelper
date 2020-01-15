@@ -8,10 +8,20 @@ package com.xjx.helper.interfaces;
  * @描述 下载进度的监听
  */
 public interface ProgressResponseListener {
+
+    void onStart();
+
     /**
      * @param currentProgress 当前的进度
      * @param totalLength     总的长度
      * @param isDone          是否请求完成
      */
-    void onRequestProgress(long currentProgress, long totalLength, boolean isDone);
+    void onLoading(long currentProgress, long totalLength, boolean isDone);
+
+    /**
+     *  下载完成
+     */
+    void onComplete(String path);
+
+    void onFailure(String message);
 }

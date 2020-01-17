@@ -4,49 +4,11 @@
     <color name="base_title_background_color">#222222</color>
     <color name="base_refreshe_foot_background">#444444</color>
 
-    <color name="mainActivity">#D81B60</color>
-    <color name="black">#000000</color>
-    <color name="light_green">#00AA00</color>
-    <color name="white">#FFFFFF</color>
-    <color name="transparent_global">#00000000</color>
-    <color name="main_red">#CD2121</color>
-    <color name="light_gray">#d7d7d7</color>
-
-    <color name="color_999">#999999</color>
-    <color name="color_666">#666666</color>
-    <color name="color_333">#333333</color>
-    <color name="color_e7">#e7e7e7</color>
-
     <color name="bg_blue">#399AFE</color>
 
-    <color name="main_text_color_normal">#232323</color>
     <color name="main_text_color_selected">#000000</color>
     <color name="main_text_color_gray">#8C8C8C</color>
     <color name="main_text_color_gold">#D7BE1E</color>
     <color name="main_text_color_40">#404040</color>
-
-    <color name="main_bottom_tab_text_color">#828181</color>
-
-    <color name="transparent2">#00000000</color>
-    <color name="title_color_2">#333333</color>
-    <color name="title_color_3">#666666</color>
-    <color name="title_color_5">#999999</color>
-
-    <color name="v_line">#EEEEEE</color>
-
-    <color name="text_back_1">#BBBBBB</color>
-
-    <color name="yellow1">#ffd7be1e</color>
-    <color name="yellow2">#D7BE1E</color>
-
-    <color name="black1">#ff404040</color>
-    <color name="black2">#444444</color>
-
-    <color name="read1">#FF566B</color>
-    <color name="read2">#ffa60000</color>
-
-    <color name="line1">#F5F5F5</color>
-    <color name="share_bg_gray">#E2E3E4</color>
-    <color name="line_color">#CBCCCD</color>
 
 </resources>

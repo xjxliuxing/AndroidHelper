@@ -1,6 +1,5 @@
 package com.xjx.helper.utils;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Point;
 import android.os.Build;
@@ -8,6 +7,9 @@ import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
 import com.xjx.helper.global.CommonBaseApp;
+import com.xjx.helper.global.CommonConstant;
+import com.xjx.helper.utils.LogUtil;
+import com.xjx.helper.utils.SpUtil;
 
 /**
  * <p>文件描述<p>
@@ -15,7 +17,6 @@ import com.xjx.helper.global.CommonBaseApp;
  * <p>创建时间：2019/1/17<p>
  * <p>更改时间：2019/1/17<p>
  */
-@SuppressLint("NewApi")
 public class ScreenUtil {
 
     private static ScreenUtil screenUtil;
@@ -37,13 +38,12 @@ public class ScreenUtil {
         windowManager.getDefaultDisplay().getMetrics(metrics);
     }
 
+    /**
+     * 获取屏幕信息
+     */
     public void getScreenInof() {
         if (metrics != null) {
             LogUtil.e("屏幕的信息为: " + metrics.toString());
-
-            int widthPixels = metrics.widthPixels;
-            int heightPixels = metrics.heightPixels;
-
         }
     }
 
@@ -115,9 +115,7 @@ public class ScreenUtil {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             wm.getDefaultDisplay().getRealSize(point);
         } else {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-                wm.getDefaultDisplay().getSize(point);
-            }
+            wm.getDefaultDisplay().getSize(point);
         }
         return point.x;
     }
@@ -134,9 +132,7 @@ public class ScreenUtil {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             wm.getDefaultDisplay().getRealSize(point);
         } else {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-                wm.getDefaultDisplay().getSize(point);
-            }
+            wm.getDefaultDisplay().getSize(point);
         }
         return point.y;
     }
@@ -144,18 +140,17 @@ public class ScreenUtil {
     /**
      * 获取状态栏的高度
      */
-    public static int getstatusBarHeight() {
+    public int getstatusBarHeight() {
         //获取status_bar_height资源的ID
-        Context context = CommonBaseApp.getInstance().getContext();
         int statusBarHeight = 0;
-        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        int resourceId = CommonBaseApp.getInstance().getContext().getResources().getIdentifier("status_bar_height", "dimen", "android");
         if (resourceId > 0) {
             //根据资源ID获取响应的尺寸值
-            statusBarHeight = context.getResources().getDimensionPixelSize(resourceId);
+            statusBarHeight = CommonBaseApp.getInstance().getContext().getResources().getDimensionPixelSize(resourceId);
         }
         if (statusBarHeight > 0) {
             // 把状态栏的高度存入到sp中
-//            SpUtil.putInt(STATUS_HEIGHT, statusBarHeight);
+            SpUtil.putInt(CommonConstant.STATUS_HEIGHT, statusBarHeight);
         }
         return statusBarHeight;
     }

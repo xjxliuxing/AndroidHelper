@@ -4,4 +4,7 @@
     <string name="permission_failed">请重新进入界面开启权限，否则将导致某些功能无法使用！</string>
     <string name="permission_again">请打开设置功能对《巴迪英语》重新授权，否则某些功能将无法使用！</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

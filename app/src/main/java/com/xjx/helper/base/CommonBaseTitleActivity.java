@@ -69,20 +69,12 @@ public abstract class CommonBaseTitleActivity extends CommonBaseActivity {
         mPlaceHolderView = findViewById(R.id.placeHolderView);
         // 添加布局
         getLayoutInflater().inflate(getTitleLayout(), mTitleFlContent, true);
-
-        // 设置标题
-        TextViewUtils.setText(mTvTitle, getTitleContent());
     }
 
     /**
      * @return 获取布局
      */
     protected abstract int getTitleLayout();
-
-    /**
-     * @return 设置标题
-     */
-    protected abstract String getTitleContent();
 
     @Override
     protected void initListener() {
@@ -92,12 +84,12 @@ public abstract class CommonBaseTitleActivity extends CommonBaseActivity {
     }
 
     /**
-     * 设置标题
+     * 设置标题的内容
      *
-     * @param title 标题的内容
+     * @param titleContent
      */
-    protected void seActivitytTitle(String title) {
-
+    public void setTitleContent(String titleContent) {
+        TextViewUtils.setText(mTvTitle, titleContent);
     }
 
     /**

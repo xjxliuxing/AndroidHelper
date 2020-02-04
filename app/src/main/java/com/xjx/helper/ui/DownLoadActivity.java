@@ -31,15 +31,11 @@ public class DownLoadActivity extends CommonBaseTitleActivity {
     }
 
     @Override
-    protected String getTitleContent() {
-        return "下载页面";
-    }
-
-    @Override
     protected void initView() {
         super.initView();
         btn_down = findViewById(R.id.btn_down);
 
+        setTitleContent("下载页面");
         LoadingStatus(PlaceholderStatus.NONE);
     }
 

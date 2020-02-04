@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ui.home.activity.MainActivity">
 
-    <FrameLayout
-        android:id="@+id/fl_content"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vp_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/navigation" />
@@ -21,6 +21,7 @@
         app:itemBackground="@color/black1"
         app:itemIconTint="@drawable/main_bottom"
         app:itemTextColor="@drawable/main_bottom"
+        app:labelVisibilityMode="labeled"
         app:menu="@menu/navigation" />
 
 </RelativeLayout>

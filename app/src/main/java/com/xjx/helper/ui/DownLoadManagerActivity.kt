@@ -17,12 +17,10 @@ class DownLoadManagerActivity : CommonBaseTitleActivity() {
         return R.layout.activity_down_load_manager;
     }
 
-    override fun getTitleContent(): String {
-        return "下载管理区"
-    }
 
     override fun initView() {
         super.initView()
+        setTitleContent("下载管理区")
         LoadingStatus(PlaceholderStatus.NONE)
     }
 

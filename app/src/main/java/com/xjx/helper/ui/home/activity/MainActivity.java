@@ -57,12 +57,6 @@ public class MainActivity extends CommonBaseTitleActivity {
     protected void initData() {
         super.initData();
 
-//        testAdapter = new TestAdapter(mContext);
-//        RecycleUtil
-//                .getInstance(mContext, rv_list)
-//                .setVertical()
-//                .setAdapter(testAdapter);
-
         mListFragments.add(new HomeFragment());
         mListFragments.add(new TodoFragment());
         mListFragments.add(new PersonalFragment());

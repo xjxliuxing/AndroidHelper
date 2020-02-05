@@ -11,14 +11,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @作者 徐腾飞
- * @创建时间 2020/1/5  21:18
- * @更新者 XJX
- * @更新时间 2020/1/5  21:18
- * @描述 针对列表类型的刷新页面的activity的基类，这种类型的基类只适用于单个列表的刷新，
- * 如果有多个列表刷新的话，建议使用单独的页面去做一些操作
+ * 带上拉加载下拉刷新的fragment
  */
-public abstract class CommonBaseRefreshListActivity<T> extends CommonBaseRefreshActivity implements OnLoadMoreListener {
+public abstract class CommonBaseRefreshListFragment<T> extends CommonBaseRefreshFragment implements OnLoadMoreListener {
+
     /**
      * 数据列表的对象
      */
@@ -38,10 +34,11 @@ public abstract class CommonBaseRefreshListActivity<T> extends CommonBaseRefresh
         }
     }
 
+
     /**
      * 刷新布局的操作
      *
-     * @param refreshLayout 刷新布局对象
+     * @param refreshLayout 刷新布局的对象
      */
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
@@ -55,7 +52,7 @@ public abstract class CommonBaseRefreshListActivity<T> extends CommonBaseRefresh
     /**
      * 加载更多数据
      *
-     * @param refreshLayout
+     * @param refreshLayout 刷新布局的对象
      */
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
@@ -64,10 +61,11 @@ public abstract class CommonBaseRefreshListActivity<T> extends CommonBaseRefresh
         onRequestData();
     }
 
+
     /**
      * 如果页面需要分页，则需要使用这个方法，去动态的控制数据，如果不需要分页则不需使用该方法
      *
-     * @param jsonObject
+     * @param jsonObject 包装对象的object
      * @return 返回一个经过加工过的JsonObject对象
      */
     public Map<String, Object> setPageBody(Map<String, Object> jsonObject) {
@@ -80,6 +78,7 @@ public abstract class CommonBaseRefreshListActivity<T> extends CommonBaseRefresh
         }
     }
 
+
     /**
      * 获取数据的集合
      */
@@ -90,7 +89,7 @@ public abstract class CommonBaseRefreshListActivity<T> extends CommonBaseRefresh
     /**
      * 把请求下来的数据设置到集合中去
      *
-     * @param list
+     * @param list  获取数据的对象
      */
     protected void setData(List<T> list) {
 
@@ -114,4 +113,5 @@ public abstract class CommonBaseRefreshListActivity<T> extends CommonBaseRefresh
             }
         }
     }
+
 }

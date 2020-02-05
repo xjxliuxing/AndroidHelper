@@ -3,43 +3,54 @@ package com.xjx.helper.ui.home.fragments
 import android.content.Intent
 import android.view.View
 import com.xjx.helper.R
-import com.xjx.helper.base.CommonBaseRefreshFragment
+import com.xjx.helper.adapter.TestAdapter
+import com.xjx.helper.base.CommonBaseRefreshListFragment
 import com.xjx.helper.entity.StoreActivityBean
 import com.xjx.helper.http.client.*
 import com.xjx.helper.ui.DownLoadActivity
 import com.xjx.helper.ui.DownLoadManagerActivity
-import java.util.*
+import com.xjx.helper.utils.RecycleUtil
+import kotlinx.android.synthetic.main.fragment_home.*
 
 
 /**
  * 首页
  */
-class HomeFragment : CommonBaseRefreshFragment() {
+class HomeFragment : CommonBaseRefreshListFragment<StoreActivityBean>() {
+
+    var testAdapter: TestAdapter? = null
 
     override fun getRefreshLayout(): Int {
         return R.layout.fragment_home
     }
 
+    override fun initData() {
+        super.initData()
+
+        testAdapter = TestAdapter(mContext)
+        RecycleUtil
+                .getInstance(mContext, rv_list)
+                .setVertical()
+                .setAdapter(testAdapter)
+    }
 
     override fun onRequestData() {
 
         val map = HashMap<String, Any>()
         map["angent_id"] = "ff808081647099c101648d5526980084"
-//        val stringObjectMap = setPageBody(map)
-//        LogUtil.e("map:$stringObjectMap")
-//
-        ApiServices.test.getStoreActivity(map).enqueue(object : BaseResponseCallBack<BaseResponse<Page<StoreActivityBean>>>() {
-            override fun onSuccess(response: BaseResponse<Page<StoreActivityBean>>) {
-//                switchPlaceHolderSuccess(response)
-                val data = response.returnDataList.data
-//                setData(data)
-                //                testAdapter.setList(getData());
+        val stringObjectMap = setPageBody(map)
 
+        ApiServices.test.getStoreActivity(stringObjectMap).enqueue(object : BaseResponseCallBack<BaseResponse<Page<StoreActivityBean>>>() {
+            override fun onSuccess(response: BaseResponse<Page<StoreActivityBean>>) {
+                switchPlaceHolderSuccess(response)
+                val data = response.returnDataList.data
+                setData(data)
+                testAdapter?.setList(getData())
             }
 
             override fun onFailured(t: ApiException) {
-//                switchPlaceHolderFailure(t)
-                ApiException.onFiled(t)
+                switchPlaceHolderFailure(t)
+                ApiException.ToastError(t)
             }
         })
     }

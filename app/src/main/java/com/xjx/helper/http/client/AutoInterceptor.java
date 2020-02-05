@@ -60,7 +60,7 @@ public class AutoInterceptor implements Interceptor {
 
         // 添加请求头
         String token = SpUtil.getString(CommonConstant.TOKEN);
-        token = "471931e407b255c0cee8d876a7be67cf";
+        token = "39d5bf3e9b5fc7e41f949063fb139309";
         if (!TextUtils.isEmpty(token)) {
             request = request.newBuilder()
                     .addHeader("Authorization", token)

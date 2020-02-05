@@ -10,10 +10,33 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <FrameLayout
-        android:id="@+id/fl_refresh_content"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/fl_top_title_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <FrameLayout
+            android:id="@+id/fl_refresh_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+
+        <!-- loading部分 -->
+        <com.xjx.helper.widget.PlaceHolderView
+            android:id="@+id/placeHolderView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/read1"
+            android:visibility="visible" />
+
+    </LinearLayout>
 
     <com.xjx.helper.utils.refresh.MyRefreshFooter
         android:id="@+id/base_refresh_footer"

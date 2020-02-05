@@ -22,9 +22,6 @@ import java.util.List;
  */
 public abstract class CommonBaseTitleActivity extends CommonBaseActivity {
 
-    // 加载状态的回调对象
-    public static ImpPlaceholderlistener placeholderlistener = new ImpPlaceholderlistener();
-
     protected ImageView mIvBack; // 返回箭头
     protected TextView mTvLeft; // 返回文字
     protected TextView mTvTitle; // 标题头

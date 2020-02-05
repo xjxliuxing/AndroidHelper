@@ -39,9 +39,9 @@ public class ApiException extends Throwable {
      *
      * @param t
      */
-    public static void onFiled(Throwable t) {
+    public static void ToastError(Throwable t) {
         ToastUtil.showToast(t.getMessage());
-        LogUtil.e("onFiled:" + t.getMessage());
+        LogUtil.e("ToastError:" + t.getMessage());
         t.printStackTrace();
     }
 

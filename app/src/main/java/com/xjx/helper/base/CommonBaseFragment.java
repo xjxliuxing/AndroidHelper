@@ -95,10 +95,10 @@ public abstract class CommonBaseFragment extends Fragment implements View.OnClic
         initView();
         // 初始化事件
         initListener();
-        // 自定调用请求网络操作
-        onRequestData();
         // 初始化数据
         initData();
+        // 自定调用请求网络操作
+        onRequestData();
     }
 
     protected abstract int getLayout();

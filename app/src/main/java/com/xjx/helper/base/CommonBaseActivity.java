@@ -40,10 +40,10 @@ public abstract class CommonBaseActivity extends AppCompatActivity implements Vi
         initView();
         // 初始化事件
         initListener();
-        // 自动加载一次
-        onRequestData();
         // 初始化数据
         initData();
+        // 自动加载一次
+        onRequestData();
     }
 
     @Override

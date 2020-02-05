@@ -3,7 +3,9 @@ package com.xjx.helper.ui.home.fragments
 import android.content.Intent
 import android.view.View
 import com.xjx.helper.R
-import com.xjx.helper.base.CommonBaseFragment
+import com.xjx.helper.base.CommonBaseRefreshFragment
+import com.xjx.helper.entity.StoreActivityBean
+import com.xjx.helper.http.client.*
 import com.xjx.helper.ui.DownLoadActivity
 import com.xjx.helper.ui.DownLoadManagerActivity
 import java.util.*
@@ -12,33 +14,34 @@ import java.util.*
 /**
  * 首页
  */
-class HomeFragment : CommonBaseFragment() {
+class HomeFragment : CommonBaseRefreshFragment() {
 
-    override fun getLayout(): Int {
+    override fun getRefreshLayout(): Int {
         return R.layout.fragment_home
     }
+
 
     override fun onRequestData() {
 
         val map = HashMap<String, Any>()
         map["angent_id"] = "ff808081647099c101648d5526980084"
-
 //        val stringObjectMap = setPageBody(map)
 //        LogUtil.e("map:$stringObjectMap")
 //
-//        ApiServices.test.getStoreActivity(stringObjectMap).enqueue(object : BaseResponseCallBack<BaseResponse<Page<StoreActivityBean>>>() {
-//            override fun onSuccess(response: BaseResponse<Page<StoreActivityBean>>) {
+        ApiServices.test.getStoreActivity(map).enqueue(object : BaseResponseCallBack<BaseResponse<Page<StoreActivityBean>>>() {
+            override fun onSuccess(response: BaseResponse<Page<StoreActivityBean>>) {
 //                switchPlaceHolderSuccess(response)
-//                val data = response.returnDataList.data
+                val data = response.returnDataList.data
 //                setData(data)
-//                //                testAdapter.setList(getData());
-//            }
-//
-//            override fun onFailured(t: ApiException) {
+                //                testAdapter.setList(getData());
+
+            }
+
+            override fun onFailured(t: ApiException) {
 //                switchPlaceHolderFailure(t)
-//                ApiException.onFiled(t)
-//            }
-//        })
+                ApiException.onFiled(t)
+            }
+        })
     }
 
 

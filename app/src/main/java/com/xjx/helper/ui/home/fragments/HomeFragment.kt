@@ -24,6 +24,7 @@ class HomeFragment : CommonBaseRefreshListFragment<StoreActivityBean>() {
         return R.layout.fragment_home
     }
 
+
     override fun initData() {
         super.initData()
 

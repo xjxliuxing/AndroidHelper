@@ -36,7 +36,7 @@ public class DownLoadActivity extends CommonBaseTitleActivity {
         btn_down = findViewById(R.id.btn_down);
 
         setTitleContent("下载页面");
-        LoadingStatus(PlaceholderStatus.NONE);
+        SwitchLoadingStatus(PlaceholderStatus.NONE);
     }
 
     @Override

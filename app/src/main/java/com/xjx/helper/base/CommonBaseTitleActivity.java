@@ -11,7 +11,6 @@ import com.xjx.helper.R;
 import com.xjx.helper.enums.PlaceholderStatus;
 import com.xjx.helper.http.client.ApiException;
 import com.xjx.helper.http.client.BaseResponse;
-import com.xjx.helper.implement.ImpPlaceholderlistener;
 import com.xjx.helper.utils.views.TextViewUtils;
 import com.xjx.helper.widget.PlaceHolderView;
 
@@ -162,22 +161,22 @@ public abstract class CommonBaseTitleActivity extends CommonBaseActivity {
      */
     public void switchPlaceHolderSuccess(BaseResponse response) {
         if (response == null) {
-            LoadingStatus(PlaceholderStatus.EMPTY, "");
+            SwitchLoadingStatus(PlaceholderStatus.EMPTY, "");
         } else {
             Object dataList = response.getReturnDataList();
             if (dataList == null) {
-                LoadingStatus(PlaceholderStatus.EMPTY, "");
+                SwitchLoadingStatus(PlaceholderStatus.EMPTY, "");
             } else {
                 if (dataList instanceof List) {
                     List list = (List) dataList;
                     int size = list.size();
                     if (size > 0) {
-                        LoadingStatus(PlaceholderStatus.SUCCESS, "");
+                        SwitchLoadingStatus(PlaceholderStatus.SUCCESS, "");
                     } else {
-                        LoadingStatus(PlaceholderStatus.EMPTY, "");
+                        SwitchLoadingStatus(PlaceholderStatus.EMPTY, "");
                     }
                 } else {
-                    LoadingStatus(PlaceholderStatus.SUCCESS, "");
+                    SwitchLoadingStatus(PlaceholderStatus.SUCCESS, "");
                 }
             }
         }
@@ -191,7 +190,7 @@ public abstract class CommonBaseTitleActivity extends CommonBaseActivity {
     public void switchPlaceHolderFailure(ApiException t) {
         if (t != null) {
             String message = t.getMessage();
-            LoadingStatus(PlaceholderStatus.ERROR, message);
+            SwitchLoadingStatus(PlaceholderStatus.ERROR, message);
         }
     }
 
@@ -199,7 +198,7 @@ public abstract class CommonBaseTitleActivity extends CommonBaseActivity {
      * @param status  占位图的状态
      * @param message 网络返回的具体消息
      */
-    protected void LoadingStatus(PlaceholderStatus status, String message) {
+    protected void SwitchLoadingStatus(PlaceholderStatus status, String message) {
         // 设置布局的状态
         mPlaceHolderView.setPlaceholderState(status, message);
         // 点击重新连接的事件
@@ -224,8 +223,8 @@ public abstract class CommonBaseTitleActivity extends CommonBaseActivity {
     /**
      * @param status 占位图的状态
      */
-    protected void LoadingStatus(PlaceholderStatus status) {
-        LoadingStatus(status, "");
+    protected void SwitchLoadingStatus(PlaceholderStatus status) {
+        SwitchLoadingStatus(status, "");
     }
 
 }

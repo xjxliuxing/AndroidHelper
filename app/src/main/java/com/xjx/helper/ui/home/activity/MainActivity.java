@@ -39,7 +39,7 @@ public class MainActivity extends CommonBaseTitleActivity {
         super.initView();
 
         setTitleContent("首页");
-        LoadingStatus(PlaceholderStatus.NONE);
+        SwitchLoadingStatus(PlaceholderStatus.NONE);
 //        rv_list = findViewById(R.id.rv_list);
 
 //        View top = LayoutInflater.from(mContext).inflate(R.layout.item_test_1, null, false);

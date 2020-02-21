@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- title部分 -->
+    <include layout="@layout/base_title" />
+
+    <FrameLayout
+        android:id="@+id/fl_top_title_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <!-- 数据内容部分 -->
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <!-- loading部分 -->
+    <com.xjx.helper.widget.PlaceHolderView
+        android:id="@+id/placeHolderView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/read1"
+        android:visibility="visible" />
+
+</LinearLayout>

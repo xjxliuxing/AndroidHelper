@@ -19,7 +19,7 @@ import com.xjx.helper.utils.LogUtil;
 public abstract class CommonBaseFragment extends Fragment implements View.OnClickListener {
 
     protected Activity mContext;
-    protected View mRootView;
+    private View mRootView;
     protected Bundle arguments;
 
     /**
@@ -75,10 +75,12 @@ public abstract class CommonBaseFragment extends Fragment implements View.OnClic
         return mRootView;
     }
 
-
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onViewCreated(@NonNull View rootView, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(rootView, savedInstanceState);
+
+        // 初始化View
+        initView(rootView);
     }
 
     /**
@@ -91,8 +93,6 @@ public abstract class CommonBaseFragment extends Fragment implements View.OnClic
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        // 初始化View
-        initView();
         // 初始化事件
         initListener();
         // 初始化数据
@@ -105,8 +105,10 @@ public abstract class CommonBaseFragment extends Fragment implements View.OnClic
 
     /**
      * 初始化View
+     *
+     * @param rootView
      */
-    protected void initView() {
+    protected void initView(View rootView) {
     }
 
     /**
@@ -176,7 +178,6 @@ public abstract class CommonBaseFragment extends Fragment implements View.OnClic
     public void onDetach() {
         super.onDetach();
     }
-
 
     @Override
     public void onClick(View v) {

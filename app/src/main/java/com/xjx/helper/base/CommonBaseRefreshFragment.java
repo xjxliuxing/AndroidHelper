@@ -44,22 +44,21 @@ public abstract class CommonBaseRefreshFragment extends CommonBaseFragment imple
     protected abstract int getRefreshLayout();
 
     @Override
-    protected void initView() {
-        super.initView();
+    protected void initView(View rootView) {
+        super.initView(rootView);
         // Smartrefresh的根布局
-        mBaseRefresh = mRootView.findViewById(R.id.base_refresh);
+        mBaseRefresh = rootView.findViewById(R.id.base_refresh);
         // Smartrefresh的布局头
-        mBaseRefreshHeader = mRootView.findViewById(R.id.base_refresh_header);
+        mBaseRefreshHeader = rootView.findViewById(R.id.base_refresh_header);
         // smartrefresh的脚布局
-        mBaseRefreshFooter = mRootView.findViewById(R.id.base_refresh_footer);
+        mBaseRefreshFooter = rootView.findViewById(R.id.base_refresh_footer);
         // smartrefresh 的展示内容的布局
-        mRefreshFlContent = mRootView.findViewById(R.id.fl_refresh_content);
-
+        mRefreshFlContent = rootView.findViewById(R.id.fl_refresh_content);
 
         // 内容之上的布局
-        mFlTopTitleContent = mRootView.findViewById(R.id.fl_top_title_content);
+        mFlTopTitleContent = rootView.findViewById(R.id.fl_top_title_content);
         // 占位图的布局
-        mPlaceHolderView = mRootView.findViewById(R.id.placeHolderView);
+        mPlaceHolderView = rootView.findViewById(R.id.placeHolderView);
 
         // 添加布局
         LayoutInflater.from(mContext).inflate(getRefreshLayout(), mRefreshFlContent, true);
@@ -82,7 +81,6 @@ public abstract class CommonBaseRefreshFragment extends CommonBaseFragment imple
             mBaseRefreshFooter.setFinishDuration(0);
         }
     }
-
 
     /**
      * 刷新布局的操作
@@ -177,6 +175,5 @@ public abstract class CommonBaseRefreshFragment extends CommonBaseFragment imple
     protected void LoadingStatus(PlaceholderStatus status) {
         LoadingStatus(status, "");
     }
-
 
 }

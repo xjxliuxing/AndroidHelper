@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -478,4 +479,19 @@ public class ConvertUtil {
 
         return result;
     }
+
+    /**
+     * @param set set 集合
+     * @return 把一个set集合转换为list集合
+     */
+    public static <T> ArrayList <T>SetToList(HashSet<T> set) {
+        if (set == null) {
+            return null;
+        }
+
+        ArrayList<T> result = new ArrayList<T>(set);
+
+        return result;
+    }
+
 }

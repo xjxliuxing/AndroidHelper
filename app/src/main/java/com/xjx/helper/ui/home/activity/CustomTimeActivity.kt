@@ -1,15 +1,19 @@
 package com.xjx.helper.ui.home.activity
 
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.bigkoo.pickerview.adapter.ArrayWheelAdapter
 import com.bigkoo.pickerview.builder.TimePickerBuilder
 import com.bigkoo.pickerview.listener.OnTimeSelectListener
 import com.bigkoo.pickerview.view.TimePickerView
+import com.contrarywind.view.WheelView
 import com.xjx.helper.R
 import com.xjx.helper.base.CommonBaseTitleActivity
 import com.xjx.helper.enums.PlaceholderStatus
 import kotlinx.android.synthetic.main.activity_custom_time.*
+import java.text.SimpleDateFormat
 import java.util.*
 
 /**
@@ -51,6 +55,15 @@ class CustomTimeActivity : CommonBaseTitleActivity() {
     }
 
     fun customTime() {
+        val list = arrayListOf<String>()
+        list.add("09")
+        list.add("10")
+        list.add("11")
+        list.add("12")
+        list.add("13")
+
+        val wheelAdapter = ArrayWheelAdapter<String>(list)
+
         val selectedDate = Calendar.getInstance()//系统当前时间
         val startDate = Calendar.getInstance()
         startDate.set(2014, 1, 23)
@@ -59,7 +72,7 @@ class CustomTimeActivity : CommonBaseTitleActivity() {
         //时间选择器 ，自定义布局
         pvCustomTime = TimePickerBuilder(this, OnTimeSelectListener { date, v ->
             //选中事件回调
-//            btn_CustomTime.setText(getTime(date))
+            btn_show.setText(getTime(date))
         })
                 .setDate(selectedDate)
                 .setRangDate(startDate, endDate)
@@ -67,15 +80,16 @@ class CustomTimeActivity : CommonBaseTitleActivity() {
                     val tvSubmit = v.findViewById<View>(R.id.tv_finish) as TextView
                     val ivCancel = v.findViewById<View>(R.id.iv_cancel) as ImageView
                     tvSubmit.setOnClickListener {
+
                         pvCustomTime?.returnData()
-                        pvCustomTime?.dismiss()
+//                        pvCustomTime?.dismiss()
                     }
                     ivCancel.setOnClickListener {
                         pvCustomTime?.dismiss()
                     }
                 }
                 .setContentTextSize(18)
-                .setType(booleanArrayOf(false, false, false, true, true, true))
+                .setType(booleanArrayOf(true, true, true, true, true, false))
                 .setLabel("年", "月", "日", "时", "分", "秒")
                 .setLineSpacingMultiplier(1.2f)
                 .setTextXOffset(0, 0, 0, 40, 0, -40)
@@ -83,4 +97,11 @@ class CustomTimeActivity : CommonBaseTitleActivity() {
                 .setDividerColor(-0xdb5263)
                 .build()
     }
+
+    private fun getTime(date: Date): String {//可根据需要自行截取数据显示
+        Log.d("getTime()", "choice date millis: " + date.time)
+        val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        return format.format(date)
+    }
 }
+

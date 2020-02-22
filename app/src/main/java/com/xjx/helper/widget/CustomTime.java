@@ -147,6 +147,8 @@ public class CustomTime {
             dialog.getWindow().setGravity(Gravity.BOTTOM);
             dialog.getWindow().getAttributes().width = WindowManager.LayoutParams.MATCH_PARENT;
             dialog.getWindow().getAttributes().height = mHeight;
+            dialog.getWindow().setWindowAnimations(R.style.BottomDialog_Animation);
+
             // 关闭dialog的监听
             dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override

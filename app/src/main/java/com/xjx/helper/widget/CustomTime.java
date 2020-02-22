@@ -21,6 +21,7 @@ import com.xjx.helper.utils.ScreenUtil;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 
@@ -229,6 +230,7 @@ public class CustomTime {
             LogUtil.e("---->s_>年份：" + mYearSet);
             // 转换集合
             mListYear = ConvertUtil.SetToList(mYearSet);
+            Collections.sort(mListYear);
             // 设置数据
             mWvYear.setAdapter(new ArrayWheelAdapter(mListYear));
 
@@ -329,6 +331,7 @@ public class CustomTime {
             LogUtil.e("---->s_>月份：" + mMonthSet);
             // 转换集合
             mListMonth = ConvertUtil.SetToList(mMonthSet);
+            Collections.sort(mListMonth);
             // 设置数据
             mWvMonth.setAdapter(new ArrayWheelAdapter(mListMonth));
 
@@ -430,6 +433,7 @@ public class CustomTime {
             LogUtil.e("---->s_>日：" + mDaySet);
             // 转换集合
             mListDay = ConvertUtil.SetToList(mDaySet);
+            Collections.sort(mListDay);
             // 设置数据
             mWvDay.setAdapter(new ArrayWheelAdapter(mListDay));
 

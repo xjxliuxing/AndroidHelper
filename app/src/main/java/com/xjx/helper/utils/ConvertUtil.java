@@ -1,6 +1,7 @@
 package com.xjx.helper.utils;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -10,6 +11,7 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.text.style.ForegroundColorSpan;
+import android.util.TypedValue;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -484,7 +486,7 @@ public class ConvertUtil {
      * @param set set 集合
      * @return 把一个set集合转换为list集合
      */
-    public static <T> ArrayList <T>SetToList(HashSet<T> set) {
+    public static <T> ArrayList<T> SetToList(HashSet<T> set) {
         if (set == null) {
             return null;
         }
@@ -494,4 +496,19 @@ public class ConvertUtil {
         return result;
     }
 
+    /**
+     * @param dp 具体的dp值
+     * @return 使用标准的dp值
+     */
+    public static float toDp(float dp) {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, Resources.getSystem().getDisplayMetrics());
+    }
+
+    /**
+     * @param px px的值
+     * @return 返回一个标准的px的值
+     */
+    public static float toPx(float px) {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, px, Resources.getSystem().getDisplayMetrics());
+    }
 }

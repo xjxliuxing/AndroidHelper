@@ -77,15 +77,13 @@ public class CustomTime {
         for (int i = 9; i < 18; i++) {
             mListHours.add(i);
         }
-        for (int i = 1; i < 61; i++) {
+        for (int i = 0; i < 60; i++) {
             mListMinutes.add(i);
         }
     }
 
     public static CustomTime getInstance(Activity activity, Calendar start, Calendar endDate) {
-        if (customTime == null) {
-            customTime = new CustomTime(activity, start, endDate);
-        }
+        customTime = new CustomTime(activity, start, endDate);
         return customTime;
     }
 
@@ -146,7 +144,8 @@ public class CustomTime {
 
             dialog.getWindow().setGravity(Gravity.BOTTOM);
             dialog.getWindow().getAttributes().width = WindowManager.LayoutParams.MATCH_PARENT;
-            dialog.getWindow().getAttributes().height = mHeight;
+            dialog.getWindow().getAttributes().height = WindowManager.LayoutParams.WRAP_CONTENT;
+
             dialog.getWindow().setWindowAnimations(R.style.BottomDialog_Animation);
 
             // 关闭dialog的监听

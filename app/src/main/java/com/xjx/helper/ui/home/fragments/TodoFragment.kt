@@ -4,9 +4,10 @@ import android.content.Intent
 import android.view.View
 import com.xjx.helper.R
 import com.xjx.helper.base.CommonBaseFragment
-import com.xjx.helper.ui.home.activity.CustomTime2Activity
-import com.xjx.helper.ui.home.activity.CustomTimeActivity
-import com.xjx.helper.ui.home.activity.TestActivity
+import com.xjx.helper.ui.home.activity.tod.CustomTime2Activity
+import com.xjx.helper.ui.home.activity.tod.CustomTimeActivity
+import com.xjx.helper.ui.home.activity.tod.RecycleViewDivederActivity
+import com.xjx.helper.ui.home.activity.tod.TestActivity
 import kotlinx.android.synthetic.main.fragment_todo.*
 
 
@@ -24,6 +25,7 @@ class TodoFragment : CommonBaseFragment() {
         tv_1.setOnClickListener(this)
         tv_2.setOnClickListener(this)
         tv_3.setOnClickListener(this)
+        tv_4.setOnClickListener(this)
 
     }
 
@@ -42,6 +44,9 @@ class TodoFragment : CommonBaseFragment() {
             }
             R.id.tv_3 -> {
                 intent.setClass(mContext, TestActivity::class.java)
+            }
+            R.id.tv_4 -> {
+                intent.setClass(mContext, RecycleViewDivederActivity::class.java)
             }
         }
 

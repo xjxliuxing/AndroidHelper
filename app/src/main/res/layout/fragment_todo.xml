@@ -1,47 +1,34 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.xjx.helper.ui.home.fragments.TodoFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tv_1"
             style="@style/style_todo_item"
-            android:text="自定义时间选择器"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0" />
+            android:text="自定义时间选择器" />
 
         <TextView
             android:id="@+id/tv_2"
             style="@style/style_todo_item"
-            android:text="自定义时间选择器2"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_1"
-            app:layout_constraintVertical_bias="0" />
+            android:text="自定义时间选择器2" />
 
         <TextView
             android:id="@+id/tv_3"
             style="@style/style_todo_item"
-            android:text="测试"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_2"
-            app:layout_constraintVertical_bias="0" />
+            android:text="测试时间转换" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_4"
+            style="@style/style_todo_item"
+            android:text="Recycleview分割线" />
+
+    </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

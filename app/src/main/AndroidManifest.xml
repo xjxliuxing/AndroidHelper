@@ -20,9 +20,10 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="q">
-        <activity android:name=".ui.home.activity.TestActivity"></activity>
-        <activity android:name=".ui.home.activity.CustomTime2Activity" />
-        <activity android:name=".ui.home.activity.CustomTimeActivity" />
+        <activity android:name=".ui.home.activity.tod.RecycleViewDivederActivity"></activity>
+        <activity android:name=".ui.home.activity.tod.TestActivity" />
+        <activity android:name=".ui.home.activity.tod.CustomTime2Activity" />
+        <activity android:name=".ui.home.activity.tod.CustomTimeActivity" />
         <activity android:name=".ui.DownLoadManagerActivity" />
         <activity android:name=".ui.DownLoadActivity" /> <!-- 主界面 -->
         <activity android:name=".ui.home.activity.MainActivity">

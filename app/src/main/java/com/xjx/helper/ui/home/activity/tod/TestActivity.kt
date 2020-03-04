@@ -1,4 +1,4 @@
-package com.xjx.helper.ui.home.activity
+package com.xjx.helper.ui.home.activity.tod
 
 import android.view.View
 import com.xjx.helper.base.CommonBaseTitleActivity

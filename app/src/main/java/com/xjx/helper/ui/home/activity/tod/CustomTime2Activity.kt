@@ -1,8 +1,7 @@
-package com.xjx.helper.ui.home.activity
+package com.xjx.helper.ui.home.activity.tod
 
 import android.view.View
 import com.xjx.helper.R
-import com.xjx.helper.base.CommonBaseActivity
 import com.xjx.helper.base.CommonBaseTitleActivity
 import com.xjx.helper.enums.PlaceholderStatus
 import com.xjx.helper.utils.ToastUtil
@@ -68,7 +67,7 @@ class CustomTime2Activity : CommonBaseTitleActivity() {
         endDate.set(year, month, (day_of_month + 20), hour, minute)
 
 
-        customTime = CustomTime.getInstance(CommonBaseActivity.mContext, start, endDate)
+        customTime = CustomTime.getInstance(mContext, start, endDate)
 
         customTime?.setOnSelectorListener { year, month, day, hours, minutes ->
             ToastUtil.showToast("" + year + "年" + month + "月" + day + "日" + hours + "时" + minutes + "分")

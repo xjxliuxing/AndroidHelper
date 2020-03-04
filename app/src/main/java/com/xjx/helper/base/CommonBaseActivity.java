@@ -1,6 +1,5 @@
 package com.xjx.helper.base;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,8 +18,7 @@ import com.xjx.helper.utils.LogUtil;
  */
 public abstract class CommonBaseActivity extends AppCompatActivity implements View.OnClickListener {
 
-    @SuppressLint("StaticFieldLeak")
-    protected static Activity mContext;
+    protected Activity mContext;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

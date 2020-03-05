@@ -52,30 +52,43 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
             outRect.left = mMarginLeft;
             outRect.right = mMarginRight;
 
-            if (childAdapterPosition == 0) {
-                // 最上边的条目不要上边距
+            if ((childAdapterPosition == 0) && (childAdapterPosition == parent.getAdapter().getItemCount() - 1)) {
+                // 说明只有一个item
                 outRect.top = mMarginTop;
-                outRect.bottom = mDividerHeight;
-            } else if (childAdapterPosition == parent.getAdapter().getItemCount() - 1) {
                 outRect.bottom = mMarginBottom;
             } else {
-                outRect.bottom = mDividerHeight;
+                if (childAdapterPosition == 0) {
+                    // 最上边的条目不要上边距
+                    outRect.top = mMarginTop;
+                    outRect.bottom = mDividerHeight;
+                } else if (childAdapterPosition == parent.getAdapter().getItemCount() - 1) {
+                    outRect.bottom = mMarginBottom;
+                } else {
+                    outRect.bottom = mDividerHeight;
+                }
             }
 
         } else if (mOrientation == LinearLayoutManager.HORIZONTAL) {
             // 横向
             outRect.top = mMarginTop;
             outRect.bottom = mMarginBottom;
-            if ((childAdapterPosition == 0)) {
 
+            if ((childAdapterPosition == 0) && (childAdapterPosition == parent.getAdapter().getItemCount() - 1)) {
+                // 只有一个itme
                 outRect.left = mMarginLeft;
-                outRect.right = mDividerHeight;
-            } else if (childAdapterPosition == parent.getAdapter().getItemCount() - 1) {
                 outRect.right = mMarginRight;
             } else {
-                outRect.right = mDividerHeight;
+                if ((childAdapterPosition == 0)) {
+                    // 第一个
+                    outRect.left = mMarginLeft;
+                    outRect.right = mDividerHeight;
+                } else if (childAdapterPosition == parent.getAdapter().getItemCount() - 1) {
+                    // 最后一个
+                    outRect.right = mMarginRight;
+                } else {
+                    outRect.right = mDividerHeight;
+                }
             }
-
         }
         LogUtil.e("left:" + mMarginLeft + "   right:" + mMarginRight + "  top:" + mMarginTop + "  bottom:" + mDividerHeight);
     }
@@ -173,10 +186,15 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
         this.mDividerHeight = divider;
     }
 
-    //画横线, 这里的parent其实是显示在屏幕显示的这部分
+    //绘制横向的分割线，其实就是绘制横向的背景色
     private void drawHorizontalLine(Canvas c, RecyclerView parent) {
 
-        // 左右固定，这里只考虑画item下面的横线，左右不考虑
+        if (parent.getAdapter() == null) {
+            throw new NullPointerException("适配器不能为空！");
+        }
+
+        int bottom = 0;
+        // 由于是横向的分割线，所有左右部分，只考虑pading值，剩余空间全部填充
         int left = parent.getPaddingLeft();
         int right = parent.getWidth() - parent.getPaddingRight();
         // 计算item的个数
@@ -186,15 +204,16 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
 
             //获得child的布局信息
             RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
-            // 确定开始的高度位置== view的高度+view的margin值
-            int top = child.getBottom() + params.bottomMargin;
+
+            // 高度 = view本身所在屏幕的位置 减去 自己设置的top值 减去 view的设置的marttop的值
+            int top = child.getTop() - mMarginTop - params.topMargin;
 
             // 如果是drawable的资源文件，则走这里的设置
             if (mDivider != null) {
                 // 获取底部的位置，如果是纯色之类的drawable就会返回-1，所有要设置默认值
-                int bottom = top + mDivider.getIntrinsicHeight();
+                bottom = top + mDivider.getIntrinsicHeight();
                 if (bottom == -1) {
-                    bottom = mMarginBottom;
+                    bottom = mDividerHeight;
                 }
                 // 设置drawable的内容
                 mDivider.setBounds(left, top, right, bottom);
@@ -202,14 +221,29 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
             }
             // 如果是单纯的画笔，则走这里的设置
             if (mPaint != null) {
-                c.drawRect(left, top, right, mMarginBottom, mPaint);
+
+                // 最后一个item，使用自己定义的marginBottom
+                if (i == parent.getAdapter().getItemCount() - 1) {
+                    bottom = (child.getBottom()) + (params.bottomMargin) + (mMarginBottom);
+                } else {
+                    // bottom= view本身所在屏幕上的底部值 加上view本身的marginbottom + 自己设定的dividerHeight
+                    bottom = (child.getBottom()) + (params.bottomMargin) + (mDividerHeight);
+                }
+                // 绘制图形
+                c.drawRect(left, top, right, bottom, mPaint);
             }
         }
     }
 
     //画竖线
     private void drawVerticalLine(Canvas c, RecyclerView parent) {
-        // 画竖线的时候不用处理上下的边距
+        if (parent.getAdapter() == null) {
+            throw new NullPointerException("适配器不能为空！");
+        }
+
+        int right = 0;
+
+        // 画竖线的时候，只关心左右边距的值，上下只使用viewgrounp的pading值
         int top = parent.getPaddingTop();
         int bottom = parent.getHeight() - parent.getPaddingBottom();
 
@@ -219,19 +253,28 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
 
             //获得child的布局信息
             final RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
-            // 只在右侧画线，左侧不管
-            final int left = child.getRight() + params.rightMargin;
+            // 左侧边距==view本身所在的左侧位置 减去 左侧的margin值 减去 自己设定的marginleft的值
+            int left = child.getLeft() - params.leftMargin - mMarginLeft;
+
             if (mDivider != null) {
                 int intrinsicWidth = mDivider.getIntrinsicWidth();
                 if (intrinsicWidth == -1) {
                     intrinsicWidth = 2;// 如果获取的是-1，就设置默认的2px
                 }
-                int right = left + intrinsicWidth;
+                right = left + intrinsicWidth;
                 mDivider.setBounds(left, top, right, bottom);
                 mDivider.draw(c);
             }
             if (mPaint != null) {
-                c.drawRect(left, top, mMarginBottom, bottom, mPaint);
+
+                if (i == parent.getAdapter().getItemCount() - 1) {
+                    // 最后一个itme
+                    right = child.getRight() + params.rightMargin + mMarginRight;
+                } else {
+                    right = child.getRight() + params.rightMargin + mDividerHeight;
+                }
+
+                c.drawRect(left, top, right, bottom, mPaint);
             }
         }
     }

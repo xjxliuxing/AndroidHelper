@@ -14,6 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.xjx.helper.utils.LogUtil;
 
+/**
+ * Recycleview的分割线，可以设置颜色和drawable资源文件
+ * 如果需要单独设置top和margin值，需要设置方法 {@link RecycleViewDivider#setMargin(int, int, int, int, int)}
+ */
 public class RecycleViewDivider extends RecyclerView.ItemDecoration {
 
     //列表的方向：LinearLayoutManager.VERTICAL 或 LinearLayoutManager.HORIZONTAL,默认的是垂直方向的

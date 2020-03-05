@@ -6,8 +6,9 @@ import com.xjx.helper.R
 import com.xjx.helper.adapter.RecycleviewDividerAdapter
 import com.xjx.helper.base.CommonBaseTitleActivity
 import com.xjx.helper.enums.PlaceholderStatus
+import com.xjx.helper.utils.ConvertUtil
 import com.xjx.helper.utils.RecycleUtil
-import com.xjx.helper.widget.RecycleViewDivider
+import com.xjx.helper.widget.RecycleViewDividerUtil
 import kotlinx.android.synthetic.main.activity_recycle_view_diveder.*
 
 /**
@@ -21,7 +22,7 @@ class RecycleViewDivederActivity : CommonBaseTitleActivity() {
 
     val mList = arrayListOf<String>()
     var dividerAdapter: RecycleviewDividerAdapter? = null
-    var divider: RecycleViewDivider? = null;
+    var divider: RecycleViewDividerUtil? = null;
 
     override fun getTitleLayout(): Int {
         return R.layout.activity_recycle_view_diveder
@@ -48,9 +49,12 @@ class RecycleViewDivederActivity : CommonBaseTitleActivity() {
         dividerAdapter = RecycleviewDividerAdapter(mContext)
         dividerAdapter?.setList(mList)
 
-        divider = RecycleViewDivider(mContext, LinearLayoutManager.VERTICAL, R.drawable.shape_divider, 40, 0)
+        val dividerHeight = ConvertUtil.toDp(1f).toInt()
+        divider = RecycleViewDividerUtil(mContext, LinearLayoutManager.VERTICAL, R.drawable.shape_divider, dividerHeight, 0)
+        val left = ConvertUtil.toDp(17f).toInt()
+        divider?.setMargin(dividerHeight, left, 0, left, 0)
 
-        divider?.setMargin(40, 0, 80, 0, 20)
+//        divider?.setMargin(40, 0, 80, 0, 20)
     }
 
     override fun onClick(v: View?) {

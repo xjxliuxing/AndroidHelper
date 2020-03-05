@@ -40,7 +40,7 @@ class RecycleViewDivederActivity : CommonBaseTitleActivity() {
 
         rv_list.post {
             run {
-                for (index in 1..10) {
+                for (index in 1..4) {
                     mList.add("" + index)
                 }
             }
@@ -48,10 +48,9 @@ class RecycleViewDivederActivity : CommonBaseTitleActivity() {
         dividerAdapter = RecycleviewDividerAdapter(mContext)
         dividerAdapter?.setList(mList)
 
-        divider = RecycleViewDivider(mContext, LinearLayoutManager.VERTICAL, 40, R.color.black1)
-//        divider = RecycleViewDivider(mContext, LinearLayoutManager.VERTICAL)
+        divider = RecycleViewDivider(mContext, LinearLayoutManager.VERTICAL, R.drawable.shape_divider, 40, 0)
 
-        divider?.setMargin(40, 10, 10, 10, 10)
+        divider?.setMargin(40, 0, 80, 0, 20)
     }
 
     override fun onClick(v: View?) {
@@ -60,6 +59,7 @@ class RecycleViewDivederActivity : CommonBaseTitleActivity() {
             R.id.btn_vertical -> {
 
                 divider?.let {
+                    rv_list.removeItemDecoration(it)
                     it.setOrientation(LinearLayoutManager.VERTICAL)
                     rv_list.addItemDecoration(it)
                 }
@@ -73,6 +73,7 @@ class RecycleViewDivederActivity : CommonBaseTitleActivity() {
             R.id.btn_horizontal -> {
 
                 divider?.let {
+                    rv_list.removeItemDecoration(it)
                     it.setOrientation(LinearLayoutManager.HORIZONTAL)
                     rv_list.addItemDecoration(it)
                 }

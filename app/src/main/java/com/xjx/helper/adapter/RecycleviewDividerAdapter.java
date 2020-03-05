@@ -1,6 +1,8 @@
 package com.xjx.helper.adapter;
 
 import android.app.Activity;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 

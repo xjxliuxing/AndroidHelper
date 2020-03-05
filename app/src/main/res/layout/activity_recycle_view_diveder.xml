@@ -9,8 +9,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@color/yellow1"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/yellow1">
 
         <Button
             android:id="@+id/btn_vertical"
@@ -41,10 +41,10 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_list"
-            android:background="#ff00"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/btn_vertical"
+            android:background="#ff00"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"

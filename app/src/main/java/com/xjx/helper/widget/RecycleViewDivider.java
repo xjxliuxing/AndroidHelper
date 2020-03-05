@@ -1,7 +1,7 @@
 package com.xjx.helper.widget;
 
 import android.content.Context;
-import android.content.res.TypedArray;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
@@ -26,8 +26,6 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
     private int mMarginBottom;
     private int mDividerHeight = 2;// 默认分割线的高度为2px
     private Paint mPaint;
-
-    private static final int[] ATTRS = new int[]{android.R.attr.listDivider};
 
     // 分割线的对象
     private Drawable mDivider;
@@ -108,34 +106,24 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
     }
 
     /**
-     * 使用默认的分割线
      *
-     * @param context 上下文
-     */
-    public RecycleViewDivider(Context context, int orientation) {
-        mContext = context;
-        setDefaultValue();
-
-        if (orientation != LinearLayoutManager.VERTICAL && orientation != LinearLayoutManager.HORIZONTAL) {
-            throw new IllegalArgumentException("请输入正确的参数！");
-        }
-        mOrientation = orientation;
-
-        final TypedArray a = context.obtainStyledAttributes(ATTRS);
-        mDivider = a.getDrawable(0);
-        a.recycle();
-    }
-
-    /**
-     * 自定义分割线，drawable类型
      *
      * @param context     上下文
      * @param orientation 方向
      * @param drawableId  drawable资源
      */
-    public RecycleViewDivider(Context context, int orientation, int drawableId) {
+
+    /**
+     * 自定义分割线，drawable类型
+     *
+     * @param context       上下文
+     * @param orientation   方向
+     * @param drawableId    drawable资源
+     * @param dividerHeight 分割线高度
+     * @param other         站位参数，没有任何作用
+     */
+    public RecycleViewDivider(Context context, int orientation, int drawableId, int dividerHeight, int... other) {
         mContext = context;
-        setDefaultValue();
 
         if (orientation != LinearLayoutManager.VERTICAL && orientation != LinearLayoutManager.HORIZONTAL) {
             throw new IllegalArgumentException("请输入正确的参数！");
@@ -143,7 +131,7 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
         mOrientation = orientation;
 
         mDivider = ContextCompat.getDrawable(context, drawableId);
-        mDividerHeight = mDivider.getIntrinsicHeight();
+        mDividerHeight = dividerHeight;
     }
 
     /**
@@ -153,14 +141,18 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
      * @param dividerHeight 分割线高度
      * @param dividerColor  分割线颜色
      */
-    public RecycleViewDivider(Context context, int orientation, int dividerHeight, int dividerColor) {
-        setDefaultValue();
+    public RecycleViewDivider(Context context, int orientation, int dividerColor, int dividerHeight) {
         this.mContext = context;
         this.mOrientation = orientation;
         this.mDividerHeight = dividerHeight;
         mPaint = new Paint();
-        mPaint.setColor(context.getResources().getColor(dividerColor));
-        mPaint.setStyle(Paint.Style.FILL);
+        try {
+            mPaint.setColor(context.getResources().getColor(dividerColor));
+            mPaint.setStyle(Paint.Style.FILL);
+        } catch (Exception e) {
+            throw new Resources.NotFoundException("没有找到对应的colorId！");
+        }
+
     }
 
     public void setOrientation(int orientation) {
@@ -211,10 +203,18 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
             // 如果是drawable的资源文件，则走这里的设置
             if (mDivider != null) {
                 // 获取底部的位置，如果是纯色之类的drawable就会返回-1，所有要设置默认值
-                bottom = top + mDivider.getIntrinsicHeight();
-                if (bottom == -1) {
-                    bottom = mDividerHeight;
+//                bottom = top + mDivider.getIntrinsicHeight();
+//                if (bottom == -1) {
+//                    bottom = mDividerHeight;
+//                }
+
+                if (i == parent.getAdapter().getItemCount() - 1) {
+                    bottom = (child.getBottom()) + (params.bottomMargin) + (mMarginBottom);
+                } else {
+                    // bottom= view本身所在屏幕上的底部值 加上view本身的marginbottom + 自己设定的dividerHeight
+                    bottom = (child.getBottom()) + (params.bottomMargin) + (mDividerHeight);
                 }
+
                 // 设置drawable的内容
                 mDivider.setBounds(left, top, right, bottom);
                 mDivider.draw(c);
@@ -257,11 +257,13 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
             int left = child.getLeft() - params.leftMargin - mMarginLeft;
 
             if (mDivider != null) {
-                int intrinsicWidth = mDivider.getIntrinsicWidth();
-                if (intrinsicWidth == -1) {
-                    intrinsicWidth = 2;// 如果获取的是-1，就设置默认的2px
+                if (i == parent.getAdapter().getItemCount() - 1) {
+                    // 最后一个itme
+                    right = child.getRight() + params.rightMargin + mMarginRight;
+                } else {
+                    right = child.getRight() + params.rightMargin + mDividerHeight;
                 }
-                right = left + intrinsicWidth;
+
                 mDivider.setBounds(left, top, right, bottom);
                 mDivider.draw(c);
             }
@@ -279,9 +281,4 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
         }
     }
 
-    private void setDefaultValue() {
-        this.mMarginLeft = 0;
-        this.mMarginRight = 0;
-        this.mMarginBottom = 2;
-    }
 }

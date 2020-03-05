@@ -16,9 +16,9 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * Recycleview的分割线，可以设置颜色和drawable资源文件,适用于普通的底部分割线
- * 如果需要单独设置top和margin值，需要设置方法 {@link RecycleViewDividerUtil#setMargin(int, int, int, int, int)}
+ * 如果需要单独设置top和margin值，需要设置方法 {@link RecycleViewBottomDivider#setMargin(int, int, int, int, int)}
  */
-public class RecycleViewDividerUtil extends RecyclerView.ItemDecoration {
+public class RecycleViewBottomDivider extends RecyclerView.ItemDecoration {
 
     //列表的方向：LinearLayoutManager.VERTICAL 或 LinearLayoutManager.HORIZONTAL,默认的是垂直方向的
     private int mOrientation;
@@ -100,7 +100,7 @@ public class RecycleViewDividerUtil extends RecyclerView.ItemDecoration {
      * @param dividerHeight 分割线高度
      * @param other         站位参数，没有任何作用
      */
-    public RecycleViewDividerUtil(Context context, int orientation, int drawableId, int dividerHeight, int... other) {
+    public RecycleViewBottomDivider(Context context, int orientation, int drawableId, int dividerHeight, int... other) {
         if (orientation != LinearLayoutManager.VERTICAL && orientation != LinearLayoutManager.HORIZONTAL) {
             throw new IllegalArgumentException("请输入正确的参数！");
         }
@@ -117,7 +117,7 @@ public class RecycleViewDividerUtil extends RecyclerView.ItemDecoration {
      * @param dividerHeight 分割线高度
      * @param dividerColor  分割线颜色
      */
-    public RecycleViewDividerUtil(Context context, int orientation, int dividerColor, int dividerHeight) {
+    public RecycleViewBottomDivider(Context context, int orientation, int dividerColor, int dividerHeight) {
         this.mOrientation = orientation;
         this.mDividerHeight = dividerHeight;
         mPaint = new Paint();

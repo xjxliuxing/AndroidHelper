@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.xjx.helper.utils.LogUtil;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Recycleview的分割线，可以设置颜色和drawable资源文件
  * 如果需要单独设置top和margin值，需要设置方法 {@link RecycleViewDivider#setMargin(int, int, int, int, int)}
@@ -21,14 +23,13 @@ import com.xjx.helper.utils.LogUtil;
 public class RecycleViewDivider extends RecyclerView.ItemDecoration {
 
     //列表的方向：LinearLayoutManager.VERTICAL 或 LinearLayoutManager.HORIZONTAL,默认的是垂直方向的
-    private int mOrientation = LinearLayoutManager.VERTICAL;
+    private int mOrientation;
 
-    private Context mContext;
     private int mMarginLeft;
     private int mMarginTop;
     private int mMarginRight;
     private int mMarginBottom;
-    private int mDividerHeight = 2;// 默认分割线的高度为2px
+    private int mDividerHeight;// 默认分割线的高度
     private Paint mPaint;
 
     // 分割线的对象
@@ -40,7 +41,7 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
      * 目标针对每一个item个体
      */
     @Override
-    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+    public void getItemOffsets(@NotNull Rect outRect, @NotNull View view, @NotNull RecyclerView parent, @NotNull RecyclerView.State state) {
         super.getItemOffsets(outRect, view, parent, state);
 
         if (parent.getAdapter() == null) {
@@ -97,7 +98,7 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
 
     //绘制分割线，其实就是在固定的位置绘制背景
     @Override
-    public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+    public void onDraw(@NotNull Canvas c, @NotNull RecyclerView parent, @NotNull RecyclerView.State state) {
         super.onDraw(c, parent, state);
 
         if (mOrientation == LinearLayoutManager.VERTICAL) {
@@ -110,14 +111,6 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
     }
 
     /**
-     *
-     *
-     * @param context     上下文
-     * @param orientation 方向
-     * @param drawableId  drawable资源
-     */
-
-    /**
      * 自定义分割线，drawable类型
      *
      * @param context       上下文
@@ -127,8 +120,6 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
      * @param other         站位参数，没有任何作用
      */
     public RecycleViewDivider(Context context, int orientation, int drawableId, int dividerHeight, int... other) {
-        mContext = context;
-
         if (orientation != LinearLayoutManager.VERTICAL && orientation != LinearLayoutManager.HORIZONTAL) {
             throw new IllegalArgumentException("请输入正确的参数！");
         }
@@ -146,7 +137,6 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
      * @param dividerColor  分割线颜色
      */
     public RecycleViewDivider(Context context, int orientation, int dividerColor, int dividerHeight) {
-        this.mContext = context;
         this.mOrientation = orientation;
         this.mDividerHeight = dividerHeight;
         mPaint = new Paint();
@@ -189,7 +179,7 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
             throw new NullPointerException("适配器不能为空！");
         }
 
-        int bottom = 0;
+        int bottom;
         // 由于是横向的分割线，所有左右部分，只考虑pading值，剩余空间全部填充
         int left = parent.getPaddingLeft();
         int right = parent.getWidth() - parent.getPaddingRight();
@@ -245,7 +235,7 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
             throw new NullPointerException("适配器不能为空！");
         }
 
-        int right = 0;
+        int right;
 
         // 画竖线的时候，只关心左右边距的值，上下只使用viewgrounp的pading值
         int top = parent.getPaddingTop();

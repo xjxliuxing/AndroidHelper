@@ -36,11 +36,19 @@ public class DownloadUtil {
     private File file;
     private Object tag;
 
+    /**
+     * @param listener 下载进度的监听
+     * @param tag      下载目标的tag，如果是列表下载的话，建议使用position，如果是单个下载，这个用不用无所谓
+     */
     public DownloadUtil(ProgressResponseListener listener, Object tag) {
         this.mListener = listener;
         this.tag = tag;
     }
 
+    /**
+     * @param url        下载地址的url
+     * @param tragetPath 需要保存的路径
+     */
     public void download(String url, final String tragetPath) {
         if (TextUtils.isEmpty(url) || (TextUtils.isEmpty(tragetPath))) {
             Log.e(TAG, "下载地址或者下载路径为空");
@@ -51,18 +59,20 @@ public class DownloadUtil {
 
         // 这里使用的逻辑都是一样的，所以不去重复的创建
         builder = new OkHttpClient().newBuilder();
-        builder.addInterceptor(new Interceptor() {
-            @Override
-            public Response intercept(Chain chain) throws IOException {
-                //拦截
-                Response response = chain.proceed(chain.request());
-                //包装响应体并返回
-                return response
-                        .newBuilder()
-                        .body(new ProgressResponseBody(response.body(), mListener, tag))
-                        .build();
-            }
-        });
+        if (mListener != null) {
+            builder.addInterceptor(new Interceptor() {
+                @Override
+                public Response intercept(Chain chain) throws IOException {
+                    //拦截
+                    Response response = chain.proceed(chain.request());
+                    //包装响应体并返回
+                    return response
+                            .newBuilder()
+                            .body(new ProgressResponseBody(response.body(), mListener, tag))
+                            .build();
+                }
+            });
+        }
 
         //2.建立Request对象,设置参数,请求方式如果是get,就不用设置,默认使用的就是get
         Request request = new Request.Builder()
@@ -84,7 +94,6 @@ public class DownloadUtil {
 
         //4.异步请求,请求加入调度
         call.enqueue(new Callback() {
-
             @Override//请求失败回调
             public void onFailure(Call call, IOException e) {
                 if (mListener != null) {
@@ -141,7 +150,7 @@ public class DownloadUtil {
     /**
      * 设置存储下载文件的路径
      *
-     * @param mSavePath
+     * @param mSavePath 存储文件的路径
      */
     public void setTargetPath(String mSavePath) {
         this.mSavePath = mSavePath;

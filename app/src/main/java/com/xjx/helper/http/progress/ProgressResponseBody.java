@@ -21,11 +21,13 @@ public class ProgressResponseBody extends ResponseBody {
     private final ProgressResponseListener progressListener;
     private BufferedSource bufferedSource;
     private long total;
+    private Object tag;
 
-    public ProgressResponseBody(ResponseBody responseBody, ProgressResponseListener progressListener) {
+    public ProgressResponseBody(ResponseBody responseBody, ProgressResponseListener progressListener, Object tag) {
         this.responseBody = responseBody;
         this.progressListener = progressListener;
         total = responseBody.contentLength();
+        this.tag = tag;
     }
 
     @Override
@@ -55,7 +57,7 @@ public class ProgressResponseBody extends ResponseBody {
             public long read(Buffer sink, long byteCount) {
                 if (bytesRead == 0) {
                     if (null != progressListener) {
-                        progressListener.onStart();
+                        progressListener.onStart(total, tag);
                     }
                 }
                 try {
@@ -63,18 +65,20 @@ public class ProgressResponseBody extends ResponseBody {
                 } catch (IOException e) {
                     e.printStackTrace();
                     if (null != progressListener) {
-                        progressListener.onFailure(e.getMessage());
+                        progressListener.onFailure(e.getMessage(), tag);
                     }
                 }
                 if (bytesRead != -1) {
                     totalBytes += bytesRead;
                     if (null != progressListener) {
-                        progressListener.onLoading(totalBytes, total, totalBytes == total);
+                        progressListener.onLoading(totalBytes, total, totalBytes == total, tag);
                     }
                 }
                 if (null != progressListener) {
-                    if ((totalBytes > 0) && (totalBytes == total)) {
-                        progressListener.onComplete();
+                    if (bytesRead != -1) {
+                        if ((totalBytes > 0) && (totalBytes == total)) {
+                            progressListener.onComplete(tag);
+                        }
                     }
                 }
                 return bytesRead;

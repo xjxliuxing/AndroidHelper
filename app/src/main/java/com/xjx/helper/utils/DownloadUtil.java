@@ -1,14 +1,12 @@
-package com.xjx.helper.http.client;
+package com.xjx.helper.utils;
 
-import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.xjx.helper.http.progress.ProgressResponseBody;
 import com.xjx.helper.interfaces.ProgressResponseListener;
-import com.xjx.helper.utils.LogUtil;
 
-import org.jetbrains.annotations.NotNull;
-
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,35 +33,36 @@ public class DownloadUtil {
     private ProgressResponseListener mListener;
     private OkHttpClient.Builder builder;
     private String mSavePath;// 下载文件里的路径
+    private File file;
+    private Object tag;
 
-    public DownloadUtil(Context context, ProgressResponseListener listener) {
+    public DownloadUtil(ProgressResponseListener listener, Object tag) {
         this.mListener = listener;
+        this.tag = tag;
     }
 
-    public void download(String url, String tragetPath) {
+    public void download(String url, final String tragetPath) {
         if (TextUtils.isEmpty(url) || (TextUtils.isEmpty(tragetPath))) {
-            LogUtil.e(TAG, "下载地址或者下载路径为空");
+            Log.e(TAG, "下载地址或者下载路径为空");
             return;
         }
 
         setTargetPath(tragetPath);
 
         // 这里使用的逻辑都是一样的，所以不去重复的创建
-        if (builder == null) {
-            builder = new OkHttpClient().newBuilder();
-            builder.addInterceptor(new Interceptor() {
-                @Override
-                public Response intercept(Chain chain) throws IOException {
-                    //拦截
-                    Response response = chain.proceed(chain.request());
-                    //包装响应体并返回
-                    return response
-                            .newBuilder()
-                            .body(new ProgressResponseBody(response.body(), mListener))
-                            .build();
-                }
-            });
-        }
+        builder = new OkHttpClient().newBuilder();
+        builder.addInterceptor(new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                //拦截
+                Response response = chain.proceed(chain.request());
+                //包装响应体并返回
+                return response
+                        .newBuilder()
+                        .body(new ProgressResponseBody(response.body(), mListener, tag))
+                        .build();
+            }
+        });
 
         //2.建立Request对象,设置参数,请求方式如果是get,就不用设置,默认使用的就是get
         Request request = new Request.Builder()
@@ -74,29 +73,44 @@ public class DownloadUtil {
         //3.创建一个Call对象,参数是request对象,发送请求
         OkHttpClient build = builder.build();
         Call call = build.newCall(request);
+        file = new File(tragetPath);
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
         //4.异步请求,请求加入调度
         call.enqueue(new Callback() {
+
             @Override//请求失败回调
             public void onFailure(Call call, IOException e) {
                 if (mListener != null) {
-                    mListener.onFailure(e.getMessage());
+                    mListener.onFailure(e.getMessage(), tag);
                     if (!call.isCanceled()) {
                         call.cancel();
+                    }
+                    if (file != null) {
+                        file.delete();
                     }
                 }
             }
 
             @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+            public void onResponse(Call call, Response response) throws IOException {
+                FileOutputStream outputStream = null;
+
                 if (response.body() != null) {
                     // 获取响应体
                     ResponseBody responseBody = response.body();
                     // 获取网络返回的流媒体
                     InputStream inputStream = responseBody.byteStream();
-                    // 设置输入文件
-                    FileOutputStream outputStream = new FileOutputStream(tragetPath);
                     try {
+                        // 设置输入文件
+                        outputStream = new FileOutputStream(tragetPath);
+
                         byte[] bytes = new byte[2048];
                         int len = 0;
                         while ((len = inputStream.read(bytes)) != -1) {
@@ -104,13 +118,16 @@ public class DownloadUtil {
                         }
 
                     } catch (Exception e) {
-                        mListener.onFailure(e.getMessage());
+                        LogUtil.e("error:" + e.getMessage());
+                        mListener.onFailure(e.getMessage(), tag);
                         if (!call.isCanceled()) {
                             call.cancel();
                         }
                     } finally {
                         inputStream.close();
-                        outputStream.close();
+                        if (outputStream != null) {
+                            outputStream.close();
+                        }
                     }
                 }
             }

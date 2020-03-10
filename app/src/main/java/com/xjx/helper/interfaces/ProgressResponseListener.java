@@ -9,19 +9,34 @@ package com.xjx.helper.interfaces;
  */
 public interface ProgressResponseListener {
 
-    void onStart();
+    /**
+     * 下载开始
+     *
+     * @param totalLength 下载的总长度
+     * @param tag         下载目标的tag标记
+     */
+    void onStart(long totalLength, Object tag);
 
     /**
      * @param currentProgress 当前的进度
      * @param totalLength     总的长度
      * @param isDone          是否请求完成
+     * @param tag             下载目标的tag标记
      */
-    void onLoading(long currentProgress, long totalLength, boolean isDone);
+    void onLoading(long currentProgress, long totalLength, boolean isDone, Object tag);
 
     /**
-     *  下载完成
+     * 下载完成
+     *
+     * @param tag 下载目标的tag标记
      */
-    void onComplete();
+    void onComplete(Object tag);
 
-    void onFailure(String message);
+    /**
+     * 下载失败
+     *
+     * @param message 失败的原因
+     * @param tag     下载目标的tag
+     */
+    void onFailure(String message, Object tag);
 }

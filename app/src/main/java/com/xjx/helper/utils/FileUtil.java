@@ -106,7 +106,7 @@ public class FileUtil {
     }
 
     /**
-     * @param context
+     * @param context 上下文对象
      * @return 获取Sd卡的路径，因为7.0之后SD卡的路径可能会被拒绝访问，所以分为两种不同的情况去获取
      * 1:7.0之上的方式：获取的路径为App内部的路径，会随着App的删除而被删除掉，具体路径为：/storage/emulated/0/Android/data/com.xjx.helper.debug/files/Download
      * 如果需要使用，则在mainfast.xml 中application下面加入：android:requestLegacyExternalStorage="true"

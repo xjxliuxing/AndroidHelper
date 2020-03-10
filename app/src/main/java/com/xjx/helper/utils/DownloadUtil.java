@@ -1,8 +1,13 @@
 package com.xjx.helper.utils;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.text.TextUtils;
 import android.util.Log;
 
+import androidx.fragment.app.FragmentActivity;
+
+import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.xjx.helper.http.progress.ProgressResponseBody;
 import com.xjx.helper.interfaces.ProgressResponseListener;
 
@@ -11,6 +16,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import io.reactivex.functions.Consumer;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Interceptor;
@@ -35,14 +41,35 @@ public class DownloadUtil {
     private String mSavePath;// 下载文件里的路径
     private File file;
     private Object tag;
+    private boolean isHavePermission = false; // 是否拥有读写权限，如果没有读写权限，则无法下载
 
     /**
      * @param listener 下载进度的监听
      * @param tag      下载目标的tag，如果是列表下载的话，建议使用position，如果是单个下载，这个用不用无所谓
      */
     public DownloadUtil(ProgressResponseListener listener, Object tag) {
+        this(listener, tag, null, false);
+        isHavePermission = true;
+    }
+
+    @SuppressLint("CheckResult")
+    public DownloadUtil(ProgressResponseListener listener, Object tag, FragmentActivity activity, boolean isCheckoutPermissions) {
         this.mListener = listener;
         this.tag = tag;
+        if (isCheckoutPermissions) {
+            RxPermissions rxPermissions = new RxPermissions(activity);
+            rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE).subscribe(new Consumer<Boolean>() {
+                @Override
+                public void accept(Boolean granted) throws Exception {
+                    if (granted) {
+                        isHavePermission = true;
+                    } else {
+                        LogUtil.e("至少有一个权限被拒绝！");
+                        isHavePermission = false;
+                    }
+                }
+            });
+        }
     }
 
     /**
@@ -52,6 +79,11 @@ public class DownloadUtil {
     public void download(String url, final String tragetPath) {
         if (TextUtils.isEmpty(url) || (TextUtils.isEmpty(tragetPath))) {
             Log.e(TAG, "下载地址或者下载路径为空");
+            return;
+        }
+
+        if (!isHavePermission) {
+            Log.e(TAG, "没有读写权限，无法下载！");
             return;
         }
 

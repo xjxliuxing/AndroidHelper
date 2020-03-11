@@ -66,11 +66,11 @@ public class DownLoadActivity extends CommonBaseTitleActivity {
         float dp = ConvertUtil.toDp(5);
 
         RecycleViewDivider divider = new RecycleViewDivider(mContext, LinearLayoutManager.VERTICAL, R.color.transparent, (int) dp);
-        mRvList.addItemDecoration(divider);
 
         RecycleUtil
                 .getInstance(mContext, mRvList)
                 .setVertical()
+                .setDivder(divider)
                 .setAdapter(adapter);
 
         adapter.setOnItemClickListener(new OnItemClickListener<String>() {

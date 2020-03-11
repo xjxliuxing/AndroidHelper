@@ -25,6 +25,17 @@ public class RecycleUtil {
     }
 
     /**
+     * @param itemDecoration 分割线
+     * @return 设置分割线
+     */
+    public RecycleUtil setDivder(RecyclerView.ItemDecoration itemDecoration) {
+        if ((view != null) && (itemDecoration != null)) {
+            view.addItemDecoration(itemDecoration);
+        }
+        return util;
+    }
+
+    /**
      * @return 设置竖向的线性布局
      */
     public RecycleUtil setVertical() {

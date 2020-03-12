@@ -7,7 +7,7 @@ import com.xjx.helper.adapter.TestAdapter
 import com.xjx.helper.base.CommonBaseRefreshListFragment
 import com.xjx.helper.entity.StoreActivityBean
 import com.xjx.helper.http.client.*
-import com.xjx.helper.ui.DownLoadActivity
+import com.xjx.helper.ui.home.activity.tod.DownLoadActivity
 import com.xjx.helper.ui.DownLoadManagerActivity
 import com.xjx.helper.utils.RecycleUtil
 import kotlinx.android.synthetic.main.fragment_home.*

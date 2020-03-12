@@ -4,11 +4,7 @@ import android.content.Intent
 import android.view.View
 import com.xjx.helper.R
 import com.xjx.helper.base.CommonBaseFragment
-import com.xjx.helper.ui.DownLoadActivity
-import com.xjx.helper.ui.home.activity.tod.CustomTime2Activity
-import com.xjx.helper.ui.home.activity.tod.CustomTimeActivity
-import com.xjx.helper.ui.home.activity.tod.RecycleViewDivederActivity
-import com.xjx.helper.ui.home.activity.tod.TestActivity
+import com.xjx.helper.ui.home.activity.tod.*
 import kotlinx.android.synthetic.main.fragment_todo.*
 
 
@@ -28,6 +24,7 @@ class TodoFragment : CommonBaseFragment() {
         tv_3.setOnClickListener(this)
         tv_4.setOnClickListener(this)
         tv_5.setOnClickListener(this)
+        tv_6.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -51,6 +48,9 @@ class TodoFragment : CommonBaseFragment() {
             }
             R.id.tv_5 -> {
                 intent.setClass(mContext, DownLoadActivity::class.java)
+            }
+            R.id.tv_6 -> {
+                intent.setClass(mContext, PlayerActivity::class.java)
             }
         }
 

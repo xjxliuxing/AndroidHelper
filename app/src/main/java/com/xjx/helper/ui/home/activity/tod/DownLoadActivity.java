@@ -1,4 +1,4 @@
-package com.xjx.helper.ui;
+package com.xjx.helper.ui.home.activity.tod;
 
 import android.Manifest;
 import android.annotation.SuppressLint;

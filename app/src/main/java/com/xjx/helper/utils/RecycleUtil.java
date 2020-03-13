@@ -2,6 +2,7 @@ package com.xjx.helper.utils;
 
 import android.content.Context;
 
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,7 +15,7 @@ public class RecycleUtil {
     private Context mContext;
     private RecyclerView view;
 
-    public RecycleUtil(Context mContext, RecyclerView view) {
+    private RecycleUtil(Context mContext, RecyclerView view) {
         this.mContext = mContext;
         this.view = view;
     }
@@ -47,6 +48,18 @@ public class RecycleUtil {
     }
 
     /**
+     * @param rowCount 需要显示的行数
+     * @return 设置recycleview 为多行显示
+     */
+    public RecycleUtil setGridLayout(int rowCount) {
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, rowCount);
+        if (view != null) {
+            view.setLayoutManager(gridLayoutManager);
+        }
+        return util;
+    }
+
+    /**
      * @return 设置横向的线性布局
      */
     public RecycleUtil setHorizontal() {
@@ -60,7 +73,7 @@ public class RecycleUtil {
     /**
      * 设置Adaptrer
      *
-     * @param adapter
+     * @param adapter 需要给recycleview设置的adapter
      */
     public void setAdapter(RecyclerView.Adapter adapter) {
         if (adapter != null && view != null) {

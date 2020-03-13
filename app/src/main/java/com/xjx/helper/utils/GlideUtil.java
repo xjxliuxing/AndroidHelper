@@ -292,4 +292,20 @@ public class GlideUtil {
                 .into(imageView);
     }
 
+    /**
+     * ----------------------------------- 3.x-----------------
+     *
+     * @param url       路径
+     * @param imageView imageView
+     */
+
+    public void load(String url, ImageView imageView) {
+//        Glide
+//                .with(mContext)
+//                .load(url)
+//                .error(R.mipmap.img_error)
+//                .placeholder(R.mipmap.iv_loading_round) //加载成功前显示的图片
+//                .fallback(R.mipmap.iv_loading_round) //url为空的时候,显示的图片
+//                .into(imageView);
+    }
 }

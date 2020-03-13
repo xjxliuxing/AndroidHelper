@@ -19,8 +19,8 @@ import com.xjx.helper.utils.ConvertUtil;
 import com.xjx.helper.utils.DownloadUtil;
 import com.xjx.helper.utils.FileUtil;
 import com.xjx.helper.utils.LogUtil;
-import com.xjx.helper.utils.RecycleUtil;
-import com.xjx.helper.widget.RecycleViewDivider;
+import com.xjx.helper.utils.recyeliview.RecycleUtil;
+import com.xjx.helper.utils.recyeliview.RecycleViewDivider;
 
 import java.io.File;
 import java.io.IOException;

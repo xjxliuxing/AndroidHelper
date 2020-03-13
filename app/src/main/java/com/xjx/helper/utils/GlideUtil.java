@@ -1,5 +1,6 @@
 package com.xjx.helper.utils;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -45,6 +46,7 @@ public class GlideUtil {
      * @param view
      * @param placeholder
      */
+    @SuppressLint("CheckResult")
     public void Load(Activity context, String url, ImageView view, int placeholder) {
 
         if (context == null) {

@@ -1,4 +1,4 @@
-package com.xjx.helper.widget;
+package com.xjx.helper.utils.recyeliview;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -12,15 +12,13 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.xjx.helper.utils.LogUtil;
-
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Recycleview的分割线，可以设置颜色和drawable资源文件，适用于空白的边距
- * 如果需要单独设置top和margin值，需要设置方法 {@link RecycleViewDivider#setMargin(int, int, int, int, int)}
+ * Recycleview的分割线，可以设置颜色和drawable资源文件,适用于普通的底部分割线
+ * 如果需要单独设置top和margin值，需要设置方法 {@link RecycleViewBottomDivider#setMargin(int, int, int, int, int)}
  */
-public class RecycleViewDivider extends RecyclerView.ItemDecoration {
+public class RecycleViewBottomDivider extends RecyclerView.ItemDecoration {
 
     //列表的方向：LinearLayoutManager.VERTICAL 或 LinearLayoutManager.HORIZONTAL,默认的是垂直方向的
     private int mOrientation;
@@ -51,20 +49,13 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
         int childAdapterPosition = parent.getChildAdapterPosition(view);
 
         if (mOrientation == LinearLayoutManager.VERTICAL) {
-            //  竖向
-            outRect.left = mMarginLeft;
-            outRect.right = mMarginRight;
+            //  竖向,只用预留出来底部边距
 
             if ((childAdapterPosition == 0) && (childAdapterPosition == parent.getAdapter().getItemCount() - 1)) {
-                // 说明只有一个item
-                outRect.top = mMarginTop;
+                // 只有一条数据的情况
                 outRect.bottom = mMarginBottom;
             } else {
-                if (childAdapterPosition == 0) {
-                    // 最上边的条目不要上边距
-                    outRect.top = mMarginTop;
-                    outRect.bottom = mDividerHeight;
-                } else if (childAdapterPosition == parent.getAdapter().getItemCount() - 1) {
+                if (childAdapterPosition == parent.getAdapter().getItemCount() - 1) {
                     outRect.bottom = mMarginBottom;
                 } else {
                     outRect.bottom = mDividerHeight;
@@ -72,28 +63,18 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
             }
 
         } else if (mOrientation == LinearLayoutManager.HORIZONTAL) {
-            // 横向
-            outRect.top = mMarginTop;
-            outRect.bottom = mMarginBottom;
-
+            // 横向,只用预留出来右侧的边距
             if ((childAdapterPosition == 0) && (childAdapterPosition == parent.getAdapter().getItemCount() - 1)) {
-                // 只有一个itme
-                outRect.left = mMarginLeft;
+                // 只有一条数据的情况
                 outRect.right = mMarginRight;
             } else {
-                if ((childAdapterPosition == 0)) {
-                    // 第一个
-                    outRect.left = mMarginLeft;
-                    outRect.right = mDividerHeight;
-                } else if (childAdapterPosition == parent.getAdapter().getItemCount() - 1) {
-                    // 最后一个
+                if (childAdapterPosition == parent.getAdapter().getItemCount() - 1) {
                     outRect.right = mMarginRight;
                 } else {
                     outRect.right = mDividerHeight;
                 }
             }
         }
-        LogUtil.e("left:" + mMarginLeft + "   right:" + mMarginRight + "  top:" + mMarginTop + "  bottom:" + mDividerHeight);
     }
 
     //绘制分割线，其实就是在固定的位置绘制背景
@@ -119,7 +100,7 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
      * @param dividerHeight 分割线高度
      * @param other         站位参数，没有任何作用
      */
-    public RecycleViewDivider(Context context, int orientation, int drawableId, int dividerHeight, int... other) {
+    public RecycleViewBottomDivider(Context context, int orientation, int drawableId, int dividerHeight, int... other) {
         if (orientation != LinearLayoutManager.VERTICAL && orientation != LinearLayoutManager.HORIZONTAL) {
             throw new IllegalArgumentException("请输入正确的参数！");
         }
@@ -136,7 +117,7 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
      * @param dividerHeight 分割线高度
      * @param dividerColor  分割线颜色
      */
-    public RecycleViewDivider(Context context, int orientation, int dividerColor, int dividerHeight) {
+    public RecycleViewBottomDivider(Context context, int orientation, int dividerColor, int dividerHeight) {
         this.mOrientation = orientation;
         this.mDividerHeight = dividerHeight;
         mPaint = new Paint();
@@ -181,8 +162,8 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
 
         int bottom;
         // 由于是横向的分割线，所有左右部分，只考虑pading值，剩余空间全部填充
-        int left = parent.getPaddingLeft();
-        int right = parent.getWidth() - parent.getPaddingRight();
+        int left = parent.getPaddingLeft() + mMarginLeft;
+        int right = parent.getWidth() - parent.getPaddingRight() - mMarginRight;
         // 计算item的个数
         final int childCount = parent.getChildCount();
         for (int i = 0; i < childCount; i++) {
@@ -192,21 +173,16 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
             RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
 
             // 高度 = view本身所在屏幕的位置 减去 自己设置的top值 减去 view的设置的marttop的值
-            int top = child.getTop() - mMarginTop - params.topMargin;
+            int top = child.getBottom() + params.bottomMargin;
 
             // 如果是drawable的资源文件，则走这里的设置
             if (mDivider != null) {
-                // 获取底部的位置，如果是纯色之类的drawable就会返回-1，所有要设置默认值
-//                bottom = top + mDivider.getIntrinsicHeight();
-//                if (bottom == -1) {
-//                    bottom = mDividerHeight;
-//                }
-
+                // 最后一个item，使用自己定义的marginBottom
                 if (i == parent.getAdapter().getItemCount() - 1) {
-                    bottom = (child.getBottom()) + (params.bottomMargin) + (mMarginBottom);
+                    bottom = top + mMarginBottom;
                 } else {
                     // bottom= view本身所在屏幕上的底部值 加上view本身的marginbottom + 自己设定的dividerHeight
-                    bottom = (child.getBottom()) + (params.bottomMargin) + (mDividerHeight);
+                    bottom = top + mDividerHeight;
                 }
 
                 // 设置drawable的内容
@@ -218,10 +194,10 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
 
                 // 最后一个item，使用自己定义的marginBottom
                 if (i == parent.getAdapter().getItemCount() - 1) {
-                    bottom = (child.getBottom()) + (params.bottomMargin) + (mMarginBottom);
+                    bottom = top + mMarginBottom;
                 } else {
                     // bottom= view本身所在屏幕上的底部值 加上view本身的marginbottom + 自己设定的dividerHeight
-                    bottom = (child.getBottom()) + (params.bottomMargin) + (mDividerHeight);
+                    bottom = top + mDividerHeight;
                 }
                 // 绘制图形
                 c.drawRect(left, top, right, bottom, mPaint);
@@ -238,8 +214,8 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
         int right;
 
         // 画竖线的时候，只关心左右边距的值，上下只使用viewgrounp的pading值
-        int top = parent.getPaddingTop();
-        int bottom = parent.getHeight() - parent.getPaddingBottom();
+        int top = parent.getPaddingTop() + mMarginTop;
+        int bottom = parent.getHeight() - parent.getPaddingBottom() - mMarginBottom;
 
         final int childCount = parent.getChildCount();
         for (int i = 0; i < childCount; i++) {
@@ -248,7 +224,7 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
             //获得child的布局信息
             final RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
             // 左侧边距==view本身所在的左侧位置 减去 左侧的margin值 减去 自己设定的marginleft的值
-            int left = child.getLeft() - params.leftMargin - mMarginLeft;
+            int left = child.getRight() + params.rightMargin;
 
             if (mDivider != null) {
                 if (i == parent.getAdapter().getItemCount() - 1) {

@@ -69,6 +69,7 @@ android {
                     [
                             'src/main/res',
                             'src/main/res/layout/common',
+                            'src/main/res/layout/todo'
                     ]
             jniLibs.srcDirs = ['libs']  /**在libs文件夹下找so文件*/
         }
@@ -86,36 +87,36 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
-    testImplementation 'junit:junit:4.12'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     // logger 工具
     implementation 'com.orhanobut:logger:2.2.0'
-    implementation 'androidx.recyclerview:recyclerview:1.0.0-beta01'
+    implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha01'
     // eventbus 3.1
-    implementation 'org.greenrobot:eventbus:3.1.1'
-    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation 'org.greenrobot:eventbus:3.2.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
     // 6.0动态权限
     implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
     // 刷新框架
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
 
     // 图片框架
-    implementation 'com.github.bumptech.glide:glide:4.10.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     // RxJava1
-    implementation 'io.reactivex:rxjava:1.1.6'
+    implementation 'io.reactivex:rxjava:1.3.8'
     implementation 'io.reactivex:rxandroid:1.2.1'
-    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
-    implementation 'com.squareup.okhttp3:okhttp:3.12.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.6.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava:2.5.0'
-    implementation 'com.squareup.retrofit2:converter-scalars:2.3.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.7.2'
+    implementation 'com.squareup.okhttp3:okhttp:4.4.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.4.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.2'
+    implementation 'com.squareup.retrofit2:adapter-rxjava:2.7.2'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.7.2'
     // RxJava2
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.11'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.19'
     implementation 'com.android.support:design:28.0.0'
     // 条件时间选择器
     implementation 'com.contrarywind:Android-PickerView:4.1.9'

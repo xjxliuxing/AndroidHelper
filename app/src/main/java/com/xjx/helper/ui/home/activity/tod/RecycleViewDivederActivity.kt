@@ -7,8 +7,8 @@ import com.xjx.helper.adapter.RecycleviewDividerAdapter
 import com.xjx.helper.base.CommonBaseTitleActivity
 import com.xjx.helper.enums.PlaceholderStatus
 import com.xjx.helper.utils.ConvertUtil
-import com.xjx.helper.utils.RecycleUtil
-import com.xjx.helper.widget.RecycleViewBottomDivider
+import com.xjx.helper.utils.recyeliview.RecycleUtil
+import com.xjx.helper.utils.recyeliview.RecycleViewBottomDivider
 import kotlinx.android.synthetic.main.activity_recycle_view_diveder.*
 
 /**

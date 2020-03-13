@@ -1,4 +1,4 @@
-package com.xjx.helper.utils;
+package com.xjx.helper.utils.recyeliview;
 
 import android.content.Context;
 

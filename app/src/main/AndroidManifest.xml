@@ -21,6 +21,7 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="q">
 
+        <activity android:name=".ui.home.activity.tod.GridLayoutLayoutActivity" />
         <activity android:name=".test.TestActivity" />
         <activity android:name=".ui.home.activity.tod.PlayerActivity" />
         <activity android:name=".ui.home.activity.tod.RecycleViewDivederActivity" />

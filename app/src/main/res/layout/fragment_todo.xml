@@ -44,6 +44,11 @@
             style="@style/style_todo_item"
             android:text="测试数据" />
 
+        <TextView
+            android:id="@+id/tv_8"
+            style="@style/style_todo_item"
+            android:text="GridLayoutManager" />
+
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

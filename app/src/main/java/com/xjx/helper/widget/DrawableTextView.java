@@ -13,7 +13,6 @@ import androidx.annotation.RequiresApi;
 
 import com.xjx.helper.R;
 import com.xjx.helper.utils.ConvertUtil;
-import com.xjx.helper.utils.LogUtil;
 
 /**
  * @作者 徐腾飞
@@ -25,8 +24,8 @@ import com.xjx.helper.utils.LogUtil;
 @SuppressLint("AppCompatCustomView")
 public class DrawableTextView extends TextView {
 
-    private int direction;// 方向，左上右下，分别对应，0,1,2,3
-    private Drawable drawable;// 获取的drawable资源
+    private int roundWidth;
+    private int roundHeight;
 
     public DrawableTextView(Context context) {
         super(context);
@@ -59,55 +58,41 @@ public class DrawableTextView extends TextView {
         float dpHeight = ConvertUtil.toDp(height);
 
         // 四舍五入取整数
-        int roundWidth = Math.round(dpWidth);
-        int roundHeight = Math.round(dpHeight);
-
-        // 获取textView中drawable的数组对象
-        Drawable[] compoundDrawables = getCompoundDrawables();
-        if (compoundDrawables.length <= 0) {
-            return;
-        }
-
-        // 循环拿到drawable资源的对象
-        for (int i = 0; i < compoundDrawables.length; i++) {
-            Drawable compoundDrawable = compoundDrawables[i];
-            if (compoundDrawable != null) {
-                // 获取方向
-                direction = i;
-                // 获取对象
-                drawable = compoundDrawable;
-                break;
-            }
-        }
-
-        if (drawable == null) {
-            LogUtil.e("drawble对象为空");
-            return;
-        }
-
-        // 设置drawable宽高
-        drawable.setBounds(0, 0, roundWidth, roundHeight);
-
-        // 设置drawable的位置
-        switch (direction) {
-            case 0:
-                setCompoundDrawables(drawable, null, null, null);
-                break;
-
-            case 1:
-                setCompoundDrawables(null, drawable, null, null);
-                break;
-
-            case 2:
-                setCompoundDrawables(null, null, drawable, null);
-                break;
-
-            case 3:
-                setCompoundDrawables(null, null, null, drawable);
-                break;
-        }
+        roundWidth = Math.round(dpWidth);
+        roundHeight = Math.round(dpHeight);
 
         // 释放对象
         array.recycle();
     }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+
+        Drawable[] drawables = getCompoundDrawables();
+        // drawable对象
+        Drawable drawableLeft = drawables[0];
+        Drawable drawableTop = drawables[1];
+        Drawable drawableRight = drawables[2];
+        Drawable drawableBottom = drawables[3];
+
+        if (drawableLeft != null) {
+            setDrawable(drawableLeft, 0, roundWidth, roundHeight);
+        }
+        if (drawableTop != null) {
+            setDrawable(drawableTop, 1, roundWidth, roundHeight);
+        }
+        if (drawableRight != null) {
+            setDrawable(drawableRight, 2, roundWidth, roundHeight);
+        }
+        if (drawableBottom != null) {
+            setDrawable(drawableBottom, 3, roundWidth, roundHeight);
+        }
+        this.setCompoundDrawables(drawableLeft, drawableTop, drawableRight, drawableBottom);
+    }
+
+    private void setDrawable(Drawable drawable, int tag, int drawableWidth, int drawableHeight) {
+        drawable.setBounds(0, 0, drawableWidth, drawableHeight);
+    }
+
 }

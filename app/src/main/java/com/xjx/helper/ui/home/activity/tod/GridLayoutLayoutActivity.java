@@ -9,6 +9,7 @@ import com.xjx.helper.entity.todo.GridLayoutLayoutBean;
 import com.xjx.helper.enums.PlaceholderStatus;
 import com.xjx.helper.utils.ConvertUtil;
 import com.xjx.helper.utils.recyeliview.RecycleUtil;
+import com.xjx.helper.utils.recyeliview.RecycleViewGridLayoutDivider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,7 @@ public class GridLayoutLayoutActivity extends CommonBaseTitleActivity {
         setTitleContent("车主手册");
 
         mRvList = findViewById(R.id.rv_list);
-        for (int i = 0; i < 11; i++) {
+        for (int i = 0; i < 12; i++) {
             GridLayoutLayoutBean bean = new GridLayoutLayoutBean();
             bean.setUrl("http://thirdwx.qlogo.cn/mmopen/ajNVdqHZLLATnroK8v8mN0o0yIkBEcIU2umnMfqIZMW3HwtFX8aL87r1RGGbDyQ6L7CoFsM496ibrxgpnzDpSsicSplfkS9ypluMicOMBAvVcc/132");
             mList.add(bean);
@@ -47,8 +48,8 @@ public class GridLayoutLayoutActivity extends CommonBaseTitleActivity {
                 .getInstance(mContext, mRvList)
                 .setVertical()
                 .setDataHeight()
-//                .setGridLayout(3)
-//                .setDivder(new RecycleViewGridLayoutDivider(dp, 0, 0, dp, dp, 3))
+                .setGridLayout(3)
+                .setDivder(new RecycleViewGridLayoutDivider(dp, 0, 0, dp, dp, 3))
                 .setAdapter(adapter);
 
         adapter.setList(mList);

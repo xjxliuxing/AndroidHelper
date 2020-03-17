@@ -26,6 +26,7 @@ public class GridLayoutLayoutAdapter extends BaseRecycleAdapter<GridLayoutLayout
     protected void onBind(@NonNull BaseVH holder, GridLayoutLayoutBean data, int position) {
 
         ImageView imageView = holder.getImageView(R.id.iv_image);
+        holder.setTextView(R.id.tv_title, "" + position);
 
         GlideUtil.getInstance().Load(mContext, data.getUrl(), imageView, 0);
     }

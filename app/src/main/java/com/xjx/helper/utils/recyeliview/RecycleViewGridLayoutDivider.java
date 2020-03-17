@@ -15,13 +15,15 @@ public class RecycleViewGridLayoutDivider extends RecyclerView.ItemDecoration {
 
     private int mMarginTop;  // 上边的边距
     private int mMarginBottom; // 下面的边距
-    private int mMargin;// 左右两侧的边距
+    private int mMargin;// 左右两侧的边距1
     private int mDivderWidth; //  左右中间的边距
     private int mDividerHeight;// 默认分割线的高度
     private int mRowCount;// 显示的行数
 
     private int rightRow;  // 最右侧的列数
     private int bottomLine = -1;//最下面的行数
+    private int mLine = 0;// 当前的列
+    private int mRow = 0;// 当前的行
 
     @Override
     public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
@@ -39,19 +41,50 @@ public class RecycleViewGridLayoutDivider extends RecyclerView.ItemDecoration {
 
         // 当前的position
         int childAdapterPosition = parent.getChildAdapterPosition(view);
+        // 求出列数
+        mLine = childAdapterPosition % mRowCount;
+        // 求出当前行
+        mRow = childAdapterPosition / mRowCount;
 
-        // 求出当前应该在第几列
-        int row = childAdapterPosition % mRowCount;
+        LogUtil.e("当前的position：" + childAdapterPosition + " --->当前的行：" + mRow + "--->当前的列为：" + mLine);
 
-        LogUtil.e("当前的position：" + childAdapterPosition + " --->当前的列：" + row);
-        // 求出行数
-        int line = childAdapterPosition / mRowCount;
+//        if (mLine == 0) {
+//            // 最左侧的列
+//            outRect.left = 0;
+//            outRect.right = mDivderWidth;
+//            setRow(outRect, mRow);
+//        } else if (mLine == rightRow) {
+//            // 最右侧的列
+////            outRect.right = mMargin;
+//            outRect.left = mDivderWidth;
+//            setRow(outRect, mRow);
+//        } else {
+//            // 中间的列
+//            outRect.left = mDivderWidth;
+////            setRow(outRect, mRow);
+//        }
+        if (mLine == 0) {
+            outRect.left = 0;
+            setRow(outRect, mRow);
+        } else {
+            outRect.left = mDivderWidth;
+        }
 
-//        if (line == 0) {
+    }
+
+    /**
+     * 设置行的间距
+     *
+     * @param outRect
+     * @param row
+     */
+    private void setRow(@NonNull Rect outRect, int row) {
+
+//        if (row == 0) {
 //            // 第一行
 //            outRect.top = mMarginTop;
-//            outRect.bottom = 0;
-//        } else if (line == bottomLine) {
+//            outRect.bottom = mDividerHeight;
+//        } else if (row == bottomLine) {
 //            // 最后一行
 //            outRect.top = 0;
 //            outRect.bottom = mMarginBottom;
@@ -60,17 +93,11 @@ public class RecycleViewGridLayoutDivider extends RecyclerView.ItemDecoration {
 //            outRect.top = 0;
 //            outRect.bottom = mDividerHeight;
 //        }
-
         if (row == 0) {
-            // 最左侧的列
-            outRect.left = mMargin;
-        } else if (row == rightRow) {
-            // 最右侧的列
-            outRect.right = mMargin;
-            outRect.left = mDivderWidth;
+            outRect.top = 0;
+//            outRect.bottom = mDividerHeight;
         } else {
-            // 中间的列
-            outRect.left = mDivderWidth;
+            outRect.top = mDividerHeight;
         }
     }
 

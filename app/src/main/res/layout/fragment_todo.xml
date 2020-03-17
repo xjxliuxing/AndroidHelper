@@ -49,6 +49,11 @@
             style="@style/style_todo_item"
             android:text="GridLayoutManager" />
 
+        <TextView
+            android:id="@+id/tv_9"
+            style="@style/style_todo_item"
+            android:text="TextViewDrawable" />
+
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

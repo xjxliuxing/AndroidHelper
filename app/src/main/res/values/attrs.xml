@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-
     <declare-styleable name="RelativeLayoutUtil">
         <attr name="x_width" format="dimension" />
 
     </declare-styleable>
 
-
+    <!--自定义textView的drawable-->
+    <declare-styleable name="DrawableTextView">
+        <attr name="drawable_text_width" format="float" />
+        <attr name="drawable_text_height" format="float" />
+    </declare-styleable>
 
 </resources>

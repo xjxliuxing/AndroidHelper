@@ -20,7 +20,8 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="q">
-        <activity android:name=".ui.home.activity.tod.DrawableTextViewActivity"></activity>
+        <activity android:name=".ui.home.activity.tod.Patch9Activity"></activity>
+        <activity android:name=".ui.home.activity.tod.DrawableTextViewActivity" />
         <activity android:name=".ui.home.activity.tod.GridLayoutLayoutActivity" />
         <activity android:name=".test.TestActivity" />
         <activity android:name=".ui.home.activity.tod.PlayerActivity" />

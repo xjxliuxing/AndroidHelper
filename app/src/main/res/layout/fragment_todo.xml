@@ -54,6 +54,11 @@
             style="@style/style_todo_item"
             android:text="TextViewDrawable" />
 
+        <TextView
+            android:id="@+id/tv_10"
+            style="@style/style_todo_item"
+            android:text=".9图测试" />
+
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

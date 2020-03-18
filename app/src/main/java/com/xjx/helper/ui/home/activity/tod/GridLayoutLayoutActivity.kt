@@ -2,6 +2,7 @@ package com.xjx.helper.ui.home.activity.tod
 
 import android.graphics.Rect
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.xjx.helper.R
 import com.xjx.helper.adapter.todo.GridLayoutLayoutAdapter
@@ -10,6 +11,7 @@ import com.xjx.helper.entity.todo.GridLayoutLayoutBean
 import com.xjx.helper.enums.PlaceholderStatus
 import com.xjx.helper.utils.ConvertUtil
 import com.xjx.helper.utils.recyeliview.RecycleUtil
+import com.xjx.helper.utils.recyeliview.RecycleViewGridLayoutDivider
 import java.util.*
 
 class GridLayoutLayoutActivity : CommonBaseTitleActivity() {
@@ -44,8 +46,10 @@ class GridLayoutLayoutActivity : CommonBaseTitleActivity() {
                 .getInstance(mContext, mRvList)
                 .setVertical()
                 .setDataHeight()
-                .setGridLayout(4)
-//                .setDivder(EvenItemDecoration(dp, 4))
+                .setGridLayout(4, LinearLayoutManager.VERTICAL)
+//                .setDivder(EvenItemDecoration(dp, 3))
+//                .setDivder(DividerGridItemDecoration(mContext))
+                .setDivder(RecycleViewGridLayoutDivider( dp, dp))
                 .setAdapter(adapter)
 
         adapter.setList(mList)
@@ -53,27 +57,11 @@ class GridLayoutLayoutActivity : CommonBaseTitleActivity() {
 
 
     class EvenItemDecoration(val space: Int, val column: Int) : RecyclerView.ItemDecoration() {
+
         override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
             val position = parent.getChildAdapterPosition(view)
-            // 每个span分配的间隔大小
-            val spanSpace = space * (column + 1) / column
-            // 列索引
-            val colIndex = position % column
-            // 列左、右间隙
-            if (colIndex == 0) {
-                outRect.left = 0
-            } else {
-                outRect.left = space * (colIndex + 1) - spanSpace * colIndex
-            }
-            if (colIndex == column - 1) {
-                outRect.right = 0
-            } else {
-                outRect.right = spanSpace * (colIndex + 1) - space * (colIndex + 1)
-            }
-            // 行间距
-            if (position >= column) {
-                outRect.top = space
-            }
+
+
         }
     }
 }

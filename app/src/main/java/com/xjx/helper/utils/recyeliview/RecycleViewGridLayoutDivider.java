@@ -4,26 +4,19 @@ import android.graphics.Rect;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.xjx.helper.utils.LogUtil;
 
 /**
  * recycleview类型中GridLayoutManager的分割线
  */
 public class RecycleViewGridLayoutDivider extends RecyclerView.ItemDecoration {
 
-    private int mMarginTop;  // 上边的边距
-    private int mMarginBottom; // 下面的边距
-    private int mMargin;// 左右两侧的边距1
     private int mDivderWidth; //  左右中间的边距
     private int mDividerHeight;// 默认分割线的高度
-    private int mRowCount;// 显示的行数
 
-    private int rightRow;  // 最右侧的列数
-    private int bottomLine = -1;//最下面的行数
-    private int mLine = 0;// 当前的列
-    private int mRow = 0;// 当前的行
+    private int mMaxSpanCount = -1; // RecycleView的列数
+    private int mChildCount = -1; // RecycleView的child的数量
 
     @Override
     public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
@@ -33,92 +26,76 @@ public class RecycleViewGridLayoutDivider extends RecyclerView.ItemDecoration {
             throw new IllegalArgumentException("Adapter cannot be null！");
         }
 
-        // 求出最后一行
-        if (bottomLine == -1) {
-            bottomLine = (parent.getAdapter().getItemCount()) / mRowCount;
-            LogUtil.e("最后一行为：" + bottomLine);
-        }
-
-        // 当前的position
-        int childAdapterPosition = parent.getChildAdapterPosition(view);
         // 求出列数
-        mLine = childAdapterPosition % mRowCount;
-        // 求出当前行
-        mRow = childAdapterPosition / mRowCount;
-
-        LogUtil.e("当前的position：" + childAdapterPosition + " --->当前的行：" + mRow + "--->当前的列为：" + mLine);
-
-//        if (mLine == 0) {
-//            // 最左侧的列
-//            outRect.left = 0;
-//            outRect.right = mDivderWidth;
-//            setRow(outRect, mRow);
-//        } else if (mLine == rightRow) {
-//            // 最右侧的列
-////            outRect.right = mMargin;
-//            outRect.left = mDivderWidth;
-//            setRow(outRect, mRow);
-//        } else {
-//            // 中间的列
-//            outRect.left = mDivderWidth;
-////            setRow(outRect, mRow);
-//        }
-        if (mLine == 0) {
-            outRect.left = 0;
-            setRow(outRect, mRow);
-        } else {
-            outRect.left = mDivderWidth;
+        if (mMaxSpanCount == -1) {
+            mMaxSpanCount = getSpanCount(parent);
         }
+        // 求出litem的数量
+        if (mChildCount == -1) {
+            mChildCount = parent.getAdapter().getItemCount();
+        }
+        // 求出当前position
+        int itemPosition = parent.getChildAdapterPosition(view);
 
-    }
+        if (isLastRaw(parent, itemPosition, mMaxSpanCount, mChildCount)) {
+            // 计算出最后一行，如果是最后一行，则不需要绘制底部
 
-    /**
-     * 设置行的间距
-     *
-     * @param outRect
-     * @param row
-     */
-    private void setRow(@NonNull Rect outRect, int row) {
+            outRect.set(0, 0, mDivderWidth, 0);
 
-//        if (row == 0) {
-//            // 第一行
-//            outRect.top = mMarginTop;
-//            outRect.bottom = mDividerHeight;
-//        } else if (row == bottomLine) {
-//            // 最后一行
-//            outRect.top = 0;
-//            outRect.bottom = mMarginBottom;
-//        } else {
-//            // 其他行
-//            outRect.top = 0;
-//            outRect.bottom = mDividerHeight;
-//        }
-        if (row == 0) {
-            outRect.top = 0;
-//            outRect.bottom = mDividerHeight;
+        } else if (isLastColum(parent, itemPosition, mMaxSpanCount, mChildCount)) {
+            // 根据position计算出最后一列，如果是最后一列，则不需要绘制右边
+            outRect.set(0, 0, 0, mDividerHeight);
+
         } else {
-            outRect.top = mDividerHeight;
+            outRect.set(0, 0, mDivderWidth, mDividerHeight);
         }
     }
 
     /**
-     * @param margin        左右的边距
-     * @param top           上边的边距
-     * @param bottom        下面的边距
      * @param dividerHeight 上下条目的间距
      * @param divderWidth   左右条目的边距
-     * @param row           列数
      */
-    public RecycleViewGridLayoutDivider(int margin, int top, int bottom, int dividerHeight, int divderWidth, int row) {
-        this.mMargin = margin;
-        this.mMarginTop = top;
-        this.mMarginBottom = bottom;
+    public RecycleViewGridLayoutDivider(int dividerHeight, int divderWidth) {
         this.mDivderWidth = divderWidth;
         this.mDividerHeight = dividerHeight;
-        this.mRowCount = row;
+    }
 
-        // 求出最后一列
-        rightRow = mRowCount - 1;
+    /**
+     * @param parent recycleView
+     * @return 获取列数
+     */
+    private int getSpanCount(RecyclerView parent) {
+        // 列数
+        int spanCount = -1;
+        RecyclerView.LayoutManager layoutManager = parent.getLayoutManager();
+        if (layoutManager instanceof GridLayoutManager) {
+            spanCount = ((GridLayoutManager) layoutManager).getSpanCount();
+        }
+        return spanCount;
+    }
+
+    // 最后一行
+    private boolean isLastRaw(RecyclerView parent, int position, int spanCount, int childCount) {
+        RecyclerView.LayoutManager layoutManager = parent.getLayoutManager();
+        if (layoutManager instanceof GridLayoutManager) {
+            childCount = childCount - childCount % spanCount;
+            if (position >= childCount) {
+                // 如果是最后一行，则不需要绘制底部
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isLastColum(RecyclerView parent, int position, int spanCount, int childCount) {
+        RecyclerView.LayoutManager layoutManager = parent.getLayoutManager();
+        if (layoutManager instanceof GridLayoutManager) {
+            if ((position + 1) % spanCount == 0) {
+                // 如果是最后一列，则不需要绘制右边
+                return true;
+            }
+        }
+        return false;
     }
 
 }

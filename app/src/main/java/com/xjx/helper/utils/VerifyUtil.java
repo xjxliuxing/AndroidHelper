@@ -114,7 +114,7 @@ public class VerifyUtil {
                 if (source.equals(".") || source.equals(",")) {
                     return "";
                 }
-                // if the text is entered before the dot
+                // if the DividerGridItemDecoration is entered before the dot
                 if (dend <= dotPos) {
                     return null;
                 }

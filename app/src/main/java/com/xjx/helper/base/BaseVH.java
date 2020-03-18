@@ -1,6 +1,5 @@
 package com.xjx.helper.base;
 
-import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -9,7 +8,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.xjx.helper.utils.ViewUtil;
 import com.xjx.helper.utils.views.TextViewUtils;
 
 /**
@@ -19,7 +17,7 @@ public class BaseVH extends RecyclerView.ViewHolder {
 
     private View rootView;
 
-    public BaseVH(@NonNull View itemView) {
+    BaseVH(@NonNull View itemView) {
         super(itemView);
         this.rootView = itemView;
     }

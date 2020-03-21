@@ -41,7 +41,7 @@ public class NetworkUtil {
 
     private static NetworkInfo mNetworkInfo = null;
 
-    private static final String TAG = "NetworkUtil";
+    private static final String TAG = "NetworkCurrentKbUtil";
 
     public static boolean isNetworkConnected() {
 

@@ -30,6 +30,7 @@ class TodoFragment : CommonBaseFragment() {
         tv_9.setOnClickListener(this)
         tv_10.setOnClickListener(this)
         tv_11.setOnClickListener(this)
+        tv_12.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -71,6 +72,9 @@ class TodoFragment : CommonBaseFragment() {
             }
             R.id.tv_11 -> {
                 intent.setClass(mContext, GridLayoutLayout2Activity::class.java)
+            }
+            R.id.tv_12 -> {
+                intent.setClass(mContext, NetWorkCurrentKbActivity::class.java)
             }
         }
         mContext.startActivity(intent)

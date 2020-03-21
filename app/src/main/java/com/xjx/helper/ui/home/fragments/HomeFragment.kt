@@ -7,8 +7,8 @@ import com.xjx.helper.adapter.TestAdapter
 import com.xjx.helper.base.CommonBaseRefreshListFragment
 import com.xjx.helper.entity.StoreActivityBean
 import com.xjx.helper.http.client.*
-import com.xjx.helper.ui.home.activity.tod.DownLoadActivity
 import com.xjx.helper.ui.DownLoadManagerActivity
+import com.xjx.helper.ui.home.activity.tod.DownLoadActivity
 import com.xjx.helper.utils.recyeliview.RecycleUtil
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -27,12 +27,14 @@ class HomeFragment : CommonBaseRefreshListFragment<StoreActivityBean>() {
     override fun initData() {
         super.initData()
 
-        testAdapter = TestAdapter(mContext)
+        testAdapter = TestAdapter(mContext, data)
         RecycleUtil
                 .getInstance(mContext, rv_list)
                 .setVertical()
                 .setAdapter(testAdapter)
+        setAdapter(testAdapter)
     }
+
 
     override fun onRequestData() {
 
@@ -44,8 +46,8 @@ class HomeFragment : CommonBaseRefreshListFragment<StoreActivityBean>() {
             override fun onSuccess(response: BaseResponse<Page<StoreActivityBean>>) {
                 switchPlaceHolderSuccess(response)
                 val data = response.returnDataList.data
+
                 setData(data)
-                testAdapter?.setList(getData())
             }
 
             override fun onFailured(t: ApiException) {

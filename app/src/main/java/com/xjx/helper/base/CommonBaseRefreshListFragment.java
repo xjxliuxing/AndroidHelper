@@ -1,10 +1,13 @@
 package com.xjx.helper.base;
 
+import android.view.View;
+
 import androidx.annotation.NonNull;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.xjx.helper.global.CommonConstant;
+import com.xjx.helper.utils.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +21,15 @@ public abstract class CommonBaseRefreshListFragment<T> extends CommonBaseRefresh
     /**
      * 数据列表的对象
      */
-    protected List<T> mList = new ArrayList<>();
+    private List<T> mList = new ArrayList<>();
+
+    @Override
+    protected void initView(View rootView) {
+        super.initView(rootView);
+
+        // 重置page对象
+        CommonConstant.DEFAULT_PAGE = 1;
+    }
 
     @Override
     protected void initListener() {
@@ -29,8 +40,12 @@ public abstract class CommonBaseRefreshListFragment<T> extends CommonBaseRefresh
             mBaseRefresh.setEnableLoadMore(true);
             // 刷新的操作
             mBaseRefresh.setOnLoadMoreListener(this);
+            mBaseRefresh.setEnableLoadMoreWhenContentNotFull(true);//是否在列表不满一页时候开启上拉加载功能
+            mBaseRefresh.setEnableOverScrollBounce(true); // 设置是否启用越界回弹
             mBaseRefresh.setEnableFooterFollowWhenNoMoreData(true);//是否在全部加载结束之后Footer跟随内容1.0.4
-            mBaseRefresh.setEnableLoadMoreWhenContentNotFull(true);
+            mBaseRefresh.setEnableAutoLoadMore(true);//是否启用列表惯性滑动到底部时自动加载更多
+            mBaseRefresh.setEnableScrollContentWhenLoaded(true);//是否在加载完成时滚动列表显示新的内容
+
         }
     }
 
@@ -43,6 +58,9 @@ public abstract class CommonBaseRefreshListFragment<T> extends CommonBaseRefresh
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
         CommonConstant.DEFAULT_PAGE = 1;
+        // 刷新的时候清空集合数据
+        mList.clear();
+
         if (mBaseRefresh != null) {
             mBaseRefresh.resetNoMoreData();//恢复没有更多数据的原始状态 1.0.4（1.1.0删除）
         }
@@ -86,10 +104,16 @@ public abstract class CommonBaseRefreshListFragment<T> extends CommonBaseRefresh
         return mList;
     }
 
+    private BaseRecycleAdapter<T> mBaseAdapter;
+
+    protected void setAdapter(BaseRecycleAdapter<T> testAdapter) {
+        mBaseAdapter = testAdapter;
+    }
+
     /**
      * 把请求下来的数据设置到集合中去
      *
-     * @param list  获取数据的对象
+     * @param list 获取数据的对象
      */
     protected void setData(List<T> list) {
 
@@ -97,21 +121,28 @@ public abstract class CommonBaseRefreshListFragment<T> extends CommonBaseRefresh
             return;
         }
 
-        // 如果是第一页的话，就清空集合
-        if (CommonConstant.DEFAULT_PAGE == 1) {
-            mList.clear();
-        }
 
         if (list != null) {
             int size = list.size();
             mList.addAll(list);
+            mBaseAdapter.notifyDataSetChanged();
 
-            if (size < CommonConstant.DEFAULT_LIMIT) {
-                mBaseRefresh.finishLoadMoreWithNoMoreData();//设置之后，将不会再触发加载事件
-            } else {
+//            if (size < CommonConstant.DEFAULT_LIMIT) {
+
+//            if (size <= 0) {
+//                mBaseRefresh.finishLoadMoreWithNoMoreData();//设置之后，将不会再触发加载事件
+//            } else {
+//            }
+
+            LogUtil.e("page:" + CommonConstant.DEFAULT_PAGE + "--->size:" + size);
+
+            if (size == CommonConstant.DEFAULT_LIMIT) {
                 mBaseRefresh.finishLoadMore();
+            } else if (size < CommonConstant.DEFAULT_LIMIT) {
+                mBaseRefresh.finishLoadMoreWithNoMoreData();//设置之后，将不会再触发加载事件
             }
         }
     }
+
 
 }

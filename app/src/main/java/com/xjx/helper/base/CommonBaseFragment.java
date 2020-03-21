@@ -127,6 +127,7 @@ public abstract class CommonBaseFragment extends Fragment implements View.OnClic
      * 请求和刷新网络数据
      */
     protected void onRequestData() {
+
     }
 
     @Override

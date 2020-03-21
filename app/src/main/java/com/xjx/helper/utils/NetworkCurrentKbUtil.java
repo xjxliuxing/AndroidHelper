@@ -14,6 +14,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
+/**
+ * 网速监听的工具类
+ */
 public class NetworkCurrentKbUtil {
 
     private Context context;
@@ -133,6 +136,9 @@ public class NetworkCurrentKbUtil {
 
     }
 
+    /**
+     * 清空对象
+     */
     public void clear() {
         remove();
         isPerform = false;

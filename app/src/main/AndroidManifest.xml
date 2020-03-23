@@ -20,7 +20,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="q">
-        <activity android:name=".ui.home.activity.tod.NetWorkCurrentKbActivity"></activity>
+
+        <activity android:name=".ui.home.activity.tod.CoortorLayoutActivity" />
+        <activity android:name=".ui.home.activity.tod.NetWorkCurrentKbActivity" />
         <activity android:name=".ui.home.activity.tod.GridLayoutLayout2Activity" />
         <activity android:name=".ui.home.activity.tod.Patch9Activity" />
         <activity android:name=".ui.home.activity.tod.DrawableTextViewActivity" />

@@ -74,6 +74,11 @@
             style="@style/style_todo_item"
             android:text="协调布局" />
 
+        <TextView
+            android:id="@+id/tv_14"
+            style="@style/style_todo_item"
+            android:text="自定义View" />
+
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

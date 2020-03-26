@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/sl_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_head"
+            android:background="@color/black1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/rl_e_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/white_3"
+                android:paddingRight="@dimen/dp_16"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0">
+
+                <TextView
+                    android:id="@+id/tv_close"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/dp_16"
+                    android:paddingTop="@dimen/dp_12"
+                    android:paddingBottom="@dimen/dp_12"
+                    android:text="取消"
+                    android:textColor="@color/gray_11"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_centerVertical="true"
+                    android:text="添加定时"
+                    android:textColor="@color/black_4"
+                    android:textSize="17sp" />
+
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/tv_e_start_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_16"
+                android:layout_marginTop="@dimen/dp_13"
+                android:text="开始时间"
+                android:textColor="@color/black_3"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rl_e_title"
+                app:layout_constraintVertical_bias="0" />
+
+
+            <LinearLayout
+                android:id="@+id/ll_start_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/dp_5"
+                android:paddingRight="@dimen/dp_16"
+                android:paddingBottom="@dimen/dp_5"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_e_start_time"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_e_start_time"
+                app:layout_constraintVertical_bias="0.5">
+
+
+                <TextView
+                    android:id="@+id/tv_start_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:layout_marginRight="@dimen/dp_12"
+                    android:hint="请选择开始时间"
+                    android:textColor="@color/black_4"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/iv_right"
+                    android:layout_width="@dimen/dp_7"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_bind_car_control_selector_time_right" />
+            </LinearLayout>
+
+
+            <View
+                android:id="@+id/v_line1"
+                android:layout_width="0dp"
+                android:layout_height="1px"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@color/white_6"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintLeft_toLeftOf="@+id/tv_e_start_time"
+                app:layout_constraintRight_toRightOf="@+id/ll_start_time"
+                app:layout_constraintTop_toBottomOf="@+id/tv_e_start_time"
+                app:layout_constraintVertical_bias="0" />
+
+
+            <TextView
+                android:id="@+id/tv_e_end_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_16"
+                android:layout_marginTop="@dimen/dp_12"
+                android:text="结束时间"
+                android:textColor="@color/black_3"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/v_line1"
+                app:layout_constraintVertical_bias="0" />
+
+
+            <LinearLayout
+                android:id="@+id/ll_end_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/dp_5"
+                android:paddingRight="@dimen/dp_16"
+                android:paddingBottom="@dimen/dp_5"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_e_end_time"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_e_end_time"
+                app:layout_constraintVertical_bias="0.5">
+
+
+                <TextView
+                    android:id="@+id/tv_end_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:layout_marginRight="@dimen/dp_12"
+                    android:hint="请选择结束时间"
+                    android:textColor="@color/black_4"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:layout_width="@dimen/dp_7"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_bind_car_control_selector_time_right" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/v_line2"
+                android:layout_width="0dp"
+                android:layout_height="1px"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@color/white_6"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintLeft_toLeftOf="@+id/tv_e_start_time"
+                app:layout_constraintRight_toRightOf="@+id/ll_start_time"
+                app:layout_constraintTop_toBottomOf="@+id/ll_end_time"
+                app:layout_constraintVertical_bias="0" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_47"
+                android:layout_marginBottom="@dimen/dp_50"
+                android:background="@drawable/shape_round_22_black_7"
+                android:paddingLeft="@dimen/dp_40"
+                android:paddingTop="@dimen/dp_10"
+                android:paddingRight="@dimen/dp_40"
+                android:paddingBottom="@dimen/dp_10"
+                android:text="保存"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/v_line2"
+                app:layout_constraintVertical_bias="0" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_foot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cl_head"
+            android:background="@color/read1"
+            android:visibility="visible">
+
+            <Button
+                android:id="@+id/btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/dp_50"
+                android:layout_marginBottom="@dimen/dp_50"
+                android:text="测试" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</androidx.core.widget.NestedScrollView>

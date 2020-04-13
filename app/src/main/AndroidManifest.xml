@@ -20,7 +20,8 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="q">
-        <activity android:name=".ui.home.activity.tod.DialogActivity"></activity>
+        <activity android:name=".ui.home.activity.tod.customview.CustomHeadVipActivity"></activity>
+        <activity android:name=".ui.home.activity.tod.DialogActivity" />
         <activity android:name=".ui.home.activity.tod.CustomViewActivity" />
         <activity android:name=".ui.home.activity.tod.CoortorLayoutActivity" />
         <activity android:name=".ui.home.activity.tod.NetWorkCurrentKbActivity" />

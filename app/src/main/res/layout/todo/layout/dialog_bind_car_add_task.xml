@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/sl_content"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/sl_content"
     android:background="@color/white"
     android:orientation="vertical">
 
@@ -15,7 +15,6 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_head"
-            android:background="@color/black1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -214,7 +213,7 @@
             android:id="@+id/rl_foot"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/cl_head"
+            android:layout_marginTop="-10dp"
             android:background="@color/read1"
             android:visibility="visible">
 
@@ -232,4 +231,4 @@
     </LinearLayout>
 
 
-</androidx.core.widget.NestedScrollView>
+</FrameLayout>

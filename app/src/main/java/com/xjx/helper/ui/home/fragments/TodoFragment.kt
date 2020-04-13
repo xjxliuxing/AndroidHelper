@@ -5,6 +5,7 @@ import android.view.View
 import com.xjx.helper.R
 import com.xjx.helper.base.CommonBaseFragment
 import com.xjx.helper.ui.home.activity.tod.*
+import com.xjx.helper.ui.home.activity.tod.customview.CustomHeadVipActivity
 import kotlinx.android.synthetic.main.fragment_todo.*
 
 
@@ -34,6 +35,7 @@ class TodoFragment : CommonBaseFragment() {
         tv_13.setOnClickListener(this)
         tv_14.setOnClickListener(this)
         tv_15.setOnClickListener(this)
+        tv_16.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -87,6 +89,9 @@ class TodoFragment : CommonBaseFragment() {
             }
             R.id.tv_15 -> {
                 intent.setClass(mContext, DialogActivity::class.java)
+            }
+            R.id.tv_16 -> {
+                intent.setClass(mContext, CustomHeadVipActivity::class.java)
             }
         }
         mContext.startActivity(intent)

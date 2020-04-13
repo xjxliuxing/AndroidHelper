@@ -84,6 +84,11 @@
             style="@style/style_todo_item"
             android:text="Dialog上下移动" />
 
+        <TextView
+            android:id="@+id/tv_16"
+            style="@style/style_todo_item"
+            android:text="自定义Vip的头部" />
+
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

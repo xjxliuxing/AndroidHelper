@@ -8,6 +8,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.xjx.helper.utils.ConvertUtil;
 import com.xjx.helper.utils.LogUtil;
 
 public class CustomVipHead extends ViewGroup {
@@ -21,6 +22,8 @@ public class CustomVipHead extends ViewGroup {
     private int mVipWidth;
     private int mHeadHeight;
     private int mVipHeight;
+    private int value;
+    private int round;
 
     public CustomVipHead(Context context) {
         super(context);
@@ -51,64 +54,70 @@ public class CustomVipHead extends ViewGroup {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-//        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+//
+//        // 他是用于将所有的子 View 进行测量，这会触发每个子 View 的 onMeasure 函数
+//        measureChildren(widthMeasureSpec, heightMeasureSpec);
+//
+//        measureChild(mHead, widthMeasureSpec, heightMeasureSpec);
+//
+//        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+//        int width = MeasureSpec.getSize(widthMeasureSpec);
+//        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+//        int height = MeasureSpec.getSize(heightMeasureSpec);
+//
+//        // viewGrounp的宽和高都是warp自动适应的模式
+//        if ((widthMode == MeasureSpec.AT_MOST) && (heightMode == MeasureSpec.AT_MOST)) {
+//            // 获取最大的宽度和最大的高度
+//            int groupWidth = getMaxWidth();
+//            int groupHeight = getTotalHeight();
+//
+//            // 设置之viewGrounp的宽度和高度
+//            setMeasuredDimension(groupWidth, groupHeight);
+//
+//        } else if (widthMode == MeasureSpec.AT_MOST) {
+//            // 当viewGrounp的的宽度为warp的模式，宽度为最大值得宽度，高度为。。。
+//            setMeasuredDimension(getMaxWidth(), height);
+//
+//        } else if (heightMode == MeasureSpec.AT_MOST) {
+//            setMeasuredDimension(width, getTotalHeight());
+//
+//        }
 
-        //制定测量规则 参数表示size + mode
-//        int width = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(widthMeasureSpec), View.MeasureSpec.getMode(widthMeasureSpec));
-//        int height = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(heightMeasureSpec), View.MeasureSpec.getMode(heightMeasureSpec));
+        // 让子view都去测量一遍自己的onMeasure方法
+//        measureChildren(widthMeasureSpec, heightMeasureSpec);
 
-        int width = View.MeasureSpec.makeMeasureSpec(0, MeasureSpec.EXACTLY);
-        int height = View.MeasureSpec.makeMeasureSpec(0, MeasureSpec.AT_MOST);
+        measureChild(mHead, widthMeasureSpec, heightMeasureSpec);
 
-        //调用measure方法之后就可以获取宽高
-        mHead.measure(width, height);
 
-        mHeadWidth = mHead.getMeasuredWidth(); // 获取宽度
-        mHeadHeight = mHead.getMeasuredHeight();// 获取高度
-        LogUtil.e("width:" + mHeadWidth + "--->height:" + mHeadHeight);
+        mHeadWidth = mHead.getMeasuredWidth();
+        mHeadHeight = mHead.getMeasuredHeight();
 
+        LogUtil.e("head--->width:" + mHeadWidth + "--->height:" + mHeadHeight);
+
+        measureChild(mVip, widthMeasureSpec, heightMeasureSpec);
         mVipWidth = mVip.getMeasuredWidth();
         mVipHeight = mVip.getMeasuredHeight();
 
-        int widths = getViewSize(0, widthMeasureSpec);
-        int heights = getViewSize(0, heightMeasureSpec);
-        LogUtil.e("width:" + widths + "--->height:" + heights);
+        // vip宽度的一半
+        value = mVipWidth / 2;
 
-        setMeasuredDimension(widths, heights);
+        float v = ConvertUtil.toDp(0.5f);
+        round = Math.round(v);
+
+        // 设置viewGrounp的大小
+        setMeasuredDimension(mHeadWidth + value, mHeadHeight + round);
     }
-
-
-    private int getViewSize(int defaultSize, int measureSpec) {
-        int viewSize = defaultSize;
-        //获取测量模式
-        int mode = MeasureSpec.getMode(measureSpec);
-        //获取大小
-        int size = MeasureSpec.getSize(measureSpec);
-        switch (mode) {
-            case MeasureSpec.UNSPECIFIED: //如果没有指定大小，就设置为默认大小
-                viewSize = defaultSize;
-                break;
-            case MeasureSpec.AT_MOST: //如果测量模式是最大取值为size
-                //我们将大小取最大值,你也可以取其他值
-                viewSize = size;
-                break;
-            case MeasureSpec.EXACTLY: //如果是固定的大小，那就不要去改变它
-                viewSize = size;
-                break;
-        }
-        return viewSize;
-    }
-
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
+
         mHead.layout(0, 0, mHeadWidth, mHeadHeight);
-//        mHead.layout(0, 0, 60, 60);
+
         int value = mVipWidth / 2;
         int left = mHeadWidth - value;
 
-//        mVip.layout(left, mHeadHeight - mVipHeight, mVipWidth + value, mHeadHeight);
-        invalidate();
+        mVip.layout(left, mHeadHeight - mVipHeight - round, mHeadWidth + value, mHeadHeight + round);
     }
 
     private void initView(Context context, AttributeSet attrs) {
@@ -116,7 +125,6 @@ public class CustomVipHead extends ViewGroup {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);//设置画笔为无锯齿  
         mPaint.setColor(Color.BLACK);//设置画笔颜色  
-//canvas.drawColor(Color.WHITE);                  //白色背景  
         mPaint.setStrokeWidth(3.0f);//线宽  
         mPaint.setStyle(Paint.Style.STROKE);//空心效果  
     }
@@ -125,8 +133,6 @@ public class CustomVipHead extends ViewGroup {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
-//        canvas.drawCircle(550, 900, 100, mPaint);
 
     }
 }

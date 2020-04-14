@@ -4,42 +4,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/transparent"
     tools:context="com.xjx.helper.ui.home.activity.tod.CoortorLayoutActivity">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/green_1"
+        android:gravity="center"
+        android:text="我是固定不动的item" />
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:background="@color/transparent"
         android:orientation="vertical">
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/toolbarLayout"
+        <LinearLayout
+            android:id="@+id/fl_header_parallax"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed|snap"
+            android:layout_height="300dp"
+            android:minHeight="@dimen/dp_50"
+            android:orientation="vertical"
+            android:scrollbars="none"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+            <!--                app:layout_collapseMode="parallax"-->
 
-            >
-            <!--            app:layout_scrollFlags="scroll|snap"-->
-
-            <LinearLayout
-                android:id="@+id/fl_header_parallax"
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="我是滑动的item"
+                android:textColor="@color/white" />
+        </LinearLayout>
 
-                android:orientation="vertical">
-                <!--                app:layout_collapseMode="parallax"-->
+
+        <!--        <com.google.android.material.appbar.CollapsingToolbarLayout-->
+        <!--            android:id="@+id/toolbarLayout"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed|snap"-->
+
+        <!--            >-->
+        <!--            &lt;!&ndash;            app:layout_scrollFlags="scroll|snap"&ndash;&gt;-->
+
+        <!--            <LinearLayout-->
+        <!--                android:id="@+id/fl_header_parallax"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="300dp"-->
+
+        <!--                android:orientation="vertical">-->
+        <!--                &lt;!&ndash;                app:layout_collapseMode="parallax"&ndash;&gt;-->
 
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="布局头"
-                    android:textColor="@color/white" />
+        <!--                <TextView-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="match_parent"-->
+        <!--                    android:gravity="center"-->
+        <!--                    android:text="布局头"-->
+        <!--                    android:textColor="@color/white" />-->
 
-            </LinearLayout>
+        <!--            </LinearLayout>-->
 
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
+        <!--        </com.google.android.material.appbar.CollapsingToolbarLayout>-->
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -47,8 +75,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-
-        >
+        app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -63,6 +90,8 @@
                 android:text="Content数据"
                 android:textColor="@color/white" />
         </RelativeLayout>
+
+
     </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

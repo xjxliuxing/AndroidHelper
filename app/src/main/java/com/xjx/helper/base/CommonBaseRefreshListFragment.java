@@ -6,29 +6,45 @@ import androidx.annotation.NonNull;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
-import com.xjx.helper.global.CommonConstant;
-import com.xjx.helper.utils.LogUtil;
+import com.xjx.helper.http.client.ApiException;
+import com.xjx.helper.http.client.BaseResponse;
+import com.xjx.helper.http.client.BaseResponseCallBack;
+import com.xjx.helper.http.client.Page;
+import com.xjx.helper.interfaces.OnHttpResultListener;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import retrofit2.Call;
+
 /**
  * 带上拉加载下拉刷新的fragment
  */
-public abstract class CommonBaseRefreshListFragment<T> extends CommonBaseRefreshFragment implements OnLoadMoreListener {
+public abstract class CommonBaseRefreshListFragment<T> extends CommonBaseRefreshFragment implements OnLoadMoreListener, OnHttpResultListener {
+
+    private final String TAG = "BaseRefreshList";
 
     /**
      * 数据列表的对象
      */
     private List<T> mList = new ArrayList<>();
 
+    protected int mPageSize = 10;// 每页的数量
+    protected int mPage = 0;//页数
+
     @Override
     protected void initView(View rootView) {
         super.initView(rootView);
 
-        // 重置page对象
-        CommonConstant.DEFAULT_PAGE = 1;
+    }
+
+    @Override
+    protected void initData() {
+        super.initData();
+
+        // 默认加载数据
+        getHttpResult();
     }
 
     @Override
@@ -38,6 +54,7 @@ public abstract class CommonBaseRefreshListFragment<T> extends CommonBaseRefresh
         if (mBaseRefresh != null) {
             // 默认能刷新
             mBaseRefresh.setEnableLoadMore(true);
+            mBaseRefresh.setEnableRefresh(true);
             // 刷新的操作
             mBaseRefresh.setOnLoadMoreListener(this);
             mBaseRefresh.setEnableLoadMoreWhenContentNotFull(true);//是否在列表不满一页时候开启上拉加载功能
@@ -45,7 +62,6 @@ public abstract class CommonBaseRefreshListFragment<T> extends CommonBaseRefresh
             mBaseRefresh.setEnableFooterFollowWhenNoMoreData(true);//是否在全部加载结束之后Footer跟随内容1.0.4
             mBaseRefresh.setEnableAutoLoadMore(true);//是否启用列表惯性滑动到底部时自动加载更多
             mBaseRefresh.setEnableScrollContentWhenLoaded(true);//是否在加载完成时滚动列表显示新的内容
-
         }
     }
 
@@ -57,14 +73,16 @@ public abstract class CommonBaseRefreshListFragment<T> extends CommonBaseRefresh
      */
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-        CommonConstant.DEFAULT_PAGE = 1;
+        super.onRefresh(refreshLayout);
+        mPage = 0;
         // 刷新的时候清空集合数据
         mList.clear();
+
+        getHttpResult();
 
         if (mBaseRefresh != null) {
             mBaseRefresh.resetNoMoreData();//恢复没有更多数据的原始状态 1.0.4（1.1.0删除）
         }
-        super.onRefresh(refreshLayout);
     }
 
     /**
@@ -75,8 +93,8 @@ public abstract class CommonBaseRefreshListFragment<T> extends CommonBaseRefresh
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
         // 每次网络递增加1
-        CommonConstant.DEFAULT_PAGE++;
-        onRequestData();
+        ++mPage;
+        getHttpResult();
     }
 
 
@@ -88,61 +106,64 @@ public abstract class CommonBaseRefreshListFragment<T> extends CommonBaseRefresh
      */
     public Map<String, Object> setPageBody(Map<String, Object> jsonObject) {
         if (jsonObject != null) {
-            jsonObject.put("page", CommonConstant.DEFAULT_PAGE);
-            jsonObject.put("limit", CommonConstant.DEFAULT_LIMIT);
+            jsonObject.put("page", mPage);
+            jsonObject.put("limit", mPageSize);
             return jsonObject;
         } else {
             return null;
         }
     }
 
-
-    /**
-     * 获取数据的集合
-     */
-    protected List<T> getData() {
-        return mList;
-    }
-
     private BaseRecycleAdapter<T> mBaseAdapter;
 
     protected void setAdapter(BaseRecycleAdapter<T> testAdapter) {
         mBaseAdapter = testAdapter;
+        mBaseAdapter.setList(mList);
     }
+
+    public abstract Call<BaseResponse<Page<T>>> getHttp();
+
 
     /**
-     * 把请求下来的数据设置到集合中去
-     *
-     * @param list 获取数据的对象
+     * 获取网络数据
      */
-    protected void setData(List<T> list) {
+    public void getHttpResult() {
 
-        if (mBaseRefresh == null) {
-            return;
-        }
+        getHttp().enqueue(new BaseResponseCallBack<BaseResponse<Page<T>>>() {
+            @Override
+            public void onSuccess(BaseResponse<Page<T>> response) {
+                // 改变页面状态
+                boolean success = switchPlaceHolderSuccess(response);
+                if (success) {
+                    Page<T> returnDataList = response.getReturnDataList();
+                    if (returnDataList != null) {
+                        List<T> data = returnDataList.getData();
+                        if (data != null && data.size() > 0) {
+                            onHttpSuccess(data);
+
+                            // 添加数据，刷新adapter
+                            mList.addAll(data);
+                            if (mBaseAdapter != null) {
+                                mBaseAdapter.notifyDataSetChanged();
+                            }
 
 
-        if (list != null) {
-            int size = list.size();
-            mList.addAll(list);
-            mBaseAdapter.notifyDataSetChanged();
-
-//            if (size < CommonConstant.DEFAULT_LIMIT) {
-
-//            if (size <= 0) {
-//                mBaseRefresh.finishLoadMoreWithNoMoreData();//设置之后，将不会再触发加载事件
-//            } else {
-//            }
-
-            LogUtil.e("page:" + CommonConstant.DEFAULT_PAGE + "--->size:" + size);
-
-            if (size == CommonConstant.DEFAULT_LIMIT) {
-                mBaseRefresh.finishLoadMore();
-            } else if (size < CommonConstant.DEFAULT_LIMIT) {
-                mBaseRefresh.finishLoadMoreWithNoMoreData();//设置之后，将不会再触发加载事件
+                            if (data.size() < mPageSize) {
+                                mBaseRefresh.finishLoadMoreWithNoMoreData();//设置之后，将不会再触发加载事件
+                            } else {
+                                mBaseRefresh.finishLoadMore();
+                            }
+                        }
+                    }
+                }
             }
-        }
-    }
 
+            @Override
+            public void onFailured(ApiException t) {
+                switchPlaceHolderFailure(t);
+                onHttpFailure(t);
+            }
+        });
+    }
 
 }

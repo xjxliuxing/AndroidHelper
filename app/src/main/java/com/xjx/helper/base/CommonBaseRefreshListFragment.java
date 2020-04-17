@@ -10,7 +10,7 @@ import com.xjx.helper.http.client.ApiException;
 import com.xjx.helper.http.client.BaseResponse;
 import com.xjx.helper.http.client.BaseResponseCallBack;
 import com.xjx.helper.http.client.Page;
-import com.xjx.helper.interfaces.OnHttpResultListener;
+import com.xjx.helper.interfaces.OnHttpResultListListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,8 @@ import retrofit2.Call;
 /**
  * 带上拉加载下拉刷新的fragment
  */
-public abstract class CommonBaseRefreshListFragment<T> extends CommonBaseRefreshFragment implements OnLoadMoreListener, OnHttpResultListener {
+public abstract class CommonBaseRefreshListFragment<T> extends CommonBaseRefreshFragment implements
+        OnLoadMoreListener, OnHttpResultListListener {
 
     private final String TAG = "BaseRefreshList";
 
@@ -123,6 +124,14 @@ public abstract class CommonBaseRefreshListFragment<T> extends CommonBaseRefresh
 
     public abstract Call<BaseResponse<Page<T>>> getHttp();
 
+    /**
+     * 手动设置page的size
+     *
+     * @param pageSize 指定的size
+     */
+    protected void setPageSize(int pageSize) {
+        this.mPageSize = pageSize;
+    }
 
     /**
      * 获取网络数据
@@ -133,13 +142,13 @@ public abstract class CommonBaseRefreshListFragment<T> extends CommonBaseRefresh
             @Override
             public void onSuccess(BaseResponse<Page<T>> response) {
                 // 改变页面状态
-                boolean success = switchPlaceHolderSuccess(response);
+                boolean success = switchListPlaceHolderSuccess(response);
                 if (success) {
                     Page<T> returnDataList = response.getReturnDataList();
                     if (returnDataList != null) {
                         List<T> data = returnDataList.getData();
                         if (data != null && data.size() > 0) {
-                            onHttpSuccess(data);
+                            onHttpListSuccess(data);
 
                             // 添加数据，刷新adapter
                             mList.addAll(data);
@@ -161,7 +170,7 @@ public abstract class CommonBaseRefreshListFragment<T> extends CommonBaseRefresh
             @Override
             public void onFailured(ApiException t) {
                 switchPlaceHolderFailure(t);
-                onHttpFailure(t);
+                onHttpListFailure(t);
             }
         });
     }

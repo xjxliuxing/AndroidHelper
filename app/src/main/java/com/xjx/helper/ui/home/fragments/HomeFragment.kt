@@ -21,6 +21,13 @@ import retrofit2.Call
  * 首页
  */
 class HomeFragment : CommonBaseRefreshListFragment<StoreActivityBean>() {
+    override fun onHttpListSuccess(list: MutableList<Any?>?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onHttpListFailure(e: ApiException?) {
+        TODO("Not yet implemented")
+    }
 
     override fun getRefreshLayout(): Int {
         return R.layout.fragment_home
@@ -37,15 +44,6 @@ class HomeFragment : CommonBaseRefreshListFragment<StoreActivityBean>() {
 
         setAdapter(testAdapter)
     }
-
-    override fun onHttpSuccess(list: MutableList<Any?>?) {
-
-    }
-
-    override fun onHttpFailure(e: ApiException?) {
-
-    }
-
 
     override fun onClick(v: View?) {
         super.onClick(v)

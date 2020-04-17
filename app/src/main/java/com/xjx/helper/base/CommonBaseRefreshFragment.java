@@ -12,6 +12,7 @@ import com.xjx.helper.R;
 import com.xjx.helper.enums.PlaceholderStatus;
 import com.xjx.helper.http.client.ApiException;
 import com.xjx.helper.http.client.BaseResponse;
+import com.xjx.helper.http.client.Page;
 import com.xjx.helper.utils.LogUtil;
 import com.xjx.helper.utils.refresh.MyRefreshFooter;
 import com.xjx.helper.utils.refresh.MyRrfreshHeader;
@@ -108,27 +109,25 @@ public abstract class CommonBaseRefreshFragment extends CommonBaseFragment imple
      *
      * @param response 成功的返回对象
      */
-    public void switchPlaceHolderSuccess(BaseResponse response) {
+    public boolean switchPlaceHolderSuccess(BaseResponse response) {
         if (response == null) {
-            LoadingStatus(PlaceholderStatus.EMPTY, "");
+            LoadingStatus(PlaceholderStatus.EMPTY, "数据为空");
         } else {
             Object dataList = response.getReturnDataList();
-            if (dataList == null) {
-                LoadingStatus(PlaceholderStatus.EMPTY, "");
-            } else {
-                if (dataList instanceof List) {
-                    List list = (List) dataList;
-                    int size = list.size();
-                    if (size > 0) {
-                        LoadingStatus(PlaceholderStatus.SUCCESS, "");
-                    } else {
-                        LoadingStatus(PlaceholderStatus.EMPTY, "");
-                    }
-                } else {
+            if (dataList instanceof Page) {
+                Page page = (Page) dataList;
+                List data = page.getData();
+                if (data.size() > 0) {
                     LoadingStatus(PlaceholderStatus.SUCCESS, "");
+                    return true;
+                } else {
+                    LoadingStatus(PlaceholderStatus.EMPTY, "集合长度为空");
                 }
+            } else {
+                LoadingStatus(PlaceholderStatus.EMPTY, "数据对象不是Page类型");
             }
         }
+        return false;
     }
 
     /**

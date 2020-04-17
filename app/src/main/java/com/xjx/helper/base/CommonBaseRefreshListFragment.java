@@ -142,7 +142,7 @@ public abstract class CommonBaseRefreshListFragment<T> extends CommonBaseRefresh
             @Override
             public void onSuccess(BaseResponse<Page<T>> response) {
                 // 改变页面状态
-                boolean success = switchListPlaceHolderSuccess(response);
+                boolean success = switchPlaceHolderSuccess(response);
                 if (success) {
                     Page<T> returnDataList = response.getReturnDataList();
                     if (returnDataList != null) {

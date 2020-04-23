@@ -6,6 +6,7 @@ import com.xjx.helper.R
 import com.xjx.helper.base.CommonBaseFragment
 import com.xjx.helper.ui.home.activity.tod.*
 import com.xjx.helper.ui.home.activity.tod.customview.CustomHeadVipActivity
+import com.xjx.helper.ui.home.activity.tod.customview.CustomViewActivity
 import kotlinx.android.synthetic.main.fragment_todo.*
 
 

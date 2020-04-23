@@ -21,12 +21,13 @@ import retrofit2.Call
  * 首页
  */
 class HomeFragment : CommonBaseRefreshListFragment<StoreActivityBean>() {
+
     override fun onHttpListSuccess(list: MutableList<Any?>?) {
-        TODO("Not yet implemented")
+
     }
 
     override fun onHttpListFailure(e: ApiException?) {
-        TODO("Not yet implemented")
+    
     }
 
     override fun getRefreshLayout(): Int {

@@ -12,4 +12,15 @@
         <attr name="drawable_text_height" format="float" />
     </declare-styleable>
 
+
+    <declare-styleable name="TextViewDrawable">
+        <attr name="drawable_left" format="reference"/>
+        <attr name="drawable_right" format="reference"/>
+        <attr name="drawable_top" format="reference"/>
+        <attr name="drawable_bottom" format="reference"/>
+
+
+    </declare-styleable>
+
+
 </resources>

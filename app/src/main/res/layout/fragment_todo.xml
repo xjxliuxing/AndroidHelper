@@ -93,6 +93,10 @@
             android:id="@+id/tv_17"
             style="@style/style_todo_item"
             android:text="Activity的测试页面" />
+        <TextView
+            android:id="@+id/tv_18"
+            style="@style/style_todo_item"
+            android:text="Fragment的测试页面" />
 
     </LinearLayout>
 

@@ -74,38 +74,44 @@ public class LiveDataTestActivity extends CommonBaseTitleActivity {
                 .setAdapter(liveDataAdapter);
 
 
-        liveDataAdapter.setList(mList);
+
+
+        mList2.clear();
+        for (int i = 0; i < mList.size(); i++) {
+            LiveBean liveBean = mList.get(i);
+            if (liveBean.getTag() == 2) {
+                mList2.add(liveBean);
+            }
+        }
+
+
+
+        mList3.clear();
+        for (int i = 0; i < mList.size(); i++) {
+            LiveBean liveBean = mList.get(i);
+            if (liveBean.getTag() == 3) {
+                mList3.add(liveBean);
+            }
+        }
+
 
 
         findViewById(R.id.tv_test1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 liveDataAdapter.setList(mList);
+
             }
         });
         findViewById(R.id.tv_test2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mList2.clear();
-                for (int i = 0; i < mList.size(); i++) {
-                    LiveBean liveBean = mList.get(i);
-                    if (liveBean.getTag() == 2) {
-                        mList2.add(liveBean);
-                    }
-                }
                 liveDataAdapter.setList(mList2);
             }
         });
         findViewById(R.id.tv_test3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mList3.clear();
-                for (int i = 0; i < mList.size(); i++) {
-                    LiveBean liveBean = mList.get(i);
-                    if (liveBean.getTag() == 3) {
-                        mList3.add(liveBean);
-                    }
-                }
                 liveDataAdapter.setList(mList3);
             }
         });

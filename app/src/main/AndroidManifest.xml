@@ -20,7 +20,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="q">
-        <activity android:name=".ui.home.activity.tod.mvp.LiveDataTestActivity"></activity>
+        <activity android:name=".ui.home.activity.tod.customview.ViewPagerGirdViewActivity"></activity>
+        <activity android:name=".ui.home.activity.tod.customview.CustomRecycleViewActivity" />
+        <activity android:name=".ui.home.activity.tod.mvp.LiveDataTestActivity" />
         <activity android:name=".ui.home.activity.tod.FragmentTestActivity" />
         <activity android:name=".ui.home.activity.tod.customview.DrawableTextViewActivity" />
         <activity android:name=".ui.home.activity.tod.customview.CustomViewActivity" />

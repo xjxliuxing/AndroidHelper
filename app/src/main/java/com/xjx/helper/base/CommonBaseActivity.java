@@ -83,6 +83,22 @@ public abstract class CommonBaseActivity extends AppCompatActivity implements Vi
     protected void onRequestData() {
     }
 
+    /**
+     * 设置点击事件
+     *
+     * @param ids 点击事件的id
+     */
+    protected void setOnClick(int... ids) {
+        if (ids != null && ids.length > 0) {
+            for (int id : ids) {
+                View view = findViewById(id);
+                if (view != null) {
+                    view.setOnClickListener(this);
+                }
+            }
+        }
+    }
+
     @Override
     public void onClick(View v) {
     }

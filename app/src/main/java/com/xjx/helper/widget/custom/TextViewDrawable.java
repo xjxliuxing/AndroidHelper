@@ -55,7 +55,7 @@ public class TextViewDrawable extends View {
         // setMeasuredDimension:该方法用来设置View的宽高，在我们自定义View时也会经常用到。
         // getDefaultSize(int size, int measureSpec)：该方法用来获取View默认的宽高，结合源码来看。
 
-        // getSuggestedMinimumHeight //当View没有设置背景时，默认大小就是mMinWidth，这个值对应Android:minWidth属性，如果没有设置时默认为0.
+        // getSuggestedMinimumHeight //当View没有设置背景时，默认大小就是mMinWidth，；、‘【-=:minWidth属性，如果没有设置时默认为0.
         //如果有设置背景，则默认大小为mMinWidth和mBackground.getMinimumWidth()当中的较大值
 
         setMeasuredDimension(getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec),

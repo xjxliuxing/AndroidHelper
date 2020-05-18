@@ -24,7 +24,7 @@ public class CustomViewActivity extends CommonBaseTitleActivity {
         setTitleContent("自定义View的集合");
         SwitchLoadingStatus(PlaceholderStatus.NONE);
 
-        setOnClick(R.id.tv1, R.id.tv2, R.id.tv_3);
+        setOnClick(R.id.tv_1, R.id.tv_2, R.id.tv_3);
     }
 
     @Override

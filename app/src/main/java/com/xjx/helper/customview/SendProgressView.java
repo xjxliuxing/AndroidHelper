@@ -3,10 +3,13 @@ package com.xjx.helper.customview;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -30,12 +33,16 @@ public class SendProgressView extends View {
     private RectF rectF;
     private Paint paint1;
     private Paint paint2;
+    private Paint paint3;
     private DisplayMetrics displayMetrics;
     private Drawable drawable;
     private float strokeWidthValue;
     private long progress = 0;
     private int average; // 计算出平均值
     private int time;
+    private Bitmap bitmap;
+    private int intrinsicWidth;
+    private int intrinsicHeight;
 
     public SendProgressView(Context context) {
         super(context);
@@ -89,6 +96,9 @@ public class SendProgressView extends View {
         paint2.setStrokeCap(Paint.Cap.ROUND); // 设置圆角
         paint2.setAntiAlias(true);        // 防锯齿
 
+        paint3 = new Paint();
+        paint3.setAntiAlias(true);        // 防锯齿
+
         rectF = new RectF();
 
         array.recycle();
@@ -113,6 +123,34 @@ public class SendProgressView extends View {
         super.onDraw(canvas);
         OuterRing(canvas);
         innerRing(canvas);
+        drawPictures(canvas);
+    }
+
+    private void drawPictures(Canvas canvas) {
+        if (bitmap == null || bitmap.isRecycled()) {
+            bitmap = getBitmap();
+        }
+        int with2 = width - intrinsicWidth;
+        int height2 = height - intrinsicHeight;
+
+//        canvas.drawBitmap(bitmap, with2 / 2, height2 / 2, paint3);
+
+        Rect rect = new Rect((with2 / 2-50), (height2 / 2-50), ((with2 / 2) + 50), (height2 / 2 +50));
+        RectF rectF = new RectF((with2 / 2-50), (height2 / 2-50), ((with2 / 2) + 50), (height2 / 2 +50));
+
+        canvas.drawBitmap(bitmap,rect,rectF,paint3);
+    }
+
+    private Bitmap getBitmap() {
+        intrinsicWidth = drawable.getIntrinsicWidth();
+        intrinsicHeight = drawable.getIntrinsicHeight();
+
+        if (drawable instanceof BitmapDrawable) {
+            Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
+            return bitmap;
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -130,11 +168,17 @@ public class SendProgressView extends View {
         canvas.drawArc(rectF, -90, value, false, paint2);
     }
 
+    /**
+     * 设置当前的进度
+     */
     public void setProgress(Long progress) {
         this.progress = progress;
         invalidate();
     }
 
+    /**
+     * @return 获取设置的事件
+     */
     public long getTime() {
         return time;
     }

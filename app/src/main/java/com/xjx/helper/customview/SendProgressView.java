@@ -7,7 +7,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -133,12 +132,12 @@ public class SendProgressView extends View {
         int with2 = width - intrinsicWidth;
         int height2 = height - intrinsicHeight;
 
-//        canvas.drawBitmap(bitmap, with2 / 2, height2 / 2, paint3);
-
-        Rect rect = new Rect((with2 / 2-50), (height2 / 2-50), ((with2 / 2) + 50), (height2 / 2 +50));
-        RectF rectF = new RectF((with2 / 2-50), (height2 / 2-50), ((with2 / 2) + 50), (height2 / 2 +50));
-
-        canvas.drawBitmap(bitmap,rect,rectF,paint3);
+        canvas.drawBitmap(bitmap, with2 / 2, height2 / 2, paint3);
+//
+//        Rect rect = new Rect((with2 / 2-50), (height2 / 2-50), ((with2 / 2) + 50), (height2 / 2 +50));
+//        RectF rectF = new RectF((with2 / 2-50), (height2 / 2-50), ((with2 / 2) + 50), (height2 / 2 +50));
+//
+//        canvas.drawBitmap(bitmap,rect,rectF,paint3);
     }
 
     private Bitmap getBitmap() {

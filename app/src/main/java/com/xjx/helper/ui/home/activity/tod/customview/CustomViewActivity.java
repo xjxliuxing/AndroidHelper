@@ -24,7 +24,7 @@ public class CustomViewActivity extends CommonBaseTitleActivity {
         setTitleContent("自定义View的集合");
         SwitchLoadingStatus(PlaceholderStatus.NONE);
 
-        setOnClick(R.id.tv1, R.id.tv2, R.id.tv_3);
+        setOnClick(R.id.tv1, R.id.tv2, R.id.tv_3,R.id.tv_4);
     }
 
     @Override
@@ -42,6 +42,9 @@ public class CustomViewActivity extends CommonBaseTitleActivity {
                 break;
             case R.id.tv_3:// 自定义RecycleView布局
                 intent.setClass(mContext, ViewPagerGirdViewActivity.class);
+                break;
+            case R.id.tv_4:// 自定义RecycleView布局
+                intent.setClass(mContext, LoadProgressActivity.class);
                 break;
         }
 

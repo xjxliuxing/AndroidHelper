@@ -14,14 +14,21 @@
             android:id="@+id/tv_1"
             style="@style/style_todo_item"
             android:text="自定义DrawableTextView" />
+
         <TextView
             android:id="@+id/tv_2"
             style="@style/style_todo_item"
             android:text="自定义RecycleView布局" />
+
         <TextView
             android:id="@+id/tv_3"
             style="@style/style_todo_item"
             android:text="自定义横向九宫格" />
+
+        <TextView
+            android:id="@+id/tv_4"
+            style="@style/style_todo_item"
+            android:text="自定义进度条" />
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

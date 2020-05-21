@@ -12,15 +12,23 @@
         <attr name="drawable_text_height" format="float" />
     </declare-styleable>
 
-
     <declare-styleable name="TextViewDrawable">
-        <attr name="drawable_left" format="reference"/>
-        <attr name="drawable_right" format="reference"/>
-        <attr name="drawable_top" format="reference"/>
-        <attr name="drawable_bottom" format="reference"/>
-
+        <attr name="drawable_left" format="reference" />
+        <attr name="drawable_right" format="reference" />
+        <attr name="drawable_top" format="reference" />
+        <attr name="drawable_bottom" format="reference" />
 
     </declare-styleable>
 
+    <declare-styleable name="SendProgressView">
+        <attr name="drawable" format="reference" />
+        <attr name="stroke_Width" format="integer" />
+        <attr name="inner_layer_color" format="color" />
+        <attr name="inner_alpha" format="float" />
+        <attr name="outer_layer_color" format="color" />
+        <attr name="time" format="integer" /><!--多少秒走完整个布局-->
+
+
+    </declare-styleable>
 
 </resources>

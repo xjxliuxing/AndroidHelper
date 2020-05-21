@@ -51,7 +51,6 @@
 
     <color name="purple1">#FF00FF</color>
 
-
     <color name="gray_1">#85878B</color>
     <color name="gray_2">#A3A8AF</color>
     <color name="gray_3">#ff82868f</color>
@@ -76,6 +75,7 @@
     <color name="black_5">#171B21</color>
     <color name="black_6">#14171D</color>
     <color name="black_7">#313941</color>
+    <color name="black_13">#CC000000</color>
 
     <color name="white_1">#F9F9F9</color>
     <color name="white_2">#ECECEC</color>
@@ -90,6 +90,5 @@
     <color name="red_4">#B60004</color>
 
     <color name="green_1">#07E555</color>
-
 
 </resources>

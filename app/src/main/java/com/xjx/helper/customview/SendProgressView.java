@@ -171,8 +171,8 @@ public class SendProgressView extends View {
         // 下侧：上侧的位置 + bitmap的高度
         int bottom = top + drawableHeight;
 
-        canvas.drawBitmap(bitmap, null, new RectF(left, top, right, bottom), paint3);
-
+//        canvas.drawBitmap(bitmap, null, new RectF(left, top, right, bottom), paint3);
+        canvas.drawBitmap(bitmap,left,top,null);
     }
 
     /**

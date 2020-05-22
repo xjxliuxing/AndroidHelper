@@ -40,7 +40,7 @@ public class SendProgressView extends View {
     private DisplayMetrics displayMetrics;
     private Drawable drawable;
     private float strokeWidthValue;
-    private int progress = 0;
+    private float progress = 0f;
     private int average; // 计算出平均值
     private int time;
     private Bitmap bitmap;
@@ -226,14 +226,14 @@ public class SendProgressView extends View {
      * 设置内环
      */
     private void innerRing(Canvas canvas) {
-        long value = progress * average;
+        float value = progress * average;
         canvas.drawArc(rectF, -90, value, false, paint2);
     }
 
     /**
      * 设置当前的进度
      */
-    public void setProgress(int progress) {
+    public void setProgress(float progress) {
         this.progress = progress;
         invalidate();
     }
@@ -250,14 +250,14 @@ public class SendProgressView extends View {
      */
     public void startAnimation() {
         // 创建值动画，取值的区间为 从0秒到90秒
-        anim = ValueAnimator.ofInt(0, time);
+        anim = ValueAnimator.ofFloat(0f, (time));
         // 设置的时间为 90 秒
         anim.setDuration(time * 1000);
         // 匀速动画
         anim.setInterpolator(new LinearInterpolator());
         // 动画监听回调
         anim.addUpdateListener(animation -> {
-            int animatedValue = (int) animation.getAnimatedValue();
+            float animatedValue = (float) animation.getAnimatedValue();
             LogUtil.e("当前的进度为： " + animatedValue);
             if (animatedValue > time) {
                 cancelAnimation();

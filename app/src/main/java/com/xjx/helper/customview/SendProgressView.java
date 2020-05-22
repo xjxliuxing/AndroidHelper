@@ -1,5 +1,6 @@
 package com.xjx.helper.customview;
 
+import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -15,10 +16,12 @@ import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
 
 import androidx.annotation.Nullable;
 
 import com.xjx.helper.R;
+import com.xjx.helper.utils.LogUtil;
 
 /**
  * 圆形进度条的view
@@ -37,12 +40,13 @@ public class SendProgressView extends View {
     private DisplayMetrics displayMetrics;
     private Drawable drawable;
     private float strokeWidthValue;
-    private long progress = 0;
+    private int progress = 0;
     private int average; // 计算出平均值
     private int time;
     private Bitmap bitmap;
     private float drawableWidthValue;
     private float drawableHeightValue;
+    private ValueAnimator anim;
 
     public SendProgressView(Context context) {
         super(context);
@@ -199,13 +203,12 @@ public class SendProgressView extends View {
     }
 
     private Bitmap getBitmap() {
-
+        // todo  下次可以尝试这个方式 drawable.setBounds();
         if (drawable instanceof BitmapDrawable) {
             Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
 
             // 获取缩放的view
             Bitmap resizeBitmap = resizeImage(bitmap, (int) drawableWidthValue, (int) drawableHeightValue);
-
             return resizeBitmap;
         } else {
             return null;
@@ -230,7 +233,7 @@ public class SendProgressView extends View {
     /**
      * 设置当前的进度
      */
-    public void setProgress(Long progress) {
+    public void setProgress(int progress) {
         this.progress = progress;
         invalidate();
     }
@@ -240,6 +243,38 @@ public class SendProgressView extends View {
      */
     public long getTime() {
         return time;
+    }
+
+    /**
+     * 开始执行动画
+     */
+    public void startAnimation() {
+        // 创建值动画，取值的区间为 从0秒到90秒
+        anim = ValueAnimator.ofInt(0, time);
+        // 设置的时间为 90 秒
+        anim.setDuration(time * 1000);
+        // 匀速动画
+        anim.setInterpolator(new LinearInterpolator());
+        // 动画监听回调
+        anim.addUpdateListener(animation -> {
+            int animatedValue = (int) animation.getAnimatedValue();
+            LogUtil.e("当前的进度为： " + animatedValue);
+            if (animatedValue > time) {
+                cancelAnimation();
+                return;
+            }
+            setProgress(animatedValue);
+        });
+        anim.start();
+    }
+
+    /**
+     * 取消动画
+     */
+    public void cancelAnimation() {
+        if (anim != null) {
+            anim.cancel();
+        }
     }
 
 

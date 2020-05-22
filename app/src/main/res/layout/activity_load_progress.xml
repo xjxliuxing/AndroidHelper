@@ -8,12 +8,19 @@
     tools:context="com.xjx.helper.ui.home.activity.tod.customview.LoadProgressActivity">
 
     <Button
-        android:id="@+id/btn"
+        android:id="@+id/btn1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/dp_50"
         android:text="开始" />
+
+    <Button
+        android:id="@+id/btn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/dp_50"
+        android:text="结束" />
 
     <com.xjx.helper.customview.SendProgressView
         android:id="@+id/spv"

@@ -27,6 +27,8 @@
         <attr name="inner_alpha" format="float" />
         <attr name="outer_layer_color" format="color" />
         <attr name="time" format="integer" /><!--多少秒走完整个布局-->
+        <attr name="drawable_width" format="integer" />
+        <attr name="drawable_height" format="integer" />
 
 
     </declare-styleable>

@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
@@ -40,8 +41,8 @@ public class SendProgressView extends View {
     private int average; // 计算出平均值
     private int time;
     private Bitmap bitmap;
-    private int intrinsicWidth;
-    private int intrinsicHeight;
+    private float drawableWidthValue;
+    private float drawableHeightValue;
 
     public SendProgressView(Context context) {
         super(context);
@@ -70,11 +71,37 @@ public class SendProgressView extends View {
         time = array.getInteger(R.styleable.SendProgressView_time, 90);
         average = 360 / time;
 
+        // 指定view的宽度
+        int drawableWidth = array.getInteger(R.styleable.SendProgressView_drawable_width, 0);
+        // 指定view的高度
+        int drawableHeight = array.getInteger(R.styleable.SendProgressView_drawable_height, 0);
+
         if (displayMetrics == null) {
             displayMetrics = getResources().getDisplayMetrics();
         }
 
+        // 获取圆圈的宽度
         strokeWidthValue = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, strokeWidth, displayMetrics);
+        // 计算出view的精确宽度
+        if (drawableWidth > 0) {
+            drawableWidthValue = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, drawableWidth, displayMetrics);
+        } else {
+            if (drawable != null) {
+                drawableWidthValue = drawable.getIntrinsicWidth();
+            } else {
+                drawableWidthValue = 0;
+            }
+        }
+        // 计算出view的精确高度
+        if (drawableHeight > 0) {
+            drawableHeightValue = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, drawableHeight, displayMetrics);
+        } else {
+            if (drawable != null) {
+                drawableHeightValue = drawable.getIntrinsicHeight();
+            } else {
+                drawableHeightValue = 0;
+            }
+        }
 
         // 外层的画笔
         paint1 = new Paint();
@@ -129,24 +156,55 @@ public class SendProgressView extends View {
         if (bitmap == null || bitmap.isRecycled()) {
             bitmap = getBitmap();
         }
-        int with2 = width - intrinsicWidth;
-        int height2 = height - intrinsicHeight;
 
-        canvas.drawBitmap(bitmap, with2 / 2, height2 / 2, paint3);
-//
-//        Rect rect = new Rect((with2 / 2-50), (height2 / 2-50), ((with2 / 2) + 50), (height2 / 2 +50));
-//        RectF rectF = new RectF((with2 / 2-50), (height2 / 2-50), ((with2 / 2) + 50), (height2 / 2 +50));
-//
-//        canvas.drawBitmap(bitmap,rect,rectF,paint3);
+        // 获取bitmap的宽度
+        int drawableWidth = bitmap.getWidth();
+        // 获取bitmap的高度
+        int drawableHeight = bitmap.getHeight();
+
+        // 左侧：view的测量宽度 - bitmap的宽度  然后 /2
+        int left = (width - drawableWidth) / 2;
+        // 上侧：view的高度 - bitmap的高度 然后 /2
+        int top = (height - drawableHeight) / 2;
+        // 右侧：左侧的位置 + bitmap的宽度
+        int right = left + drawableWidth;
+        // 下侧：上侧的位置 + bitmap的高度
+        int bottom = top + drawableHeight;
+
+        canvas.drawBitmap(bitmap, null, new RectF(left, top, right, bottom), paint3);
+
+    }
+
+    /**
+     * 缩放bitmap大小
+     *
+     * @param bitmap 指定的bitmap
+     * @param width  指定的宽度
+     * @param height 指定的高度
+     * @return 重新缩放bitmap
+     */
+    public Bitmap resizeImage(Bitmap bitmap, int width, int height) {
+        int bmpWidth = bitmap.getWidth();
+        int bmpHeight = bitmap.getHeight();
+
+        float scaleWidth = ((float) width) / bmpWidth;
+        float scaleHeight = ((float) height) / bmpHeight;
+
+        Matrix matrix = new Matrix();
+        matrix.postScale(scaleWidth, scaleHeight);
+
+        return Bitmap.createBitmap(bitmap, 0, 0, bmpWidth, bmpHeight, matrix, true);
     }
 
     private Bitmap getBitmap() {
-        intrinsicWidth = drawable.getIntrinsicWidth();
-        intrinsicHeight = drawable.getIntrinsicHeight();
 
         if (drawable instanceof BitmapDrawable) {
             Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
-            return bitmap;
+
+            // 获取缩放的view
+            Bitmap resizeBitmap = resizeImage(bitmap, (int) drawableWidthValue, (int) drawableHeightValue);
+
+            return resizeBitmap;
         } else {
             return null;
         }

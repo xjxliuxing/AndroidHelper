@@ -30,7 +30,6 @@
         <attr name="drawable_width" format="integer" />
         <attr name="drawable_height" format="integer" />
 
-
     </declare-styleable>
 
 </resources>

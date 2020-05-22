@@ -156,23 +156,25 @@ public class SendProgressView extends View {
         if (bitmap == null || bitmap.isRecycled()) {
             bitmap = getBitmap();
         }
+        if (bitmap != null) {
 
-        // 获取bitmap的宽度
-        int drawableWidth = bitmap.getWidth();
-        // 获取bitmap的高度
-        int drawableHeight = bitmap.getHeight();
+            // 获取bitmap的宽度
+            int drawableWidth = bitmap.getWidth();
+            // 获取bitmap的高度
+            int drawableHeight = bitmap.getHeight();
 
-        // 左侧：view的测量宽度 - bitmap的宽度  然后 /2
-        int left = (width - drawableWidth) / 2;
-        // 上侧：view的高度 - bitmap的高度 然后 /2
-        int top = (height - drawableHeight) / 2;
-        // 右侧：左侧的位置 + bitmap的宽度
-        int right = left + drawableWidth;
-        // 下侧：上侧的位置 + bitmap的高度
-        int bottom = top + drawableHeight;
+            // 左侧：view的测量宽度 - bitmap的宽度  然后 /2
+            int left = (width - drawableWidth) / 2;
+            // 上侧：view的高度 - bitmap的高度 然后 /2
+            int top = (height - drawableHeight) / 2;
+            // 右侧：左侧的位置 + bitmap的宽度
+            int right = left + drawableWidth;
+            // 下侧：上侧的位置 + bitmap的高度
+            int bottom = top + drawableHeight;
 
 //        canvas.drawBitmap(bitmap, null, new RectF(left, top, right, bottom), paint3);
-        canvas.drawBitmap(bitmap,left,top,null);
+            canvas.drawBitmap(bitmap, left, top, null);
+        }
     }
 
     /**

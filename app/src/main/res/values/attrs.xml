@@ -12,11 +12,19 @@
         <attr name="drawable_text_height" format="float" />
     </declare-styleable>
 
+    <!--textDrawableView-->
     <declare-styleable name="TextViewDrawable">
-        <attr name="drawable_left" format="reference" />
-        <attr name="drawable_right" format="reference" />
-        <attr name="drawable_top" format="reference" />
-        <attr name="drawable_bottom" format="reference" />
+        <attr name="tw_text" format="string" />
+        <attr name="tw_textSize" format="dimension" />
+        <attr name="tw_textColor" format="color" />
+        <attr name="tw_drawable" format="reference" />
+        <attr name="tw_drawable_Padding" format="dimension" />
+        <attr name="tw_drawable_Left" format="reference" />
+        <attr name="tw_drawable_Right" format="reference" />
+        <attr name="tw_drawable_Top" format="reference" />
+        <attr name="tw_drawable_Bottom" format="reference" />
+        <attr name="tw_drawable_Width" format="reference" />
+        <attr name="tw_drawable_Height" format="reference" />
 
     </declare-styleable>
 

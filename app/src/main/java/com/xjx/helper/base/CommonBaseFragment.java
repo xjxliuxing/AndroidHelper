@@ -184,4 +184,20 @@ public abstract class CommonBaseFragment extends Fragment implements View.OnClic
     public void onClick(View v) {
 
     }
+
+    /**
+     * 设置点击事件
+     *
+     * @param ids 点击事件的id
+     */
+    protected void setOnClick(int... ids) {
+        if (ids != null && ids.length > 0) {
+            for (int id : ids) {
+                View view = mRootView.findViewById(id);
+                if (view != null) {
+                    view.setOnClickListener(this);
+                }
+            }
+        }
+    }
 }

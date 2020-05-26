@@ -5,10 +5,10 @@ import android.view.View
 import com.xjx.helper.R
 import com.xjx.helper.base.CommonBaseFragment
 import com.xjx.helper.ui.home.activity.tod.*
+import com.xjx.helper.ui.home.activity.tod.animation.AnimationMapActivity
 import com.xjx.helper.ui.home.activity.tod.customview.CustomHeadVipActivity
 import com.xjx.helper.ui.home.activity.tod.customview.CustomViewActivity
 import com.xjx.helper.ui.home.activity.tod.mvp.LiveDataTestActivity
-import kotlinx.android.synthetic.main.fragment_todo.*
 
 
 /**
@@ -22,25 +22,9 @@ class TodoFragment : CommonBaseFragment() {
 
     override fun initListener() {
         super.initListener()
-        tv_1.setOnClickListener(this)
-        tv_2.setOnClickListener(this)
-        tv_3.setOnClickListener(this)
-        tv_4.setOnClickListener(this)
-        tv_5.setOnClickListener(this)
-        tv_6.setOnClickListener(this)
-        tv_7.setOnClickListener(this)
-        tv_8.setOnClickListener(this)
-        tv_9.setOnClickListener(this)
-        tv_10.setOnClickListener(this)
-        tv_11.setOnClickListener(this)
-        tv_12.setOnClickListener(this)
-        tv_13.setOnClickListener(this)
-        tv_14.setOnClickListener(this)
-        tv_15.setOnClickListener(this)
-        tv_16.setOnClickListener(this)
-        tv_17.setOnClickListener(this)
-        tv_18.setOnClickListener(this)
-        tv_19.setOnClickListener(this)
+        setOnClick(R.id.tv_1, R.id.tv_2, R.id.tv_3, R.id.tv_4, R.id.tv_5, R.id.tv_6, R.id.tv_7, R.id.tv_8,
+                R.id.tv_9, R.id.tv_10, R.id.tv_11, R.id.tv_12, R.id.tv_13, R.id.tv_14, R.id.tv_15, R.id.tv_16,
+                R.id.tv_17, R.id.tv_18, R.id.tv_19, R.id.tv_20)
     }
 
     override fun onClick(v: View?) {
@@ -106,6 +90,9 @@ class TodoFragment : CommonBaseFragment() {
             }
             R.id.tv_19 -> {
                 intent.setClass(mContext, LiveDataTestActivity::class.java)
+            }
+            R.id.tv_20 -> {
+                intent.setClass(mContext, AnimationMapActivity::class.java)
             }
         }
         mContext.startActivity(intent)

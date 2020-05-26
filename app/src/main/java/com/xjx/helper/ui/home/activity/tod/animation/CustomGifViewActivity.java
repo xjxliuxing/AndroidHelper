@@ -12,6 +12,7 @@ import com.xjx.helper.base.CommonBaseTitleActivity;
 import com.xjx.helper.enums.PlaceholderStatus;
 import com.xjx.helper.utils.LogUtil;
 import com.xjx.helper.utils.ScreenUtil;
+import com.xjx.helper.utils.ToastUtil;
 
 /**
  * 自定义gifView
@@ -107,8 +108,30 @@ public class CustomGifViewActivity extends CommonBaseTitleActivity {
     private void setAnimationTransparent() {
         AnimatorSet set = new AnimatorSet();
         ObjectAnimator animatorAlpha = ObjectAnimator.ofFloat(mIvAnimation, "alpha", 1, 0);
-        set.playTogether( animatorAlpha);
+        set.playTogether(animatorAlpha);
         set.setDuration(3 * 1000);
+        set.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                ToastUtil.showToast("动画结合执行结束！");
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+
         set.start();
 
     }

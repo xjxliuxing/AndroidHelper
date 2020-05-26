@@ -68,7 +68,8 @@ public class CustomGifViewActivity extends CommonBaseTitleActivity {
         animator.setInterpolator(new LinearInterpolator());
         animator.setDuration(3 * 1000);
         animator.setRepeatMode(ObjectAnimator.REVERSE);
-        animator.setRepeatCount(5);
+        animator.setRepeatCount(10);
+        animator.addUpdateListener(animation -> LogUtil.e("animation------->" + animation.getAnimatedValue()));
         animator.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
@@ -95,7 +96,7 @@ public class CustomGifViewActivity extends CommonBaseTitleActivity {
                     mIvAnimation.setRotationY(0);
                     isStart = false;
                 }
-                if (count == 5) {
+                if (count == 3) {
                     setAnimationTransparent();
                 }
 
@@ -119,6 +120,9 @@ public class CustomGifViewActivity extends CommonBaseTitleActivity {
             @Override
             public void onAnimationEnd(Animator animation) {
                 ToastUtil.showToast("动画结合执行结束！");
+                if (animator != null) {
+                    animator.cancel();
+                }
             }
 
             @Override

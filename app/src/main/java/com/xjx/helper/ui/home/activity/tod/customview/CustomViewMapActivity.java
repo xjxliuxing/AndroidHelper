@@ -10,11 +10,11 @@ import com.xjx.helper.enums.PlaceholderStatus;
 /**
  * 自定义view的集合
  */
-public class CustomViewActivity extends CommonBaseTitleActivity {
+public class CustomViewMapActivity extends CommonBaseTitleActivity {
 
     @Override
     protected int getTitleLayout() {
-        return R.layout.activity_custom_view2;
+        return R.layout.activity_custom_view_map;
     }
 
     @Override
@@ -24,7 +24,7 @@ public class CustomViewActivity extends CommonBaseTitleActivity {
         setTitleContent("自定义View的集合");
         SwitchLoadingStatus(PlaceholderStatus.NONE);
 
-        setOnClick(R.id.tv_1, R.id.tv_2, R.id.tv_3, R.id.tv_4);
+        setOnClick(R.id.tv_1, R.id.tv_2, R.id.tv_3, R.id.tv_4, R.id.tv_5);
     }
 
     @Override
@@ -45,6 +45,9 @@ public class CustomViewActivity extends CommonBaseTitleActivity {
                 break;
             case R.id.tv_4:// 自定义RecycleView布局
                 intent.setClass(mContext, LoadProgressActivity.class);
+                break;
+            case R.id.tv_5:// 自定义RecycleView布局
+                intent.setClass(mContext, CustomPassWordActivity.class);
                 break;
         }
 

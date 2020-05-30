@@ -24,4 +24,22 @@
         <item name="android:windowExitAnimation">@anim/tranlate_dialog_out</item>
     </style>
 
+    <!--验证阿门输入框-->
+    <declare-styleable name="PassWordView">
+        <attr name="size" format="integer" /> <!--验证码的个数-->
+        <attr name="HorizontalSpacing" format="dimension" /> <!--每个view之间的间隔-->
+        <attr name="un_selector_color" format="color" /> <!--没有选中的颜色-->
+        <attr name="un_selector_height" format="dimension" /> <!--没有选中的高度-->
+        <attr name="selector_color" format="color" /> <!--选中的颜色-->
+        <attr name="selector_error_color" format="color" /> <!--选中错误的颜色-->
+        <attr name="selector_height" format="dimension" /> <!--选中的高度-->
+        <attr name="drawable_color" format="color" /> <!--密文的颜色-->
+        <attr name="drawable_size" format="dimension" /> <!--密文的大小-->
+        <attr name="content_color" format="color" /> <!--默认内容的颜色-->
+        <attr name="content_size" format="dimension" /> <!--默认内容的大小-->
+        <attr name="show_input" format="boolean" /><!--是否展示输入框-->
+        <attr name="show_password" format="boolean" /> <!--是否显示密码-->
+
+    </declare-styleable>
+
 </resources>

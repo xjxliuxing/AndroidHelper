@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.xjx.helper.ui.home.activity.tod.customview.CustomViewActivity">
+    tools:context="com.xjx.helper.ui.home.activity.tod.customview.CustomViewMapActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,6 +29,11 @@
             android:id="@+id/tv_4"
             style="@style/style_todo_item"
             android:text="自定义进度条" />
+
+        <TextView
+            android:id="@+id/tv_5"
+            style="@style/style_todo_item"
+            android:text="自定义密码框" />
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

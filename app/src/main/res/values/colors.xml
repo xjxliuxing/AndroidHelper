@@ -62,7 +62,9 @@
     <color name="gray_9">#333843</color>
     <color name="gray_10">#3E485A</color>
     <color name="gray_11">#ff313941</color>
+    <color name="gray_12">#BEC4CC</color>
 
+    <!--todo  颜色的资源文件-->
     <color name="blue_1">#5AA7A9</color>
 
     <color name="purple_1">#ff7695cf</color>

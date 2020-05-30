@@ -7,7 +7,7 @@ import com.xjx.helper.base.CommonBaseFragment
 import com.xjx.helper.ui.home.activity.tod.*
 import com.xjx.helper.ui.home.activity.tod.animation.AnimationMapActivity
 import com.xjx.helper.ui.home.activity.tod.customview.CustomHeadVipActivity
-import com.xjx.helper.ui.home.activity.tod.customview.CustomViewActivity
+import com.xjx.helper.ui.home.activity.tod.customview.CustomViewMapActivity
 import com.xjx.helper.ui.home.activity.tod.mvp.LiveDataTestActivity
 
 
@@ -74,7 +74,7 @@ class TodoFragment : CommonBaseFragment() {
                 intent.setClass(mContext, CoortorLayoutActivity::class.java)
             }
             R.id.tv_14 -> {
-                intent.setClass(mContext, CustomViewActivity::class.java)
+                intent.setClass(mContext, CustomViewMapActivity::class.java)
             }
             R.id.tv_15 -> {
                 intent.setClass(mContext, DialogActivity::class.java)

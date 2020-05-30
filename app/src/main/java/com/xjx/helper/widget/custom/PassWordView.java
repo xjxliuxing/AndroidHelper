@@ -81,31 +81,31 @@ public class PassWordView extends ViewGroup {
 
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.PassWordView);
         // 输入密码的个数
-        size = array.getInteger(R.styleable.PassWordView_size, 4);
+        size = array.getInteger(R.styleable.PassWordView_pd_size, 4);
         // 获取每个view中间的间隔距离
-        padding = array.getDimension(R.styleable.PassWordView_HorizontalSpacing, ConvertUtil.toDp(10));
+        padding = array.getDimension(R.styleable.PassWordView_pd_HorizontalSpacing, ConvertUtil.toDp(10));
         // 没有选中的颜色
-        mUnSelectorColor = array.getColor(R.styleable.PassWordView_un_selector_color, context.getResources().getColor(R.color.gray_12));
+        mUnSelectorColor = array.getColor(R.styleable.PassWordView_pd_un_selector_color, context.getResources().getColor(R.color.gray_12));
         // 没有选中的高度
-        mUnSelectorHeight = array.getDimension(R.styleable.PassWordView_un_selector_height, ConvertUtil.toDp(1));
+        mUnSelectorHeight = array.getDimension(R.styleable.PassWordView_pd_un_selector_height, ConvertUtil.toDp(1));
         // 选中文字的颜色
-        mSelectorColor = array.getColor(R.styleable.PassWordView_selector_color, context.getResources().getColor(R.color.gray_10));
+        mSelectorColor = array.getColor(R.styleable.PassWordView_pd_selector_color, context.getResources().getColor(R.color.gray_10));
         // 选中背景的高度
-        mSelectorHeight = array.getDimension(R.styleable.PassWordView_selector_height, ConvertUtil.toDp(2));
+        mSelectorHeight = array.getDimension(R.styleable.PassWordView_pd_selector_height, ConvertUtil.toDp(2));
         // 展示的内容
-        mDrawable_color = array.getColor(R.styleable.PassWordView_drawable_color, context.getResources().getColor(R.color.black_5));
+        mDrawable_color = array.getColor(R.styleable.PassWordView_pd_drawable_color, context.getResources().getColor(R.color.black_5));
         // 密文的半径
-        mDrawableSize = array.getDimension(R.styleable.PassWordView_drawable_size, ConvertUtil.toDp(4.5F));
+        mDrawableSize = array.getDimension(R.styleable.PassWordView_pd_drawable_size, ConvertUtil.toDp(4.5F));
         //明文的信息
-        mContentColor = array.getColor(R.styleable.PassWordView_selector_color, context.getResources().getColor(R.color.black_5));
-        mContentSize = array.getDimension(R.styleable.PassWordView_content_size, ConvertUtil.toDp(16));
+        mContentColor = array.getColor(R.styleable.PassWordView_pd_content_color, context.getResources().getColor(R.color.black_5));
+        mContentSize = array.getDimension(R.styleable.PassWordView_pd_content_size, ConvertUtil.toDp(16));
 
         // 是否显示密码，默认为true
-        mShowPassWord = array.getBoolean(R.styleable.PassWordView_show_password, true);
+        mShowPassWord = array.getBoolean(R.styleable.PassWordView_pd_show_password, true);
         // 是否可以展示输入框
-        mShowInput = array.getBoolean(R.styleable.PassWordView_show_input, true);
+        mShowInput = array.getBoolean(R.styleable.PassWordView_pd_show_input, true);
         // 错误颜色的color
-        mErrorColor = array.getColor(R.styleable.PassWordView_selector_error_color, context.getResources().getColor(R.color.red_4));
+        mErrorColor = array.getColor(R.styleable.PassWordView_pd_selector_error_color, context.getResources().getColor(R.color.red_4));
 
         // 释放对象
         array.recycle();
@@ -254,6 +254,14 @@ public class PassWordView extends ViewGroup {
     public void setList(List<String> list) {
         this.mList = list;
         invalidate();
+    }
+
+    public List<String> getListData() {
+        return mList;
+    }
+
+    public int getSize() {
+        return size;
     }
 
     private Bitmap getBitmap(Drawable drawable) {

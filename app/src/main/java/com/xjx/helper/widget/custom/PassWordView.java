@@ -252,8 +252,10 @@ public class PassWordView extends ViewGroup {
      * 直接设置数据
      */
     public void setList(List<String> list) {
-        this.mList = list;
-        invalidate();
+        if (list.size() <= size) {
+            this.mList = list;
+            invalidate();
+        }
     }
 
     public List<String> getListData() {

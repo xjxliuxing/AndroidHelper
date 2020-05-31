@@ -35,5 +35,10 @@
             style="@style/style_todo_item"
             android:text="自定义密码框" />
 
+        <TextView
+            android:id="@+id/tv_6"
+            style="@style/style_todo_item"
+            android:text="自定义闪电进度条" />
+
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

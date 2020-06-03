@@ -9,6 +9,8 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import com.xjx.helper.R
 import com.xjx.helper.utils.ConvertUtil
+import com.xjx.helper.utils.DeviceUtil
+import com.xjx.helper.utils.LogUtil
 
 /**
  * 进度条
@@ -32,6 +34,12 @@ class ProgressView constructor(val content: Context) : View(content) {
         mPaint1.color = resources.getColor(R.color.green_2)
         mPaint1.strokeWidth = ConvertUtil.toDp(200f)
         mPaint1.style = Paint.Style.FILL
+
+        val deviceUtil = DeviceUtil()
+        deviceUtil.getDeviceId(context)
+
+        val saveDeviceId = deviceUtil.saveDeviceId
+        LogUtil.e("saveDeviceId:$saveDeviceId")
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {

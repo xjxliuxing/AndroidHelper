@@ -5,6 +5,7 @@ import android.view.View;
 import com.xjx.helper.R;
 import com.xjx.helper.base.CommonBaseTitleActivity;
 import com.xjx.helper.enums.PlaceholderStatus;
+import com.xjx.helper.utils.LogUtil;
 
 /**
  * 测试页面
@@ -37,6 +38,16 @@ public class TestActivity extends CommonBaseTitleActivity {
     protected void initData() {
         super.initData();
         SwitchLoadingStatus(PlaceholderStatus.NONE);
+
+        String abc = "123";
+        if (abc != null) {
+            LogUtil.e("不为空");
+        }
+        if (abc.equals("123")) {
+            LogUtil.e("123");
+        } else {
+            LogUtil.e("othier");
+        }
 
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override

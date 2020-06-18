@@ -20,13 +20,14 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="q">
-        <activity android:name=".ui.home.activity.tod.customview.CustomProgressViewActivity" >
-
+        <activity android:name=".ui.home.activity.tod.java.ThreadExecutorActivity"></activity>
+        <activity android:name=".ui.home.activity.tod.java.JavaMapActivity" />
+        <activity android:name=".ui.home.activity.tod.customview.CustomProgressViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".ui.home.activity.tod.customview.CustomPassWordActivity" />
         <activity android:name=".ui.home.activity.tod.animation.CustomGifViewActivity" />

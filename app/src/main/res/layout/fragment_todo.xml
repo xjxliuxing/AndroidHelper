@@ -103,10 +103,16 @@
             android:id="@+id/tv_19"
             style="@style/style_todo_item"
             android:text="Mvp的测试界面" />
+
         <TextView
             android:id="@+id/tv_20"
             style="@style/style_todo_item"
             android:text="自定义动画组合" />
+
+        <TextView
+            android:id="@+id/tv_21"
+            style="@style/style_todo_item"
+            android:text="JAVA 相关" />
 
     </LinearLayout>
 

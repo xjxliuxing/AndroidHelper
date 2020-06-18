@@ -26,7 +26,7 @@ android {
             storeFile file('dplus')
             storePassword '123456'
         }
-        debug {
+        test {
             keyAlias 'dplus'
             keyPassword '123456'
             storeFile file('dplus')
@@ -45,7 +45,7 @@ android {
         }
 
         debug {
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.test
             applicationIdSuffix '.debug'
             shrinkResources false
             minifyEnabled false

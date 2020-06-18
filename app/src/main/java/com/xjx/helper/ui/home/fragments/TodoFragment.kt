@@ -8,8 +8,8 @@ import com.xjx.helper.ui.home.activity.tod.*
 import com.xjx.helper.ui.home.activity.tod.animation.AnimationMapActivity
 import com.xjx.helper.ui.home.activity.tod.customview.CustomHeadVipActivity
 import com.xjx.helper.ui.home.activity.tod.customview.CustomViewMapActivity
+import com.xjx.helper.ui.home.activity.tod.java.JavaMapActivity
 import com.xjx.helper.ui.home.activity.tod.mvp.LiveDataTestActivity
-
 
 /**
  * 待办的fragmen
@@ -24,7 +24,7 @@ class TodoFragment : CommonBaseFragment() {
         super.initListener()
         setOnClick(R.id.tv_1, R.id.tv_2, R.id.tv_3, R.id.tv_4, R.id.tv_5, R.id.tv_6, R.id.tv_7, R.id.tv_8,
                 R.id.tv_9, R.id.tv_10, R.id.tv_11, R.id.tv_12, R.id.tv_13, R.id.tv_14, R.id.tv_15, R.id.tv_16,
-                R.id.tv_17, R.id.tv_18, R.id.tv_19, R.id.tv_20)
+                R.id.tv_17, R.id.tv_18, R.id.tv_19, R.id.tv_20, R.id.tv_21)
     }
 
     override fun onClick(v: View?) {
@@ -93,6 +93,9 @@ class TodoFragment : CommonBaseFragment() {
             }
             R.id.tv_20 -> {
                 intent.setClass(mContext, AnimationMapActivity::class.java)
+            }
+            R.id.tv_21 -> {
+                intent.setClass(mContext, JavaMapActivity::class.java)
             }
         }
         mContext.startActivity(intent)

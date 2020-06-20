@@ -40,5 +40,10 @@
             style="@style/style_todo_item"
             android:text="自定义闪电进度条" />
 
+        <TextView
+            android:id="@+id/tv_7"
+            style="@style/style_todo_item"
+            android:text="自定义随机分布View的布局" />
+
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

@@ -24,7 +24,8 @@ public class CustomViewMapActivity extends CommonBaseTitleActivity {
         setTitleContent("自定义View的集合");
         SwitchLoadingStatus(PlaceholderStatus.NONE);
 
-        setOnClick(R.id.tv_1, R.id.tv_2, R.id.tv_3, R.id.tv_4, R.id.tv_5, R.id.tv_6, R.id.tv_7);
+        setOnClick(R.id.tv_1, R.id.tv_2, R.id.tv_3, R.id.tv_4, R.id.tv_5, R.id.tv_6,
+                R.id.tv_7);
     }
 
     @Override
@@ -52,7 +53,7 @@ public class CustomViewMapActivity extends CommonBaseTitleActivity {
             case R.id.tv_6:// 自定义RecycleView布局
                 intent.setClass(mContext, CustomProgressViewActivity.class);
                 break;
-            case R.id.tv_7:// 自定义RecycleView布局
+            case R.id.tv_7:// 自定义随机布局
                 intent.setClass(mContext, CustomRandomLayoutActivity.class);
                 break;
         }

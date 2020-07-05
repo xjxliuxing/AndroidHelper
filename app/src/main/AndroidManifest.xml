@@ -20,6 +20,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="q">
+        <activity android:name=".ui.home.activity.tod.customview.CustomCircleActivity"></activity>
         <activity android:name=".ui.home.activity.tod.customview.CustomRandomLayoutActivity" />
         <activity android:name=".ui.home.activity.tod.java.ThreadExecutorActivity" />
         <activity android:name=".ui.home.activity.tod.java.JavaMapActivity" />

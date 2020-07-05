@@ -511,4 +511,11 @@ public class ConvertUtil {
     public static float toPx(float px) {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, px, Resources.getSystem().getDisplayMetrics());
     }
+    /**
+     * @param px px的值
+     * @return 返回一个标准的px的值
+     */
+    public static float toSp(float px) {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, px, Resources.getSystem().getDisplayMetrics());
+    }
 }

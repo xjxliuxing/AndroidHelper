@@ -1,5 +1,6 @@
 package com.xjx.helper.ui.home.activity.tod.customview
 
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.xjx.helper.R
@@ -7,11 +8,15 @@ import com.xjx.helper.base.CommonBaseTitleActivity
 import com.xjx.helper.enums.PlaceholderStatus
 import com.xjx.helper.utils.LogUtil
 import com.xjx.helper.widget.custom.CustomRandomLayout
+import kotlinx.android.synthetic.main.activity_custom_random_layout.*
 
 /**
  * 自定义随机布局
  */
 class CustomRandomLayoutActivity : CommonBaseTitleActivity() {
+
+    val mList: ArrayList<TextView> = arrayListOf()
+    val mList2: ArrayList<TextView> = arrayListOf()
 
     override fun getTitleLayout(): Int {
         return R.layout.activity_custom_random_layout
@@ -41,13 +46,28 @@ class CustomRandomLayoutActivity : CommonBaseTitleActivity() {
 
         val layout = findViewById<CustomRandomLayout<String>>(R.id.cs_random_layout1)
 
-        layout.addViewAtRandomXY(textView1, "测试1")
-        layout.addViewAtRandomXY(textView2, "测试2")
-        layout.addViewAtRandomXY(textView3, "测试3")
-        layout.addViewAtRandomXY(textView4, "测试4")
+        mList.add(textView1)
+        mList.add(textView2)
+        mList.add(textView3)
+        mList.add(textView4)
+
+        for (item in mList.indices) {
+            layout.addViewAtRandomXY(mList[item], mList[item].text.toString())
+        }
 
         layout.setOnRandomItemClickListener { view, str ->
             LogUtil.e("---->:$str")
+        }
+
+        for (item in mList.indices) {
+            val text = TextView(mContext)
+            val paramts = LinearLayout.LayoutParams(30, 3)
+            paramts.leftMargin = 20
+            text.layoutParams = paramts
+            text.setBackgroundColor(ContextCompat.getColor(mContext, R.color.blue_1))
+
+            mList2.add(text)
+            cl_layout.addView(text)
         }
     }
 }

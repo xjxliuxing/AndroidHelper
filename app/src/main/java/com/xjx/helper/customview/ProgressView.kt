@@ -2,14 +2,17 @@ package com.xjx.helper.customview
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.*
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Paint
 import android.graphics.drawable.BitmapDrawable
 import android.util.AttributeSet
 import android.view.View
+import androidx.annotation.FloatRange
+import androidx.annotation.Keep
 import androidx.core.content.ContextCompat
 import com.xjx.helper.R
 import com.xjx.helper.utils.ConvertUtil
-import com.xjx.helper.utils.DeviceUtil
 import com.xjx.helper.utils.LogUtil
 
 /**
@@ -17,71 +20,121 @@ import com.xjx.helper.utils.LogUtil
  */
 class ProgressView constructor(val content: Context) : View(content) {
 
-    private val mPaint1: Paint = Paint()
-    val dp7: Int = ConvertUtil.toDp(10f).toInt()
-    val dp12: Int = ConvertUtil.toDp(12f).toInt()
-    val dp16: Int = ConvertUtil.toDp(16f).toInt()
-    val dp17: Int = ConvertUtil.toDp(17f).toInt()
-    val dp22: Int = ConvertUtil.toDp(22f).toInt()
+    private val mPaintDrawableLine: Paint = Paint()
 
-    private var mBitmap: Bitmap? = null
+    /**
+     * 进度条的高度
+     */
+    private val mLineHeight = ConvertUtil.toDp(8f)
+
+    /**
+     * view左右的边距
+     */
+    private val mPadding = ConvertUtil.toDp(20f)
+
+    /**
+     * view的中心，可以作为上边距使用
+     */
+    private var mTop = 0f
+
+    /**
+     * 渐变色
+     */
+    private val mColorBlue: Int by lazy { ContextCompat.getColor(content, R.color.blue_2) }
+    private val mColorGreen: Int by lazy { ContextCompat.getColor(content, R.color.green_2) }
+
+    /**
+     * View的右侧坐标
+     */
+    private var mRight: Float = 0f
+
+    /**
+     * 当前的进度
+     */
+    private var mProgress: Float = 20f
 
     constructor(content: Context, @androidx.annotation.Nullable attributes: AttributeSet) : this(content) {
         initView(attributes)
     }
 
     private fun initView(attributes: AttributeSet) {
-        mPaint1.color = resources.getColor(R.color.green_2)
-        mPaint1.strokeWidth = ConvertUtil.toDp(200f)
-        mPaint1.style = Paint.Style.FILL
-
-        val deviceUtil = DeviceUtil()
-        deviceUtil.getDeviceId(context)
-
-        val saveDeviceId = deviceUtil.saveDeviceId
-        LogUtil.e("saveDeviceId:$saveDeviceId")
+        mPaintDrawableLine.color = resources.getColor(R.color.green_2)
+        mPaintDrawableLine.strokeWidth = mLineHeight
+        mPaintDrawableLine.style = Paint.Style.FILL
+        // 设置线段连接处样式  Join.MITER（结合处为锐角）Join.Round(结合处为圆弧) Join.BEVEL(结合处为直线)
+        mPaintDrawableLine.strokeCap = Paint.Cap.ROUND // 设置圆角
+        mPaintDrawableLine.isAntiAlias = true
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-
+        if (measuredHeight > 0) {
+            mTop = (measuredHeight / 2).toFloat()
+        }
     }
 
     @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
+//        if (canvas == null) {
+//            return
+//        }
 
-        // 绘制渐变
-        val linearGradient2 = LinearGradient(0f, 0f, measuredWidth.toFloat(), 0f,
-                intArrayOf(resources.getColor(R.color.green_2), resources.getColor(R.color.blue_2)),
-                floatArrayOf(0.5f, 1f), Shader.TileMode.CLAMP
-        )
-        mPaint1.shader = linearGradient2
-
-        // 设置画笔遮罩滤镜  ,传入度数和样式
-        mPaint1.maskFilter = BlurMaskFilter(dp12.toFloat(), BlurMaskFilter.Blur.SOLID)
-
+//        // 设置画笔遮罩滤镜  ,传入度数和样式
+//        mPaintDrawableLine.maskFilter = BlurMaskFilter(dp12.toFloat(), BlurMaskFilter.Blur.SOLID)
 //        canvas?.drawRect(Rect(dp16, dp12, (measuredWidth - dp16), dp7 + dp12), mPaint1)
 
-        // 绘制图片
-        if ((mBitmap == null) || (mBitmap!!.isRecycled)) {
-            mBitmap = getBitmapForResource();
-        }
+        // 获取view右侧的坐标
+//        mRight = (mPadding + (((mProgress / 100)) * measuredWidth))
+//
+//        // 绘制渐变
+//        val linearGradient = LinearGradient(mPadding, mTop, (measuredWidth - mPadding), mTop, mColorBlue, mColorGreen, Shader.TileMode.CLAMP)
+//        mPaintDrawableLine.shader = linearGradient
+//
+//        // 绘制主View
+//        canvas.drawLine(mPadding, mTop, mRight, mTop, mPaintDrawableLine)
 
-        if (mBitmap != null) {
-            canvas?.drawBitmap(mBitmap!!, Rect(0, 0, mBitmap!!.width, mBitmap!!.height), Rect(0, 0, mBitmap!!.width, mBitmap!!.height), null)
-        }
+        // 绘制闪电的标记
+//        val bitmap = getBitmapForResource()
+//        if (bitmap != null && (!bitmap.isRecycled)) {
+//            // view的区域，最好就是view自己本身的大小，或者是指定的大小
+//            val src = Rect(0, 0, (bitmap.width), (bitmap.height))
+//            // 绘制的区域，实际上就是在屏幕上view的位置
+//
+//            // drawable的高度为view中心 减去 Line一半的高度
+//            val drawableTop = (mTop - ((bitmap.height) / 2)).toInt()
+//            // 左侧的坐标
+//            val mLeft = mRight.toInt()
+//            // view在屏幕上的位置
+//            val dst = Rect(mLeft, drawableTop, (mLeft + (bitmap.width)), (drawableTop + (bitmap.height)))
+//            canvas.drawBitmap(bitmap, src, dst, mPaintDrawableLine)
+//        }
     }
 
+    /**
+     * 获取指定的bitmap
+     */
     private fun getBitmapForResource(): Bitmap? {
-        val bitmap1: Bitmap? by lazy {
+        val bitmap: Bitmap? by lazy {
             val drawable = ContextCompat.getDrawable(context, R.mipmap.icon_progress_image)
             if (drawable != null && drawable is BitmapDrawable) {
+                LogUtil.e("只会执行一次获取view的方法--->Bitmap")
                 return@lazy drawable.bitmap
             } else {
+                LogUtil.e("只会执行一次获取view的方法--->null")
                 return@lazy null
             }
         }
-        return bitmap1;
+        return bitmap
+    }
+
+    /**
+     * 设置当前的进度
+     */
+    @Keep
+    fun setProgress(@FloatRange(from = 0.0, to = 100.0) progress: Float) {
+        mProgress = progress
+        invalidate()
     }
 }
+

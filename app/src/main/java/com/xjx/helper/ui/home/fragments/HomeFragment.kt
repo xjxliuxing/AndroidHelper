@@ -11,7 +11,6 @@ import com.xjx.helper.http.client.ApiServices
 import com.xjx.helper.http.client.BaseResponse
 import com.xjx.helper.http.client.Page
 import com.xjx.helper.ui.DownLoadManagerActivity
-import com.xjx.helper.ui.home.activity.tod.DownLoadActivity
 import com.xjx.helper.utils.recyeliview.RecycleUtil
 import kotlinx.android.synthetic.main.fragment_home.*
 import retrofit2.Call
@@ -51,8 +50,6 @@ class HomeFragment : CommonBaseRefreshListFragment<StoreActivityBean>() {
 
         val intent = Intent()
         when (v?.id) {
-            R.id.tv_test -> intent.setClass(mContext, DownLoadActivity::class.java)
-
             R.id.tv_test2 -> intent.setClass(mContext, DownLoadManagerActivity::class.java)
         }
         startActivity(intent)

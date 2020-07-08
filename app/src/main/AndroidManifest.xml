@@ -20,7 +20,8 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="q">
-        <activity android:name=".ui.home.activity.tod.customview.CustomCircleActivity"></activity>
+        <activity android:name=".ui.home.activity.tod.widget.WidgetMapActivity"></activity>
+        <activity android:name=".ui.home.activity.tod.customview.CustomCircleActivity" />
         <activity android:name=".ui.home.activity.tod.customview.CustomRandomLayoutActivity" />
         <activity android:name=".ui.home.activity.tod.java.ThreadExecutorActivity" />
         <activity android:name=".ui.home.activity.tod.java.JavaMapActivity" />
@@ -37,11 +38,8 @@
         <activity android:name=".ui.home.activity.tod.customview.LoadProgressActivity" />
         <activity android:name=".ui.home.activity.tod.customview.ViewPagerGirdViewActivity" />
         <activity android:name=".ui.home.activity.tod.customview.CustomRecycleViewActivity" />
-        <activity android:name=".ui.home.activity.tod.mvp.LiveDataTestActivity" />
-        <activity android:name=".ui.home.activity.tod.FragmentTestActivity" />
         <activity android:name=".ui.home.activity.tod.customview.DrawableTextViewActivity" />
         <activity android:name=".ui.home.activity.tod.customview.CustomViewMapActivity" />
-        <activity android:name=".ui.home.activity.tod.ActivtyTestActivity" />
         <activity android:name=".ui.home.activity.tod.customview.CustomHeadVipActivity" />
         <activity android:name=".ui.home.activity.tod.DialogActivity" />
         <activity android:name=".ui.home.activity.tod.CustomViewActivity" />
@@ -51,14 +49,12 @@
         <activity android:name=".ui.home.activity.tod.Patch9Activity" />
         <activity android:name=".ui.home.activity.tod.DrawableTextViewActivity" />
         <activity android:name=".ui.home.activity.tod.GridLayoutLayoutActivity" />
-        <activity android:name=".test.TestActivity" />
         <activity android:name=".ui.home.activity.tod.PlayerActivity" />
         <activity android:name=".ui.home.activity.tod.RecycleViewDivederActivity" />
         <activity android:name=".ui.home.activity.tod.TestActivity" />
         <activity android:name=".ui.home.activity.tod.CustomTime2Activity" />
         <activity android:name=".ui.home.activity.tod.CustomTimeActivity" />
-        <activity android:name=".ui.DownLoadManagerActivity" />
-        <activity android:name=".ui.home.activity.tod.DownLoadActivity" /> <!-- 主界面 -->
+        <activity android:name=".ui.DownLoadManagerActivity" /> <!-- 主界面 -->
         <activity android:name=".ui.home.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

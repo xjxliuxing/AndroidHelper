@@ -5,7 +5,6 @@ import android.view.View
 import com.xjx.helper.R
 import com.xjx.helper.base.CommonBaseTitleActivity
 import com.xjx.helper.enums.PlaceholderStatus
-import com.xjx.helper.ui.home.activity.tod.CoortorLayoutActivity
 import com.xjx.helper.ui.home.activity.tod.CustomTime2Activity
 import com.xjx.helper.ui.home.activity.tod.NetWorkCurrentKbActivity
 import com.xjx.helper.ui.home.activity.tod.RecycleViewDivederActivity
@@ -22,7 +21,7 @@ class WidgetMapActivity : CommonBaseTitleActivity() {
 
         setTitleContent("自定义组件的集合")
 
-        setOnClick(R.id.tv_widget_1, R.id.tv_widget_2, R.id.tv_widget_3, R.id.tv_widget_4)
+        setOnClick(R.id.tv_widget_1, R.id.tv_widget_2, R.id.tv_widget_3)
     }
 
     override fun onClick(v: View?) {
@@ -39,9 +38,6 @@ class WidgetMapActivity : CommonBaseTitleActivity() {
             }
             R.id.tv_widget_3 -> {
                 intent.setClass(mContext, NetWorkCurrentKbActivity::class.java)
-            }
-            R.id.tv_widget_4 -> {
-                intent.setClass(mContext, CoortorLayoutActivity::class.java)
             }
         }
         startActivity(intent)

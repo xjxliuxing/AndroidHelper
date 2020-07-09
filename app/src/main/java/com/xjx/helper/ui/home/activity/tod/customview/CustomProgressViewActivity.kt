@@ -22,6 +22,7 @@ class CustomProgressViewActivity : CommonBaseTitleActivity() {
 
     override fun onRestart() {
         super.onRestart()
+
         if (custom_pbssss != null) {
             custom_pbssss.setProgress(50f)
         }

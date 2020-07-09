@@ -18,13 +18,12 @@ class CustomProgressViewActivity : CommonBaseTitleActivity() {
         super.initView()
         SwitchLoadingStatus(PlaceholderStatus.NONE)
         setTitleContent("进度条的View")
-
     }
 
     override fun onRestart() {
         super.onRestart()
-        if (custom_pb != null) {
-            custom_pb.setProgress(50f)
+        if (custom_pbssss != null) {
+            custom_pbssss.setProgress(50f)
         }
     }
 

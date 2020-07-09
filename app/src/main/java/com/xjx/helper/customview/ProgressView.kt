@@ -2,9 +2,7 @@ package com.xjx.helper.customview
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Paint
+import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
 import android.util.AttributeSet
 import android.view.View
@@ -51,7 +49,7 @@ class ProgressView constructor(val content: Context) : View(content) {
     /**
      * 当前的进度
      */
-    private var mProgress: Float = 20f
+    private var mProgress: Float = 70f
 
     constructor(content: Context, @androidx.annotation.Nullable attributes: AttributeSet) : this(content) {
         initView(attributes)
@@ -76,39 +74,39 @@ class ProgressView constructor(val content: Context) : View(content) {
     @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-//        if (canvas == null) {
-//            return
-//        }
+        if (canvas == null) {
+            return
+        }
 
-//        // 设置画笔遮罩滤镜  ,传入度数和样式
+        // 设置画笔遮罩滤镜  ,传入度数和样式
 //        mPaintDrawableLine.maskFilter = BlurMaskFilter(dp12.toFloat(), BlurMaskFilter.Blur.SOLID)
 //        canvas?.drawRect(Rect(dp16, dp12, (measuredWidth - dp16), dp7 + dp12), mPaint1)
 
-        // 获取view右侧的坐标
-//        mRight = (mPadding + (((mProgress / 100)) * measuredWidth))
-//
-//        // 绘制渐变
-//        val linearGradient = LinearGradient(mPadding, mTop, (measuredWidth - mPadding), mTop, mColorBlue, mColorGreen, Shader.TileMode.CLAMP)
-//        mPaintDrawableLine.shader = linearGradient
-//
-//        // 绘制主View
-//        canvas.drawLine(mPadding, mTop, mRight, mTop, mPaintDrawableLine)
+        //获取view右侧的坐标
+        mRight = (mPadding + (((mProgress / 100)) * measuredWidth))
+
+        // 绘制渐变
+        val linearGradient = LinearGradient(mPadding, mTop, (measuredWidth - mPadding), mTop, mColorBlue, mColorGreen, Shader.TileMode.CLAMP)
+        mPaintDrawableLine.shader = linearGradient
+
+        // 绘制主View
+        canvas.drawLine(mPadding, mTop, mRight, mTop, mPaintDrawableLine)
 
         // 绘制闪电的标记
-//        val bitmap = getBitmapForResource()
-//        if (bitmap != null && (!bitmap.isRecycled)) {
-//            // view的区域，最好就是view自己本身的大小，或者是指定的大小
-//            val src = Rect(0, 0, (bitmap.width), (bitmap.height))
-//            // 绘制的区域，实际上就是在屏幕上view的位置
-//
-//            // drawable的高度为view中心 减去 Line一半的高度
-//            val drawableTop = (mTop - ((bitmap.height) / 2)).toInt()
-//            // 左侧的坐标
-//            val mLeft = mRight.toInt()
-//            // view在屏幕上的位置
-//            val dst = Rect(mLeft, drawableTop, (mLeft + (bitmap.width)), (drawableTop + (bitmap.height)))
-//            canvas.drawBitmap(bitmap, src, dst, mPaintDrawableLine)
-//        }
+        val bitmap = getBitmapForResource()
+        if (bitmap != null && (!bitmap.isRecycled)) {
+            // view的区域，最好就是view自己本身的大小，或者是指定的大小
+            val src = Rect(0, 0, (bitmap.width), (bitmap.height))
+            // 绘制的区域，实际上就是在屏幕上view的位置
+
+            // drawable的高度为view中心 减去 Line一半的高度
+            val drawableTop = (mTop - ((bitmap.height) / 2)).toInt()
+            // 左侧的坐标
+            val mLeft = mRight.toInt()
+            // view在屏幕上的位置
+            val dst = Rect(mLeft, drawableTop, (mLeft + (bitmap.width)), (drawableTop + (bitmap.height)))
+            canvas.drawBitmap(bitmap, src, dst, mPaintDrawableLine)
+        }
     }
 
     /**

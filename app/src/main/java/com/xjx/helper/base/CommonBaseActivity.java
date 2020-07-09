@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
 import com.xjx.helper.utils.LogUtil;
+import com.xjx.helper.utils.statusBar.StatusBarUtil;
 
 /**
  * @作者 徐腾飞
@@ -48,6 +49,7 @@ public abstract class CommonBaseActivity extends AppCompatActivity implements Vi
     protected void onStart() {
         super.onStart();
         mContext = this;
+        StatusBarUtil.getInstance(mContext).hideBottomMenu();
     }
 
     /**

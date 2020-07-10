@@ -16,7 +16,7 @@ import com.xjx.helper.utils.LogUtil
 /**
  * 进度条
  */
-class ProgressView constructor(val content: Context) : View(content) {
+public class ProgressView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
 
     private val mPaintDrawableLine: Paint = Paint()
 
@@ -38,8 +38,8 @@ class ProgressView constructor(val content: Context) : View(content) {
     /**
      * 渐变色
      */
-    private val mColorBlue: Int by lazy { ContextCompat.getColor(content, R.color.blue_2) }
-    private val mColorGreen: Int by lazy { ContextCompat.getColor(content, R.color.green_2) }
+    private val mColorBlue: Int by lazy { ContextCompat.getColor(context!!, R.color.blue_2) }
+    private val mColorGreen: Int by lazy { ContextCompat.getColor(context!!, R.color.green_2) }
 
     /**
      * View的右侧坐标
@@ -51,9 +51,10 @@ class ProgressView constructor(val content: Context) : View(content) {
      */
     private var mProgress: Float = 70f
 
-    constructor(content: Context, @androidx.annotation.Nullable attributes: AttributeSet) : this(content) {
-        initView(attributes)
-    }
+//    constructor( @androidx.annotation.Nullable attributes: AttributeSet)  {
+//        super(get,attributes)
+//        initView(attributes)
+//    }
 
     private fun initView(attributes: AttributeSet) {
         mPaintDrawableLine.color = resources.getColor(R.color.green_2)
@@ -69,6 +70,11 @@ class ProgressView constructor(val content: Context) : View(content) {
         if (measuredHeight > 0) {
             mTop = (measuredHeight / 2).toFloat()
         }
+    }
+
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+        super.onSizeChanged(w, h, oldw, oldh)
+
     }
 
     @SuppressLint("DrawAllocation")

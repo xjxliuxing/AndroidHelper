@@ -2,6 +2,7 @@ package com.xjx.helper.ui.home.activity.tod.customview
 
 import com.xjx.helper.R
 import com.xjx.helper.base.CommonBaseTitleActivity
+import com.xjx.helper.customview.ProgressView
 import com.xjx.helper.enums.PlaceholderStatus
 import kotlinx.android.synthetic.main.activity_custom_progress.*
 
@@ -18,6 +19,8 @@ class CustomProgressViewActivity : CommonBaseTitleActivity() {
         super.initView()
         SwitchLoadingStatus(PlaceholderStatus.NONE)
         setTitleContent("进度条的View")
+        val findViewById = findViewById<ProgressView>(R.id.custom_pbssss)
+        
     }
 
     override fun onRestart() {

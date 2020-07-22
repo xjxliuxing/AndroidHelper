@@ -1,5 +1,6 @@
 package com.xjx.helper.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -110,4 +111,14 @@ public abstract class CommonBaseActivity extends AppCompatActivity implements Vi
         super.onDestroy();
     }
 
+    /**
+     * 简易的跳转类
+     *
+     * @param intent intent对象
+     * @param cls    class的文件，必须是activity的类
+     */
+    protected void startActivity(Intent intent, Class<? extends CommonBaseActivity> cls) {
+        intent.setClass(mContext, cls);
+        startActivity(intent);
+    }
 }

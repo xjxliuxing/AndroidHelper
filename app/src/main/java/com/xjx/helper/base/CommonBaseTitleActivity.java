@@ -82,7 +82,7 @@ public abstract class CommonBaseTitleActivity extends CommonBaseActivity {
     /**
      * 设置标题的内容
      *
-     * @param titleContent
+     * @param titleContent 具体的title内容
      */
     public void setTitleContent(String titleContent) {
         TextViewUtils.setText(mTvTitle, titleContent);
@@ -129,7 +129,7 @@ public abstract class CommonBaseTitleActivity extends CommonBaseActivity {
     /**
      * 设置内容布局上的View
      *
-     * @param view
+     * @param view 设置的顶部view
      */
     protected void setTopView(View view) {
         mFlTopTitleContent.setVisibility(View.VISIBLE);

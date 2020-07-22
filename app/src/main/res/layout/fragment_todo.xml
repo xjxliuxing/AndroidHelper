@@ -15,19 +15,24 @@
             android:text="自定义Widget" />
 
         <TextView
-            android:id="@+id/tv_14"
+            android:id="@+id/tv_custom_view"
             style="@style/style_todo_item"
             android:text="自定义View" />
 
         <TextView
-            android:id="@+id/tv_20"
+            android:id="@+id/tv_animation_map"
             style="@style/style_todo_item"
             android:text="自定义动画组合" />
 
         <TextView
-            android:id="@+id/tv_21"
+            android:id="@+id/tv_java_map"
             style="@style/style_todo_item"
             android:text="JAVA 相关" />
+
+        <TextView
+            android:id="@+id/tv_test_map"
+            style="@style/style_todo_item"
+            android:text="测试相关" />
 
     </LinearLayout>
 

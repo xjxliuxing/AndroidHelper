@@ -42,6 +42,7 @@ android {
 
             buildConfigField("String", "SERVER_URL", project.SERVER_URL)
             buildConfigField("String", "APP_ID", project.APP_ID)
+            buildConfigField("int", "SQLite_Version_Code", project.SQLiteVersionCode)
         }
 
         debug {
@@ -53,6 +54,7 @@ android {
 
             buildConfigField("String", "SERVER_URL", project.SERVER_URL_DEBUG)
             buildConfigField("String", "APP_ID", project.APP_ID_DEBUG)
+            buildConfigField("int", "SQLite_Version_Code", project.SQLiteVersionCode)
         }
     }
 

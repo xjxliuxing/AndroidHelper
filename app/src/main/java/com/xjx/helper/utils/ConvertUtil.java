@@ -518,4 +518,24 @@ public class ConvertUtil {
     public static float toSp(float px) {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, px, Resources.getSystem().getDisplayMetrics());
     }
+
+    /**
+     * @param list
+     * @param key
+     * @return 过滤掉数组中不用的数据
+     */
+    public static List<String> filterList(List<String> list, String key) {
+        if (list.contains(key)) {
+            ArrayList<String> ts = new ArrayList<>();
+            for (int i = 0; i < list.size(); i++) {
+                String t = list.get(i);
+                if (!TextUtils.equals(t, key)) {
+                    ts.add(t);
+                }
+            }
+            return ts;
+        } else {
+            return list;
+        }
+    }
 }

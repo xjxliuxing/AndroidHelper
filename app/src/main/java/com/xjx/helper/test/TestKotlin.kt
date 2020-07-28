@@ -10,7 +10,7 @@ import com.xjx.helper.utils.LogUtil
  */
 class TestKotlin : CommonBaseTitleActivity() {
 
-    private var str: String? = "null"
+    private var str: String? = null
 
     override fun getTitleLayout(): Int {
         return R.layout.activity_animation_map
@@ -24,13 +24,14 @@ class TestKotlin : CommonBaseTitleActivity() {
 
     override fun initData() {
         super.initData()
-        str?.let {
-            LogUtil.e("我是数据不为空的逻辑$str")
-        }
-
-        str.let {
-            LogUtil.e("我是数据为空的逻辑$str")
-        }
+//        str?.let {
+//            LogUtil.e("我是数据不为空的逻辑$str")
+//        }
+//
+//        str.let {
+//            LogUtil.e("我是数据为空的逻辑$str")
+//        }
+        LogUtil.e("str:数据为空的情况：" + str!!)
     }
 
 }

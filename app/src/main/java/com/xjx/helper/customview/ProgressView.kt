@@ -9,9 +9,9 @@ import android.view.View
 import androidx.annotation.FloatRange
 import androidx.annotation.Keep
 import androidx.core.content.ContextCompat
+import com.xjx.apphelper.utils.ConvertUtil
+import com.xjx.apphelper.utils.LogUtil
 import com.xjx.helper.R
-import com.xjx.helper.utils.ConvertUtil
-import com.xjx.helper.utils.LogUtil
 
 /**
  * 进度条

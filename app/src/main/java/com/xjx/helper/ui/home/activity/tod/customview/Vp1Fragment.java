@@ -8,12 +8,12 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import com.xjx.apphelper.utils.LogUtil;
+import com.xjx.apphelper.utils.ToastUtil;
 import com.xjx.helper.R;
-import com.xjx.helper.base.BaseListAdapter;
-import com.xjx.helper.base.BaseVH;
-import com.xjx.helper.base.CommonBaseFragment;
-import com.xjx.helper.utils.LogUtil;
-import com.xjx.helper.utils.ToastUtil;
+import com.xjx.apphelper.base.BaseListAdapter;
+import com.xjx.apphelper.base.BaseVH;
+import com.xjx.apphelper.base.CommonBaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;

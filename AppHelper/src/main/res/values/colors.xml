@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Appbar背景色-->
+    <color name="colorPrimary">#008577</color>
+    <!--状态栏颜色-->
+    <!--    <color name="colorPrimaryDark">#00574B</color>-->
+    <color name="colorPrimaryDark">#222222</color>
+    <!--控制各个控件被选中时的颜色-->
+    <color name="colorAccent">#D81B60</color>
+    <color name="base_refresh_foot_background">#444444</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="transparent_30">#4d000000</color>
+    <color name="transparent_50">#80000000</color>
+    <color name="transparent_70">#b3000000</color>
+
+    <color name="light_green2">#00AA00</color>
+    <color name="main_red2">#CD2121</color>
+
+    <color name="bg_blue2">#399AFE</color>
+
+    <color name="base_title_background_color">#222222</color>
+    <color name="base_refreshe_foot_background">#444444</color>
+
+    <color name="bg_blue">#399AFE</color>
+
+    <color name="main_text_color_selected">#000000</color>
+    <color name="main_text_color_gray">#8C8C8C</color>
+    <color name="main_text_color_gold">#D7BE1E</color>
+    <color name="main_text_color_40">#404040</color>
+
+    <color name="white">#FFFFFF</color>
+
+    <color name="title_color_1">#222222</color>
+    <color name="title_color_2">#333333</color>
+    <color name="title_color_3">#666666</color>
+    <color name="title_color_5">#999999</color>
+
+    <color name="line1">#EEEEEE</color>
+
+    <color name="yellow1">#ffd7be1e</color>
+    <color name="yellow2">#D7BE1E</color>
+
+    <color name="black">#000000</color>
+    <color name="black1">#ff404040</color>
+    <color name="black2">#404040</color>
+    <color name="black3">#A3A3A3</color>
+    <color name="black4">#ff8c8c8c</color>
+    <color name="black5">#ffeeeeee</color>
+    <color name="black6">#C8C8C8</color>
+    <color name="black7">#ff333333</color>
+    <color name="black8">#ECECEC</color>
+    <color name="black9">#ff231916</color>
+    <color name="black10">#231916</color>
+    <color name="black11">#fff5f5f5</color>
+    <color name="black12">#291F1C</color>
+    <color name="black13">#D6D6D6</color>
+
+    <color name="read1">#FF566B</color>
+    <color name="read2">#ffa60000</color>
+
+    <color name="purple1">#FF00FF</color>
+
+    <color name="gray_1">#85878B</color>
+    <color name="gray_2">#A3A8AF</color>
+    <color name="gray_3">#ff82868f</color>
+    <color name="gray_4">#82868F</color>
+    <color name="gray_5">#F4F5F6</color>
+    <color name="gray_6">#666666</color>
+    <color name="gray_7">#626B7D</color>
+    <color name="gray_8">#ffa3a8af</color>
+    <color name="gray_9">#333843</color>
+    <color name="gray_10">#3E485A</color>
+    <color name="gray_11">#ff313941</color>
+    <color name="gray_12">#BEC4CC</color>
+
+    <!--todo  颜色的资源文件-->
+    <color name="blue_1">#5AA7A9</color>
+    <color name="blue_2">#33FFEC</color>
+
+    <color name="purple_1">#ff7695cf</color>
+    <color name="purple_2">#ff7694cf</color>
+
+    <color name="black_1">#ffeeeeee</color>
+    <color name="black_2">#ffeeeeee</color>
+    <color name="black_3">#ff414344</color>
+    <color name="black_4">#ff171b21</color>
+    <color name="black_5">#171B21</color>
+    <color name="black_6">#14171D</color>
+    <color name="black_7">#313941</color>
+    <color name="black_13">#CC000000</color>
+
+    <color name="white_1">#F9F9F9</color>
+    <color name="white_2">#ECECEC</color>
+    <color name="white_3">#fff8f8f8</color>
+    <color name="white_4">#F6F7F9</color>
+    <color name="white_5">#F3F4F5</color>
+    <color name="white_6">#ffd8d8d8</color>
+
+    <color name="red_1">#F8F1F1</color>
+    <color name="red_2">#D06F6F</color>
+    <color name="red_3">#C22828</color>
+    <color name="red_4">#B60004</color>
+
+    <color name="green_1">#07E555</color>
+    <color name="green_2">#1FFF6D</color>
+
+
+</resources>

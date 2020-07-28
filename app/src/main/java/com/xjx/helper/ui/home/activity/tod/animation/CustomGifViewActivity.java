@@ -7,12 +7,12 @@ import android.view.ViewTreeObserver;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 
+import com.xjx.apphelper.utils.LogUtil;
+import com.xjx.apphelper.utils.ScreenUtil;
+import com.xjx.apphelper.utils.ToastUtil;
 import com.xjx.helper.R;
-import com.xjx.helper.base.CommonBaseTitleActivity;
-import com.xjx.helper.enums.PlaceholderStatus;
-import com.xjx.helper.utils.LogUtil;
-import com.xjx.helper.utils.ScreenUtil;
-import com.xjx.helper.utils.ToastUtil;
+import com.xjx.apphelper.base.CommonBaseTitleActivity;
+import com.xjx.apphelper.enums.PlaceholderStatus;
 
 /**
  * 自定义gifView

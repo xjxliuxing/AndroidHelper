@@ -9,8 +9,8 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
+import com.xjx.apphelper.utils.ConvertUtil;
 import com.xjx.helper.R;
-import com.xjx.helper.utils.ConvertUtil;
 
 import java.util.ArrayList;
 import java.util.List;

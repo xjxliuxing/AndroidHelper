@@ -6,12 +6,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.xjx.apphelper.utils.GlideUtil;
+import com.xjx.apphelper.utils.ToastUtil;
 import com.xjx.helper.R;
-import com.xjx.helper.base.BaseRecycleAdapter;
-import com.xjx.helper.base.BaseVH;
+import com.xjx.apphelper.base.BaseRecycleAdapter;
+import com.xjx.apphelper.base.BaseVH;
 import com.xjx.helper.entity.StoreActivityBean;
-import com.xjx.helper.utils.GlideUtil;
-import com.xjx.helper.utils.ToastUtil;
 
 import java.util.List;
 

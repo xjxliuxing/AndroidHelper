@@ -1,14 +1,14 @@
 package com.xjx.helper.ui.home.fragments
 
+import com.xjx.apphelper.utils.recyeliview.RecycleUtil
 import com.xjx.helper.R
 import com.xjx.helper.adapter.TestAdapter
-import com.xjx.helper.base.CommonBaseRefreshListFragment
+import com.xjx.apphelper.base.CommonBaseRefreshListFragment
 import com.xjx.helper.entity.StoreActivityBean
 import com.xjx.helper.http.client.ApiException
 import com.xjx.helper.http.client.ApiServices
-import com.xjx.helper.http.client.BaseResponse
-import com.xjx.helper.http.client.Page
-import com.xjx.helper.utils.recyeliview.RecycleUtil
+import com.xjx.apphelper.http.BaseResponse
+import com.xjx.apphelper.http.Page
 import kotlinx.android.synthetic.main.fragment_home.*
 import retrofit2.Call
 

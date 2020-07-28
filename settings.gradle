@@ -1,2 +1,2 @@
-include ':appHelp'
+include ':AppHelper'
 include ':app'

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="RelativeLayoutUtil">
+        <attr name="x_width" format="dimension" />
+
+    </declare-styleable>
+
+    <!--自定义textView的drawable-->
+    <declare-styleable name="DrawableTextView">
+        <attr name="drawable_text_width" format="float" />
+        <attr name="drawable_text_height" format="float" />
+    </declare-styleable>
+
+    <!--textDrawableView-->
+    <declare-styleable name="TextViewDrawable">
+        <attr name="tw_text" format="string" />
+        <attr name="tw_textSize" format="dimension" />
+        <attr name="tw_textColor" format="color" />
+        <attr name="tw_drawable" format="reference" />
+        <attr name="tw_drawable_Padding" format="dimension" />
+        <attr name="tw_drawable_Left" format="reference" />
+        <attr name="tw_drawable_Right" format="reference" />
+        <attr name="tw_drawable_Top" format="reference" />
+        <attr name="tw_drawable_Bottom" format="reference" />
+        <attr name="tw_drawable_Width" format="reference" />
+        <attr name="tw_drawable_Height" format="reference" />
+
+    </declare-styleable>
+
+    <declare-styleable name="SendProgressView">
+        <attr name="drawable" format="reference" />
+        <attr name="stroke_Width" format="integer" />
+        <attr name="inner_layer_color" format="color" />
+        <attr name="inner_alpha" format="float" />
+        <attr name="outer_layer_color" format="color" />
+        <attr name="time" format="integer" /><!--多少秒走完整个布局-->
+        <attr name="drawable_width" format="integer" />
+        <attr name="drawable_height" format="integer" />
+
+    </declare-styleable>
+
+</resources>

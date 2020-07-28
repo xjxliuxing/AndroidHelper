@@ -5,10 +5,10 @@ import android.app.Activity;
 import androidx.annotation.NonNull;
 
 import com.xjx.helper.R;
-import com.xjx.helper.base.BaseRecycleAdapter;
-import com.xjx.helper.base.BaseVH;
-import com.xjx.helper.base.CommonBaseTitleActivity;
-import com.xjx.helper.enums.PlaceholderStatus;
+import com.xjx.apphelper.base.BaseRecycleAdapter;
+import com.xjx.apphelper.base.BaseVH;
+import com.xjx.apphelper.base.CommonBaseTitleActivity;
+import com.xjx.apphelper.enums.PlaceholderStatus;
 
 import java.util.ArrayList;
 import java.util.List;

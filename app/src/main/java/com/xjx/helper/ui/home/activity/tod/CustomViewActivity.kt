@@ -1,8 +1,8 @@
 package com.xjx.helper.ui.home.activity.tod
 
 import com.xjx.helper.R
-import com.xjx.helper.base.CommonBaseTitleActivity
-import com.xjx.helper.enums.PlaceholderStatus
+import com.xjx.apphelper.base.CommonBaseTitleActivity
+import com.xjx.apphelper.enums.PlaceholderStatus
 
 class CustomViewActivity : CommonBaseTitleActivity() {
 

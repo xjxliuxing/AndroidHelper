@@ -3,11 +3,12 @@ package com.xjx.helper.http.client;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
-import com.xjx.helper.global.CommonBaseApp;
+import com.xjx.apphelper.global.CommonBaseApp;
+import com.xjx.apphelper.http.BaseResponse;
+import com.xjx.apphelper.http.HttpClient;
+import com.xjx.apphelper.utils.LogUtil;
+import com.xjx.apphelper.utils.SpUtil;
 import com.xjx.helper.global.CommonConstant;
-import com.xjx.helper.utils.LogUtil;
-import com.xjx.helper.utils.SpUtil;
-
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;

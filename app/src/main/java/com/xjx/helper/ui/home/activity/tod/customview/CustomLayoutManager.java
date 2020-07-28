@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.xjx.helper.utils.LogUtil;
+import com.xjx.apphelper.utils.LogUtil;
 
 public class CustomLayoutManager extends RecyclerView.LayoutManager {
     private String TAG = "Custom-RV-LM";

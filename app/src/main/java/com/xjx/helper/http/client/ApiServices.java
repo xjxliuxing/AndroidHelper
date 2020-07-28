@@ -1,5 +1,6 @@
 package com.xjx.helper.http.client;
 
+import com.xjx.apphelper.http.HttpClient;
 import com.xjx.helper.http.logic.LogicTest;
 
 import retrofit2.Retrofit;

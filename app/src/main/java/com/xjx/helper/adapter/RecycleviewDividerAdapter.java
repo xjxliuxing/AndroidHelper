@@ -1,14 +1,12 @@
 package com.xjx.helper.adapter;
 
 import android.app.Activity;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 
 import com.xjx.helper.R;
-import com.xjx.helper.base.BaseRecycleAdapter;
-import com.xjx.helper.base.BaseVH;
+import com.xjx.apphelper.base.BaseRecycleAdapter;
+import com.xjx.apphelper.base.BaseVH;
 
 public class RecycleviewDividerAdapter extends BaseRecycleAdapter<String> {
 

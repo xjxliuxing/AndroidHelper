@@ -1,6 +1,6 @@
 package com.xjx.helper.http.progress;
 
-import com.xjx.helper.interfaces.ProgressResponseListener;
+import com.xjx.apphelper.interfaces.ProgressResponseListener;
 
 import java.io.IOException;
 

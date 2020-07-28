@@ -7,7 +7,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.xjx.helper.R;
-import com.xjx.helper.base.CommonBaseFragment;
+import com.xjx.apphelper.base.CommonBaseFragment;
 
 
 /**

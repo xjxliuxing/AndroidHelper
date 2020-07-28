@@ -20,8 +20,8 @@ import android.view.animation.LinearInterpolator;
 
 import androidx.annotation.Nullable;
 
+import com.xjx.apphelper.utils.LogUtil;
 import com.xjx.helper.R;
-import com.xjx.helper.utils.LogUtil;
 
 /**
  * 圆形进度条的view

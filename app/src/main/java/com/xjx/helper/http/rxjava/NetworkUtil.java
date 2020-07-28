@@ -6,7 +6,7 @@ import android.net.NetworkInfo;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
-import com.xjx.helper.global.CommonBaseApp;
+import com.xjx.apphelper.global.CommonBaseApp;
 
 /**
  * @作者 徐腾飞

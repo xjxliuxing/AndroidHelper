@@ -3,8 +3,8 @@ package com.xjx.helper.ui.home.activity.tod.widget
 import android.content.Intent
 import android.view.View
 import com.xjx.helper.R
-import com.xjx.helper.base.CommonBaseTitleActivity
-import com.xjx.helper.enums.PlaceholderStatus
+import com.xjx.apphelper.base.CommonBaseTitleActivity
+import com.xjx.apphelper.enums.PlaceholderStatus
 import com.xjx.helper.ui.home.activity.tod.CustomTime2Activity
 import com.xjx.helper.ui.home.activity.tod.NetWorkCurrentKbActivity
 import com.xjx.helper.ui.home.activity.tod.RecycleViewDivederActivity

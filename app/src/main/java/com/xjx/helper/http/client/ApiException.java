@@ -2,8 +2,8 @@ package com.xjx.helper.http.client;
 
 import androidx.annotation.Nullable;
 
-import com.xjx.helper.utils.LogUtil;
-import com.xjx.helper.utils.ToastUtil;
+import com.xjx.apphelper.utils.LogUtil;
+import com.xjx.apphelper.utils.ToastUtil;
 
 /**
  * 异常类型的封装

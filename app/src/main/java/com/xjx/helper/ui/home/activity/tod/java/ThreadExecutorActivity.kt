@@ -2,9 +2,9 @@ package com.xjx.helper.ui.home.activity.tod.java
 
 import android.view.View
 import com.xjx.helper.R
-import com.xjx.helper.base.CommonBaseTitleActivity
-import com.xjx.helper.enums.PlaceholderStatus
-import com.xjx.helper.utils.LogUtil
+import com.xjx.apphelper.base.CommonBaseTitleActivity
+import com.xjx.apphelper.enums.PlaceholderStatus
+import com.xjx.apphelper.utils.LogUtil
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 

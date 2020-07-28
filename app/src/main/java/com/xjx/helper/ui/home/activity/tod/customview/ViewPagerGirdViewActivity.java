@@ -6,9 +6,9 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.xjx.helper.R;
-import com.xjx.helper.base.CommonBaseTitleActivity;
-import com.xjx.helper.base.CommonFragmentPagerAdapter;
-import com.xjx.helper.enums.PlaceholderStatus;
+import com.xjx.apphelper.base.CommonBaseTitleActivity;
+import com.xjx.apphelper.base.CommonFragmentPagerAdapter;
+import com.xjx.apphelper.enums.PlaceholderStatus;
 
 import java.util.ArrayList;
 import java.util.List;

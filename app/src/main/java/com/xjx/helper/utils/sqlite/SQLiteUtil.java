@@ -54,6 +54,7 @@ public class SQLiteUtil {
         sqliteHelper = SQLiteManager.getInstance(context, sqlEntity);
     }
 
+
     /**
      * @param attributeKey   需要插入的属性
      * @param attributeValue 需要插入属性的值

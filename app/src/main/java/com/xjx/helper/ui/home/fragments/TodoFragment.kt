@@ -9,6 +9,7 @@ import com.xjx.helper.ui.home.activity.tod.animation.AnimationMapActivity
 import com.xjx.helper.ui.home.activity.tod.customview.CustomViewMapActivity
 import com.xjx.helper.ui.home.activity.tod.java.JavaMapActivity
 import com.xjx.helper.ui.home.activity.tod.widget.WidgetMapActivity
+import com.xjx.helper.utils.LogUtil
 
 /**
  * 待办的fragmen
@@ -47,6 +48,7 @@ class TodoFragment : CommonBaseFragment() {
                 intent.setClass(mContext, TestMapActivity::class.java)
             }
         }
+        LogUtil.e("测试")
         mContext.startActivity(intent)
     }
 

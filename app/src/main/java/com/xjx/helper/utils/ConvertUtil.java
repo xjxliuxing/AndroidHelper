@@ -1,6 +1,7 @@
 package com.xjx.helper.utils;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -10,6 +11,7 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.text.style.ForegroundColorSpan;
+import android.util.TypedValue;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -477,5 +480,62 @@ public class ConvertUtil {
         result = nf.format(value);
 
         return result;
+    }
+
+    /**
+     * @param set set 集合
+     * @return 把一个set集合转换为list集合
+     */
+    public static <T> ArrayList<T> SetToList(HashSet<T> set) {
+        if (set == null) {
+            return null;
+        }
+
+        ArrayList<T> result = new ArrayList<T>(set);
+
+        return result;
+    }
+
+    /**
+     * @param dp 具体的dp值
+     * @return 使用标准的dp值
+     */
+    public static float toDp(float dp) {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, Resources.getSystem().getDisplayMetrics());
+    }
+
+    /**
+     * @param px px的值
+     * @return 返回一个标准的px的值
+     */
+    public static float toPx(float px) {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, px, Resources.getSystem().getDisplayMetrics());
+    }
+    /**
+     * @param px px的值
+     * @return 返回一个标准的px的值
+     */
+    public static float toSp(float px) {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, px, Resources.getSystem().getDisplayMetrics());
+    }
+
+    /**
+     * @param list
+     * @param key
+     * @return 过滤掉数组中不用的数据
+     */
+    public static List<String> filterList(List<String> list, String key) {
+        if (list.contains(key)) {
+            ArrayList<String> ts = new ArrayList<>();
+            for (int i = 0; i < list.size(); i++) {
+                String t = list.get(i);
+                if (!TextUtils.equals(t, key)) {
+                    ts.add(t);
+                }
+            }
+            return ts;
+        } else {
+            return list;
+        }
     }
 }

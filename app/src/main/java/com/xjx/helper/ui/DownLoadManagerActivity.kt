@@ -21,7 +21,7 @@ class DownLoadManagerActivity : CommonBaseTitleActivity() {
     override fun initView() {
         super.initView()
         setTitleContent("下载管理区")
-        LoadingStatus(PlaceholderStatus.NONE)
+        SwitchLoadingStatus(PlaceholderStatus.NONE)
     }
 
 }

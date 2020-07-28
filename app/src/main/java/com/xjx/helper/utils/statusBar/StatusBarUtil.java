@@ -296,4 +296,35 @@ public class StatusBarUtil {
         return util;
     }
 
+    public StatusBarUtil hideBottomUIMenu() {
+        //隐藏虚拟按键，滑动也不能重新显示
+        Window window = mActivity.getWindow();
+        WindowManager.LayoutParams params = window.getAttributes();
+        params.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE;
+        window.setAttributes(params);
+        return util;
+    }
+
+    /**
+     * @return 隐藏底导航栏，手势滑动的时候再次出现，默认隐藏,建议放到基类中使用，避免小米手机底部出现幺蛾子
+     */
+    public StatusBarUtil hideBottomMenu() {
+        //隐藏虚拟按键，滑动也不能重新显示
+        Window window = mActivity.getWindow();
+        WindowManager.LayoutParams params = window.getAttributes();
+        params.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE;
+        window.setAttributes(params);
+
+        // 隐藏底部导航栏，并禁止弹出
+        View decorView = mActivity.getWindow().getDecorView();
+        int uiOptions =
+                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY        // 自动过一会后自动隐藏
+                ;
+
+        decorView.setSystemUiVisibility(uiOptions);
+
+        return util;
+    }
+
 }

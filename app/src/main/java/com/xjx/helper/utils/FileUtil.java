@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Environment;
 
+import com.xjx.helper.global.CommonBaseApp;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -39,17 +41,15 @@ public class FileUtil {
     }
 
     /**
-     * 保存到SD卡
-     *
-     * @param filename
-     * @param filecontent
-     * @throws Exception
+     * @param filename    文件名字,例如：device.text
+     * @param filecontent 具体的内容 "123"
+     * @return 保存到SD卡根目录
      */
-    public void saveToSdContent(String filename, String filecontent) {
+    public boolean saveToSdContent(String filename, String filecontent) {
+        boolean isSaveSuccess = false;
         boolean b = checkSdStatus();
         if (b) {
-            File externalStoragePublicDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-            Environment.getExternalStorageDirectory();
+            // 获取sd卡的根目录
             File file = new File(Environment.getExternalStorageDirectory(), filename);
             FileOutputStream outStream = null;
             try {
@@ -59,8 +59,10 @@ public class FileUtil {
             }
             try {
                 outStream.write(filecontent.getBytes());
+                isSaveSuccess = true;
             } catch (IOException e) {
                 e.printStackTrace();
+                isSaveSuccess = false;
             }
             try {
                 outStream.close();
@@ -70,8 +72,13 @@ public class FileUtil {
         } else {
             ToastUtil.showToast("Sd卡不可用");
         }
+
+        return isSaveSuccess;
     }
 
+    /**
+     * @return 获取保存到sd卡中的文件内容
+     */
     public String getSdContent(String filename) {
         String sTempOneLine = "";
         boolean b = checkSdStatus();
@@ -106,7 +113,7 @@ public class FileUtil {
     }
 
     /**
-     * @param context
+     * @param context 上下文对象
      * @return 获取Sd卡的路径，因为7.0之后SD卡的路径可能会被拒绝访问，所以分为两种不同的情况去获取
      * 1:7.0之上的方式：获取的路径为App内部的路径，会随着App的删除而被删除掉，具体路径为：/storage/emulated/0/Android/data/com.xjx.helper.debug/files/Download
      * 如果需要使用，则在mainfast.xml 中application下面加入：android:requestLegacyExternalStorage="true"
@@ -139,6 +146,86 @@ public class FileUtil {
 
         LogUtil.e("获取的路径为：" + path);
         return path;
+    }
+
+    /**
+     * @return 保存到App路径下面
+     */
+    public boolean saveApp(Context context, String fileName, String content) {
+        boolean isSaveSuccess = false;
+        boolean b = checkSdStatus();
+        if (b) {
+            // 返回共享存储的路径
+            File externalFilesDir = CommonBaseApp.getContext().getExternalFilesDir(null);
+            if (externalFilesDir != null) {
+                String absolutePath = externalFilesDir.getAbsolutePath();
+                File file = new File(absolutePath, fileName);
+
+                FileOutputStream outStream = null;
+                try {
+                    outStream = new FileOutputStream(file);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    outStream.write(content.getBytes());
+                    isSaveSuccess = true;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    isSaveSuccess = false;
+                }
+                try {
+                    outStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                ToastUtil.showToast("获取共享存储对象失败");
+            }
+        } else {
+            ToastUtil.showToast("Sd卡不可用");
+        }
+        return isSaveSuccess;
+    }
+
+    /**
+     * @return 获取保存在App里面的内容
+     */
+    public String getAppContent(String filName) {
+        String result = "";
+        String sTempOneLine = "";
+        boolean b = checkSdStatus();
+        if (b) {
+            File externalFilesDir = CommonBaseApp.getContext().getExternalFilesDir(null);
+            if (externalFilesDir != null) {
+                File file = new File(externalFilesDir, filName);
+                try {
+                    FileInputStream inputStream = new FileInputStream(file);
+                    BufferedReader tBufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+
+                    StringBuilder tStringBuffer = new StringBuilder();
+
+                    while (true) {
+                        try {
+                            if (!((sTempOneLine = tBufferedReader.readLine()) != null)) {
+                                break;
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            return null;
+                        }
+                        tStringBuffer.append(sTempOneLine);
+                    }
+                    result = tStringBuffer.toString();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                    return "";
+                }
+            }
+        } else {
+            ToastUtil.showToast("Sd卡不可用");
+        }
+        return result;
     }
 
 }

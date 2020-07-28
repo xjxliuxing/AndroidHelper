@@ -36,8 +36,8 @@ public class DialogUtil {
         return dialogUtil;
     }
 
-    public static DialogUtil getInstance(Activity activity, boolean DimEnabled) {
-        dialogUtil = new DialogUtil(activity, DimEnabled);
+    public static DialogUtil getInstance(Activity activity, boolean isfuzzy) {
+        dialogUtil = new DialogUtil(activity, isfuzzy);
         return dialogUtil;
     }
 
@@ -69,7 +69,7 @@ public class DialogUtil {
         });
     }
 
-    public DialogUtil(Activity activity, boolean DimEnabled) {
+    public DialogUtil(Activity activity, boolean isfuzzy) {
         this.mActivity = activity;
 
         // 避免重复出现弹窗
@@ -78,7 +78,11 @@ public class DialogUtil {
                 dialog.dismiss();
             }
         }
-        dialog = new Dialog(mActivity, R.style.dialog_hint);
+        if (isfuzzy){
+            dialog = new Dialog(mActivity, R.style.base_dialog);
+        }else {
+            dialog = new Dialog(mActivity, R.style.dialog_hint);
+        }
 
         // dialog展示时候的监听
         dialog.setOnShowListener(new DialogInterface.OnShowListener() {
@@ -347,6 +351,23 @@ public class DialogUtil {
                     }
                 });
             }
+        }
+        return dialogUtil;
+    }
+
+
+    /**
+     * @param id              资源的id
+     * @param onClickListener 回调事件
+     * @return 单个的点击事件
+     */
+    public DialogUtil setOnclickListener(@IdRes int id, View.OnClickListener onClickListener) {
+        if (mRootView != null) {
+            mRootView.findViewById(id).setOnClickListener(v -> {
+                if (onClickListener != null) {
+                    onClickListener.onClick(mRootView);
+                }
+            });
         }
         return dialogUtil;
     }

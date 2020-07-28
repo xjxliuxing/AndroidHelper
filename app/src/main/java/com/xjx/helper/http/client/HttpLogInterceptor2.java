@@ -164,7 +164,7 @@ public class HttpLogInterceptor2 implements Interceptor {
     }
 
     /**
-     * Returns true if the body in question probably contains human readable text. Uses a small sample
+     * Returns true if the body in question probably contains human readable DividerGridItemDecoration. Uses a small sample
      * of code points to detect unicode control characters commonly used in binary file signatures.
      */
     static boolean isPlaintext(Buffer buffer) {

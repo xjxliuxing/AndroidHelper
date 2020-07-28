@@ -1,7 +1,10 @@
 package com.xjx.helper.utils;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.text.TextUtils;
@@ -17,7 +20,12 @@ import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
-import com.xjx.helper.R;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * @作者 徐腾飞
@@ -45,6 +53,7 @@ public class GlideUtil {
      * @param view
      * @param placeholder
      */
+    @SuppressLint("CheckResult")
     public void Load(Activity context, String url, ImageView view, int placeholder) {
 
         if (context == null) {
@@ -292,4 +301,47 @@ public class GlideUtil {
                 .into(imageView);
     }
 
+    /**
+     * ----------------------------------- 3.x-----------------
+     *
+     * @param url       路径
+     * @param imageView imageView
+     */
+
+    public void load(String url, ImageView imageView) {
+//        Glide
+//                .with(mContext)
+//                .load(url)
+//                .error(R.mipmap.img_error)
+//                .placeholder(R.mipmap.iv_loading_round) //加载成功前显示的图片
+//                .fallback(R.mipmap.iv_loading_round) //url为空的时候,显示的图片
+//                .into(imageView);
+    }
+
+    private Bitmap bitmap = null;
+
+    public Bitmap getBitmapForUrl(String url) {
+        new Thread(() -> {
+            URL imageUrl = null;
+            try {
+                imageUrl = new URL(url);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            try {
+                if (imageUrl != null) {
+                    HttpURLConnection conn = (HttpURLConnection) imageUrl.openConnection();
+                    conn.setDoInput(true);
+                    conn.connect();
+                    InputStream is = conn.getInputStream();
+                    bitmap = BitmapFactory.decodeStream(is);
+
+                    is.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }).start();
+        return bitmap;
+    }
 }

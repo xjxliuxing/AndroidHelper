@@ -49,4 +49,51 @@
     <color name="read1">#FF566B</color>
     <color name="read2">#ffa60000</color>
 
+    <color name="purple1">#FF00FF</color>
+
+    <color name="gray_1">#85878B</color>
+    <color name="gray_2">#A3A8AF</color>
+    <color name="gray_3">#ff82868f</color>
+    <color name="gray_4">#82868F</color>
+    <color name="gray_5">#F4F5F6</color>
+    <color name="gray_6">#666666</color>
+    <color name="gray_7">#626B7D</color>
+    <color name="gray_8">#ffa3a8af</color>
+    <color name="gray_9">#333843</color>
+    <color name="gray_10">#3E485A</color>
+    <color name="gray_11">#ff313941</color>
+    <color name="gray_12">#BEC4CC</color>
+
+    <!--todo  颜色的资源文件-->
+    <color name="blue_1">#5AA7A9</color>
+    <color name="blue_2">#33FFEC</color>
+
+    <color name="purple_1">#ff7695cf</color>
+    <color name="purple_2">#ff7694cf</color>
+
+    <color name="black_1">#ffeeeeee</color>
+    <color name="black_2">#ffeeeeee</color>
+    <color name="black_3">#ff414344</color>
+    <color name="black_4">#ff171b21</color>
+    <color name="black_5">#171B21</color>
+    <color name="black_6">#14171D</color>
+    <color name="black_7">#313941</color>
+    <color name="black_13">#CC000000</color>
+
+    <color name="white_1">#F9F9F9</color>
+    <color name="white_2">#ECECEC</color>
+    <color name="white_3">#fff8f8f8</color>
+    <color name="white_4">#F6F7F9</color>
+    <color name="white_5">#F3F4F5</color>
+    <color name="white_6">#ffd8d8d8</color>
+
+    <color name="red_1">#F8F1F1</color>
+    <color name="red_2">#D06F6F</color>
+    <color name="red_3">#C22828</color>
+    <color name="red_4">#B60004</color>
+
+    <color name="green_1">#07E555</color>
+    <color name="green_2">#1FFF6D</color>
+
+
 </resources>

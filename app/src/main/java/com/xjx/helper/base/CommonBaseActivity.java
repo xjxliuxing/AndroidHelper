@@ -1,14 +1,15 @@
 package com.xjx.helper.base;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 
 import com.xjx.helper.utils.LogUtil;
+import com.xjx.helper.utils.statusBar.StatusBarUtil;
 
 /**
  * @作者 徐腾飞
@@ -19,8 +20,7 @@ import com.xjx.helper.utils.LogUtil;
  */
 public abstract class CommonBaseActivity extends AppCompatActivity implements View.OnClickListener {
 
-    @SuppressLint("StaticFieldLeak")
-    protected static Activity mContext;
+    protected FragmentActivity mContext;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,6 +50,7 @@ public abstract class CommonBaseActivity extends AppCompatActivity implements Vi
     protected void onStart() {
         super.onStart();
         mContext = this;
+        StatusBarUtil.getInstance(mContext).hideBottomMenu();
     }
 
     /**
@@ -85,6 +86,22 @@ public abstract class CommonBaseActivity extends AppCompatActivity implements Vi
     protected void onRequestData() {
     }
 
+    /**
+     * 设置点击事件
+     *
+     * @param ids 点击事件的id
+     */
+    protected void setOnClick(int... ids) {
+        if (ids != null && ids.length > 0) {
+            for (int id : ids) {
+                View view = findViewById(id);
+                if (view != null) {
+                    view.setOnClickListener(this);
+                }
+            }
+        }
+    }
+
     @Override
     public void onClick(View v) {
     }
@@ -94,4 +111,14 @@ public abstract class CommonBaseActivity extends AppCompatActivity implements Vi
         super.onDestroy();
     }
 
+    /**
+     * 简易的跳转类
+     *
+     * @param intent intent对象
+     * @param cls    class的文件，必须是activity的类
+     */
+    protected void startActivity(Intent intent, Class<? extends CommonBaseActivity> cls) {
+        intent.setClass(mContext, cls);
+        startActivity(intent);
+    }
 }

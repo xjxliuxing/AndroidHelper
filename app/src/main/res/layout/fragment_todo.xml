@@ -1,13 +1,39 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.xjx.helper.ui.home.fragments.TodoFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="待办" />
+        android:orientation="vertical">
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/tv_custom_widget"
+            style="@style/style_todo_item"
+            android:text="自定义Widget" />
+
+        <TextView
+            android:id="@+id/tv_custom_view"
+            style="@style/style_todo_item"
+            android:text="自定义View" />
+
+        <TextView
+            android:id="@+id/tv_animation_map"
+            style="@style/style_todo_item"
+            android:text="自定义动画组合" />
+
+        <TextView
+            android:id="@+id/tv_java_map"
+            style="@style/style_todo_item"
+            android:text="JAVA 相关" />
+
+        <TextView
+            android:id="@+id/tv_test_map"
+            style="@style/style_todo_item"
+            android:text="测试相关" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -8,4 +8,38 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="style_todo_item">
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:background">@color/read1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/black1</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="BottomDialog_Animation">
+        <item name="android:windowEnterAnimation">@anim/tranlate_dialog_in</item>
+        <item name="android:windowExitAnimation">@anim/tranlate_dialog_out</item>
+    </style>
+
+    <!--验证阿门输入框-->
+    <declare-styleable name="PassWordView">
+        <attr name="pd_size" format="integer" /> <!--验证码的个数-->
+        <attr name="pd_HorizontalSpacing" format="dimension" /> <!--每个view之间的间隔-->
+        <attr name="pd_un_selector_color" format="color" /> <!--没有选中的颜色-->
+        <attr name="pd_un_selector_height" format="dimension" /> <!--没有选中的高度-->
+        <attr name="pd_selector_color" format="color" /> <!--选中的颜色-->
+        <attr name="pd_selector_error_color" format="color" /> <!--选中错误的颜色-->
+        <attr name="pd_selector_height" format="dimension" /> <!--选中的高度-->
+        <attr name="pd_drawable_color" format="color" /> <!--密文的颜色-->
+        <attr name="pd_drawable_size" format="dimension" /> <!--密文的大小-->
+        <attr name="pd_content_color" format="color" /> <!--默认内容的颜色-->
+        <attr name="pd_content_size" format="dimension" /> <!--默认内容的大小-->
+        <attr name="pd_show_input" format="boolean" /><!--是否展示输入框-->
+        <attr name="pd_show_password" format="boolean" /> <!--是否显示密码-->
+
+    </declare-styleable>
+
 </resources>

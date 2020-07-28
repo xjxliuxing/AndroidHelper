@@ -26,7 +26,7 @@ android {
             storeFile file('dplus')
             storePassword '123456'
         }
-        debug {
+        test {
             keyAlias 'dplus'
             keyPassword '123456'
             storeFile file('dplus')
@@ -42,10 +42,11 @@ android {
 
             buildConfigField("String", "SERVER_URL", project.SERVER_URL)
             buildConfigField("String", "APP_ID", project.APP_ID)
+            buildConfigField("int", "SQLite_Version_Code", project.SQLiteVersionCode)
         }
 
         debug {
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.test
             applicationIdSuffix '.debug'
             shrinkResources false
             minifyEnabled false
@@ -53,6 +54,7 @@ android {
 
             buildConfigField("String", "SERVER_URL", project.SERVER_URL_DEBUG)
             buildConfigField("String", "APP_ID", project.APP_ID_DEBUG)
+            buildConfigField("int", "SQLite_Version_Code", project.SQLiteVersionCode)
         }
     }
 
@@ -69,6 +71,7 @@ android {
                     [
                             'src/main/res',
                             'src/main/res/layout/common',
+                            'src/main/res/layout/todo'
                     ]
             jniLibs.srcDirs = ['libs']  /**在libs文件夹下找so文件*/
         }
@@ -83,37 +86,12 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':appHelp')
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    // logger 工具
-    implementation 'com.orhanobut:logger:2.2.0'
-    implementation 'androidx.recyclerview:recyclerview:1.0.0-beta01'
-    // eventbus 3.1
-    implementation 'org.greenrobot:eventbus:3.1.1'
-    implementation 'com.google.code.gson:gson:2.8.2'
-    // 6.0动态权限
-    implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
-    // 刷新框架
-    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
-
-    // 图片框架
-    implementation 'com.github.bumptech.glide:glide:4.10.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
-    // RxJava1
-    implementation 'io.reactivex:rxjava:1.1.6'
-    implementation 'io.reactivex:rxandroid:1.2.1'
-    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
-    implementation 'com.squareup.okhttp3:okhttp:3.12.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.6.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava:2.5.0'
-    implementation 'com.squareup.retrofit2:converter-scalars:2.3.0'
-    // RxJava2
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.11'
-    implementation 'com.android.support:design:28.0.0'
 }

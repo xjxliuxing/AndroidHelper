@@ -24,8 +24,8 @@ public abstract class BaseRecycleAdapter<T> extends RecyclerView.Adapter<BaseVH>
 
     protected Activity mContext;
     protected List<T> mList;
-    protected OnItemBundleClickListener mItemBundleClickListener;
-    protected OnItemClickListener<T> mItemClickListener;
+    protected OnItemBundleClickListener mOnItemBundleClickListener;
+    protected OnItemClickListener<T> mOnItemClickListener;
     protected OnChildClickListener<T> mOnChildClickListener;
 
     public BaseRecycleAdapter(Activity mContext) {
@@ -58,19 +58,19 @@ public abstract class BaseRecycleAdapter<T> extends RecyclerView.Adapter<BaseVH>
     /**
      * RecycleView的点击事件,可以通过Bundle传递任意类型数据
      *
-     * @param itemBundleClickListener
+     * @param itemBundleClickListener bound的事件
      */
-    public void setItemBundleClickListener(OnItemBundleClickListener itemBundleClickListener) {
-        this.mItemBundleClickListener = itemBundleClickListener;
+    public void setOnItemBundleClickListener(OnItemBundleClickListener itemBundleClickListener) {
+        this.mOnItemBundleClickListener = itemBundleClickListener;
     }
 
     /**
      * RecycleView的点击事件，只能传递本条目的数据
      *
-     * @param itemClickListener
+     * @param itemClickListener item的对象
      */
-    public void setItemClickListener(OnItemClickListener<T> itemClickListener) {
-        this.mItemClickListener = itemClickListener;
+    public void setOnItemClickListener(OnItemClickListener<T> itemClickListener) {
+        this.mOnItemClickListener = itemClickListener;
     }
 
     /**
@@ -84,8 +84,7 @@ public abstract class BaseRecycleAdapter<T> extends RecyclerView.Adapter<BaseVH>
     @Override
     public BaseVH onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View inflate = LayoutInflater.from(mContext).inflate(getLayout(), viewGroup, false);
-        BaseVH vh = new BaseVH(inflate);
-        return vh;
+        return new BaseVH(inflate);
     }
 
     @Override

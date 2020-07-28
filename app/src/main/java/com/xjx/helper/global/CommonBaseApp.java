@@ -152,29 +152,27 @@ public class CommonBaseApp extends Application {
             @Override
             public void initialize(@NonNull Context context, @NonNull RefreshLayout refreshLayout) {
                 //开始设置全局的基本参数（可以被下面的DefaultRefreshHeaderCreator覆盖）
-                refreshLayout.setReboundDuration(300);//回弹动画时长（毫秒）
+//                refreshLayout.setReboundDuration(300);//回弹动画时长（毫秒）
 
                 // 设置刷新的背景颜色和字体的颜色
                 refreshLayout.setPrimaryColorsId(R.color.colorPrimary, R.color.base_refreshe_foot_background);
 
                 // refreshLayout.setHeaderHeight(100);//Header标准高度（显示下拉高度>=标准高度 触发刷新）
                 // refreshLayout.setFooterHeight(100);//Footer标准高度（显示上拉高度>=标准高度 触发加载）
-                refreshLayout.setEnableRefresh(true);//是否启用下拉刷新功能
-                //refreshLayout.setEnableLoadMore(true);//是否启用上拉加载功能
 
-                refreshLayout.setEnableScrollContentWhenLoaded(true);//是否在加载完成时滚动列表显示新的内容
-                refreshLayout.setEnableHeaderTranslationContent(true);//是否下拉Header的时候向下平移列表或者内容
-                refreshLayout.setEnableFooterTranslationContent(true);//是否上拉Footer的时候向上平移列表或者内容
+//                refreshLayout.setEnableScrollContentWhenLoaded(true);//是否在加载完成时滚动列表显示新的内容
+//                refreshLayout.setEnableHeaderTranslationContent(true);//是否下拉Header的时候向下平移列表或者内容
+//                refreshLayout.setEnableFooterTranslationContent(true);//是否上拉Footer的时候向上平移列表或者内容
                 refreshLayout.setEnableLoadMoreWhenContentNotFull(true);//是否在列表不满一页时候开启上拉加载功能
-                refreshLayout.setEnableFooterFollowWhenNoMoreData(true);//是否在全部加载结束之后Footer跟随内容1.0.4
-                refreshLayout.setEnableOverScrollDrag(false);//是否启用越界拖动（仿苹果效果）1.0.4
-                refreshLayout.setEnableScrollContentWhenRefreshed(true);//是否在刷新完成时滚动列表显示新的内容 1.0.5
-
-                refreshLayout.setDisableContentWhenRefresh(false);//是否在刷新的时候禁止列表的操作
-                refreshLayout.setDisableContentWhenLoading(false);//是否在加载的时候禁止列表的操作
-
-                refreshLayout.setEnableOverScrollBounce(false); // 设置是否启用越界回弹
-                refreshLayout.setEnableAutoLoadMore(false); //设置是否监听列表在滚动到底部时触发加载事件（默认true）
+//                refreshLayout.setEnableFooterFollowWhenNoMoreData(true);//是否在全部加载结束之后Footer跟随内容1.0.4
+//                refreshLayout.setEnableOverScrollDrag(false);//是否启用越界拖动（仿苹果效果）1.0.4
+//                refreshLayout.setEnableScrollContentWhenRefreshed(true);//是否在刷新完成时滚动列表显示新的内容 1.0.5
+//
+//                refreshLayout.setDisableContentWhenRefresh(false);//是否在刷新的时候禁止列表的操作
+//                refreshLayout.setDisableContentWhenLoading(false);//是否在加载的时候禁止列表的操作
+//
+//                refreshLayout.setEnableOverScrollBounce(true); // 设置是否启用越界回弹
+//                refreshLayout.setEnableAutoLoadMore(false); //设置是否监听列表在滚动到底部时触发加载事件（默认true）
             }
         });
 

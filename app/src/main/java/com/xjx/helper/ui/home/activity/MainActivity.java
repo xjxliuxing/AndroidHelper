@@ -8,8 +8,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.xjx.helper.R;
-import com.xjx.helper.base.CommonFragmentPagerAdapter;
 import com.xjx.helper.base.CommonBaseTitleActivity;
+import com.xjx.helper.base.CommonFragmentPagerAdapter;
 import com.xjx.helper.enums.PlaceholderStatus;
 import com.xjx.helper.ui.home.fragments.HomeFragment;
 import com.xjx.helper.ui.home.fragments.PersonalFragment;
@@ -39,7 +39,7 @@ public class MainActivity extends CommonBaseTitleActivity {
         super.initView();
 
         setTitleContent("首页");
-        LoadingStatus(PlaceholderStatus.NONE);
+        SwitchLoadingStatus(PlaceholderStatus.NONE);
 //        rv_list = findViewById(R.id.rv_list);
 
 //        View top = LayoutInflater.from(mContext).inflate(R.layout.item_test_1, null, false);
@@ -51,7 +51,6 @@ public class MainActivity extends CommonBaseTitleActivity {
         mVpContent = findViewById(R.id.vp_content);
         mNavigation = findViewById(R.id.navigation);
     }
-
 
     @Override
     protected void initData() {
@@ -82,6 +81,19 @@ public class MainActivity extends CommonBaseTitleActivity {
                 //设置默认选中item
                 mNavigation.getMenu().getItem(position).setChecked(true);
                 LogUtil.e("onPageSelected:" + position);
+                switch (position) {
+                    case 0:
+                        setTitleContent("首页");
+                        break;
+
+                    case 1:
+                        setTitleContent("代办");
+                        break;
+
+                    case 2:
+                        setTitleContent("个人中心");
+                        break;
+                }
             }
 
             @Override
@@ -89,7 +101,6 @@ public class MainActivity extends CommonBaseTitleActivity {
 
             }
         });
-
 
         // 底部导航器选中的监听事件
         mNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -115,6 +126,4 @@ public class MainActivity extends CommonBaseTitleActivity {
             }
         });
     }
-
-
 }

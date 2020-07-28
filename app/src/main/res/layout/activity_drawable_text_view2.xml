@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_13"
+    tools:context="com.xjx.helper.ui.home.activity.tod.customview.DrawableTextViewActivity">
+
+    <com.xjx.helper.widget.custom.TextViewDrawable
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:tw_drawable_Left="@mipmap/icon_progress_phone"
+        app:tw_text="我是测试的TextView"
+        app:tw_textColor="@color/white" />
+
+</RelativeLayout>

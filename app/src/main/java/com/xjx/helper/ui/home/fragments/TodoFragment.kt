@@ -48,7 +48,7 @@ class TodoFragment : CommonBaseFragment() {
                 intent.setClass(mContext, TestMapActivity::class.java)
             }
         }
-        LogUtil.e("测试")
+        LogUtil.e("测试3")
         mContext.startActivity(intent)
     }
 

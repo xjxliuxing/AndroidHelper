@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <com.xjx.helper.customview.ProgressView
-        android:id="@+id/pb"
+        android:id="@+id/custom_pbssss"
         android:layout_width="0dp"
         android:layout_height="100dp"
         app:layout_constraintBottom_toBottomOf="parent"

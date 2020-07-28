@@ -6,7 +6,7 @@ import com.xjx.helper.base.CommonBaseTitleActivity
 import com.xjx.helper.enums.PlaceholderStatus
 import com.xjx.helper.utils.ToastUtil
 import com.xjx.helper.widget.CustomTime
-import kotlinx.android.synthetic.main.activity_custom_time.*
+import kotlinx.android.synthetic.main.activity_custom_time2.*
 import java.util.*
 
 class CustomTime2Activity : CommonBaseTitleActivity() {
@@ -73,6 +73,5 @@ class CustomTime2Activity : CommonBaseTitleActivity() {
             ToastUtil.showToast("" + year + "年" + month + "月" + day + "日" + hours + "时" + minutes + "分")
         }
     }
-
 
 }

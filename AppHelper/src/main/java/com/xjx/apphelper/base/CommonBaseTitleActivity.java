@@ -9,10 +9,10 @@ import android.widget.TextView;
 
 import com.xjx.apphelper.R;
 import com.xjx.apphelper.enums.PlaceholderStatus;
+import com.xjx.apphelper.http.ApiException;
 import com.xjx.apphelper.http.BaseResponse;
 import com.xjx.apphelper.utils.views.TextViewUtils;
 import com.xjx.apphelper.widget.PlaceHolderView;
-import com.xjx.helper.http.client.ApiException;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.xjx.apphelper.interfaces;
 
-import com.xjx.helper.http.client.ApiException;
+import com.xjx.apphelper.http.ApiException;
 
 /**
  * 网络请求接口成功和失败的回调

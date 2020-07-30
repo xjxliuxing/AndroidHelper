@@ -2,7 +2,6 @@ package com.xjx.apphelper.http;
 
 import com.xjx.apphelper.global.CommonBaseApp;
 import com.xjx.apphelper.interfaces.HttpResponseCallBackListener;
-import com.xjx.helper.http.client.ApiException;
 
 import java.io.IOException;
 import java.net.SocketException;
@@ -83,4 +82,5 @@ public abstract class BaseResponseCallBack<T> implements Callback<T>, HttpRespon
         }
     }
 
+    public abstract void onFailured(ApiException t);
 }

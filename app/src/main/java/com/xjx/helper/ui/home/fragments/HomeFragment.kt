@@ -4,8 +4,8 @@ import com.xjx.apphelper.utils.recyeliview.RecycleUtil
 import com.xjx.helper.R
 import com.xjx.helper.adapter.TestAdapter
 import com.xjx.apphelper.base.CommonBaseRefreshListFragment
+import com.xjx.apphelper.http.ApiException
 import com.xjx.helper.entity.StoreActivityBean
-import com.xjx.helper.http.client.ApiException
 import com.xjx.helper.http.client.ApiServices
 import com.xjx.apphelper.http.BaseResponse
 import com.xjx.apphelper.http.Page
@@ -28,7 +28,6 @@ class HomeFragment : CommonBaseRefreshListFragment<StoreActivityBean>() {
     override fun getRefreshLayout(): Int {
         return R.layout.fragment_home
     }
-
 
     override fun initData() {
         super.initData()

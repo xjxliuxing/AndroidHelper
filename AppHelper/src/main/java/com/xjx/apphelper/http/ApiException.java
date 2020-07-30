@@ -1,4 +1,4 @@
-package com.xjx.helper.http.client;
+package com.xjx.apphelper.http;
 
 import androidx.annotation.Nullable;
 

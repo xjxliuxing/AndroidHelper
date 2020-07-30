@@ -10,6 +10,7 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.xjx.apphelper.R;
 import com.xjx.apphelper.enums.PlaceholderStatus;
+import com.xjx.apphelper.http.ApiException;
 import com.xjx.apphelper.http.BaseResponse;
 import com.xjx.apphelper.http.Page;
 import com.xjx.apphelper.utils.LogUtil;
@@ -17,7 +18,6 @@ import com.xjx.apphelper.utils.refresh.MyRefreshFooter;
 import com.xjx.apphelper.utils.refresh.MyRrfreshHeader;
 import com.xjx.apphelper.utils.refresh.MySmartRefreshLayout;
 import com.xjx.apphelper.widget.PlaceHolderView;
-import com.xjx.helper.http.client.ApiException;
 
 import java.util.List;
 

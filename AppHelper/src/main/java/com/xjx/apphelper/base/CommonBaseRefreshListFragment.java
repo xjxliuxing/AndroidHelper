@@ -6,10 +6,10 @@ import androidx.annotation.NonNull;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.xjx.apphelper.http.ApiException;
 import com.xjx.apphelper.http.BaseResponse;
 import com.xjx.apphelper.http.BaseResponseCallBack;
 import com.xjx.apphelper.http.Page;
-import com.xjx.helper.http.client.ApiException;
 import com.xjx.apphelper.interfaces.OnHttpResultListListener;
 
 import java.util.ArrayList;
@@ -66,7 +66,6 @@ public abstract class CommonBaseRefreshListFragment<T> extends CommonBaseRefresh
         }
     }
 
-
     /**
      * 刷新布局的操作
      *
@@ -97,7 +96,6 @@ public abstract class CommonBaseRefreshListFragment<T> extends CommonBaseRefresh
         ++mPage;
         getHttpResult();
     }
-
 
     /**
      * 如果页面需要分页，则需要使用这个方法，去动态的控制数据，如果不需要分页则不需使用该方法
@@ -155,7 +153,6 @@ public abstract class CommonBaseRefreshListFragment<T> extends CommonBaseRefresh
                             if (mBaseAdapter != null) {
                                 mBaseAdapter.notifyDataSetChanged();
                             }
-
 
                             if (data.size() < mPageSize) {
                                 mBaseRefresh.finishLoadMoreWithNoMoreData();//设置之后，将不会再触发加载事件

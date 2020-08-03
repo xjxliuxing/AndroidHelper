@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black_13"
-    tools:context="com.xjx.helper.ui.home.activity.tod.customview.DrawableTextViewActivity">
+    tools:context="com.xjx.helper.ui.home.activity.tod.customviewui.DrawableTextViewActivity">
 
     <com.xjx.helper.widget.custom.TextViewDrawable
         android:layout_width="wrap_content"

@@ -7,7 +7,7 @@ import com.xjx.helper.R
 import com.xjx.apphelper.base.CommonBaseFragment
 import com.xjx.helper.test.TestMapActivity
 import com.xjx.helper.ui.home.activity.tod.animation.AnimationMapActivity
-import com.xjx.helper.ui.home.activity.tod.customview.CustomViewMapActivity
+import com.xjx.helper.ui.home.activity.tod.customviewui.CustomViewMapActivity
 import com.xjx.helper.ui.home.activity.tod.java.JavaMapActivity
 import com.xjx.helper.ui.home.activity.tod.widget.WidgetMapActivity
 

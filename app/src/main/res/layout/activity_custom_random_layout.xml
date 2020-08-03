@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.xjx.helper.ui.home.activity.tod.customview.CustomRandomLayoutActivity">
+    tools:context="com.xjx.helper.ui.home.activity.tod.customviewui.CustomRandomLayoutActivity">
 
     <com.xjx.helper.widget.custom.CustomRandomLayout
         android:id="@+id/cs_random_layout1"

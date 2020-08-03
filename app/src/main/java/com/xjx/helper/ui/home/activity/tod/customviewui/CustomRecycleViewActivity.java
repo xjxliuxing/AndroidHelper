@@ -1,4 +1,4 @@
-package com.xjx.helper.ui.home.activity.tod.customview;
+package com.xjx.helper.ui.home.activity.tod.customviewui;
 
 import android.app.Activity;
 

@@ -6,7 +6,7 @@
     tools:context="com.xjx.helper.ui.home.activity.tod.CustomViewActivity">
 
 
-    <com.xjx.helper.ui.home.activity.tod.customview.CutomRoundView
+    <com.xjx.helper.ui.home.activity.tod.customviewui.CutomRoundView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

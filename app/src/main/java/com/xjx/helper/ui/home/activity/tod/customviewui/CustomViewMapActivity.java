@@ -1,4 +1,4 @@
-package com.xjx.helper.ui.home.activity.tod.customview;
+package com.xjx.helper.ui.home.activity.tod.customviewui;
 
 import android.content.Intent;
 import android.view.View;
@@ -25,7 +25,7 @@ public class CustomViewMapActivity extends CommonBaseTitleActivity {
         SwitchLoadingStatus(PlaceholderStatus.NONE);
 
         setOnClick(R.id.tv_1, R.id.tv_2, R.id.tv_3, R.id.tv_4, R.id.tv_5, R.id.tv_6,
-                R.id.tv_7);
+                R.id.tv_7,R.id.tv_8);
     }
 
     @Override
@@ -55,6 +55,9 @@ public class CustomViewMapActivity extends CommonBaseTitleActivity {
                 break;
             case R.id.tv_7:// 自定义随机布局
                 intent.setClass(mContext, CustomRandomLayoutActivity.class);
+                break;
+            case R.id.tv_8:// 自定义随机布局
+                intent.setClass(mContext, RoundActivity.class);
                 break;
         }
 

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.xjx.helper.ui.home.activity.tod.customview.CustomRecycleViewActivity">
+    tools:context="com.xjx.helper.ui.home.activity.tod.customviewui.CustomRecycleViewActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_list"

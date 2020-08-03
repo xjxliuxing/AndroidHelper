@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.xjx.helper.ui.home.activity.tod.customview.CustomViewMapActivity">
+    tools:context="com.xjx.helper.ui.home.activity.tod.customviewui.CustomViewMapActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,6 +44,11 @@
             android:id="@+id/tv_7"
             style="@style/style_todo_item"
             android:text="自定义随机分布View的布局" />
+
+        <TextView
+            android:id="@+id/tv_8"
+            style="@style/style_todo_item"
+            android:text="自定义圆角图片" />
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

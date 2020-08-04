@@ -20,6 +20,7 @@ class TodoFragment : CommonBaseFragment() {
         return R.layout.fragment_todo
     }
 
+
     override fun initListener() {
         super.initListener()
         setOnClick(R.id.tv_custom_widget, R.id.tv_custom_view, R.id.tv_animation_map,

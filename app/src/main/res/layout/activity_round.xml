@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.xjx.helper.ui.home.activity.tod.customviewui.RoundActivity">
+    tools:context="com.xjx.helper.ui.home.activity.todo.customviewui.RoundActivity">
 
     <com.xjx.helper.widget.custom.RoundView
         android:layout_width="200dp"

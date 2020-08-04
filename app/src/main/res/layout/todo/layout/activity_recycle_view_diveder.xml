@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_blue"
-    tools:context="com.xjx.helper.ui.home.activity.tod.RecycleViewDivederActivity">
+    tools:context="com.xjx.helper.ui.home.activity.todo.widget.RecycleViewDivederActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package com.xjx.helper.ui.home.activity.tod.animation;
+package com.xjx.helper.ui.home.activity.todo.animation;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;

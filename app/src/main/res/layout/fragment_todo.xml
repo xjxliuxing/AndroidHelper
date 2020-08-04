@@ -15,11 +15,6 @@
             android:text="自定义Widget" />
 
         <TextView
-            android:id="@+id/tv_custom_view"
-            style="@style/style_todo_item"
-            android:text="自定义View" />
-
-        <TextView
             android:id="@+id/tv_animation_map"
             style="@style/style_todo_item"
             android:text="自定义动画组合" />
@@ -34,6 +29,10 @@
             style="@style/style_todo_item"
             android:text="测试相关" />
 
+        <TextView
+            android:id="@+id/tv_custom_view"
+            style="@style/style_todo_item"
+            android:text="自定义View" />
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

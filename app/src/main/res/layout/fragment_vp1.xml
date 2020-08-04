@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.xjx.helper.ui.home.activity.tod.customviewui.Vp1Fragment">
+    tools:context="com.xjx.helper.ui.home.activity.todo.customviewui.Vp1Fragment">
 
     <GridView
         android:id="@+id/gv"

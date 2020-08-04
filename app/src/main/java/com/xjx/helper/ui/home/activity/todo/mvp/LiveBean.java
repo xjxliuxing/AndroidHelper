@@ -1,4 +1,4 @@
-package com.xjx.helper.ui.home.activity.tod.mvp;
+package com.xjx.helper.ui.home.activity.todo.mvp;
 
 public class LiveBean {
     private String title;

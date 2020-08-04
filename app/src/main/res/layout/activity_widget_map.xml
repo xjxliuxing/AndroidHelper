@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.xjx.helper.ui.home.activity.tod.widget.WidgetMapActivity">
+    tools:context="com.xjx.helper.ui.home.activity.todo.widget.WidgetMapActivity">
 
     <TextView
         android:id="@+id/tv_widget_1"

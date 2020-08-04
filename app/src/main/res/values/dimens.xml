@@ -45,17 +45,7 @@
 
     <dimen name="tab_divider_height">2dp</dimen>
 
-    <dimen name="dp_11_5">11.5dp</dimen>
-    <dimen name="dp_15_5">15.5dp</dimen>
-    <dimen name="dp_16">16dp</dimen>
-    <dimen name="dp_16_5">16.5dp</dimen>
-    <dimen name="dp_18">18dp</dimen>
-    <dimen name="dp_19">19dp</dimen>
-    <dimen name="dp_20">20dp</dimen>
-    <dimen name="dp_21">21dp</dimen>
-    <dimen name="dp_22">22dp</dimen>
-    <dimen name="dp_25">25dp</dimen>
-    <dimen name="dp_28">28dp</dimen>
-    <dimen name="dp_29">29dp</dimen>
+    <dimen name="dp_15">15dp</dimen>
+
 
 </resources>

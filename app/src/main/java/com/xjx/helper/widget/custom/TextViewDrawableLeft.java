@@ -26,16 +26,18 @@ public class TextViewDrawableLeft extends View {
     private Paint mPaintText = new Paint();
     private Bitmap bitmap;
     private Drawable drawable;
-    private float drawableWidth;
-    private float dimension;
+    private int drawableWidth;
+    private int drawableHeight;
     private String content;
     private int color;
     private float size;
     private int bitmapHeight;
     private int contentWidth;
     private int contentHeight;
-    private int mWidth;
-    private int mHeight;
+    private int measuredWidth;
+    private int measuredHeight;
+    private int bitmapWidth;
+    private int mHeightValue;
 
     public TextViewDrawableLeft(Context context) {
         super(context);
@@ -54,8 +56,8 @@ public class TextViewDrawableLeft extends View {
 
         // drawable
         drawable = array.getDrawable(R.styleable.TextViewDrawableLeft_tdl_drawable);
-        drawableWidth = array.getDimension(R.styleable.TextViewDrawableLeft_tdl_drawable_width, 0);
-        dimension = array.getDimension(R.styleable.TextViewDrawableLeft_tdl_drawable_height, 0);
+        drawableWidth = (int) array.getDimension(R.styleable.TextViewDrawableLeft_tdl_drawable_width, 0);
+        drawableHeight = (int) array.getDimension(R.styleable.TextViewDrawableLeft_tdl_drawable_height, 0);
 
         // text
         content = array.getString(R.styleable.TextViewDrawableLeft_tdl_content);
@@ -73,10 +75,54 @@ public class TextViewDrawableLeft extends View {
     }
 
     @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
-        mWidth = w;
-        mHeight = h;
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+        measuredWidth = getMeasuredWidth();
+        measuredHeight = getMeasuredHeight();
+
+        // 获取text的宽高
+        if ((contentWidth <= 0) || (contentHeight <= 0)) {
+            Rect rect = new Rect();
+            mPaintText.getTextBounds(content, 0, content.length(), rect);
+            contentWidth = rect.width();
+            contentHeight = rect.height();
+        }
+
+        if (bitmap == null) {
+            bitmap = getBitmap();
+        }
+
+        // 获取bitmap的高度
+        if (this.bitmap != null) {
+            bitmapHeight = this.bitmap.getHeight();
+            bitmapWidth = this.bitmap.getWidth();
+        }
+
+        if (contentHeight > bitmapHeight) {
+            mHeightValue = contentHeight;
+        } else {
+            mHeightValue = bitmapHeight;
+        }
+
+//        int height = mHeightValue;
+//        int width = contentWidth + bitmapWidth;
+//        final int widthSpecMode = MeasureSpec.getMode(widthMeasureSpec);
+//        final int widthSpecSize = MeasureSpec.getSize(widthMeasureSpec);
+//        final int heightSpecMode = MeasureSpec.getMode(heightMeasureSpec);
+//        final int heightSpecSize = MeasureSpec.getMode(heightMeasureSpec);
+//        if (widthSpecMode == MeasureSpec.AT_MOST && heightSpecMode == MeasureSpec.AT_MOST) {
+//            setMeasuredDimension(width, height);
+//        } else if (widthSpecMode == MeasureSpec.AT_MOST) {
+//            setMeasuredDimension(width, heightSpecSize);
+//        } else if (heightSpecMode == MeasureSpec.AT_MOST) {
+//            setMeasuredDimension(widthSpecSize, height);
+//        }
+
+        final int width = MeasureSpec.getSize(widthMeasureSpec);
+        final int height = MeasureSpec.getSize(heightMeasureSpec);
+        setMeasuredDimension(resolveSize(width, widthMeasureSpec), resolveSize(height, heightMeasureSpec));
+
     }
 
     @Override
@@ -112,17 +158,16 @@ public class TextViewDrawableLeft extends View {
             top = (contentHeight - bitmapHeight) / 2;
         }
 
-        Rect rectSrc = new Rect(0, top, bitmap.getWidth(), bitmap.getHeight());
-        Rect rectDst = new Rect(0, 0, mWidth, mHeight);
+        Rect rectSrc = new Rect(0, top, drawableWidth, drawableHeight);
+        Rect rectDst = new Rect(0, 0, measuredWidth, measuredHeight);
 
         canvas.drawBitmap(bitmap, rectSrc, rectDst, mPaintDrawable);
 
         if (!TextUtils.isEmpty(content)) {
             Rect rect = new Rect();
             mPaintText.getTextBounds(content, 0, content.length(), rect);
-            canvas.drawText(content, 0, 0, mPaintText);
+            canvas.drawText(content, bitmap.getWidth(), bitmap.getHeight(), mPaintText);
         }
-
     }
 
     public Bitmap getBitmap() {
@@ -134,6 +179,8 @@ public class TextViewDrawableLeft extends View {
                 if (current instanceof BitmapDrawable) {
                     bitmap = ((BitmapDrawable) current).getBitmap();
                 }
+                bitmap.setWidth(drawableWidth);
+                bitmap.setHeight(drawableHeight);
             }
         }
         return bitmap;

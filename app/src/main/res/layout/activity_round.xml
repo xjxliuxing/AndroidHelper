@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,5 +12,17 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="130dp"
         android:background="@color/blue_1" />
+
+    <com.xjx.helper.widget.custom.TextViewDrawableLeft
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
+        android:layout_centerInParent="true"
+        android:background="@color/blue_2"
+        app:tdl_color="@color/red_4"
+        app:tdl_content="远程模式"
+        app:tdl_drawable="@drawable/tab_todo_selected"
+        app:tdl_drawable_height="@dimen/dp_15_5"
+        app:tdl_drawable_width="@dimen/dp_15_5"
+        app:tdl_size="@dimen/size_16sp" />
 
 </RelativeLayout>

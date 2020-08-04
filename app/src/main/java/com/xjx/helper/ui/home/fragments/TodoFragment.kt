@@ -2,9 +2,9 @@ package com.xjx.helper.ui.home.fragments
 
 import android.content.Intent
 import android.view.View
+import com.xjx.apphelper.base.CommonBaseFragment
 import com.xjx.apphelper.utils.LogUtil
 import com.xjx.helper.R
-import com.xjx.apphelper.base.CommonBaseFragment
 import com.xjx.helper.test.TestMapActivity
 import com.xjx.helper.ui.home.activity.todo.animation.AnimationMapActivity
 import com.xjx.helper.ui.home.activity.todo.customviewui.CustomViewMapActivity
@@ -19,7 +19,6 @@ class TodoFragment : CommonBaseFragment() {
     override fun getLayout(): Int {
         return R.layout.fragment_todo
     }
-
 
     override fun initListener() {
         super.initListener()
@@ -36,9 +35,6 @@ class TodoFragment : CommonBaseFragment() {
             R.id.tv_custom_widget -> {
                 intent.setClass(mContext, WidgetMapActivity::class.java)
             }
-            R.id.tv_custom_view -> {
-                intent.setClass(mContext, CustomViewMapActivity::class.java)
-            }
             R.id.tv_animation_map -> {
                 intent.setClass(mContext, AnimationMapActivity::class.java)
             }
@@ -47,6 +43,9 @@ class TodoFragment : CommonBaseFragment() {
             }
             R.id.tv_test_map -> {
                 intent.setClass(mContext, TestMapActivity::class.java)
+            }
+            R.id.tv_custom_view -> {
+                intent.setClass(mContext, CustomViewMapActivity::class.java)
             }
         }
 

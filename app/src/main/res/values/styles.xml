@@ -39,7 +39,15 @@
         <attr name="pd_content_size" format="dimension" /> <!--默认内容的大小-->
         <attr name="pd_show_input" format="boolean" /><!--是否展示输入框-->
         <attr name="pd_show_password" format="boolean" /> <!--是否显示密码-->
+    </declare-styleable>
 
+    <declare-styleable name="TextViewDrawableLeft">
+        <attr name="tdl_drawable" format="reference" />
+        <attr name="tdl_drawable_width" format="dimension" />
+        <attr name="tdl_drawable_height" format="dimension" />
+        <attr name="tdl_content" format="string" />
+        <attr name="tdl_color" format="color" />
+        <attr name="tdl_size" format="dimension" />
     </declare-styleable>
 
 </resources>

@@ -13,5 +13,5 @@ allprojects {
 
 第二步：
 dependencies {
-	         implementation 'com.github.xjxlx:AndroidHelper:1.0.7'
+	         implementation 'com.github.xjxlx:AndroidHelper:1.0.8'
 	}

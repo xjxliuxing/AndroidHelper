@@ -1,10 +1,10 @@
 ext {
     //编译版本和工具
-    androidBuildToolsVersion = "29.0.2"
-    androidCompileSdkVersion = 29
+    androidBuildToolsVersion = "28.0.3"
+    androidCompileSdkVersion = 28
     // 目标版本和最低版本
     androidMinSdkVersion = 21
-    androidTargetSdkVersion = 29
+    androidTargetSdkVersion = 28
 
     supportLibraryVersion = '28.+'
 

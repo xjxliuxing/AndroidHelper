@@ -124,7 +124,7 @@ public class FileUtil {
         String path = "";
         int sdkInt = Build.VERSION.SDK_INT;
 
-        if (sdkInt >= Build.VERSION_CODES.Q) {
+        if (sdkInt >= 28) {
             // 7.0之上使用其他方法代替
             path = context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath();
         } else {

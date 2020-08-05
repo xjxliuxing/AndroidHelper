@@ -19,6 +19,9 @@ class TestInputActivity : CommonBaseTitleActivity() {
         
         SwitchLoadingStatus(PlaceholderStatus.NONE)
         
+        
+        
+        
         setTitleContent("测试输入数据")
         btn_test.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {

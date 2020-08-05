@@ -2,10 +2,10 @@ package com.xjx.helper.test
 
 import android.text.TextUtils
 import android.view.View
-import com.xjx.helper.utils.DateUtils2
 import com.xjx.helper.R
 import com.xjx.helper.base.CommonBaseTitleActivity
 import com.xjx.helper.enums.PlaceholderStatus
+import com.xjx.helper.utils.DateUtils2
 import kotlinx.android.synthetic.main.activity_test_input.*
 
 class TestInputActivity : CommonBaseTitleActivity() {
@@ -18,6 +18,8 @@ class TestInputActivity : CommonBaseTitleActivity() {
         super.initView()
 
         SwitchLoadingStatus(PlaceholderStatus.NONE)
+
+
 
         setTitleContent("测试输入数据")
         btn_test.setOnClickListener(object : View.OnClickListener {

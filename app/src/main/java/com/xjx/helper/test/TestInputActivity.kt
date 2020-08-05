@@ -9,18 +9,16 @@ import com.xjx.helper.utils.DateUtils2
 import kotlinx.android.synthetic.main.activity_test_input.*
 
 class TestInputActivity : CommonBaseTitleActivity() {
-
+    
     override fun getTitleLayout(): Int {
         return R.layout.activity_test_input
     }
-
+    
     override fun initView() {
         super.initView()
-
+        
         SwitchLoadingStatus(PlaceholderStatus.NONE)
-
-
-
+        
         setTitleContent("测试输入数据")
         btn_test.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {

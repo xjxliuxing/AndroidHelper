@@ -4,8 +4,8 @@ import android.content.Intent;
 import android.view.View;
 
 import com.xjx.helper.R;
-import com.xjx.apphelper.base.CommonBaseTitleActivity;
-import com.xjx.apphelper.enums.PlaceholderStatus;
+import com.xjx.helper.base.CommonBaseTitleActivity;
+import com.xjx.helper.enums.PlaceholderStatus;
 
 /**
  * 自定义view的集合

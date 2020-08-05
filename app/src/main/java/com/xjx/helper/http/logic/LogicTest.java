@@ -1,8 +1,8 @@
 package com.xjx.helper.http.logic;
 
 import com.xjx.helper.entity.StoreActivityBean;
-import com.xjx.apphelper.http.Page;
-import com.xjx.apphelper.http.BaseResponse;
+import com.xjx.helper.http2.BaseResponse;
+import com.xjx.helper.http2.Page;
 
 import java.util.Map;
 

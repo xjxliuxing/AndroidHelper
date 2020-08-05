@@ -3,11 +3,11 @@ package com.xjx.helper.http.client;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
-import com.xjx.apphelper.global.CommonBaseApp;
-import com.xjx.apphelper.http.BaseResponse;
-import com.xjx.apphelper.http.HttpClient;
-import com.xjx.apphelper.utils.LogUtil;
-import com.xjx.apphelper.utils.SpUtil;
+import com.xjx.helper.global.App;
+import com.xjx.helper.http2.BaseResponse;
+import com.xjx.helper.http2.HttpClient;
+import com.xjx.helper.utils.LogUtil;
+import com.xjx.helper.utils.SpUtil;
 import com.xjx.helper.global.CommonConstant;
 import java.io.EOFException;
 import java.io.IOException;
@@ -38,7 +38,7 @@ import okio.BufferedSource;
 public class AutoInterceptor implements Interceptor {
 
     // 标记状态，默认只有在debug模式下才会打印数据
-    private boolean State = (CommonBaseApp.getInstance().isDebug());
+    private boolean State = (App.getInstance().isDebug());
     private String TAG = "HttpClient";
     private static final Charset UTF8 = Charset.forName("UTF-8");
     private MediaType mContentType;

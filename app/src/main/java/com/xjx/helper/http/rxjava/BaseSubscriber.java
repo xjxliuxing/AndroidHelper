@@ -1,9 +1,9 @@
 package com.xjx.helper.http.rxjava;
 
 
-import com.xjx.apphelper.global.CommonBaseApp;
-import com.xjx.apphelper.utils.LogUtil;
-import com.xjx.apphelper.utils.ToastUtil;
+import com.xjx.helper.global.App;
+import com.xjx.helper.utils.LogUtil;
+import com.xjx.helper.utils.ToastUtil;
 
 import rx.Subscriber;
 
@@ -21,7 +21,7 @@ public abstract class BaseSubscriber<T> extends Subscriber<T> {
             return;
         } else {
             // 如果有网络，但是网络没法连接，或者是2G网络那种特别慢的情况下，就直接不让使用，否则
-            int netWorkType = NetworkUtil.getNetWorkType(CommonBaseApp.getContext());
+            int netWorkType = NetworkUtil.getNetWorkType(App.getContext());
             if (netWorkType == NetworkUtil.NETWORKTYPE_INVALID
                     || netWorkType == NetworkUtil.NETWORKTYPE_WAP
                     || netWorkType == NetworkUtil.NETWORKTYPE_2G) {

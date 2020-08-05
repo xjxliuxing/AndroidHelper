@@ -1,5 +1,6 @@
 package com.xjx.helper.global;
 
+import android.app.Application;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
@@ -16,13 +17,12 @@ import com.scwang.smartrefresh.layout.api.DefaultRefreshInitializer;
 import com.scwang.smartrefresh.layout.api.RefreshFooter;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.xjx.apphelper.global.CommonBaseApp;
-import com.xjx.apphelper.utils.LogUtil;
-import com.xjx.apphelper.utils.ScreenUtil;
-import com.xjx.apphelper.utils.VersionUtil;
-import com.xjx.apphelper.utils.layout.LayoutUtil;
-import com.xjx.apphelper.utils.refresh.MyRefreshFooter;
-import com.xjx.apphelper.utils.refresh.MyRrfreshHeader;
+import com.xjx.helper.utils.LogUtil;
+import com.xjx.helper.utils.ScreenUtil;
+import com.xjx.helper.utils.VersionUtil;
+import com.xjx.helper.utils.layout.LayoutUtil;
+import com.xjx.helper.utils.refresh.MyRefreshFooter;
+import com.xjx.helper.utils.refresh.MyRrfreshHeader;
 import com.xjx.helper.R;
 
 import java.util.Locale;
@@ -31,7 +31,7 @@ import java.util.Locale;
  * 基类的Application，使用的时候，需要注意以下事项：
  * 1：必须设置debug模式,否则就会导致很多东西无法使用，例如，log会一直打印
  */
-public class App extends CommonBaseApp {
+public class App extends Application {
 
     private static App mApp;
     private boolean isDebug = true; // debug类型，默认是false类型

@@ -37,8 +37,6 @@
         <activity android:name=".ui.home.activity.todo.customviewui.CustomRecycleViewActivity" />
         <activity android:name=".ui.home.activity.todo.customviewui.DrawableTextViewActivity" />
         <activity android:name=".ui.home.activity.todo.customviewui.CustomViewMapActivity" />
-        <activity android:name=".ui.home.activity.todo.CustomViewActivity" />
-        <activity android:name=".ui.home.activity.todo.widget.NetWorkCurrentKbActivity" />
         <activity android:name=".ui.home.activity.todo.widget.RecycleViewDivederActivity" />
         <activity android:name=".ui.home.activity.todo.widget.CustomTime2Activity" />
         <activity android:name=".ui.DownLoadManagerActivity" /> <!-- 主界面 -->

@@ -1,10 +1,9 @@
 package com.xjx.helper.ui.home.activity.todo.widget
-
 import android.view.View
 import com.xjx.helper.R
-import com.xjx.apphelper.base.CommonBaseTitleActivity
-import com.xjx.apphelper.enums.PlaceholderStatus
-import com.xjx.apphelper.utils.ToastUtil
+import com.xjx.helper.base.CommonBaseTitleActivity
+import com.xjx.helper.enums.PlaceholderStatus
+import com.xjx.helper.utils.ToastUtil
 import com.xjx.helper.widget.CustomTime
 import kotlinx.android.synthetic.main.activity_custom_time2.*
 import java.util.*

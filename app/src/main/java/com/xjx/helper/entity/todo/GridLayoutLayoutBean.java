@@ -3,7 +3,7 @@ package com.xjx.helper.entity.todo;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.xjx.apphelper.base.BaseEntity;
+import com.xjx.helper.base.BaseEntity;
 
 /**
  * @作者 徐腾飞

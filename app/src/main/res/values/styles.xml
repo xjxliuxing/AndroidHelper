@@ -1,11 +1,64 @@
 <resources>
 
+    <declare-styleable name="TextViewDrawableLeft">
+        <attr name="tdl_drawable" format="reference" />
+        <attr name="tdl_drawable_width" format="dimension" />
+        <attr name="tdl_drawable_height" format="dimension" />
+        <attr name="tdl_content" format="string" />
+        <attr name="tdl_color" format="color" />
+        <attr name="tdl_size" format="dimension" />
+    </declare-styleable>
+
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!--基类dialog的style-->
+    <style name="base_dialog" parent="@android:style/Theme.Dialog">
+        <!--        <item name="android:windowIsTranslucent">false</item>-->
+        <!--背景颜色及和透明程度-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--是否去除标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!--是否去除边框-->
+        <item name="android:windowFrame">@null</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否模糊-->
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+
+    </style>
+
+    <!--提示dialog的style-->
+    <style name="dialog_hint" parent="@android:style/Theme.Dialog">
+        <item name="android:windowIsTranslucent">false</item>
+        <!--背景颜色及和透明程度-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--是否去除标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!--是否去除边框-->
+        <item name="android:windowFrame">@null</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否模糊-->
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="MainTextWhiteStyle">
+        <item name="android:textSize">@dimen/text_main</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TitleWhite">
+        <item name="android:textSize">@dimen/text_large</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="style_todo_item">
@@ -39,15 +92,7 @@
         <attr name="pd_content_size" format="dimension" /> <!--默认内容的大小-->
         <attr name="pd_show_input" format="boolean" /><!--是否展示输入框-->
         <attr name="pd_show_password" format="boolean" /> <!--是否显示密码-->
-    </declare-styleable>
 
-    <declare-styleable name="TextViewDrawableLeft">
-        <attr name="tdl_drawable" format="reference" />
-        <attr name="tdl_drawable_width" format="dimension" />
-        <attr name="tdl_drawable_height" format="dimension" />
-        <attr name="tdl_content" format="string" />
-        <attr name="tdl_color" format="color" />
-        <attr name="tdl_size" format="dimension" />
     </declare-styleable>
 
 </resources>

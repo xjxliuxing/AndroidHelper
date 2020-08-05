@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
-import com.xjx.apphelper.utils.ConvertUtil;
+import com.xjx.helper.utils.ConvertUtil;
 import com.xjx.helper.R;
 
 /**

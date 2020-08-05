@@ -1,10 +1,8 @@
-package com.xjx.helper.ui.home.activity.todo.widget
-
 import com.xjx.helper.R
-import com.xjx.apphelper.base.CommonBaseTitleActivity
-import com.xjx.apphelper.enums.PlaceholderStatus
-import com.xjx.apphelper.utils.LogUtil
-import com.xjx.apphelper.utils.NetworkCurrentKbUtil
+import com.xjx.helper.base.CommonBaseTitleActivity
+import com.xjx.helper.enums.PlaceholderStatus
+import com.xjx.helper.utils.LogUtil
+import com.xjx.helper.utils.NetworkCurrentKbUtil
 import kotlinx.android.synthetic.main.activity_net_work_current_kb.*
 
 class NetWorkCurrentKbActivity : CommonBaseTitleActivity() {

@@ -5,8 +5,8 @@ import android.app.Activity;
 import androidx.annotation.NonNull;
 
 import com.xjx.helper.R;
-import com.xjx.apphelper.base.BaseRecycleAdapter;
-import com.xjx.apphelper.base.BaseVH;
+import com.xjx.helper.base.BaseRecycleAdapter;
+import com.xjx.helper.base.BaseVH;
 
 public class RecycleviewDividerAdapter extends BaseRecycleAdapter<String> {
 

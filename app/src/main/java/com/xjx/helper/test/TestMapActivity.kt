@@ -1,10 +1,9 @@
 package com.xjx.helper.test
-
 import android.content.Intent
 import android.view.View
-import com.xjx.apphelper.base.CommonBaseTitleActivity
-import com.xjx.apphelper.enums.PlaceholderStatus
 import com.xjx.helper.R
+import com.xjx.helper.base.CommonBaseTitleActivity
+import com.xjx.helper.enums.PlaceholderStatus
 
 /**
  * 测试的集合类

@@ -2,9 +2,9 @@ package com.xjx.helper.ui.home.fragments
 
 import android.content.Intent
 import android.view.View
-import com.xjx.apphelper.base.CommonBaseFragment
-import com.xjx.apphelper.utils.LogUtil
+import com.xjx.helper.utils.LogUtil
 import com.xjx.helper.R
+import com.xjx.helper.base.CommonBaseFragment
 import com.xjx.helper.test.TestMapActivity
 import com.xjx.helper.ui.home.activity.todo.animation.AnimationMapActivity
 import com.xjx.helper.ui.home.activity.todo.customviewui.CustomViewMapActivity

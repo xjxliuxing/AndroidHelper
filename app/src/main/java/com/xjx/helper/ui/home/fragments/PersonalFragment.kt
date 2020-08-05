@@ -1,8 +1,7 @@
 package com.xjx.helper.ui.home.fragments
 
 import com.xjx.helper.R
-import com.xjx.apphelper.base.CommonBaseFragment
-
+import com.xjx.helper.base.CommonBaseFragment
 
 /**
  * 个人中心的fragment

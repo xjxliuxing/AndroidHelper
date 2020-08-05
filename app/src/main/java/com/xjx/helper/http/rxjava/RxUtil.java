@@ -1,8 +1,8 @@
 package com.xjx.helper.http.rxjava;
 
 import com.google.gson.Gson;
-import com.xjx.apphelper.http.ApiException;
-import com.xjx.apphelper.http.BaseResponse;
+import com.xjx.helper.http2.ApiException;
+import com.xjx.helper.http2.BaseResponse;
 
 import java.io.IOException;
 

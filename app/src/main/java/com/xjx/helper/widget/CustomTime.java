@@ -13,9 +13,9 @@ import android.view.WindowManager;
 import com.bigkoo.pickerview.adapter.ArrayWheelAdapter;
 import com.contrarywind.listener.OnItemSelectedListener;
 import com.contrarywind.view.WheelView;
-import com.xjx.apphelper.utils.ConvertUtil;
-import com.xjx.apphelper.utils.LogUtil;
-import com.xjx.apphelper.utils.ScreenUtil;
+import com.xjx.helper.utils.ConvertUtil;
+import com.xjx.helper.utils.LogUtil;
+import com.xjx.helper.utils.ScreenUtil;
 import com.xjx.helper.R;
 
 import java.text.SimpleDateFormat;

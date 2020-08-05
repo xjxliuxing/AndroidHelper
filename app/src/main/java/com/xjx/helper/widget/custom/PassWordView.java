@@ -19,8 +19,8 @@ import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 
-import com.xjx.apphelper.utils.ConvertUtil;
-import com.xjx.apphelper.utils.LogUtil;
+import com.xjx.helper.utils.ConvertUtil;
+import com.xjx.helper.utils.LogUtil;
 import com.xjx.helper.R;
 
 import java.util.ArrayList;

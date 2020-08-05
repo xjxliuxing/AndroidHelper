@@ -9,8 +9,8 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import com.xjx.apphelper.utils.GlideUtil;
-import com.xjx.apphelper.utils.LogUtil;
+import com.xjx.helper.utils.GlideUtil;
+import com.xjx.helper.utils.LogUtil;
 
 /**
  * 自定义随机生成圆圈

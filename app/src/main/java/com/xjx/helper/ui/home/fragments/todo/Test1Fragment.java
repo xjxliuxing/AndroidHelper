@@ -5,8 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.xjx.helper.R;
-import com.xjx.apphelper.base.CommonBaseFragment;
-
+import com.xjx.helper.base.CommonBaseFragment;
 
 /**
  * 测试fragment1

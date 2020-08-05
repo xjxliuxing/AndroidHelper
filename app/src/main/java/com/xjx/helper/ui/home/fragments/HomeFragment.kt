@@ -1,16 +1,15 @@
 package com.xjx.helper.ui.home.fragments
 
-import com.xjx.apphelper.utils.recyeliview.RecycleUtil
 import com.xjx.helper.R
 import com.xjx.helper.adapter.TestAdapter
-import com.xjx.apphelper.base.CommonBaseRefreshListFragment
-import com.xjx.apphelper.http.ApiException
+import com.xjx.helper.base.CommonBaseRefreshListFragment
 import com.xjx.helper.entity.StoreActivityBean
 import com.xjx.helper.http.client.ApiServices
-import com.xjx.apphelper.http.BaseResponse
-import com.xjx.apphelper.http.Page
-import kotlinx.android.synthetic.main.fragment_home.*
-import retrofit2.Call
+import com.xjx.helper.http2.ApiException
+import com.xjx.helper.http2.BaseResponse
+import com.xjx.helper.http2.Page
+import com.xjx.helper.utils.recyeliview.RecycleUtil
+import kotlinx.android.synthetic.main.activity_custom_recycle_view.*
 
 /**
  * 首页
@@ -41,10 +40,11 @@ class HomeFragment : CommonBaseRefreshListFragment<StoreActivityBean>() {
         setAdapter(testAdapter)
     }
 
-    override fun getHttp(): Call<BaseResponse<Page<StoreActivityBean>>> {
+    override fun getHttp(): retrofit2.Call<BaseResponse<Page<StoreActivityBean>>> {
         val map = HashMap<String, Any>()
         map["angent_id"] = "ff808081647099c101648d5526980084"
         val stringObjectMap = setPageBody(map)
         return ApiServices.test.getStoreActivity(stringObjectMap)
     }
+
 }

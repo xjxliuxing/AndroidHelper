@@ -20,7 +20,7 @@ import android.view.animation.LinearInterpolator;
 
 import androidx.annotation.Nullable;
 
-import com.xjx.apphelper.utils.LogUtil;
+import com.xjx.helper.utils.LogUtil;
 import com.xjx.helper.R;
 
 /**

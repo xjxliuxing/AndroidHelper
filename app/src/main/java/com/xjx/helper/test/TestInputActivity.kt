@@ -26,10 +26,8 @@ class TestInputActivity : CommonBaseTitleActivity() {
                 val content = et_input.text.toString()
                 if (!TextUtils.isEmpty(content)) {
                     val longTimeForString = DateUtils2.getInstance().getLongTimeForString(content, "-")
-
                     tv_content.text = "获取的时间为：$longTimeForString"
                 }
-
             }
         })
     }

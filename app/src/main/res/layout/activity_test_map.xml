@@ -11,4 +11,9 @@
         style="@style/style_todo_item"
         android:text="测试kotlin" />
 
+    <TextView
+        android:id="@+id/tv_test_input"
+        style="@style/style_todo_item"
+        android:text="测试输入的数据" />
+
 </LinearLayout>

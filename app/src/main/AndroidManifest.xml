@@ -20,7 +20,8 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="q">
-        <activity android:name=".ui.home.activity.todo.customviewui.RoundActivity"></activity>
+        <activity android:name=".test.TestInputActivity"></activity>
+        <activity android:name=".ui.home.activity.todo.customviewui.RoundActivity" />
         <activity android:name=".test.TestKotlin" />
         <activity android:name=".test.TestMapActivity" />
         <activity android:name=".ui.home.activity.todo.widget.WidgetMapActivity" />

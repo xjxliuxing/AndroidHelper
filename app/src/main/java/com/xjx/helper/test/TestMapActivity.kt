@@ -2,9 +2,9 @@ package com.xjx.helper.test
 
 import android.content.Intent
 import android.view.View
-import com.xjx.helper.R
 import com.xjx.apphelper.base.CommonBaseTitleActivity
 import com.xjx.apphelper.enums.PlaceholderStatus
+import com.xjx.helper.R
 
 /**
  * 测试的集合类
@@ -21,7 +21,7 @@ class TestMapActivity : CommonBaseTitleActivity() {
         setTitleContent("测试页面的集合")
 
 
-        setOnClick(R.id.tv_test_kotlin)
+        setOnClick(R.id.tv_test_kotlin, R.id.tv_test_input)
     }
 
     override fun onClick(v: View?) {
@@ -31,7 +31,9 @@ class TestMapActivity : CommonBaseTitleActivity() {
             R.id.tv_test_kotlin -> {
                 startActivity(intent, TestKotlin::class.java)
             }
-
+            R.id.tv_test_input -> {
+                startActivity(intent, TestInputActivity::class.java)
+            }
         }
     }
 }

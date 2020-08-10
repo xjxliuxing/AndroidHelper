@@ -131,6 +131,7 @@ public class TextViewDrawableLeft extends View {
             top = (contentHeight - bitmapHeight) / 2;
         }
 
+
         Rect rectSrc = new Rect(0, 0, mDrawableWidth, mDrawableHeight);
         Rect rectDst = new Rect(0, 0, mDrawableWidth, mDrawableHeight);
         // 绘制图片

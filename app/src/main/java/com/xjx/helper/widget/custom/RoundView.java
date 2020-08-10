@@ -56,14 +56,12 @@ public class RoundView extends View {
 //        RectF rect3 = new RectF(0, 0, mWidth, mHeight);
 //        canvas.drawRoundRect(rect3, 50, 50, mPaint);
 
-
         //第二种
         canvas.drawRoundRect(0, 0, mWidth, mHeight, 80, 80, mPaint);
 
-
         assert bitmap != null;
         Rect rect1 = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
-        Rect rect2 = new Rect(80, 80, mWidth-80, mHeight-80);
+        Rect rect2 = new Rect(80, 80, mWidth - 80, mHeight - 80);
 
         canvas.drawBitmap(bitmap, rect1, rect2, mPaint);
     }

@@ -136,6 +136,8 @@ public class TextViewDrawableLeft extends View {
         // 绘制图片
         canvas.drawBitmap(bitmap, rectSrc, rectDst, mPaintDrawable);
 
+
+
         // 绘制文字
         if (!TextUtils.isEmpty(mContent)) {
             int heightValue = mDrawableHeight + contentHeight;

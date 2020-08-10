@@ -7,6 +7,7 @@
         <attr name="tdl_content" format="string" />
         <attr name="tdl_color" format="color" />
         <attr name="tdl_size" format="dimension" />
+        <attr name="tdl_drawable_padding" format="dimension" />
     </declare-styleable>
 
     <!-- Base application theme. -->

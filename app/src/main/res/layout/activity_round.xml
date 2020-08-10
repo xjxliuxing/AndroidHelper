@@ -13,6 +13,13 @@
         android:layout_marginTop="130dp"
         android:background="@color/blue_1" />
 
+    <TextView
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:background="@color/red_4" />
+
     <com.xjx.helper.widget.custom.TextViewDrawableLeft
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,8 +28,9 @@
         app:tdl_color="@color/red_4"
         app:tdl_content="远程模式"
         app:tdl_drawable="@drawable/tab_todo_selected"
-        app:tdl_drawable_height="@dimen/dp_40"
-        app:tdl_drawable_width="@dimen/dp_40"
+        app:tdl_drawable_height="80dp"
+        app:tdl_drawable_padding="@dimen/dp_10"
+        app:tdl_drawable_width="80dp"
         app:tdl_size="@dimen/size_16sp" />
 
 </RelativeLayout>

@@ -33,4 +33,11 @@
         app:tdl_drawable_width="80dp"
         app:tdl_size="@dimen/size_16sp" />
 
+    <com.xjx.helper.widget.custom.DottedLineView
+        android:id="@+id/cccc"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="450dp" />
+
 </RelativeLayout>

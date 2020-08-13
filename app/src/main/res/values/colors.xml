@@ -78,6 +78,8 @@
     <!--todo  颜色的资源文件-->
     <color name="blue_1">#5AA7A9</color>
     <color name="blue_2">#33FFEC</color>
+    <color name="blue_3">#33FBFF</color>
+    <color name="blue_4">#46B5FF</color>
 
     <color name="purple_1">#ff7695cf</color>
     <color name="purple_2">#ff7694cf</color>

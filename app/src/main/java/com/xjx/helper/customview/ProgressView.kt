@@ -9,54 +9,55 @@ import android.view.View
 import androidx.annotation.FloatRange
 import androidx.annotation.Keep
 import androidx.core.content.ContextCompat
+import com.xjx.helper.R
 import com.xjx.helper.utils.ConvertUtil
 import com.xjx.helper.utils.LogUtil
-import com.xjx.helper.R
 
 /**
  * 进度条
  */
-public class ProgressView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
-
+public class ProgressView(context: Context, attrs: AttributeSet) : View(context, attrs) {
+    
     private val mPaintDrawableLine: Paint = Paint()
-
+    
     /**
      * 进度条的高度
      */
-    private val mLineHeight = ConvertUtil.toDp(8f)
-
+    private val mLineHeight = ConvertUtil.toDp(7f)
+    
     /**
      * view左右的边距
      */
     private val mPadding = ConvertUtil.toDp(20f)
-
+    
     /**
      * view的中心，可以作为上边距使用
      */
     private var mTop = 0f
-
+    
     /**
      * 渐变色
      */
-    private val mColorBlue: Int by lazy { ContextCompat.getColor(context!!, R.color.blue_2) }
-    private val mColorGreen: Int by lazy { ContextCompat.getColor(context!!, R.color.green_2) }
-
+    private val mColorBlue: Int by lazy { ContextCompat.getColor(context, R.color.blue_3) }
+    private val mColorGreen: Int by lazy { ContextCompat.getColor(context, R.color.blue_4) }
+    private val mMeasureHeight: Float = ConvertUtil.toDp(33f)
+    
     /**
      * View的右侧坐标
      */
     private var mRight: Float = 0f
-
+    
     /**
      * 当前的进度
      */
     private var mProgress: Float = 70f
-
-//    constructor( @androidx.annotation.Nullable attributes: AttributeSet)  {
-//        super(get,attributes)
-//        initView(attributes)
-//    }
-
+    
+    init {
+        initView(attrs)
+    }
+    
     private fun initView(attributes: AttributeSet) {
+        
         mPaintDrawableLine.color = resources.getColor(R.color.green_2)
         mPaintDrawableLine.strokeWidth = mLineHeight
         mPaintDrawableLine.style = Paint.Style.FILL
@@ -64,47 +65,49 @@ public class ProgressView(context: Context?, attrs: AttributeSet?) : View(contex
         mPaintDrawableLine.strokeCap = Paint.Cap.ROUND // 设置圆角
         mPaintDrawableLine.isAntiAlias = true
     }
-
+    
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        if (measuredHeight > 0) {
-            mTop = (measuredHeight / 2).toFloat()
-        }
+        
+        // 重新设置view的大小
+        setMeasuredDimension(resolveSize(MeasureSpec.getSize(widthMeasureSpec), widthMeasureSpec), mMeasureHeight.toInt())
     }
-
-    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
-        super.onSizeChanged(w, h, oldw, oldh)
-
-    }
-
+    
     @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         if (canvas == null) {
             return
         }
-
+        
         // 设置画笔遮罩滤镜  ,传入度数和样式
 //        mPaintDrawableLine.maskFilter = BlurMaskFilter(dp12.toFloat(), BlurMaskFilter.Blur.SOLID)
 //        canvas?.drawRect(Rect(dp16, dp12, (measuredWidth - dp16), dp7 + dp12), mPaint1)
-
+        
         //获取view右侧的坐标
         mRight = (mPadding + (((mProgress / 100)) * measuredWidth))
-
+        
         // 绘制渐变
         val linearGradient = LinearGradient(mPadding, mTop, (measuredWidth - mPadding), mTop, mColorBlue, mColorGreen, Shader.TileMode.CLAMP)
         mPaintDrawableLine.shader = linearGradient
-
+        
+        // 计算出中心线
+        val centerLine = mMeasureHeight / 2
+        
+        val startX = centerLine - (mLineHeight / 2)
+        val startY = centerLine + (mLineHeight / 2)
+        
+        val endX = mMeasureHeight - (mPadding * 2)
         // 绘制主View
-        canvas.drawLine(mPadding, mTop, mRight, mTop, mPaintDrawableLine)
-
+        canvas.drawLine(startX, startY, mRight, mTop, mPaintDrawableLine)
+        
         // 绘制闪电的标记
         val bitmap = getBitmapForResource()
         if (bitmap != null && (!bitmap.isRecycled)) {
             // view的区域，最好就是view自己本身的大小，或者是指定的大小
             val src = Rect(0, 0, (bitmap.width), (bitmap.height))
             // 绘制的区域，实际上就是在屏幕上view的位置
-
+            
             // drawable的高度为view中心 减去 Line一半的高度
             val drawableTop = (mTop - ((bitmap.height) / 2)).toInt()
             // 左侧的坐标
@@ -114,7 +117,7 @@ public class ProgressView(context: Context?, attrs: AttributeSet?) : View(contex
             canvas.drawBitmap(bitmap, src, dst, mPaintDrawableLine)
         }
     }
-
+    
     /**
      * 获取指定的bitmap
      */
@@ -131,7 +134,7 @@ public class ProgressView(context: Context?, attrs: AttributeSet?) : View(contex
         }
         return bitmap
     }
-
+    
     /**
      * 设置当前的进度
      */

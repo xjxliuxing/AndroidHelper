@@ -20,7 +20,7 @@ public class AnimationMapActivity extends CommonBaseTitleActivity {
     @Override
     protected void initListener() {
         super.initListener();
-        setOnClick(R.id.tv_1);
+        setOnClick(R.id.tv_1,R.id.tv_2);
     }
 
     @Override
@@ -38,6 +38,9 @@ public class AnimationMapActivity extends CommonBaseTitleActivity {
         switch (v.getId()) {
             case R.id.tv_1:
                 intent.setClass(mContext, CustomGifViewActivity.class);
+                break;
+            case R.id.tv_2:
+                intent.setClass(mContext, TranslationXActivity.class);
                 break;
         }
 

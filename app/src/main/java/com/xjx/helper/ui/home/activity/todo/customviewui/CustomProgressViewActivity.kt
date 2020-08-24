@@ -7,6 +7,7 @@ import com.xjx.helper.R
 import com.xjx.helper.base.CommonBaseTitleActivity
 import com.xjx.helper.customview.ProgressView2
 import com.xjx.helper.enums.PlaceholderStatus
+import com.xjx.helper.utils.LogUtil
 import com.xjx.helper.utils.ToastUtil
 
 /**
@@ -26,6 +27,11 @@ class CustomProgressViewActivity : CommonBaseTitleActivity() {
         val findViewById1 = findViewById<ProgressView2>(R.id.pb2)
         val ed_input = findViewById<EditText>(R.id.ed_input)
         
+        val currentTimeMillis = System.currentTimeMillis()
+        
+        LogUtil.e(" currentTimeMillis  :::  " + currentTimeMillis + "    位数为：" + (currentTimeMillis).toString().length)
+        
+        
         findViewById<Button>(R.id.btn).setOnClickListener { v ->
             val toString = ed_input.text.toString()
             if (TextUtils.isEmpty(toString)) {
@@ -35,6 +41,11 @@ class CustomProgressViewActivity : CommonBaseTitleActivity() {
             findViewById1.setCharging(true)
 //            findViewById1.setProgress(toString.toInt())
             findViewById1.startAnimation(toString.toInt())
+            
+            val location = IntArray(2)
+            v.getLocationOnScreen(location)
+            LogUtil.e(" ------------->  " + location[0])
+            LogUtil.e(" ------------->  " + location[1])
         }
     }
     

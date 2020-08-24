@@ -19,10 +19,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="q">
-
-        <!--android:requestLegacyExternalStorage="true"-->
-
-        <activity android:name=".test.TestInputActivity"></activity>
+        <activity android:name=".ui.home.activity.todo.animation.TranslationXActivity"></activity>
+        <!-- android:requestLegacyExternalStorage="true" -->
+        <activity android:name=".test.TestInputActivity" />
         <activity android:name=".ui.home.activity.todo.customviewui.RoundActivity" />
         <activity android:name=".test.TestKotlin" />
         <activity android:name=".test.TestMapActivity" />
@@ -30,12 +29,7 @@
         <activity android:name=".ui.home.activity.todo.customviewui.CustomRandomLayoutActivity" />
         <activity android:name=".ui.home.activity.todo.java.ThreadExecutorActivity" />
         <activity android:name=".ui.home.activity.todo.java.JavaMapActivity" />
-        <activity android:name=".ui.home.activity.todo.customviewui.CustomProgressViewActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".ui.home.activity.todo.customviewui.CustomProgressViewActivity" />
         <activity android:name=".ui.home.activity.todo.customviewui.CustomPassWordActivity" />
         <activity android:name=".ui.home.activity.todo.animation.CustomGifViewActivity" />
         <activity android:name=".ui.home.activity.todo.animation.AnimationMapActivity" />

@@ -19,8 +19,8 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="q">
-        <activity android:name=".ui.home.activity.todo.animation.TranslationXActivity"></activity>
-        <!-- android:requestLegacyExternalStorage="true" -->
+        <activity android:name=".ui.home.activity.todo.animation.CustomDialogActivity" />
+        <activity android:name=".ui.home.activity.todo.animation.TranslationXActivity" /> <!-- android:requestLegacyExternalStorage="true" -->
         <activity android:name=".test.TestInputActivity" />
         <activity android:name=".ui.home.activity.todo.customviewui.RoundActivity" />
         <activity android:name=".test.TestKotlin" />
@@ -44,7 +44,6 @@
         <activity android:name=".ui.home.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -16,4 +16,9 @@
         style="@style/style_todo_item"
         android:text="测试平移动画" />
 
+    <TextView
+        android:id="@+id/tv_3"
+        style="@style/style_todo_item"
+        android:text="自定义滑动的dialog" />
+
 </LinearLayout>

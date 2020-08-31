@@ -261,7 +261,6 @@ class CustomScrollSelectorDialog(context: Context?, attrs: AttributeSet?) : Rela
             animation.duration = time[0]
         }
         animation.start()
-        
         LogUtil.e("执行动画开始的位置：" + startY + "   执行动画结束的位置：" + endY)
     }
     

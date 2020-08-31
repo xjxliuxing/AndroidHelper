@@ -19,7 +19,7 @@ class WidgetMapActivity : CommonBaseTitleActivity() {
 
         setTitleContent("自定义组件的集合")
 
-        setOnClick(R.id.tv_widget_1, R.id.tv_widget_2, R.id.tv_widget_3)
+        setOnClick(R.id.tv_widget_1, R.id.tv_widget_2, R.id.tv_widget_3, R.id.tv_widget_4)
     }
 
     override fun onClick(v: View?) {
@@ -35,6 +35,9 @@ class WidgetMapActivity : CommonBaseTitleActivity() {
 
             }
             R.id.tv_widget_3 -> {
+                intent.setClass(mContext, NetWorkCurrentKbActivity::class.java)
+            }
+            R.id.tv_widget_4 -> {
                 intent.setClass(mContext, NetWorkCurrentKbActivity::class.java)
             }
         }

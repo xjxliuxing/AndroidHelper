@@ -21,4 +21,9 @@
         style="@style/style_todo_item"
         android:text="当前网速" />
 
+    <TextView
+        android:id="@+id/tv_widget_4"
+        style="@style/style_todo_item"
+        android:text="自定义日历选择器" />
+
 </LinearLayout>

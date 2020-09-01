@@ -38,7 +38,7 @@ class WidgetMapActivity : CommonBaseTitleActivity() {
                 intent.setClass(mContext, NetWorkCurrentKbActivity::class.java)
             }
             R.id.tv_widget_4 -> {
-                intent.setClass(mContext, NetWorkCurrentKbActivity::class.java)
+                intent.setClass(mContext, CustomCalendarChooserActivity::class.java)
             }
         }
         startActivity(intent)

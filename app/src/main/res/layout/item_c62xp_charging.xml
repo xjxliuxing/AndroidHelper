@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/shape_round_4_top_left_right_white">
@@ -229,63 +230,63 @@
         android:id="@+id/tv_e_selector_start_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/dp_16"
-        android:layout_marginTop="@dimen/dp_12"
-        android:layout_marginBottom="@dimen/dp_12"
+        android:paddingStart="@dimen/dp_16"
+        android:paddingTop="@dimen/dp_12"
+        android:paddingBottom="@dimen/dp_12"
         android:text="开始时间"
         android:textColor="@color/black_3"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/v_line3"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/tv_selector_start_time"
         app:layout_constraintTop_toBottomOf="@+id/v_line2"
-        app:layout_constraintVertical_bias="0" />
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:ignore="RtlSymmetry" />
 
-    <LinearLayout
-        android:id="@+id/rl_start_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingTop="@dimen/dp_12"
-        android:paddingRight="@dimen/dp_16"
-        android:paddingBottom="@dimen/dp_12"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/tv_selector_start_time"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical|right"
+        android:hint="请选择开始时间"
+        android:paddingLeft="@dimen/dp_5"
+        android:paddingTop="@dimen/dp_5"
+        android:paddingRight="@dimen/dp_12"
+        android:paddingBottom="@dimen/dp_5"
+        android:textColor="@color/black_4"
+        android:textColorHint="@color/gray_2"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_e_selector_start_time"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintLeft_toRightOf="@+id/tv_e_selector_start_time"
+        app:layout_constraintRight_toLeftOf="@+id/iv_e_right"
+        app:layout_constraintTop_toTopOf="@+id/tv_e_selector_start_time"
+        app:layout_constraintVertical_bias="0.5"
+        tools:ignore="RtlHardcoded" />
+
+    <ImageView
+        android:id="@+id/iv_e_right"
+        android:layout_width="7dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:adjustViewBounds="true"
+        android:src="@mipmap/icon_c62xp_item_right_image"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_e_selector_start_time"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintLeft_toRightOf="@+id/tv_selector_start_time"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/v_line2"
-        app:layout_constraintVertical_bias="0">
-
-        <TextView
-            android:id="@+id/tv_selector_start_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/dp_12"
-            android:layout_toLeftOf="@+id/iv_e_right"
-            android:hint="请选择开始时间"
-            android:textColor="@color/black_4"
-            android:textColorHint="@color/gray_2"
-            android:textSize="14sp" />
-
-        <ImageView
-            android:id="@+id/iv_e_right"
-            android:layout_width="7dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:adjustViewBounds="true"
-            android:src="@mipmap/icon_c62xp_item_right_image" />
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="@+id/tv_e_selector_start_time"
+        app:layout_constraintVertical_bias="0.5" />
 
     <View
         android:id="@+id/v_line3"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginLeft="@dimen/dp_16"
-        android:layout_marginTop="@dimen/dp_12"
         android:layout_marginRight="@dimen/dp_16"
         android:background="@color/white_6"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -310,57 +311,54 @@
             android:id="@+id/tv_e_selector_end_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp_16"
-            android:layout_marginTop="@dimen/dp_12"
-            android:layout_marginBottom="@dimen/dp_12"
+            android:paddingStart="@dimen/dp_16"
+            android:paddingTop="@dimen/dp_12"
+            android:paddingBottom="@dimen/dp_12"
             android:text="结束时间"
             android:textColor="@color/black_3"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/v_line4"
             app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/tv_selector_end_time"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.5" />
 
-        <LinearLayout
-            android:id="@+id/rl_end_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingTop="@dimen/dp_12"
-            android:paddingRight="@dimen/dp_16"
-            android:paddingBottom="@dimen/dp_12"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <TextView
+            android:id="@+id/tv_selector_end_time"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center_vertical|right"
+            android:hint="请选择结束时间"
+            android:paddingLeft="@dimen/dp_5"
+            android:paddingTop="@dimen/dp_5"
+            android:paddingRight="@dimen/dp_12"
+            android:paddingBottom="@dimen/dp_5"
+            android:textColor="@color/black_4"
+            android:textColorHint="@color/gray_2"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_e_selector_end_time"
             app:layout_constraintHorizontal_bias="1"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/tv_e_selector_end_time"
+            app:layout_constraintRight_toLeftOf="@+id/iv_e_right2"
+            app:layout_constraintTop_toTopOf="@+id/tv_e_selector_end_time"
+            app:layout_constraintVertical_bias="0.5"
+            tools:ignore="RtlHardcoded" />
+
+        <ImageView
+            android:id="@+id/iv_e_right2"
+            android:layout_width="7dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp_16"
+            android:adjustViewBounds="true"
+            android:src="@mipmap/icon_c62xp_item_right_image"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_e_selector_end_time"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintLeft_toRightOf="@+id/tv_selector_end_time"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5">
-
-            <TextView
-                android:id="@+id/tv_selector_end_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/dp_12"
-                android:layout_toLeftOf="@+id/iv_e_right2"
-                android:hint="请选择结束时间"
-                android:textColor="@color/black_4"
-                android:textColorHint="@color/gray_2"
-                android:textSize="14sp" />
-
-            <ImageView
-                android:id="@+id/iv_e_right2"
-                android:layout_width="7dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:adjustViewBounds="true"
-                android:src="@mipmap/icon_c62xp_item_right_image" />
-        </LinearLayout>
+            app:layout_constraintTop_toTopOf="@+id/tv_e_selector_end_time"
+            app:layout_constraintVertical_bias="0.5" />
 
         <View
             android:id="@+id/v_line4"
@@ -373,7 +371,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rl_end_time"
+            app:layout_constraintTop_toBottomOf="@+id/tv_e_selector_end_time"
             app:layout_constraintVertical_bias="0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

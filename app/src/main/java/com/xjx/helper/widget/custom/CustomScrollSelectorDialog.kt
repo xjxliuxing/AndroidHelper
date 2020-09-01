@@ -6,15 +6,11 @@ import android.app.Activity
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
+import android.view.View.OnClickListener
 import android.widget.RelativeLayout
 import android.widget.TextView
-import com.bigkoo.pickerview.adapter.ArrayWheelAdapter
-import com.contrarywind.listener.OnItemSelectedListener
-import com.contrarywind.view.WheelView
 import com.xjx.helper.R
 import com.xjx.helper.utils.LogUtil
-import com.xjx.helper.utils.ScreenUtils
-import java.util.*
 
 /**
  * 自定义滑动选择器的dialog
@@ -23,40 +19,23 @@ class CustomScrollSelectorDialog(context: Context?, attrs: AttributeSet?) : Rela
     
     private lateinit var mContext: Activity
     private lateinit var mContentLayout: View // 主布局
-    private lateinit var mBottomLayout: View // 底部的布局
+    private lateinit var mBottomLayout: CalendarChooser // 底部的布局
     private lateinit var mClickIds: IntArray // 点击选择的id数组
     private lateinit var mTextIds: IntArray // 显示内容的id数组
     private var mPosition = 0 // 当前点击选择view的角标
-    private val mScreenHeight = ScreenUtils.getInstance().screenHeight
     private var isHideBottomLayout = false
     
-    private val optionTimeList1: ArrayList<String> = ArrayList<String>()
-    private val optionTimeList2: ArrayList<String> = ArrayList<String>()
-    private var position1: String = "00"
-    private var position2: String = "00"
+    private var mYear: String = ""
+    private var mMonth: String = ""
+    private var mDay: String = ""
+    private var mHour: String = ""
+    private var mMinute: String = ""
+    private var mSecond: String = ""
+    private var mListener: SaveListener? = null
+    
     private var isShowing = false // view是否在展示
     
-    init {
-        // 60分钟
-        for (j in 0..59) {
-            if (j < 10) {
-                optionTimeList2.add("0$j")
-            } else {
-                optionTimeList2.add(j.toString())
-            }
-        }
-        
-        // 24小时
-        for (i in 0..23) {
-            if (i < 10) {
-                optionTimeList1.add("0$i")
-            } else {
-                optionTimeList1.add(i.toString())
-            }
-        }
-    }
-    
-    public fun setCustomLayout(context: Activity, contentLayout: View, bottomLayout: View) {
+    fun setCustomLayout(context: Activity, contentLayout: View, bottomLayout: CalendarChooser) {
         this.mContext = context
         this.mContentLayout = contentLayout
         this.mBottomLayout = bottomLayout
@@ -102,7 +81,7 @@ class CustomScrollSelectorDialog(context: Context?, attrs: AttributeSet?) : Rela
         initTimeData()
     }
     
-    public fun setIds(clickIds: IntArray, textIds: IntArray) {
+    fun setIds(clickIds: IntArray, textIds: IntArray) {
         this.mClickIds = clickIds
         this.mTextIds = textIds
     }
@@ -133,6 +112,13 @@ class CustomScrollSelectorDialog(context: Context?, attrs: AttributeSet?) : Rela
     }
     
     /**
+     * 数据返回的执行方法
+     */
+    fun returnData() {
+        scrollTo()
+    }
+    
+    /**
      * 向下滑动
      */
     private fun scrollBottom() {
@@ -147,65 +133,45 @@ class CustomScrollSelectorDialog(context: Context?, attrs: AttributeSet?) : Rela
     @SuppressLint("SetTextI18n")
     private fun initTimeData() {
         
-        val wheelView1: WheelView = mBottomLayout.findViewById(R.id.options1)
-        val wheelView2: WheelView = mBottomLayout.findViewById(R.id.options2)
-        
-        wheelView1.setCyclic(false)
-        wheelView2.setCyclic(false)
-        
-        wheelView1.adapter = ArrayWheelAdapter<String>(optionTimeList1 as List<String>)
-        wheelView2.adapter = ArrayWheelAdapter<String>(optionTimeList2 as List<String>)
-        
-        wheelView1.setOnItemSelectedListener(object : OnItemSelectedListener {
-            override fun onItemSelected(index: Int) {
-                // 获取列表1中的数据
-                position1 = optionTimeList1[index]
-                // 重置列表2中的数据
-                wheelView2.currentItem = 0
+        // 监听事件
+        mBottomLayout.setSelectorListener(object : CalendarChooser.SelectorListener {
+            override fun onSelector(year: String, month: String, day: String, hour: String, minute: String, second: String) {
+                mYear = year
+                mMonth = month
+                mDay = day
+                mHour = hour
+                mMinute = minute
+                mSecond = second
             }
         })
         
-        // 获取列表2中的数据
-        wheelView2.setOnItemSelectedListener(object : OnItemSelectedListener {
-            override fun onItemSelected(index: Int) {
-                position2 = optionTimeList2[index]
-            }
-        })
-        
-        // 取消的按钮
-        mBottomLayout.findViewById<View>(R.id.tv_cancle).setOnClickListener {
-            scrollTo()
-        }
-        // 存储的按钮
-        mBottomLayout.findViewById<View>(R.id.tv_save).setOnClickListener {
-            
-            // 设置数据
-            val timeValue = "$position1:$position2"
-            
+        // 存储的操作
+        mBottomLayout.setSaveTitleClickListener(OnClickListener {
             // 字段赋值
             for (item in mTextIds.indices) {
                 val id = mTextIds[item]
                 val contentView = mContentLayout.findViewById<TextView>(id)
                 if (contentView.tag == this.mPosition) {
-                    contentView.text = timeValue
+                    
+                    // 监听事件的回调数据
+                    if (mListener != null) {
+                        mListener?.onSave(contentView, mYear, mMonth, mDay, mHour, mMinute, mSecond)
+                    }
                     break
                 }
             }
-            
-            // todo   时间做对比
-            
+        })
+        
+        // 取消的操作
+        mBottomLayout.setCancelTitleListener(OnClickListener {
             scrollTo()
-        }
+        })
     }
     
     /**
      * 展示布局
      */
-    
-    /**
-     * 展示布局
-     */
-    public fun show() {
+    fun show() {
         if (!isShowing) {
             // 打开view
             
@@ -245,14 +211,6 @@ class CustomScrollSelectorDialog(context: Context?, attrs: AttributeSet?) : Rela
      * @param endY      结束的位置
      * @param time      动画的额时长，如果不写，默认就是500毫秒
      */
-    
-    /**
-     * 开启动画
-     * @param view      执行动画的view
-     * @param startY    开始的位置
-     * @param endY      结束的位置
-     * @param time      动画的额时长，如果不写，默认就是500毫秒
-     */
     private fun startAnimation(view: View, startY: Float, endY: Float, vararg time: Long) {
         val animation = ObjectAnimator.ofFloat(view, "translationY", startY, endY)
         if (time.isEmpty()) {
@@ -261,7 +219,15 @@ class CustomScrollSelectorDialog(context: Context?, attrs: AttributeSet?) : Rela
             animation.duration = time[0]
         }
         animation.start()
-        LogUtil.e("执行动画开始的位置：" + startY + "   执行动画结束的位置：" + endY)
+        // LogUtil.e("执行动画开始的位置：$startY   执行动画结束的位置：$endY")
+    }
+    
+    interface SaveListener {
+        fun onSave(textView: TextView, year: String, month: String, day: String, hour: String, minute: String, second: String)
+    }
+    
+    fun setSaveListener(listener: SaveListener) {
+        mListener = listener
     }
     
 }

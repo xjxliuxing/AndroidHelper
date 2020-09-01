@@ -8,6 +8,7 @@
         android:id="@+id/rl_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -34,7 +35,8 @@
             android:layout_centerInParent="true"
             android:text="开始时间"
             android:textColor="#ff000000"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_save"
@@ -82,7 +84,7 @@
             android:id="@+id/options1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1.5" />
 
         <com.contrarywind.view.WheelView
             android:id="@+id/options2"
@@ -112,7 +114,7 @@
             android:id="@+id/options6"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1.2" />
 
     </LinearLayout>
 

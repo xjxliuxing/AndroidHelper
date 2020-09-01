@@ -74,6 +74,8 @@ class CalendarChooser(context: Context, attrs: AttributeSet?) : FrameLayout(cont
         private const val DEFAULT_END_YEAR: Int = 5 // 设置默认增加的年份
     }
     
+    constructor(context: Context) : this(context, null)
+    
     init {
         initView()
     }
@@ -683,8 +685,11 @@ class CalendarChooser(context: Context, attrs: AttributeSet?) : FrameLayout(cont
         this.mListener = listener
     }
     
-    public fun setTitleClickListener(@NotNull cancelListener: View.OnClickListener, @NotNull saveListener: View.OnClickListener) {
-        inflater.findViewById<TextView>(R.id.tv_cancel).setOnClickListener(cancelListener)
+    fun setCancelTitleListener(listener: OnClickListener) {
+        inflater.findViewById<TextView>(R.id.tv_cancel).setOnClickListener(listener)
+    }
+    
+    fun setSaveTitleClickListener(@NotNull saveListener: OnClickListener) {
         inflater.findViewById<TextView>(R.id.tv_save).setOnClickListener(saveListener)
     }
 }

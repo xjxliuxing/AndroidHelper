@@ -10,7 +10,6 @@ import android.view.View.OnClickListener
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.xjx.helper.R
-import com.xjx.helper.utils.LogUtil
 
 /**
  * 自定义滑动选择器的dialog

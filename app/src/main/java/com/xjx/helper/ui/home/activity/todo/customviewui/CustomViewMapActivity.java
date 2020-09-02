@@ -11,29 +11,29 @@ import com.xjx.helper.enums.PlaceholderStatus;
  * 自定义view的集合
  */
 public class CustomViewMapActivity extends CommonBaseTitleActivity {
-
+    
     @Override
     protected int getTitleLayout() {
         return R.layout.activity_custom_view_map;
     }
-
+    
     @Override
     protected void initListener() {
         super.initListener();
-
+        
         setTitleContent("自定义View的集合");
         SwitchLoadingStatus(PlaceholderStatus.NONE);
-
+        
         setOnClick(R.id.tv_1, R.id.tv_2, R.id.tv_3, R.id.tv_4, R.id.tv_5, R.id.tv_6,
-                R.id.tv_7,R.id.tv_8);
+                R.id.tv_7, R.id.tv_8, R.id.tv_9);
     }
-
+    
     @Override
     public void onClick(View v) {
         super.onClick(v);
-
+        
         Intent intent = new Intent();
-
+        
         switch (v.getId()) {
             case R.id.tv_1:// 自定义drawableTextView
                 intent.setClass(mContext, DrawableTextViewActivity.class);
@@ -59,8 +59,11 @@ public class CustomViewMapActivity extends CommonBaseTitleActivity {
             case R.id.tv_8:// 自定义随机布局
                 intent.setClass(mContext, RoundActivity.class);
                 break;
+            case R.id.tv_9:// 自定义textView
+                intent.setClass(mContext, CustomTextViewActivity.class);
+                break;
         }
-
+        
         startActivity(intent);
     }
 }

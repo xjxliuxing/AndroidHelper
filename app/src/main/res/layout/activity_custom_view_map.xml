@@ -50,5 +50,10 @@
             style="@style/style_todo_item"
             android:text="自定义圆角图片" />
 
+        <TextView
+            android:id="@+id/tv_9"
+            style="@style/style_todo_item"
+            android:text="自定义textView" />
+
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

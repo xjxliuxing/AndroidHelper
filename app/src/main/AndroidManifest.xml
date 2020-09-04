@@ -19,7 +19,8 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="q">
-        <activity android:name=".ui.home.activity.todo.customviewui.CustomTextViewActivity"></activity>
+        <activity android:name=".test.TestCustomViewActivity"></activity>
+        <activity android:name=".ui.home.activity.todo.customviewui.CustomTextViewActivity" />
         <activity android:name=".ui.home.activity.todo.widget.CustomCalendarChooserActivity" />
         <activity android:name=".ui.home.activity.todo.animation.CustomDialogActivity" />
         <activity android:name=".ui.home.activity.todo.animation.TranslationXActivity" /> <!-- android:requestLegacyExternalStorage="true" -->

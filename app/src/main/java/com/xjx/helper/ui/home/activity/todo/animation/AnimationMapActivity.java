@@ -20,7 +20,7 @@ public class AnimationMapActivity extends CommonBaseTitleActivity {
     @Override
     protected void initListener() {
         super.initListener();
-        setOnClick(R.id.tv_1, R.id.tv_2, R.id.tv_3);
+        setOnClick(R.id.tv_1, R.id.tv_2, R.id.tv_3, R.id.tv_4);
     }
     
     @Override
@@ -44,6 +44,9 @@ public class AnimationMapActivity extends CommonBaseTitleActivity {
                 break;
             case R.id.tv_3:
                 intent.setClass(mContext, CustomDialogActivity.class);
+                break;
+            case R.id.tv_4:
+                intent.setClass(mContext, RadialGradientActivity.class);
                 break;
         }
         

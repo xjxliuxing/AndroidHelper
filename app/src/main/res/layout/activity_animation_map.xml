@@ -21,4 +21,9 @@
         style="@style/style_todo_item"
         android:text="自定义滑动的dialog" />
 
+    <TextView
+        android:id="@+id/tv_4"
+        style="@style/style_todo_item"
+        android:text="放射动画效果" />
+
 </LinearLayout>

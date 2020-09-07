@@ -25,6 +25,7 @@ class TestCustomViewActivity : CommonBaseTitleActivity() {
             } else {
                 View.GONE
             }
+            sssss.requestLayout()
         }
     }
 }

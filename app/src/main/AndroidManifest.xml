@@ -19,13 +19,13 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="q">
-        <activity android:name=".ui.home.activity.todo.animation.RadialGradientActivity">
+        <activity android:name=".ui.home.activity.todo.customviewui.DragDropActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.home.activity.todo.animation.RadialGradientActivity" />
         <activity android:name=".test.TestCustomViewActivity" />
         <activity android:name=".ui.home.activity.todo.customviewui.CustomTextViewActivity" />
         <activity android:name=".ui.home.activity.todo.widget.CustomCalendarChooserActivity" />
@@ -52,11 +52,11 @@
         <activity android:name=".ui.home.activity.todo.widget.CustomTime2Activity" />
         <activity android:name=".ui.DownLoadManagerActivity" /> <!-- 主界面 -->
         <activity android:name=".ui.home.activity.MainActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <provider

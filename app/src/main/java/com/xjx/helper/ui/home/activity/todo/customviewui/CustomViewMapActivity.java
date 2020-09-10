@@ -25,7 +25,7 @@ public class CustomViewMapActivity extends CommonBaseTitleActivity {
         SwitchLoadingStatus(PlaceholderStatus.NONE);
         
         setOnClick(R.id.tv_1, R.id.tv_2, R.id.tv_3, R.id.tv_4, R.id.tv_5, R.id.tv_6,
-                R.id.tv_7, R.id.tv_8, R.id.tv_9);
+                R.id.tv_7, R.id.tv_8, R.id.tv_9, R.id.tv_10);
     }
     
     @Override
@@ -61,6 +61,9 @@ public class CustomViewMapActivity extends CommonBaseTitleActivity {
                 break;
             case R.id.tv_9:// 自定义textView
                 intent.setClass(mContext, CustomTextViewActivity.class);
+                break;
+            case R.id.tv_10:// 自定义textView
+                intent.setClass(mContext, DragDropActivity.class);
                 break;
         }
         

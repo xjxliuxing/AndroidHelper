@@ -60,5 +60,10 @@
             style="@style/style_todo_item"
             android:text="自定义拖拽的view" />
 
+        <TextView
+            android:id="@+id/tv_11"
+            style="@style/style_todo_item"
+            android:text="自定义滑块" />
+
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

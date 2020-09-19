@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.xjx.helper.ui.home.activity.todo.customviewui.SliderActivity">
+
+    <!--    <com.xjx.helper.widget.custom.SliderView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="30dp"-->
+    <!--        android:layout_centerInParent="true"-->
+    <!--        android:layout_marginLeft="@dimen/dp_20"-->
+    <!--        android:layout_marginRight="@dimen/dp_20"-->
+    <!--        android:progressDrawable="@drawable/seekbar_slider"-->
+    <!--        android:splitTrack="false"-->
+    <!--        android:thumb="@drawable/selector_seekbar_slider" />-->
+
+    <androidx.appcompat.widget.AppCompatSeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@color/blue_2" />
+
+    <com.xjx.helper.widget.custom.SliderView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_20"
+        android:background="@color/red_4"
+        app:hk_background="@color/blue_2"
+        app:hk_background_Height="@dimen/dp_5"
+        app:hk_drawable="@drawable/tab_todo_selected"
+        app:hk_selector_background="@color/green_1" />
+    <!--        app:hk_drawable="@drawable/tab_todo_selected" />-->
+    <!--        app:hk_drawable="@drawable/lrt" />-->
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="400dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:adjustViewBounds="true"
+        android:src="@drawable/lrt"
+        android:visibility="gone" />
+
+</RelativeLayout>

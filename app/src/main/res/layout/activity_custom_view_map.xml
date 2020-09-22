@@ -65,5 +65,10 @@
             style="@style/style_todo_item"
             android:text="自定义滑块" />
 
+        <TextView
+            android:id="@+id/tv_12"
+            style="@style/style_todo_item"
+            android:text="自定义触摸解锁效果" />
+
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

@@ -25,7 +25,7 @@ public class CustomViewMapActivity extends CommonBaseTitleActivity {
         SwitchLoadingStatus(PlaceholderStatus.NONE);
         
         setOnClick(R.id.tv_1, R.id.tv_2, R.id.tv_3, R.id.tv_4, R.id.tv_5, R.id.tv_6,
-                R.id.tv_7, R.id.tv_8, R.id.tv_9, R.id.tv_10, R.id.tv_11);
+                R.id.tv_7, R.id.tv_8, R.id.tv_9, R.id.tv_10, R.id.tv_11,R.id.tv_12);
     }
     
     @Override
@@ -67,6 +67,9 @@ public class CustomViewMapActivity extends CommonBaseTitleActivity {
                 break;
             case R.id.tv_11:// 自定义滑块
                 intent.setClass(mContext, SliderActivity.class);
+                break;
+            case R.id.tv_12:// 自定义触摸解锁效果
+                intent.setClass(mContext, TouchUnlockActivity.class);
                 break;
         }
         

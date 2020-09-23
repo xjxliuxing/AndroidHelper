@@ -57,7 +57,7 @@ class SliderView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
         }
         
         
-        bitmap = CustomViewUtil.getBitmapDefault(mDrawable)
+        bitmap = CustomViewUtil.getBitmapScaleWidth(mDrawable,mDrawableHeight)
         
         // 设置背景的数据
         mPaintBackground.isAntiAlias = true

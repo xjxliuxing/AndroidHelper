@@ -23,14 +23,14 @@
         android:background="@color/blue_2" />
 
     <com.xjx.helper.widget.custom.SliderView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/dp_20"
         android:layout_marginRight="@dimen/dp_20"
         app:hk_background="@color/gray_22"
-        app:hk_background_Height="@dimen/dp_5"
         app:hk_drawable="@mipmap/icon_control_vehicle_xp_zdbc_yz"
+        app:hk_drawable_Height="100dp"
         app:hk_selector_background="@color/black_15" />
     <!--        app:hk_drawable="@drawable/tab_todo_selected" />-->
     <!--        app:hk_drawable="@drawable/lrt" />-->
@@ -41,6 +41,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:adjustViewBounds="true"
+        android:contentDescription="TODO"
         android:src="@drawable/lrt"
         android:visibility="gone" />
 

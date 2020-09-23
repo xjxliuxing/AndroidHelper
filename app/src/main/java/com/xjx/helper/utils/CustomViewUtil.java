@@ -53,6 +53,65 @@ public class CustomViewUtil {
     }
     
     /**
+     * @param drawable 原始的drawable
+     * @param width    指定的宽
+     * @param height   指定的高
+     * @return 根据指定的高度，返回一个新的bitmap
+     */
+    public static Bitmap getBitmapScale(Drawable drawable, float width, float height) {
+        Bitmap bitmap = null;
+        if (drawable == null) {
+            return bitmap;
+        }
+        
+        if (drawable instanceof StateListDrawable) {
+            Drawable current = drawable.getCurrent();
+            if (current instanceof BitmapDrawable) {
+                bitmap = ((BitmapDrawable) current).getBitmap();
+            }
+        } else if (drawable instanceof BitmapDrawable) {
+            bitmap = ((BitmapDrawable) drawable).getBitmap();
+        }
+        
+        int bmpWidth = bitmap.getWidth();
+        int bmpHeight = bitmap.getHeight();
+        
+        float scaleWidth = width / bmpWidth;
+        float scaleHeight = height / bmpHeight;
+        
+        Matrix matrix = new Matrix();
+        matrix.postScale(scaleWidth, scaleHeight);
+        
+        return Bitmap.createBitmap(bitmap, 0, 0, bmpWidth, bmpHeight, matrix, true);
+    }
+    
+    public static Bitmap getBitmapScaleWidth(Drawable drawable, float height) {
+        Bitmap bitmap = null;
+        if (drawable == null) {
+            return bitmap;
+        }
+        
+        if (drawable instanceof StateListDrawable) {
+            Drawable current = drawable.getCurrent();
+            if (current instanceof BitmapDrawable) {
+                bitmap = ((BitmapDrawable) current).getBitmap();
+            }
+        } else if (drawable instanceof BitmapDrawable) {
+            bitmap = ((BitmapDrawable) drawable).getBitmap();
+        }
+        
+        int bmpWidth = bitmap.getWidth();
+        int bmpHeight = bitmap.getHeight();
+        
+        float scaleHeight = height / bmpHeight;
+        
+        Matrix matrix = new Matrix();
+        matrix.postScale(scaleHeight, scaleHeight);
+        
+        return Bitmap.createBitmap(bitmap, 0, 0, bmpWidth, bmpHeight, matrix, true);
+    }
+    
+    /**
      * @return 求出中线到基线的距离
      */
     public static float getBaseline(Paint p) {

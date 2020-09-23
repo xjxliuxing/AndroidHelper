@@ -38,6 +38,7 @@ class SliderView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
     private val mPaddingRight = ConvertUtil.toDp(18f)
     private val mTextContent = "滑动至底部即可开始"
     private var mLeft: Int = 0
+    private var dxValue: Float = 0f
     
     init {
         val toDp5 = ConvertUtil.toDp(5f)
@@ -84,11 +85,7 @@ class SliderView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         bitmap?.let {
-            it
-            setMeasuredDimension(
-                    resolveSize(MeasureSpec.getSize(widthMeasureSpec), widthMeasureSpec),
-                    it.height
-            )
+            setMeasuredDimension(resolveSize(MeasureSpec.getSize(widthMeasureSpec), widthMeasureSpec), it.height)
             
             if (!it.isRecycled) {
                 mMaxScrollValue = (measuredWidth - bitmap!!.width)
@@ -104,7 +101,7 @@ class SliderView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
         canvas?.let {
             
             // 绘制背景色
-            it.drawRoundRect(0f, 0f, measuredWidth.toFloat(), measuredHeight.toFloat(), mRadius, mRadius, mPaintBackground);
+            it.drawRoundRect(0f, 0f, measuredWidth.toFloat(), measuredHeight.toFloat(), mRadius, mRadius, mPaintBackground)
             
             // 绘制背景的文字
             val textArray = CustomViewUtil.getTextSize(mPaintBackgroundText, mTextContent)
@@ -131,13 +128,12 @@ class SliderView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
         }
     }
     
-    var dx: Float = 0f
     override fun dispatchTouchEvent(event: MotionEvent?): Boolean {
         
-        LogUtil.e("measuredWidth:" + measuredWidth)
+        LogUtil.e("measuredWidth:$measuredWidth")
         
-        var startX: Float = 0f
-        var startY: Float = 0f
+        var startX = 0f
+        var startY = 0f
         
         event?.let {
             when (it.action) {
@@ -152,18 +148,18 @@ class SliderView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
                     LogUtil.e("移动 1")
                     val endX = it.x
                     val endY = it.y
-                    dx = endX - startX
-                    if (dx <= 0) {
-                        dx = 0f
+                    dxValue = endX - startX
+                    if (dxValue <= 0) {
+                        dxValue = 0f
                     }
-                    if (dx >= mMaxScrollValue) {
-                        dx = mMaxScrollValue.toFloat()
+                    if (dxValue >= mMaxScrollValue) {
+                        dxValue = mMaxScrollValue.toFloat()
                     }
         
-                    mLeft = dx.toInt()
+                    mLeft = dxValue.toInt()
                     invalidate()
         
-                    LogUtil.e("dx:$dx")
+                    LogUtil.e("dx:$dxValue")
                     return (endY - startY) == 0f
                 }
     
@@ -172,11 +168,20 @@ class SliderView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
                     startX = 0f
                     startY = 0f
         
-                    LogUtil.e("dx:" + dx + "  value:" + mMaxScrollValue)
-                    if (dx < mMaxScrollValue) {
+                    LogUtil.e("dx:$dxValue  value:$mMaxScrollValue")
+                    if (dxValue < mMaxScrollValue) {
+                        if (mListener != null) {
+                            mListener?.onChangeValue()
+                        }
+            
                         mLeft = 0
-                        dx = 0f
+                        dxValue = 0f
                         invalidate()
+            
+                    } else {
+                        if (mListener != null) {
+                            mListener?.onScrollMaxValue()
+                        }
                     }
                 }
             }
@@ -184,10 +189,13 @@ class SliderView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
         return super.dispatchTouchEvent(event)
     }
     
-    /**
-     * 计算比例
-     */
-    fun calculatePercentage() {
+    interface ScrollChangeListener {
+        fun onScrollMaxValue()
+        fun onChangeValue()
     }
     
+    private var mListener: ScrollChangeListener? = null
+    public fun setChangeListener(listener: ScrollChangeListener) {
+        this.mListener = listener
+    }
 }

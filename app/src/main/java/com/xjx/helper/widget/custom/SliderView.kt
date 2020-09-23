@@ -24,6 +24,8 @@ class SliderView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
     private val mPaintBackground = Paint() // 背景色
     private val mPaintSelectorBackground = Paint() // 滑动过的颜色
     
+    private val mPaintBackgroundText = Paint()// 背景上的文字
+    
     private var mDrawable: Drawable? = null
     private var mDrawableHeight: Float = 0f
     
@@ -32,6 +34,10 @@ class SliderView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
     private var mSelectorBackgroundColor: Int = 0
     private var bitmap: Bitmap? = null
     private var mMaxScrollValue: Int = 0 // 最大的滑动值
+    private val mRadius = ConvertUtil.toDp(8f)
+    private val mPaddingRight = ConvertUtil.toDp(18f)
+    private val mTextContent = "滑动至底部即可开始"
+    private var mLeft: Int = 0
     
     init {
         val toDp5 = ConvertUtil.toDp(5f)
@@ -58,6 +64,12 @@ class SliderView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
         mPaintBackground.color = mBackgroundColor
         mPaintBackground.strokeWidth = mBackgroundColorHeight
         
+        // 背景文字
+        mPaintBackgroundText.isAntiAlias = true
+        mPaintBackgroundText.isDither = true
+        mPaintBackgroundText.color = context?.let { ContextCompat.getColor(it, R.color.gray_4) }!!
+        mPaintBackgroundText.textSize = ConvertUtil.toSp(12f)
+        
         // 设置背景划过的颜色
         mPaintSelectorBackground.isAntiAlias = true
         mPaintSelectorBackground.isDither = true
@@ -71,18 +83,19 @@ class SliderView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
     
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        
-        setMeasuredDimension(
-                resolveSize(MeasureSpec.getSize(widthMeasureSpec), widthMeasureSpec),
-//                resolveSize(MeasureSpec.getSize(heightMeasureSpec), heightMeasureSpec)
-                400
-        )
-        if (bitmap != null || (!bitmap!!.isRecycled)) {
-            mMaxScrollValue = (measuredWidth - bitmap!!.width).toInt()
+        bitmap?.let {
+            it
+            setMeasuredDimension(
+                    resolveSize(MeasureSpec.getSize(widthMeasureSpec), widthMeasureSpec),
+                    it.height
+            )
+            
+            if (!it.isRecycled) {
+                mMaxScrollValue = (measuredWidth - bitmap!!.width)
+            }
         }
+        
     }
-    
-    private var mLeft: Int = 0
     
     @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas?) {
@@ -91,21 +104,29 @@ class SliderView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
         canvas?.let {
             
             // 绘制背景色
-            val backgroundTop = (measuredHeight) / 2.toFloat()
-            it.drawLine(0f, backgroundTop, measuredWidth.toFloat(), backgroundTop, mPaintBackground)
+            it.drawRoundRect(0f, 0f, measuredWidth.toFloat(), measuredHeight.toFloat(), mRadius, mRadius, mPaintBackground);
             
-            // 绘制滑动过的颜色
-            it.drawLine(0f, backgroundTop, mLeft.toFloat(), backgroundTop, mPaintSelectorBackground)
+            // 绘制背景的文字
+            val textArray = CustomViewUtil.getTextSize(mPaintBackgroundText, mTextContent)
+            
+            val lineX = measuredWidth - mPaddingRight - textArray[0]
+            val lineY = measuredHeight / 2 + CustomViewUtil.getBaseline(mPaintBackgroundText)
+            it.drawText(mTextContent, lineX, lineY, mPaintBackgroundText)
             
             // 绘制bitmap
             bitmap?.let { b ->
                 if (b.isRecycled) {
                     bitmap = CustomViewUtil.getBitmapDefault(mDrawable)
                 }
+                
+                // 绘制滑动过的颜色
+                it.drawRoundRect(0f, 0f, (b.width + paddingLeft + mLeft).toFloat(), measuredHeight.toFloat(), mRadius, mRadius, mPaintSelectorBackground)
+                
                 val rectSrc = Rect(0, 0, b.width, b.height)
                 val top = (measuredHeight - b.height) / 2
                 val desRect = Rect((paddingLeft + mLeft), top, (b.width + paddingLeft + mLeft), top + b.height)
                 it.drawBitmap(b, rectSrc, desRect, null)
+                
             }
         }
     }

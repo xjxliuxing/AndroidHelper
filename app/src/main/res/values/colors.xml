@@ -75,6 +75,7 @@
     <color name="gray_11">#ff313941</color>
     <color name="gray_12">#BEC4CC</color>
     <color name="gray_21">#313941</color>
+    <color name="gray_22">#E7E7E7</color>
 
     <!--todo  颜色的资源文件-->
     <color name="blue_1">#5AA7A9</color>
@@ -94,6 +95,7 @@
     <color name="black_7">#313941</color>
     <color name="black_13">#CC000000</color>
     <color name="black_14">#80333843</color>
+    <color name="black_15">#979797</color>
 
     <color name="white_1">#F9F9F9</color>
     <color name="white_2">#ECECEC</color>

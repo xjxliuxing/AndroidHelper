@@ -2,6 +2,8 @@ package com.xjx.helper.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
@@ -48,5 +50,27 @@ public class CustomViewUtil {
         matrix.postScale(scale, scale);
         
         return Bitmap.createBitmap(bitmap, 0, 0, bmpWidth, bmpHeight, matrix, true);
+    }
+    
+    /**
+     * @return 求出中线到基线的距离
+     */
+    public static float getBaseline(Paint p) {
+        Paint.FontMetrics fontMetrics = p.getFontMetrics();
+        return (fontMetrics.descent - fontMetrics.ascent) / 2 - fontMetrics.descent;
+    }
+    
+    /**
+     * @param paint   画笔
+     * @param content 内容
+     * @return 获取绘制textView的宽高，第一个返回的是宽，第二个返回的是高
+     */
+    public static int[] getTextSize(Paint paint, String content) {
+        int[] ints = new int[2];
+        Rect rect = new Rect();
+        paint.getTextBounds(content, 0, content.length(), rect);
+        ints[0] = rect.width();
+        ints[1] = rect.height();
+        return ints;
     }
 }

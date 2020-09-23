@@ -16,15 +16,15 @@ class TouchUnlockActivity : CommonBaseTitleActivity() {
         setTitleContent("自定义触摸解锁效果")
         SwitchLoadingStatus(PlaceholderStatus.NONE)
         
-        
-        
         start.setOnClickListener {
-            cv.startView(true)
-            
+//            cv.startView(true)
 //            waaaa.startAnim()
+            lllll.start()
         }
         end.setOnClickListener {
-            cv.endView()
+//            cv.endView()
+//            waaaa.pauseAnim()
+            lllll.pause()
         }
     }
     

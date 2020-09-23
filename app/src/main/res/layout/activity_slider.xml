@@ -28,11 +28,10 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/dp_20"
         android:layout_marginRight="@dimen/dp_20"
-        android:background="@color/red_4"
-        app:hk_background="@color/blue_2"
+        app:hk_background="@color/gray_22"
         app:hk_background_Height="@dimen/dp_5"
-        app:hk_drawable="@drawable/tab_todo_selected"
-        app:hk_selector_background="@color/green_1" />
+        app:hk_drawable="@mipmap/icon_control_vehicle_xp_zdbc_yz"
+        app:hk_selector_background="@color/black_15" />
     <!--        app:hk_drawable="@drawable/tab_todo_selected" />-->
     <!--        app:hk_drawable="@drawable/lrt" />-->
 

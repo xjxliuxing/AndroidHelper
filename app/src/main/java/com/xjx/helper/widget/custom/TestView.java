@@ -38,7 +38,7 @@ public class TestView extends View {
     private List<Integer> mAlphaList = new ArrayList();
     
     private int maxRadius = 0; // 最大的半径值
-    private int mRadiusPadding = (int) ConvertUtil.toDp(30f); // 左右边距的值
+    private int mRadiusPadding = (int) ConvertUtil.toDp(0f); // 左右边距的值
     
     private float alphasZoom; // 透明度
     private int centerX; // view的X轴中心
@@ -65,7 +65,7 @@ public class TestView extends View {
         mPaintSpread.setDither(true);
         mPaintSpread.setStyle(Paint.Style.FILL);
         mPaintSpread.setStrokeWidth(mPaintWidth);// view的宽度
-        mPaintSpread.setColor(ContextCompat.getColor(getContext(), R.color.white));
+        mPaintSpread.setColor(ContextCompat.getColor(getContext(), R.color.black_15));
         
         mAlphaList.add(255); // 默认设置最大值
         mRadiusList.add(0f);

@@ -88,9 +88,8 @@ public class CustomViewUtil {
     public static Bitmap getBitmapScaleWidth(Drawable drawable, float height) {
         Bitmap bitmap = null;
         if (drawable == null) {
-            return bitmap;
+            return null;
         }
-        
         if (drawable instanceof StateListDrawable) {
             Drawable current = drawable.getCurrent();
             if (current instanceof BitmapDrawable) {
@@ -99,16 +98,20 @@ public class CustomViewUtil {
         } else if (drawable instanceof BitmapDrawable) {
             bitmap = ((BitmapDrawable) drawable).getBitmap();
         }
-        
-        int bmpWidth = bitmap.getWidth();
-        int bmpHeight = bitmap.getHeight();
-        
-        float scaleHeight = height / bmpHeight;
-        
-        Matrix matrix = new Matrix();
-        matrix.postScale(scaleHeight, scaleHeight);
-        
-        return Bitmap.createBitmap(bitmap, 0, 0, bmpWidth, bmpHeight, matrix, true);
+        if (bitmap != null) {
+            
+            int bmpWidth = bitmap.getWidth();
+            int bmpHeight = bitmap.getHeight();
+            
+            float scaleHeight = height / bmpHeight;
+            
+            Matrix matrix = new Matrix();
+            matrix.postScale(scaleHeight, scaleHeight);
+            
+            return Bitmap.createBitmap(bitmap, 0, 0, bmpWidth, bmpHeight, matrix, true);
+        } else {
+            return null;
+        }
     }
     
     /**

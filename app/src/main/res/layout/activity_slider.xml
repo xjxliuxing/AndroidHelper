@@ -30,7 +30,7 @@
         android:layout_marginRight="@dimen/dp_20"
         app:hk_background="@color/gray_22"
         app:hk_drawable="@mipmap/icon_control_vehicle_xp_zdbc_yz"
-        app:hk_drawable_Height="100dp"
+        app:hk_drawable_Height="@dimen/dp_50"
         app:hk_selector_background="@color/black_15" />
     <!--        app:hk_drawable="@drawable/tab_todo_selected" />-->
     <!--        app:hk_drawable="@drawable/lrt" />-->

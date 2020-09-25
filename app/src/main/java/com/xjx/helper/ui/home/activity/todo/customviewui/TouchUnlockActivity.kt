@@ -17,14 +17,8 @@ class TouchUnlockActivity : CommonBaseTitleActivity() {
         SwitchLoadingStatus(PlaceholderStatus.NONE)
         
         start.setOnClickListener {
-//            cv.startView(true)
-//            waaaa.startAnim()
-            lllll.start()
         }
         end.setOnClickListener {
-//            cv.endView()
-//            waaaa.pauseAnim()
-            lllll.pause()
             touch_view.endView()
         }
     }

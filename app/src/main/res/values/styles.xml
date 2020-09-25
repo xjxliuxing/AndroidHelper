@@ -103,7 +103,16 @@
         <attr name="hk_background_Height" format="dimension" /> <!--背景的高度-->
         <attr name="hk_drawable_Height" format="dimension" /> <!--滑块的高度-->
         <attr name="hk_selector_background" format="color" /> <!--背景选中后的颜色-->
+    </declare-styleable>
 
+    <!--自定义touchView-->
+    <declare-styleable name="TouchView">
+        <attr name="tv_drawable" format="reference" />
+        <attr name="tv_padding_Top" format="dimension" />
+        <attr name="tv_padding_Bottom" format="dimension" />
+        <attr name="tv_padding_Radius" format="dimension" />
+        <attr name="tv_interval_Width" format="dimension" />
+        <attr name="tv_speed" format="float" />
     </declare-styleable>
 
 </resources>

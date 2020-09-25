@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -40,9 +41,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        />
+        android:background="@color/blue_2"
+        android:visibility="gone" />
 
-<!--    android:background="@color/green_1"-->
+    <com.xjx.helper.widget.custom.TouchView
+        android:id="@+id/touch_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/blue_2"
+        app:tv_drawable="@mipmap/anxia"
+        app:tv_interval_Width="30dp"
+        app:tv_padding_Bottom="120dp"
+        app:tv_padding_Radius="@dimen/dp_20"
+        app:tv_padding_Top="60dp"
+        app:tv_speed="1.5" />
 
+    <!--    android:background="@color/green_1"-->
 
 </RelativeLayout>

@@ -25,6 +25,7 @@ class TouchUnlockActivity : CommonBaseTitleActivity() {
 //            cv.endView()
 //            waaaa.pauseAnim()
             lllll.pause()
+            touch_view.endView()
         }
     }
     

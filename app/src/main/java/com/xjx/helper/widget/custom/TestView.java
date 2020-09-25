@@ -44,7 +44,7 @@ public class TestView extends View {
     private int centerX; // view的X轴中心
     private int centerY; // view的Y轴中心
     private int radius;   // 绘制的半径
-    private int mPaintWidth = 30; // 画笔的宽度
+    // private int mPaintWidth = 30; // 画笔的宽度
     private int intervalWidth = 30; // 每隔view间隔的宽度
     private float speed = 1.5f;// 扩散的速度
     
@@ -64,7 +64,7 @@ public class TestView extends View {
         mPaintSpread.setAntiAlias(true);
         mPaintSpread.setDither(true);
         mPaintSpread.setStyle(Paint.Style.FILL);
-        mPaintSpread.setStrokeWidth(mPaintWidth);// view的宽度
+        // mPaintSpread.setStrokeWidth(mPaintWidth);// view的宽度
         mPaintSpread.setColor(ContextCompat.getColor(getContext(), R.color.black_15));
         
         mAlphaList.add(255); // 默认设置最大值
@@ -127,7 +127,7 @@ public class TestView extends View {
             LogUtil.e("width:" + width + "  alphas:" + alphas + "   alphasZoom：" + alphasZoom + " maxRadius：" + maxRadius + "  maxLenght:" + (maxRadius - radius));
             if (width + radius < maxRadius) {  //扩散直径和透明度
                 LogUtil.e("  ssss:" + (255 - alphasZoom * (width + speed)));
-                mAlphaList.set(i, (int) (255 - alphasZoom * (width + speed)));
+                mAlphaList.set(i, (int) (257 - alphasZoom * (width + speed)));
                 mRadiusList.set(i, width + speed);
             } else {
                 mAlphaList.set(i, 0);
@@ -136,7 +136,7 @@ public class TestView extends View {
         
         // 只要最外边的view宽度大于30 ，就开始添加一个view
         Float current = mRadiusList.get(mRadiusList.size() - 1);
-        if ((current) == (mPaintWidth + intervalWidth)) {
+        if (current == intervalWidth) {
             mRadiusList.add(0f);
             mAlphaList.add(255);
         }

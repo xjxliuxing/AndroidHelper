@@ -21,36 +21,12 @@
         android:layout_alignParentRight="true"
         android:text="结束扩散" />
 
-    <com.xjx.helper.widget.custom.CustomTouchUnlockView
-        android:id="@+id/cv"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:background="@color/black"
-        android:visibility="gone" />
-
-    <com.xjx.helper.widget.custom.WaveView
-        android:id="@+id/waaaa"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@color/black"
-        android:visibility="gone" />
-
-    <com.xjx.helper.widget.custom.TestView
-        android:id="@+id/lllll"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@color/blue_2"
-        android:visibility="gone" />
-
     <com.xjx.helper.widget.custom.TouchView
         android:id="@+id/touch_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="@color/blue_2"
         app:tv_drawable="@mipmap/anxia"
         app:tv_interval_Width="30dp"
         app:tv_padding_Bottom="120dp"
